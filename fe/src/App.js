@@ -4,6 +4,7 @@ import Comic from './pages/comic/comic'
 import Follow from './pages/follow/follow'
 import Login from './pages/login/login'
 import Register from './pages/register/register'
+import MainComic from './pages/main_comic/main_comic'
 import Layout from './layout'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="follow" element={<Follow />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="comic/main-comic" element={<MainComic />} /> 
           {/* <Route path="*" element={<NoPage />} /> */}
         </Route>
       </Routes>
