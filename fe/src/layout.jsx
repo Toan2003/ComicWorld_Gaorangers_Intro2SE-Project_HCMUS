@@ -2,6 +2,8 @@ import { Link, Outlet } from 'react-router-dom'
 import LOGO from './assets/logo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
 
+const checkAuthen = false
+
 export default function Layout() {
   return (
     <>
@@ -18,10 +20,14 @@ export default function Layout() {
               <button><AiOutlineSearch color='#FFFF'/></button>
             </div>
           </li>
-          <li>
+          {checkAuthen ? 
+          (<li>
+            profile
+          </li>) : 
+          (<li>
             <Link to="/login" className="header-item header-item-1">Đăng Nhập / </Link>
             <Link to="/register" className="header-item header-item-1">Đăng Kí</Link>
-          </li>
+          </li>)}
         </ul>
         <ul className="sticky-nav">
           <li>
