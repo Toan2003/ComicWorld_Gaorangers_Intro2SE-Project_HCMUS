@@ -25,7 +25,8 @@
   },
   "homepage": "https://github.com/Toan2003/ComicWorld_Gaorangers_Intro2SE-Project_HCMUS#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongodb": "^5.7.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
