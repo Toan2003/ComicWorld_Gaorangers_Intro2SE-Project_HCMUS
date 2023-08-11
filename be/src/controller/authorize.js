@@ -48,3 +48,7 @@ async function getLogin(req, res) {
         })
     }
 }
+module.exports = {
+    postSignup,
+    getLogin
+}
