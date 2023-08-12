@@ -1,4 +1,4 @@
-const mongodb = require('mongodb')
+// const mongodb = require('mongodb')
 
 // const url = 'mongodb://localhost:8080'
 
@@ -18,9 +18,9 @@ const mongodb = require('mongodb')
   
 //     return 'done.';
 // }
-// const mongoose = require('mongoose');
+ const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/comicsDatabase', {
+mongoose.connect('mongodb://127.0.0.1/comicsDatabase', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(()=>{

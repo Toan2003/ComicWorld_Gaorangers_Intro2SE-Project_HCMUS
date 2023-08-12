@@ -2,7 +2,7 @@ import axiosClient from "./axiosConnect";
 
 
 async function getLogin(data) {
-    return await axiosClient.get('/authorize/login', data);
+    return await axiosClient.get('authorize/login', {data});
 }
 
 async function getSignup(data) {
