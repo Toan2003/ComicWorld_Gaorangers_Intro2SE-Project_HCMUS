@@ -1,5 +1,5 @@
 import axiosClient from "./axiosConnect"
 
-async function getListComic(data) {
+async function getListComic(data) { 
     
 }

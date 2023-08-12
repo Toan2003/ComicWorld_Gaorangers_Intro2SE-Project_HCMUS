@@ -12,4 +12,13 @@ const userSchema = new mongoose.Schema({
 
 const user = mongoose.model('User', userSchema);
 
+
+async function login(username,password) {
+    const users = await user.findOne({username})
+    if (users) {
+        return true;
+    } else {
+        return false;
+    }
+}
 module.exports= user;

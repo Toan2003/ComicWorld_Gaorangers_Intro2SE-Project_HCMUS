@@ -1,12 +1,14 @@
 import { useState } from "react"
 import './styles.css'
-
+import {getLogin} from '../../api/authorize'
 export default function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const result = getLogin(email, password)
+    console.log(result)
   }
 
   return (
