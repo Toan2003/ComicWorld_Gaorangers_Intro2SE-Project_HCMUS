@@ -15,10 +15,31 @@ const user = mongoose.model('User', userSchema);
 
 async function login(username,password) {
     const users = await user.findOne({username})
+    
     if (users) {
-        return true;
-    } else {
-        return false;
-    }
+        if(password==users.password){
+            const isSuccess='true',
+            type=users.Role
+            return {isSuccess, type}
+        }
+    } 
+    const isSuccess='false',
+    type=""
+    return {isSuccess, type}
 }
-module.exports= user;
+
+async function signup(username,password){
+    const users=await user.findOne({username})
+    if (users)
+    {
+        const isSuccess='false',
+        type=""    
+        return {isSuccess,type}
+    }
+    const isSuccess="true"
+    temp= new user({username,password})
+    temp.save()
+    type=temp.Role
+    return {isSuccess,type}
+}
+module.exports= {user, login, signup};
