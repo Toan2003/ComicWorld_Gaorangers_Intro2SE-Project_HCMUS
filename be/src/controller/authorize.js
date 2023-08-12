@@ -9,7 +9,7 @@ async function postSignup(req, res) {
         })
     }
     let result = await database.signup(req.params)
-    if (result == true) {
+    if (result) {
         return res.json({
             isSuccess: true,
             message: 'Account created successfully',
@@ -34,7 +34,7 @@ async function getLogin(req, res) {
         })
     }
     let result = await database.login(req.params)
-    if (result == true) {
+    if (result) {
         return res.json({
             isSuccess: true,
             message: 'Account created successfully',
