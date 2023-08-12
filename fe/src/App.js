@@ -3,7 +3,7 @@ import Home from './pages/home/home'
 import Comic from './pages/comic/comic'
 import Follow from './pages/follow/follow'
 import Login from './pages/login/login'
-import Register from './pages/register/register'
+import Register from './pages/login/register'
 import MainComic from './pages/main_comic/main_comic'
 import Layout from './layout'
 
