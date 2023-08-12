@@ -1,6 +1,7 @@
 const express =require('express')
 const app = express()
-const port = 3000
+const user = require('./model/user')
+const port = 3001
 
 // Router
 // const home = express.Router()
