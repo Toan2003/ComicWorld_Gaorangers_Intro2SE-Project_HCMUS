@@ -8,35 +8,35 @@ export default function Home() {
   const exampleTable = [
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
@@ -46,126 +46,126 @@ export default function Home() {
   const exampleSection = [
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
     },
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (this is a really good comic)',
+      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
@@ -185,15 +185,7 @@ export default function Home() {
   )
 }
 
-function Section({ title, data }) {
-  const in4 = {
-    img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-    name: 'Chainsaw man (this is a really good comic)',
-    view: '1.234K',
-    comment: '1.234K',
-    rating: 4.8
-  }
-  
+function Section({ title, data }) { 
   return (
     <div className="section">
       <h3 className="section-title">{title + ' >'}</h3>
@@ -236,30 +228,30 @@ function Table({name, data}){
     <div className="homepage-table-container">
       <h3 className="homepage-table-name">{name}</h3>
       {
-        data.map((cur, index) => (<Row key={index} props={cur}></Row>))
+        data.map((cur, index) => (<Row key={index} data={cur}></Row>))
       }
     </div>
   )
 }
 
-function Row({ props }){
+function Row({ data }){
   return (
     <Link className="homepage-row-container" to="">
-      <img className="homepage-row-img" src={props.img} alt="" />
+      <img className="homepage-row-img" src={data.img} alt="" />
       <div className="homepage-row-info">
-        <h3 className="homepage-row-name">{props.name}</h3>
+        <h3 className="homepage-row-name">{data.name}</h3>
         <span className="homepage-row-stat">
           <span className="homepage-row-stat-wrap">
             <FaEye className="homepage-row-stat-icon"/>
-            <h3 className="homepage-row-stat-number">{props.view}</h3>
+            <h3 className="homepage-row-stat-number">{data.view}</h3>
           </span>
           <span className="homepage-row-stat-wrap">
             <MdModeComment className="homepage-row-stat-icon"/>
-            <h3 className="homepage-row-stat-number">{props.comment}</h3>
+            <h3 className="homepage-row-stat-number">{data.comment}</h3>
           </span>
           <span className="homepage-row-stat-wrap">
             <AiFillStar className="homepage-row-stat-icon"/>
-            <h3 className="homepage-row-stat-number">{props.rating}</h3>
+            <h3 className="homepage-row-stat-number">{data.rating}</h3>
           </span>
         </span>
       </div>

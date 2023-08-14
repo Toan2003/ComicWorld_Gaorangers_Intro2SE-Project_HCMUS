@@ -169,7 +169,15 @@ background-color: var(--hover-color);
 
 .homepage-row-name {
     font-size: 12px;
+    line-height: 15px;
     font-weight: 500;
+    height: 30px;
+    display: block; /*trong trường hợp trình duyệt không hỗ trợ ưebkit-box*/
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
 }
 
 .homepage-row-stat {
