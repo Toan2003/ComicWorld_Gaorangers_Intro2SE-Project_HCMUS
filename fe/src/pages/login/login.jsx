@@ -7,10 +7,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const result = await getLogin({email,password})
-    console.log(result)
-    setEmail("")
-    setPassword("")
+    let result = await getLogin({email,password})
   }
 
   return (

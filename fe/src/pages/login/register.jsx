@@ -1,13 +1,15 @@
 import { useState } from "react"
 import './styles.css';
+import {postSignup} from '../../api/authorize'
 
 export default function Register() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    let result = await postSignup({email,password})
   }
 
   return (

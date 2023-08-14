@@ -16,9 +16,9 @@ const user = mongoose.model('User', userSchema);
 async function login(username,password) {
     const users = await user.findOne({username})
     if (users) {
-        return true;
+        return {'isSuccess' : true,type: 'member'};
     } else {
-        return false;
+        return {'isSuccess' : false,type: 'member'};
     }
 }
-module.exports= user;
+module.exports= {user,login};
