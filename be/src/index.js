@@ -12,9 +12,11 @@ app.use(express.json());
 const authorize = require('./route/authorize')
 const comic = require('./route/comic')
 const user = require('./route/user')
+const chapter = require('./route/chapter')
 
 app.use(authorize)
 app.use(comic)
 app.use(user)
+app.use(chapter)
 
 app.listen(port, ()=>console.log(`Example app listening at htttp://localhost:${port}`))

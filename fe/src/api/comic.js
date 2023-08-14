@@ -1,12 +1,12 @@
 import axiosClient from "./axiosConnect"
 
-async function getComic(id) { 
-    link = 'comic/' + id
-    return await axiosClient.get(link);
+async function getComic(idComic, idMember) { 
+    link = 'comic/' + idComic
+    return await axiosClient.get(link,idMember);
 }
 
-async function getChapter(name,id) { 
-    link = 'comic/chapter' + name + '/' + id
+async function getChapter(idChapter) { 
+    link = 'comic/chapter' + '/' + idChapter
     return await axiosClient.get(link);
 }
 
