@@ -1,0 +1,434 @@
+
+select
+{
+  width:150px;
+}
+
+.Logo_background{
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  left: 0px;
+  top: -4px;
+  background: #21258E;
+}
+.Gray_after{
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  left: 0px;
+  top: 76px;
+  background: #ADADAD;
+}
+
+
+.input1{
+  position: absolute;
+  width: 518px;
+  height: 37px;
+  left: 407px;
+  top: 24px;
+  font-size: 20px;
+  background: white;
+  border: 1px solid #000000;
+}
+
+.homepage
+{
+  
+  position: absolute;
+  left: 75%;
+  top: 24px;
+  z-index: 1;
+  font-size:32px;
+  font-family: 'Inria Sans';
+
+}
+
+.text-button
+{
+  outline:none;
+  background: transparent;
+  font-size: 28px;
+  border:None;
+  
+  color: white;
+  
+}
+.text-button:hover {
+  color: blue;
+}
+.nav_bar{
+
+position: absolute;
+width: 290px;
+height: 25px;
+left: 9%;
+top: 90px;
+
+color: #000000;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 21px;
+line-height: 25px;
+}
+
+
+
+.text-button1
+{
+  outline:none;
+  background: transparent;
+  font-size: 21px;
+  border:None;
+  color: #000000;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 25px;
+}
+.text-button1:hover {
+  color: blue;
+}
+.Newcomics
+{
+position: absolute;
+width: 372px;
+height: 47px;
+left: 9%;
+top: 159px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 36px;
+line-height: 44px;
+
+color: #000000;
+
+}
+
+.Name
+{
+  position: absolute;
+  width: 256px;
+  height: 49px;
+  left: 139px;
+  top: 236px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+}
+.Nameinput
+{
+
+
+box-sizing: border-box;
+
+position: absolute;
+width: 1159px;
+height: 51px;
+left: 139px;
+top: 285px;
+font-size: 20px;
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 14px;
+}
+
+.Author{
+
+position: absolute;
+width: 256px;
+height: 49px;
+left: 141px;
+top: 349px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+
+color: #000000;
+}
+.Authorinput{
+
+box-sizing: border-box;
+
+position: absolute;
+width: 1159px;
+height: 51px;
+left: 139px;
+top: 398px;
+font-size: 20px;
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 14px;
+}
+.Type{
+
+position: absolute;
+width: 256px;
+height: 49px;
+left: 147px;
+top: 473px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+
+color: #000000;
+}
+select{
+box-sizing: border-box;
+position: absolute;
+width: 1157px;
+height: 51px;
+left: 141px;
+top: 529px;
+font-size: 20px;
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 14px;
+}
+.Date{
+
+position: absolute;
+width: 96px;
+height: 35px;
+left: 141px;
+top: 597px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+
+color: #000000;
+}
+.Dateinput{
+
+box-sizing: border-box;
+
+position: absolute;
+width: 281px;
+height: 43px;
+left: 141px;
+top: 633px;
+font-size: 20px;
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 10px;
+}
+.Status{
+
+position: absolute;
+width: 256px;
+height: 49px;
+left: 139px;
+top: 711px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+
+color: #000000;
+}
+.checkbox1{
+
+position: absolute;
+
+left: 160px;
+top: 755px;
+
+
+}
+
+.checkbox2{
+
+position: absolute;
+
+left: 160px;
+top: 800px;
+
+
+color: #000000;
+}
+.checkbox3{
+position: absolute;
+
+left: 160px;
+top: 845px;
+}
+.inProgress
+{
+  position: absolute;
+  width: 256px;
+  height: 49px;
+  left: 200px;
+  top: 750px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+}
+.Complete
+{
+  position: absolute;
+  width: 256px;
+  height: 49px;
+  left: 200px;
+  top: 796px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+}
+.Drop
+{
+  position: absolute;
+  width: 256px;
+  height: 49px;
+  left: 200px;
+  top: 843px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+}
+.Description{
+position: absolute;
+width: 256px;
+height: 49px;
+left: 139px;
+top: 893px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+
+color: #000000;
+}
+.Description_Input{
+box-sizing: border-box;
+
+position: absolute;
+width: 1157px;
+height: 184px;
+left: 141px;
+top: 925px;
+
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 10px;
+}
+.commentbox{
+  display:flex;
+  position:relative;
+  overflow: hidden;
+  border-radius: 10px;
+  border:1px solid #000000;
+  width: 1157px;
+  left: 8.5%;
+  background-color: white;
+  margin-top: 932px; /*957*/
+  font-size:20px;
+  
+}
+.Cover{
+  
+position:absolute;
+font-size: 20px;
+left: 8%;
+margin-top: 10px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+
+color: #000000;
+}
+.Input_file
+{
+  position:absolute;
+  margin-top: 50px;
+  font-size: 28px;
+  left:9%;
+}
+.UploadPic{
+position: absolute;
+box-sizing: border-box;
+width: 249px;
+height: 44px;
+margin-top: 50px;
+left: 43%;
+font-size: 28px;
+color:white;
+background: #3E45E9;
+border: 1px solid #000000;
+border-radius: 10px;
+}
+
+.ButtonSave
+{
+position: absolute;
+box-sizing: border-box;
+position: absolute;
+width: 168px;
+height: 42px;
+margin-top: 200px;
+left:38%;
+font-size:32px;
+color:white;
+background: #3E45E9;
+border: 1px solid #000000;
+border-radius: 10px;
+
+}
+.ButtonCancel
+{
+position: absolute;
+box-sizing: border-box;
+position: absolute;
+width: 168px;
+height: 42px;
+margin-top: 200px;
+left:54%;
+font-size:32px;
+color:white;
+background: #3E45E9;
+border: 1px solid #000000;
+border-radius: 10px;
+}
+.UploadPic:hover
+{
+  background: #777CF6;
+}
+.ButtonSave:hover
+{
+  background: #777CF6;
+}
+.ButtonCancel:hover
+{
+  background: #777CF6;
+}
