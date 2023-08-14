@@ -1,11 +1,49 @@
 import { Link, Outlet } from 'react-router-dom'
+import { getComic } from '../../api/comic'
 import './styles.css'
+import { useEffect, useState } from 'react'
+export default function MainComic() {
+  // async function wrapped(){
+  //   return await getComic('64d8e41254bccfc45b142f81',null)
+  // }
+  // const result = wrapped()
+  const [comic, setComic] = useState([]) 
+  // useEffect(() => {
+  //   const result = getComic('64d8e41254bccfc45b142f81',null)
+  //   setComic(result.data.data.comic)
+  // },[])
+//   useEffect(()=>{
+//   const fetchData=async ()=>{
+//     const result=await getComic('64d8e41254bccfc45b142f81',null)
+//     setComic(result.data.data.comic)
+//   }
+//   fetchData()
+// .catch(console.error)},[])
+  async function loadData() {
+    const result = await getComic('64d8e46ca90a7477dedca07f',null)
+    setComic(result.data.data.comic)
+  }
 
-export default function mainComic() {
+  useEffect(() => {
+    loadData()
+  }, [])
+
+  // // console.log(result.data)
+  // // console.log(result.data.comic)
+  //const comic = result.data.data.comic
+  // console.log(comic)
   const chapterOpen = false
-  const comicName = 'VÕ LUYỆN ĐỈNH PHONG'
-  const chapter = 123
-  const image = 'https://st.nettruyenmax.com/data/comics/32/vo-luyen-dinh-phong.jpg'
+  const comicName = comic.nameComics
+  const chapter = 10
+  const image = comic.coverURL
+  // const author = 'comic.Uploading.group'
+  // const status = comic.status
+  // const type = comic.type
+  // const view = comic.view
+  // const chapterOpen = false
+  // const comicName = 'VÕ LUYỆN ĐỈNH PHONG'
+  // const chapter = 123
+  // const image = 'https://st.nettruyenmax.com/data/comics/32/vo-luyen-dinh-phong.jpg'
   const author = '<NAME>'
   const status = '<STATUS>'
   const type = '<TYPE>'

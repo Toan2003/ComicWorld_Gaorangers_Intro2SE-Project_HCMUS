@@ -1,6 +1,8 @@
 const mongoose=require('mongoose')
 const user=require('./user')
 const chapter=require('./chapter')
+// const { getComic } = require('../../../fe/src/api/comic')
+
 
 const comicSchema = new mongoose.Schema({
     nameComics: String,
