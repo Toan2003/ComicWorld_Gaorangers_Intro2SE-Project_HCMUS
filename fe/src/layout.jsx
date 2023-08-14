@@ -1,10 +1,13 @@
 import { Link, Outlet } from 'react-router-dom'
 import LOGO from './assets/logo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
-
-const checkAuthen = false
-
+import { AuthContext } from './context/context'
+import { useContext } from 'react'
+ 
 export default function Layout() {
+  // const context = useContext(authContext)
+  const context = useContext(AuthContext)
+
   return (
     <>
       <nav className="header">
@@ -20,9 +23,9 @@ export default function Layout() {
               <button><AiOutlineSearch color='#FFFF'/></button>
             </div>
           </li>
-          {checkAuthen ? 
+          {context.authenticated === true ? 
           (<li>
-            profile
+            <Link to='/profile/dashboard'>profile</Link>
           </li>) : 
           (<li>
             <Link to="/login" className="header-item header-item-1">Đăng Nhập / </Link>
