@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import './styles.css'
-import { getLogin } from '../../api/authorize'
+// import { getLogin } from '../../api/authorize'
 import Profile from '../profile/profile'
 import { AuthContext } from "../../context/context"
 
@@ -12,8 +12,8 @@ function Login() {
     return (
       <div className="login">
         <form onSubmit={context.handleSubmit} className="login-form">
-          <label htmlFor="email">Email</label>
-          <input value={context.email} onChange={context.handleChangeEmail} type="email" placeholder="youremail@example.com" id="email" name="email" />
+          <label htmlFor="username">Email</label>
+          <input value={context.email} onChange={context.handleChangeEmail} type="text" placeholder="youremail@example.com" id="username" name="username" />
           <label htmlFor="password">Mật khẩu</label>
           <input value={context.password} onChange={context.handleChangePassword} type="password" placeholder="*********" id="password" name="password" />
           <button type="submit" className="btn btn-primary">Đăng nhập</button>

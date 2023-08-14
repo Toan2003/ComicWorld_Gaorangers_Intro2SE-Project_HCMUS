@@ -7,6 +7,8 @@ import { useContext } from 'react'
 export default function Layout() {
   // const context = useContext(authContext)
   const context = useContext(AuthContext)
+  const checkAuthen = localStorage.getItem('authenticated')
+  console.log(typeof(checkAuthen))
 
   return (
     <>
@@ -23,7 +25,7 @@ export default function Layout() {
               <button><AiOutlineSearch color='#FFFF'/></button>
             </div>
           </li>
-          {context.authenticated === true ? 
+          {checkAuthen == 'true' ? 
           (<li>
             <Link to='/profile/dashboard'>profile</Link>
           </li>) : 

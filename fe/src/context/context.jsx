@@ -7,16 +7,28 @@ export function AuthProvider({children}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // const checkLogin = getLogin(email, password);
-    const checkLogin = {
-      "isSuccess": true,
-      "message": "none",
-      "status": 200,
-      "data": "none"
-    }
+    let checkLogin = await getLogin({email, password});
+
+    // const checkLogin = {
+    //   "isSuccess": true,
+    //   "message": "none",
+    //   "status": 200,
+    //   "data": "none"
+    // }
+    checkLogin = checkLogin.data
+    // console.log(checkLogin)
+    // console.log(checkLogin.isSuccess)
+    
+    // console.log(localStorage.getItem('authenticated')) 
     setAuthenticated(checkLogin.isSuccess);
+    if (checkLogin.isSuccess == true) {
+      localStorage.setItem('authenticated', true);
+    } else {
+      localStorage.setItem('authenticated', false);
+    }
+    // console.log(authenticated)
     setEmail("");
     setPassword("");
   }

@@ -18,13 +18,13 @@ async function login(username,password) {
     
     if (users) {
         if(password==users.password){
-            const isSuccess='true',
+            const isSuccess=true,
             type=users.Role
             id =users._id;
             return {isSuccess, type,id}
         }
     } 
-    const isSuccess='false',
+    const isSuccess=false,
     type=""
     id = ""
     return {isSuccess, type, id}
@@ -34,12 +34,12 @@ async function signup(username,password){
     const users=await user.findOne({username})
     if (users)
     {
-        const isSuccess='false',
+        const isSuccess=false,
         type=""
         id = ""    
         return {isSuccess,type,id}
     }
-    const isSuccess="true"
+    const isSuccess=true
     temp = new user({username,password})
     temp.save()
     type=temp.Role
