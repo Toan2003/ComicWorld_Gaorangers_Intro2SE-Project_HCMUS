@@ -28,6 +28,7 @@ async function postSignup(req, res) {
 async function getLogin(req, res) {
     console.log(req.body)
     let {email, password} = req.body
+    console.log({email, password})
     if (!email || !password) {
         return res.json({
             isSuccess: false,
