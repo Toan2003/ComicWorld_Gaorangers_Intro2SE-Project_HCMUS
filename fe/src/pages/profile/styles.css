@@ -1,0 +1,100 @@
+@import url('../../index.css');
+
+.profile {
+  width: 60%;
+  margin: 0 20% 0 20%;
+  margin-top: -0.8%;
+  padding: 1.5% 0 0 1.5%;
+  display: flex;
+  background-color: var(--primary-color);
+}
+
+.member .link-member {
+  display: flex;
+  gap: 0.5vw;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.member {
+  width: 100%;
+}
+
+.link-member .link-item:hover {
+  color: var(--hover-text-color)
+}
+
+.main-member .account {
+  width: 20%;
+  background-color: var(--grey-color-2);
+}
+
+.main-member .account .user-name-box {
+  background-color: antiquewhite;
+  padding: 5%;
+  align-items: center;
+  justify-content: center;  
+  text-align: center;
+}
+
+.user-list {
+  padding-left: 0;
+  text-align: left;
+}
+.user-list .link-item {
+  color: black;
+}
+
+.user-list li {
+  padding-left: 1vw;
+  padding-bottom: 0.3vw;
+  padding-top: 0.3vw;
+  align-items: center;
+}
+
+.user-list li:hover {
+  background-color: gainsboro;
+}
+
+.main-member {
+  display: flex;
+}
+
+.main-member .information { 
+  margin-left: 2vw;
+  width: 70%;
+}
+
+.information h4 {
+  border-bottom: 5px solid red;
+}
+
+.information .account-infor {
+  display: flex;
+  gap: 1vw;
+}
+
+.information-item {
+  padding-left: 1vw;
+  margin-top: 2vw;  
+  border-left: 2px solid red;
+}
+
+.comic-follow-list .col {
+  font-weight: 700;
+  margin-top: 1vw;
+  font-size: 15px;
+  background-color: black;
+  color: var(--primary-color);
+  padding-left: 4vh;
+  /* padding */
+}
+
+.box-account {
+  width: 50%;
+  margin-top: 1vw;
+  background-color: antiquewhite;
+  padding: 1vw;
+  border: none;
+  border-radius: 15px;
+}
