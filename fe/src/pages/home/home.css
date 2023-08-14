@@ -1,31 +1,38 @@
+:root {
+    --container-color: #EBEBEB;
+    --body-color: #fff;
+    --title-color: #1BB0F0;
+    --border-color: #ccc;
+    --hover-color: #f9f8f8;
+}
+
 .homepage-container {
     width: 100%;
-    background-color: #EBEBEB;
+    background-color: var(--container-color);
 }
 
 .homepage-body {
     width: 100%;
-    max-width: 1000px;
+    max-width: 1200px;
     background-color: #fff;
-    position: relative;
     margin: 0 auto;
-    padding-bottom: 27px;
+    padding: 27px 0;
+    display: flex;
 }
 
 /*Section------------------------------------------------*/
 .section {
-    padding-top: 27px;
+    width: 70%;
 }
-
 .section-title {
     margin-left: 10px;
     font-size: 16px;
     font-weight: bold;
-    color: #1BB0F0;
+    color: var(--title-color);
 }
 
 .section-slider {
-    margin: 27px 32px 0;
+    margin: 27px 16px 0;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
@@ -38,8 +45,8 @@
     width: 130px;
     height: 180px;
     position: relative;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
     overflow: hidden;
 }
 
@@ -67,9 +74,9 @@
 .section-comic-name {
     color: #fff;
     font-size: 13px;
-    line-height: 15px;
+    line-height: 16px;
     font-weight: normal;
-    height: 30px;
+    height: 35px;
     display: block; /*trong trường hợp trình duyệt không hỗ trợ ưebkit-box*/
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -79,8 +86,13 @@
 
 .section-comic:hover .section-comic-name {
     -webkit-line-clamp: unset;
-    min-height: 30px;
+    min-height: 35px;
     height: unset;
+}
+
+.section-stat-wrap {
+    display: flex;
+    align-items: center;
 }
 
 .section-stat-icon {
@@ -93,7 +105,99 @@
     display: inline-block;
     color: #fff;
     font-size: 9px;
+    line-height: 9px;
     font-weight: normal;
+    margin: 0;
+}
+/*Table------------------------------------------------*/
+.tableSection {
+    display: block;
+    width: 30%;
+    margin-right: 16px;
 }
 
-/*----------------------------------------------------------------*/
+.homepage-table-container {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    min-height: 95px;
+    margin-top: 46px;
+}
+
+.homepage-table-name {
+    height: 35px;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 35px;
+    color: var(--title-color);
+    background-color: var(--border-color);
+    margin: 0;
+}
+
+.homepage-row-container {
+    height: 60px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    text-decoration: none;
+    color: #000;
+}
+
+.homepage-row-container:hover{
+background-color: var(--hover-color);
+}
+
+.homepage-row-container:last-child {
+    border: none;
+}
+
+.homepage-row-img {
+    height: 54px;
+    width: 39px;
+    border: 0.5px solid var(--border-color);
+    border-radius: 2px;
+}
+
+.homepage-row-info {
+    height: 100%;
+    margin-left: 5px;
+    flex: 1;
+    position: relative;
+}
+
+.homepage-row-name {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.homepage-row-stat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 120px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.homepage-row-stat-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.homepage-row-stat-icon,
+.homepage-row-stat-number {
+    font-size: 10px;
+    font-weight: 500;   
+}
+
+.homepage-row-stat-number {
+    margin: 0;
+    line-height: 10px;
+}
+
+.homepage-row-stat-icon {
+    margin-right: 2px;
+}

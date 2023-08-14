@@ -45,6 +45,7 @@ li {
   display: flex;
   gap: 5vw;
   align-items: center;
+  margin-bottom: 0;
 }
 
 .static-nav {
