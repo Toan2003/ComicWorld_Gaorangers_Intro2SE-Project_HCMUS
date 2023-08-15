@@ -79,7 +79,7 @@
 
 .section-comic-name {
     color: #fff;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 16px;
     font-weight: normal;
     height: 35px;
@@ -104,15 +104,15 @@
 
 .section-stat-icon {
     color: #fff;
-    font-size: 12px;
+    font-size: 13px;
     margin-right: 2px;
 }
 
 .section-stat-number {
     display: inline-block;
     color: #fff;
-    font-size: 12px;
-    line-height: 12px;
+    font-size: 13px;
+    line-height: 13px;
     font-weight: normal;
     margin: 0;
 }
@@ -151,11 +151,11 @@
 }
 
 .homepage-row-container {
-    height: 60px;
+    height: 90px;
     border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
-    padding: 3px;
+    padding: 5px;
     text-decoration: none;
     color: #000;
 }
@@ -169,8 +169,8 @@ background-color: var(--hover-color);
 }
 
 .homepage-row-img {
-    height: 54px;
-    width: 39px;
+    height: 80px;
+    width: 57.7px;
     border: 0.5px solid var(--border-color);
     border-radius: 2px;
 }
@@ -183,7 +183,7 @@ background-color: var(--hover-color);
 }
 
 .homepage-row-name {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 15px;
     font-weight: 500;
     height: 30px;
@@ -213,7 +213,7 @@ background-color: var(--hover-color);
 
 .homepage-row-stat-icon,
 .homepage-row-stat-number {
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 500;   
 }
 
