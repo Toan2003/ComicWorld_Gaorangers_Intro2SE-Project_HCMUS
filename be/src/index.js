@@ -6,7 +6,10 @@ const db = require('./database/database')
 const cors = require('cors')
 
 app.use(cors())
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ 
+    extended: true, 
+    limit: "50mb",
+}));
 app.use(express.json());
 
 const authorize = require('./route/authorize')

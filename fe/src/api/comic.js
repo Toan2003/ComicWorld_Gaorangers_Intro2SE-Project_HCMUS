@@ -1,7 +1,7 @@
 import axiosClient from "./axiosConnect"
 
 async function getComic(idComic, idMember) { 
-    let link = '/comic/getOneComic' + idComic
+    let link = '/comic/getOneComic/' + idComic
     console.log(link)
     return await axiosClient.get(link,idMember);
 }
@@ -27,7 +27,7 @@ async function getChapter(idChapter) {
 }
 
 async function getSearhComic(name) { 
-    let link = '/comic/' + name
+    let link = '/comic/search' + name
     return await axiosClient.get(link);
 }
 
