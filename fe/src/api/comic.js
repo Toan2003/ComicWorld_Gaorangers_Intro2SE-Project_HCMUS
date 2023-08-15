@@ -16,9 +16,9 @@ async function getRankingBoard() {
     return await axiosClient.get(link);
 }
 
-async function getFollowedComic() {
+async function getFollowedComic(data) {
     let link = '/comic/getFollowedComic'
-    return await axiosClient.get(link);
+    return await axiosClient.get(link,data);
 }
 
 async function getChapter(idChapter) { 
@@ -31,4 +31,6 @@ async function getSearhComic(name) {
     return await axiosClient.get(link);
 }
 
-export {getComic, getChapter, getSearhComic}
+
+
+export {getComic, getChapter, getSearhComic, getAllComic, getFollowedComic,getRankingBoard}
