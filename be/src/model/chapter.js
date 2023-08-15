@@ -26,7 +26,6 @@ const chapter= new mongoose.model("Chapter", chapterSchema)
 
 async function getOneChapter(idChapter)
 {
-
     const chapterChoose = await chapter.findById(idChapter)
     if(chapterChoose)
     {

@@ -2,11 +2,16 @@ import { Link, Outlet } from 'react-router-dom'
 import { getComic } from '../../api/comic'
 import './styles.css'
 import { useEffect, useState } from 'react'
-export default function MainComic() {
+export default function MainComic(props) {
+  const id = props.id
+  // async function wrapped(){
+  //   return await getComic('64d8e41254bccfc45b142f81',null)
+  // }
+  // const result = wrapped()
   const [comic, setComic] = useState([]) 
 
   async function loadData() {
-    const result = await getComic('64d8e46ca90a7477dedca07f',null)
+    const result = await getComic(id, null)
     setComic(result.data.data.comic)
   }
 
