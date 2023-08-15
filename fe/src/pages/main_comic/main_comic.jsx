@@ -1,4 +1,5 @@
 import { Link, Outlet } from 'react-router-dom'
+import { getComic } from '../../api/comic'
 import './styles.css'
 
 export default function mainComic() {

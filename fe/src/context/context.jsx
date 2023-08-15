@@ -9,15 +9,15 @@ export function AuthProvider({children}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let checkLogin = await getLogin({email, password});
+    // let checkLogin = await getLogin({email, password});
 
-    // const checkLogin = {
-    //   "isSuccess": true,
-    //   "message": "none",
-    //   "status": 200,
-    //   "data": "none"
-    // }
-    checkLogin = checkLogin.data
+    const checkLogin = {
+      "isSuccess": true,
+      "message": "none",
+      "status": 200,
+      "data": "none"
+    }
+    // checkLogin = checkLogin.data
     // console.log(checkLogin)
     // console.log(checkLogin.isSuccess)
     
