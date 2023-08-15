@@ -12,15 +12,17 @@ export default function Home() {
   async function loadDataPage() {
     const comics = await getAllComic()
     const ranks = await getRankingBoard()
-    setComic(comic.data.data.listComic)
-    setRank(rank.data.data.rankingList)
+    console.log(comics)
+    // console.log(ranks)
+    setComic(comics.data.data.listComic)
+    setRank(ranks.data.data.rankingList)
   }
 
   useEffect(() => {
     loadDataPage()
   }, [])
   console.log(comic)
-  console.log(rank)
+  // console.log(rank)
 
   const exampleTable = [
     {
@@ -205,10 +207,6 @@ function Comic({data}) {
             <span className="section-stat-wrap">
               <FaEye className="section-stat-icon"/>
               <h3 className="section-stat-number">{data.view}</h3>
-            </span>
-            <span className="section-stat-wrap">
-              <MdModeComment className="section-stat-icon"/>
-              <h3 className="section-stat-number">{data.comment}</h3>
             </span>
             <span className="section-stat-wrap">
               <AiFillStar className="section-stat-icon"/>
