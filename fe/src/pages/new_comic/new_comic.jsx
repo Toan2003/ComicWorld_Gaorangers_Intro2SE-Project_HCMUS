@@ -1,11 +1,10 @@
-
 import './style.css';
-
+import {FaHome} from "react-icons/fa"
 import React,{useState} from "react"
-
-
-
-function App() {
+function NewComic() {
+  const AvatarImage='./avatar'
+  const Username="tkl"
+  const [input,setInput]=useState()
   const [selects,setSelects]=useState()
   const[Name,setName]=useState("")
   const[Author,setAuthor]=useState("")
@@ -19,30 +18,17 @@ function App() {
   }
   const handleResize = (event) => {
     event.target.style.height = "auto";
-    event.target.style.height = `${event.target.scrollHeight}px`;
+    event.target.style.height = `250px`;
   }
   return (
     
     <div className="App">
+    
     <div className='Logo_background'></div>
     
-    <input type="text" className="input1" placeholder='Search....' />
     <div className='Gray_after'></div>
     <div className='Newcomics'>New Comics</div>
-    <div className="homepage">
-      
-      <button className="text-button">Homepage</button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      
-      <button className="text-button" > name</button>
-    </div>
-      
-    <div className='nav_bar'>
-      
-      <button className="text-button1">Homepage</button> /
-      <button className="text-button1"> Comics</button> /
-      <button className="text-button1"> Create</button> 
-      </div>
+    
     
     <div className='Name'>Name</div>
     <input type="text" className="Nameinput" value={Name} onChange={(e)=>setName(e.target.value)}/>
@@ -58,11 +44,7 @@ function App() {
     <input type='Date' className='Dateinput'/>
     <div className='Status'>Status</div>
     
-    <input  className="checkbox1" type='checkbox' value={In_Progress} /> 
-    <div className='inProgress'> In progress</div>
-    <input className="checkbox2" type='checkbox' value={Complete} /> 
-    <div className='Complete'> Complete</div>
-    <input className="checkbox3" type='checkbox' value={Drop} /> 
+     
     <div className='Drop'> Drop</div>
     <div className='Description'> Description</div>
     
@@ -70,13 +52,38 @@ function App() {
     
     <div className='Cover'>Cover</div>
     <input className='Input_file' type='file' value ={file} onChange={(e)=>setFiles(e.target.value)}/>
-    <button className='UploadPic'>Upload pic</button>
+    
     <button className='ButtonSave'>Save</button>
     <button className='ButtonCancel'>Cancel</button>
     
+    <div className='Nav_menu'>
+        <button className='Nav_button' ><FaHome/>Trang chủ</button>&nbsp;&nbsp;
+        <button className='Nav_button' >Thể Loại</button>&nbsp;&nbsp;
+        <button className='Nav_button'  >Trang chủ</button>
     </div>
+    
+    <input type="text"  placeholder='Nhập từ khóa tìm kiếm...' value ={input} onChange={(e)=>setInput(e.target.value)} />
+    
+    <div className="Logo">COMICSWORLD</div>
+    
+    
+      <div className="Avatar">
+        <img src={require(AvatarImage+'.jpg')} alt={"Avatar Image"}  class="rounded"/> 
+      </div>
+      
+      <button className='Username'>{Username}</button>
+      
+    
+    <input  className="checkbox1" type='checkbox' value={In_Progress} /> 
+    <div className='inProgress'> In progress</div>
+    <input className="checkbox2" type='checkbox' value={Complete} /> 
+    <div className='Complete'> Complete</div>
+    <input className="checkbox3" type='checkbox' value={Drop} />
+    </div>
+    
+    
     
   );
 }
 
-export default App;
+export default NewComic;

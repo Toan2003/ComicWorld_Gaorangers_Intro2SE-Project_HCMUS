@@ -4,6 +4,12 @@ select
   height: 30px;
   font-size: 20px;
 }
+body {
+  font-family: Tahoma,sans-serif,Helvetica,Arial;
+  font-weight: 400;
+  font-size: 14px;
+  background-color: #ebebeb
+}
 .Logo_background{
   position: absolute;
   width: 100%;
@@ -70,7 +76,9 @@ color: #1BB0F0;
   font-size:19px;
   color: white;
   text-align:center;
+  align-items: center;
 }
+
 .btnbtn-success:hover {
   color: #387938;
 }
@@ -99,13 +107,13 @@ color: #1BB0F0;
   color: rgb(9, 9, 172);
 }
 .Title{
-
   position: absolute;
   width: 323px;
   height: 39px;
   left: 15%;
   top: 199px;
-  
+  border:None;
+  outline: None;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
@@ -113,8 +121,11 @@ color: #1BB0F0;
   line-height: 39px;
   /* identical to box height */
   text-align: center;
-  
-  color: #1BB0F0;
+  color: #3346ec;
+}
+.Title:hover
+{
+  color: #1523a1
 }
 
 .Pass{
@@ -122,7 +133,7 @@ color: #1BB0F0;
 position: absolute;
 width: 26px;
 height: 19px;
-left: 520px;
+left: 515px;
 top: 211px;
 
 font-family: 'Inter';
@@ -132,24 +143,30 @@ font-size: 16px;
 line-height: 19px;
 text-align: center;
 
-color: #1BB0F0;
+color: #0b2bdf;
 }
 .Chap{
   position: absolute;
   width: 155px;
   height: 39px;
-  left: 33%;
-  top: 201px;
-  
+  left: 37%;
+  top: 199px;
+  border:None;
+  outline: None;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
+  background-color: transparent;
   line-height: 39px;
   /* identical to box height */
   text-align: center;
   
   color: #617D8F;
+}
+.Chap:hover
+{
+  color:#2e404b;
 }
 .Rectangle_move{
 box-sizing: border-box;
@@ -172,7 +189,7 @@ border-radius: 15px;
 position: absolute;
 width: 435px;
 height: 19px;
-left: 37%;
+left: 35%;
 top: 288px;
 
 font-family: 'Inter';
@@ -186,8 +203,8 @@ color: #617D8F;
 }
 .icon_button{
 position: absolute;
-left: 35.7%;
-top: 360px;
+left: 34%;
+top: 359px;
 font-size: 20px;
 text-align: center;
 
@@ -201,7 +218,6 @@ text-align: center;
 }
 
 .comic-page img {
-  
   width: 100%;
   max-width: 500px;
   height: auto;
@@ -226,26 +242,10 @@ text-align: center;
   left: 15%;
   color: blue;
 }
-.comment_box
-{
-  
-  box-sizing: border-box;
-
-  position: relative;
-  margin-top: 25px;
-  width: 1116px;
-  height: 102px;
-  left: 15%;
-  top: 3279px;
-
-  background: #FFFFFF;
-  border: 1px solid #000000;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-}
 
 .commentbox
 {
+  overflow: scroll;
   position: relative;
   margin-top: 80px;
   position: absolute;
@@ -262,3 +262,91 @@ text-align: center;
   line-height: 19px;
   
   }
+.Nav_menu
+{
+/* Trang Chủ */
+position: absolute;
+top: 90px;
+left:41%;
+z-index: 1;
+text-align: center;
+}
+.Nav_button
+{
+/* Trang Chủ */
+position: relative;
+color: black;
+left: 0px;
+top: 0px;
+font-size: 16px;
+border:None;
+background-color: transparent;
+
+}
+.Nav_button:hover
+{
+  color: blue;
+}
+.Logo
+{
+
+  position: absolute;
+  
+  left: 30px;
+  top:20px;
+  font-family: 'Irish Grover';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 24px;
+  color: white
+}
+input
+{
+  position: absolute;
+  width: 331px;
+  height: 38px;
+  left:39%;
+  top: 3%;
+  font-size: 19px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  border-radius: 20px;
+}
+
+.Avatar
+{
+  position: absolute;
+  left: 82%;
+  top: 1%;
+}
+.Avatar img 
+{
+  width: 60px;
+  
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.Username
+{
+  position: absolute;
+  width: 93px;
+  height: 18px;
+  left: 87%;
+  top: 4%;
+  border:None;
+  outline: None;
+  background-color: transparent;
+  display:inline-block;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 19px;
+  color:white;
+}
+.Username:hover
+{
+  color: rgb(61, 53, 53)
+}
