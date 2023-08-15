@@ -35,11 +35,83 @@ async function getOneComic(req,res) {
     }
 }
 
+async function getAllComic(req,res) {
+    let result = await database.returnAllComic().catch(
+        err => {
+            console.log(err)
+            return res.json({
+                isSuccess: false,
+                message: 'request Failure',
+                status: res.statusCode,
+                data: ''
+            })
+        }
+    )
+    return res.json({
+        isSuccess: true,
+        message: 'request Successfully',
+        status: res.statusCode,
+        data: {
+            listComic: result
+        }
+    })
+}
 
 
-async function searhComic(req,res) {}
+async function getRankingBoard() {
+    let sorted = await database.sortComicBXH().catch(
+        error => {
+            console.log(error)
+            return res.json({
+                isSuccess: false,
+                message: 'request Failure',
+                status: res.statusCode,
+                data: ''
+            })
+        }
+    )
+    list = []
+    for (let i =0; i<5; i++) {
+        list.push(sorted[i]) 
+    }
+    return res.json({
+        isSuccess: true,
+        message: 'request Successfully',
+        status: res.statusCode,
+        data: {
+            rankingList: list
+        }
+    })
+}
+
+async function getFollowedComic() {
+    let List = await database.sortComicBXH().catch(
+        error => {
+            console.log(error)
+            return res.json({
+                isSuccess: false,
+                message: 'request Failure',
+                status: res.statusCode,
+                data: ''
+            })
+        }
+    )
+    return res.json({
+        isSuccess: true,
+        message: 'request Successfully',
+        status: res.statusCode,
+        data: {
+            followList: List
+        }
+    })
+}
+
+
+async function searchComic(req,res) {}
 
 module.exports = {
     getOneComic,
-    searhComic
+    getAllComic,
+    getRankingBoard,
+    searchComic
 }
