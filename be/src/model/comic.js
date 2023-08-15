@@ -1,11 +1,13 @@
 const mongoose=require('mongoose')
 const user=require('./user')
 const chapter=require('./chapter')
+// const { getComic } = require('../../../fe/src/api/comic')
+
 
 const comicSchema = new mongoose.Schema({
     nameComics: String,
-    type: String, //the loai 
-    status: String, 
+    type: String,
+    status: String,
     coverURL: String,
     view: {
         type: Number,
@@ -16,17 +18,12 @@ const comicSchema = new mongoose.Schema({
         default: 0},
     Uploading: {
             group: String,
-            // uploader:{type: mongoose.Schema.Types.ObjectId, ref: 'user'}
             uploader: String 
     },
-    chapters:[
-    {
-        chapterid:
-        { 
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'chapter'
-        },
-        chapterName: String
+    chapters:[{
+        chaptersID:{type: mongoose.Schema.Types.ObjectId, ref: 'chapter'},
+        chaptersName: String
+        // type: String
     }],
     Comments:[{
         content: String,
@@ -66,6 +63,11 @@ async function returnOneComic(idComics){
     return {isSuccess, oneComics}
 }
 
+async function sortComicBXH(){
+    const sortComic=await comics.find().sort({view:-1})
+    return sortComic
+}
+
 async function returnForHomePage(idMember){
     const allcomics= await comics.find()
     // console.log(allcomics)
@@ -75,7 +77,7 @@ async function returnForHomePage(idMember){
     const idComics=[]
     for (allcomic of allcomics){
         view.push(allcomic.view)
-        console.log(allcomic.view)
+        // console.log(allcomic.view)
         nameComics.push(allcomic.nameComics)
         idComics.push(allcomic._id)
     }
@@ -83,10 +85,11 @@ async function returnForHomePage(idMember){
     {
         const member= await user.findById(idMember)
         const followComics=member.followingcomics
-        console.log(followComics)
+        // console.log(followComics)
     }
     else followComics=[]
-    return {view, nameComics, idComics}
+    sortComic=await sortComicBXH()
+    return {view, nameComics, idComics, sortComic}
 }
 async function returnForOneComic (idMember, idComics)
 {
@@ -128,4 +131,5 @@ async function returnComments(idComics)
     return {comments}
 
 }
-module.exports= {comics,returnForOneComic,returnAllComic,returnComments};
+
+module.exports= {comics,returnForOneComic,returnAllComic,returnComments, sortComicBXH};

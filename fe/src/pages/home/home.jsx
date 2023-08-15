@@ -148,27 +148,6 @@ export default function Home() {
       view: '1.234K',
       comment: '1.234K',
       rating: 4.8 
-    },
-    {
-      img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
-      view: '1.234K',
-      comment: '1.234K',
-      rating: 4.8 
-    },
-    {
-      img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
-      view: '1.234K',
-      comment: '1.234K',
-      rating: 4.8 
-    },
-    {
-      img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
-      name: 'Chainsaw man (thêm dòng này để tên nó dài ra để test css)',
-      view: '1.234K',
-      comment: '1.234K',
-      rating: 4.8 
     }
   ]
 
@@ -178,7 +157,7 @@ export default function Home() {
         <Section title="Danh Sách Truyện" data={exampleSection}></Section>
         <span className='tableSection'>
         <Table name="Bảng Xếp Hạng" data={exampleTable}></Table>
-        <Table name="Truyện Đang Theo Dõi" data={exampleTable}></Table>
+        <Table name="Truyện Đang Theo Dõi" ></Table>
         </span>
       </div>
     </div>
@@ -189,7 +168,7 @@ function Section({ title, data }) {
   return (
     <div className="section">
       <h3 className="section-title">{title + ' >'}</h3>
-      <div className="section-slider">
+      <div className="section-container">
       {
         data.map((cur, index) => (<Comic key={index} data={cur}></Comic>))
       }
@@ -200,26 +179,28 @@ function Section({ title, data }) {
 
 function Comic({data}) {
   return (
-  <Link className="section-comic" to=''>
-    <img className="secion-comic-img" src={data.img} alt="" />
-    <div className="section-comic-info">
-      <h3 className="section-comic-name">{data.name}</h3>
-      <div className="section-comic-stats">
-        <span className="section-stat-wrap">
-          <FaEye className="section-stat-icon"/>
-          <h3 className="section-stat-number">{data.view}</h3>
-        </span>
-        <span className="section-stat-wrap">
-          <MdModeComment className="section-stat-icon"/>
-          <h3 className="section-stat-number">{data.comment}</h3>
-        </span>
-        <span className="section-stat-wrap">
-          <AiFillStar className="section-stat-icon"/>
-          <h3 className="section-stat-number">{data.rating}</h3>
-        </span>
-      </div>
+    <div className="comic-container">
+      <Link className="section-comic" to=''>
+        <img className="secion-comic-img" src={data.img} alt="" />
+        <div className="section-comic-info">
+          <h3 className="section-comic-name">{data.name}</h3>
+          <div className="section-comic-stats">
+            <span className="section-stat-wrap">
+              <FaEye className="section-stat-icon"/>
+              <h3 className="section-stat-number">{data.view}</h3>
+            </span>
+            <span className="section-stat-wrap">
+              <MdModeComment className="section-stat-icon"/>
+              <h3 className="section-stat-number">{data.comment}</h3>
+            </span>
+            <span className="section-stat-wrap">
+              <AiFillStar className="section-stat-icon"/>
+              <h3 className="section-stat-number">{data.rating}</h3>
+            </span>
+          </div>
+        </div>
+      </Link>
     </div>
-  </Link>
   )
 }
 
@@ -227,8 +208,10 @@ function Table({name, data}){
   return (
     <div className="homepage-table-container">
       <h3 className="homepage-table-name">{name}</h3>
-      {
-        data.map((cur, index) => (<Row key={index} data={cur}></Row>))
+      {data ?
+        (data.map((cur, index) => (<Row key={index} data={cur}></Row>)))
+        : 
+        (<div className='homepage-empty-row'>Trống</div>)
       }
     </div>
   )

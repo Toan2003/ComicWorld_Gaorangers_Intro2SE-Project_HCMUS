@@ -23,7 +23,7 @@ async function postSignup(req, res) {
         })
     } else {
         return res.json({
-            isSuccess: true,
+            isSuccess: false,
             message: 'The username have already registered',
             status: res.statusCode,
             data: ''
