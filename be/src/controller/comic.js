@@ -85,7 +85,7 @@ async function getRankingBoard() {
 }
 
 async function getFollowedComic() {
-    let List = await database.sortComicBXH().catch(
+    let List = await database.returnFollowingComics.catch(
         error => {
             console.log(error)
             return res.json({
@@ -113,5 +113,6 @@ module.exports = {
     getOneComic,
     getAllComic,
     getRankingBoard,
+    getFollowedComic,
     searchComic
 }

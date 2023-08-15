@@ -138,4 +138,21 @@ async function returnComments(idComics)
     return {comments}
 
 }
-module.exports= {comics,returnForOneComic,returnAllComic,returnComments, sortComicBXH};
+async function returnFollowingComics(idMember)
+{
+    const fullComic=[]
+    const member= await user.findById(idMember)
+    const comicsFollowing= member.followingcomics
+    if(comicsFollowing)
+    {
+        for (comic of comicsFollowing){
+            const temp=await comics.findById(comic)
+            fullComic.push(temp)
+        }
+    }
+    
+    return {comicsFollowing, fullComic}
+}
+
+
+module.exports= {comics,returnForOneComic,returnAllComic,returnComments, sortComicBXH, returnFollowingComics};
