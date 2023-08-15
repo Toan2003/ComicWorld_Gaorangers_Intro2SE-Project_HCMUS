@@ -36,7 +36,9 @@ async function getOneComic(req,res) {
 }
 
 async function getAllComic(req,res) {
-    let result = await database.returnAllComic().catch(
+   
+    let result = await database.returnAllComic()
+    .catch(
         err => {
             console.log(err)
             return res.json({
@@ -58,7 +60,7 @@ async function getAllComic(req,res) {
 }
 
 
-async function getRankingBoard() {
+async function getRankingBoard(req,res) {
     let sorted = await database.sortComicBXH().catch(
         error => {
             console.log(error)
@@ -84,7 +86,7 @@ async function getRankingBoard() {
     })
 }
 
-async function getFollowedComic() {
+async function getFollowedComic(req,res) {
     let List = await database.returnFollowingComics.catch(
         error => {
             console.log(error)

@@ -74,7 +74,7 @@
 
 .section-comic-stats {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
 }
 
 .section-comic-name {
@@ -99,6 +99,7 @@
 .section-stat-wrap {
     display: flex;
     align-items: center;
+    margin-right: 5px;
 }
 
 .section-stat-icon {
@@ -197,7 +198,7 @@ background-color: var(--hover-color);
 .homepage-row-stat {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
     width: 120px;
     position: absolute;
     bottom: 0;
@@ -207,6 +208,7 @@ background-color: var(--hover-color);
 .homepage-row-stat-wrap {
     display: flex;
     align-items: center;
+    margin-right: 5px;
 }
 
 .homepage-row-stat-icon,

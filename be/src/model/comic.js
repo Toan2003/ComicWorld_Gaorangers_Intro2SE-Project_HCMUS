@@ -53,7 +53,6 @@ const comics=mongoose.model('Comics', comicSchema)
 //Cais nay phai auto co du lieu nha, nen t ko check dau
 async function returnAllComic(){
     const allComics= await comics.find()
-
     return allComics
 }
 
