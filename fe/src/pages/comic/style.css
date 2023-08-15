@@ -3,6 +3,7 @@ select
   width:150px;
   height: 30px;
   font-size: 20px;
+  overflow: scroll;
 }
 body {
   font-family: Tahoma,sans-serif,Helvetica,Arial;
@@ -106,19 +107,22 @@ color: #1BB0F0;
 .text-button1:hover {
   color: rgb(9, 9, 172);
 }
-.Title{
+.Titlepos
+{
   position: absolute;
-  width: 323px;
-  height: 39px;
   left: 15%;
   top: 199px;
+  display: inline-block;
+}
+.Title{
+  
   border:None;
   outline: None;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
-  line-height: 39px;
+  background:transparent;
   /* identical to box height */
   text-align: center;
   color: #3346ec;
@@ -130,38 +134,23 @@ color: #1BB0F0;
 
 .Pass{
 
-position: absolute;
-width: 26px;
-height: 19px;
-left: 515px;
-top: 211px;
-
 font-family: 'Inter';
 font-style: normal;
-font-weight: 600;
 font-size: 16px;
-line-height: 19px;
-text-align: center;
-
+display: inline-block;
 color: #0b2bdf;
 }
 .Chap{
-  position: absolute;
-  width: 155px;
-  height: 39px;
-  left: 37%;
-  top: 199px;
+  
+  
   border:None;
   outline: None;
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 600;
   font-size: 32px;
   background-color: transparent;
-  line-height: 39px;
+  display: inline-block;
   /* identical to box height */
-  text-align: center;
-  
   color: #617D8F;
 }
 .Chap:hover
@@ -250,6 +239,7 @@ text-align: center;
   margin-top: 80px;
   position: absolute;
   width: 1157px;
+  height:90px;
   border-radius: 10px;
   border:1px solid #000000;
   left: 15%;
@@ -281,7 +271,6 @@ top: 0px;
 font-size: 16px;
 border:None;
 background-color: transparent;
-
 }
 .Nav_button:hover
 {
@@ -349,4 +338,68 @@ input
 .Username:hover
 {
   color: rgb(61, 53, 53)
+}
+.custom-popup-content{
+  width: 100%;
+  height: 100%;
+}
+.SearchChapBar
+{
+box-sizing: border-box;
+
+position: absolute;
+width: 530px;
+height: 56px;
+left: 45px;
+top: 30px;
+
+background: #FFFFFF;
+border: 1px solid #000000;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 15px;
+}
+.Chap_Pos
+{
+  position: absolute;
+  left: 35px;
+  top: 143px;
+  
+  
+}
+.Chap_but
+{
+  box-sizing: border-box;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  width: 73px;
+  height: 35px;
+  background: #eeebeb;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+.Chap_but:hover
+{
+  color:rgb(255, 13, 13);
+}
+.Choose_Chap
+{
+  font-size:24px;
+  border-radius: 5px;
+  text-align: left;
+}
+.CloseWin
+{
+  position:absolute;
+  height:25px;
+  width:20px;
+  left: 580px;
+  top: 37px;
+  color: black;
+  font-size: 16px;
+  border:None;
+  background-color: transparent;
+}
+.CloseWin:hover
+{
+  color:red
 }

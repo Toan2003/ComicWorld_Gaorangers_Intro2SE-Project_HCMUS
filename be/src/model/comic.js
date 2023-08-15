@@ -1,6 +1,8 @@
 const mongoose=require('mongoose')
 const user=require('./user')
 const chapter=require('./chapter')
+// const { getComic } = require('../../../fe/src/api/comic')
+
 
 const comicSchema = new mongoose.Schema({
     nameComics: String,
@@ -51,9 +53,14 @@ const comics=mongoose.model('Comics', comicSchema)
 //Cais nay phai auto co du lieu nha, nen t ko check dau
 async function returnAllComic(){
     const allComics= await comics.find()
-
     return allComics
 }
+
+async function sortComicBXH(){
+    const sortComic=await comics.find().sort({view:-1})
+    return sortComic
+}
+
 //Nayf laf search teen nef
 async function returnOneComic(idComics){
     const oneComics=await comics.findById({idComics})
@@ -65,6 +72,8 @@ async function returnOneComic(idComics){
     const isSuccess='false'
     return {isSuccess, oneComics}
 }
+
+
 
 async function returnForHomePage(idMember){
     const allcomics= await comics.find()
@@ -128,4 +137,21 @@ async function returnComments(idComics)
     return {comments}
 
 }
-module.exports= {comics,returnForOneComic,returnAllComic,returnComments};
+async function returnFollowingComics(idMember)
+{
+    const fullComic=[]
+    const member= await user.findById(idMember)
+    const comicsFollowing= member.followingcomics
+    if(comicsFollowing)
+    {
+        for (comic of comicsFollowing){
+            const temp=await comics.findById(comic)
+            fullComic.push(temp)
+        }
+    }
+    
+    return {comicsFollowing, fullComic}
+}
+
+
+module.exports= {comics,returnForOneComic,returnAllComic,returnComments, sortComicBXH, returnFollowingComics};

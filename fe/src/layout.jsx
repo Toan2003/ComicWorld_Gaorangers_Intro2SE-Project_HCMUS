@@ -25,7 +25,7 @@ export default function Layout() {
               <button><AiOutlineSearch color='#FFFF'/></button>
             </div>
           </li>
-          {checkAuthen == 'true' ? 
+          {checkAuthen == 'true' && context.authenticated ? 
           (<li>
             <Link to='/profile/dashboard'>profile</Link>
           </li>) : 
@@ -39,7 +39,7 @@ export default function Layout() {
             <Link to="/" className="header-item header-item-2">Trang Chủ</Link>
           </li>
           <li>
-            <Link to="/comic" className="header-item header-item-2">Thể Loại</Link>
+            <Link to="/type-comic" className="header-item header-item-2">Thể Loại</Link>
           </li>
           <li>
             <Link to="/follow" className="header-item header-item-2">Theo Dõi</Link>

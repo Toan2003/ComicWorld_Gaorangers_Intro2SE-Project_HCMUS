@@ -60,6 +60,10 @@ function Comic() {
         <button className="text-button1">Category</button> &gt;&gt;
         <button className="text-button1">Comic Name</button> &gt;&gt;
         <button className="text-button1">Chapter</button>
+        <button className="text-button1">Home</button> &gt;&gt;
+        <button className="text-button1">Category</button> &gt;&gt;
+        <button className="text-button1">Comic Name</button> &gt;&gt;
+        <button className="text-button1">Chapter</button>
       </div>
       <div className='Titlepos'>
         <button className="Title"> {NameComic}</button>
