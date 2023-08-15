@@ -31,4 +31,4 @@ async function getSearhComic(name) {
     return await axiosClient.get(link);
 }
 
-export {getComic, getChapter, getSearhComic}
+export {getComic, getChapter, getSearhComic, getAllComic, getRankingBoard, getFollowedComic} 

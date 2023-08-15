@@ -3,8 +3,25 @@ import { Link } from 'react-router-dom'
 import { FaEye } from "react-icons/fa";
 import { MdModeComment } from "react-icons/md";
 import { AiFillStar } from "react-icons/ai";
-
+import { getAllComic,getRankingBoard,getFollowedComic } from "../../api/comic"
+import { useEffect, useState } from 'react';
 export default function Home() {
+  const [comic, setComic] = useState([])
+  const [rank, setRank] = useState([])
+  
+  async function loadDataPage() {
+    const comics = await getAllComic()
+    const ranks = await getRankingBoard()
+    setComic(comic.data.data.listComic)
+    setRank(rank.data.data.rankingList)
+  }
+
+  useEffect(() => {
+    loadDataPage()
+  }, [])
+  console.log(comic)
+  console.log(rank)
+
   const exampleTable = [
     {
       img: 'https://i.ex-cdn.com/mgn.vn/files/content/2022/10/09/cover-chainsaw-man-1512.jpeg',
