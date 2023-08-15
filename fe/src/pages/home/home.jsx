@@ -49,7 +49,7 @@ function Section({ title, data }) {
 function Comic({data}) {
   return (
     <div className="comic-container">
-      <Link className="section-comic" to='/comic/main-comic' id={data._id}>
+      <Link className="section-comic" to='/type-comic/main-comic' id={data._id}>
         <img className="secion-comic-img" src={data.coverURL} alt={data.nameComics} />
         <div className="section-comic-info">
           <h3 className="section-comic-name">{data.nameComics}</h3>
