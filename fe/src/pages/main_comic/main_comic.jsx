@@ -9,7 +9,9 @@ export default function MainComic() {
   const [comic, setComic] = useState([])
 
   async function loadData() {
+    console.log(typeof(id))
     const result = await getComic(id, null)
+    console.log(result.data)
     setComic(result.data.data.comic)
   }
 
@@ -19,17 +21,17 @@ export default function MainComic() {
 
   const chapterOpen = false
   const content = 'Đang cập nhật'
-  const comicName = comic.nameComics
-  const image = comic.coverURL
+  const comicName = comic?.nameComics
+  const image = comic?.coverURL
   const author = comic?.Uploading?.group
-  const status = comic.status
-  const type = comic.type
+  const status = comic?.status
+  const type = comic?.type
   const view = 4000
-  const listChapters = comic?.chapters
-  console.log(listChapters)
-  useEffect(() => {
-    console.log(comic.chapters)
-  }, [comic])
+
+  // useEffect(() => {
+  //   // console.log(comic.chapters)
+
+  // }, [comic])
 
   return (
     <div className="main-comic">

@@ -13,7 +13,7 @@ async function getOneComic(req,res) {
             data: ''
         })
     }
-    if (idComic.length != 12) {
+    if (idComic.length != 24) {
         return res.json({
             isSuccess: false,
             message: 'idComic is invalid',
@@ -95,7 +95,7 @@ async function getRankingBoard(req,res) {
 
 async function getFollowedComic(req,res) {
     id = req.params.id
-    if (id.length != 12) {
+    if (id.length != 24) {
         return res.json({
             isSuccess: false,
             message: 'idComic is invalid',
