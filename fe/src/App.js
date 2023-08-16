@@ -20,7 +20,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="type-comic/main-comic/:id" element={<MainComic />} />
-          {/* <Route path="type-comic/main-comic/:id" element={<Comic />} /> */}
+          <Route path="type-comic/main-comic/:idComic/:idChapter" element={<Comic />} />
           <Route path="profile/Dashboard" element={<Profile />} /> 
           {/* <Route path="*" element={<NoPage />} /> */}
         </Route>

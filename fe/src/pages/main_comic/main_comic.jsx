@@ -19,17 +19,16 @@ export default function MainComic() {
     loadData()
   }, [])
 
-  const chapterOpen = false
   const content = 'Đang cập nhật'
   const comicName = comic?.nameComics
   const image = comic?.coverURL
   const author = comic?.Uploading?.group
   const status = comic?.status
   const type = comic?.type
-  const view = 4000
+  const view = 4000 
 
   // useEffect(() => {
-  //   // console.log(comic.chapters)
+  //   console.log(comic.chapters)
 
   // }, [comic])
 
@@ -46,7 +45,7 @@ export default function MainComic() {
           </li>
           <li><p>{'>>'}</p></li>
           <li>
-            <Link className='link-item' to='/comic/main-comic'>{comicName}</Link>
+            <Link className='link-item' to={`/comic/main-comic/${id}`}>{comicName}</Link>
           </li>
           <Outlet />
         </ul>
@@ -98,13 +97,16 @@ export default function MainComic() {
               <div className='col'><p>Xem</p></div>
             </div>
             <div className='list-chapter-content'>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
               {
-                
+                comic?.chapters?.map((chapter) => {
+                  return (
+                    <div className='row'>
+                      <Link className='col' id={chapter?.chaptersID} to={`/type-comic/main-comic/${id}/${chapter?.chaptersID}`}>{chapter.chaptersName}</Link> 
+                      <div className='col'>1 ngày trước</div>
+                      <div className="col">N/A</div>
+                    </div>
+                  )
+                })
               }
             </div>
           </div>
