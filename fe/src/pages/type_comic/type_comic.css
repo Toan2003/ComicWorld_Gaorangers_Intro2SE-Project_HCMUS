@@ -36,7 +36,7 @@
     flex-wrap: wrap;
     align-items: center;
     padding: 12px;
-    margin: 0 auto;
+    margin: 0 auto 16px;
 }
 
 .type-button-container {

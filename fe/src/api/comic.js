@@ -28,8 +28,9 @@ async function getSearhComic(name) {
 }
 
 async function getComicAccordingToType(type) { 
+    console.log(type)
     let link = '/comic/type'
-    return await axiosClient.get(link,type);
+    return await axiosClient.post(link,type);
 }
 //type
 
