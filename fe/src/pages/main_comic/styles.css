@@ -2,11 +2,11 @@
 
 .main-comic {
   width: 60%;
-  margin: 0 20% 0 20%;
-  margin-top: -0.8%;
   padding: 1.5% 0 0 1.5%;
   display: flex;
   background-color: var(--primary-color);
+  width: 1200px;
+  margin: auto
 }
 
 .center {
@@ -29,6 +29,9 @@
 
 .link .link-item {
   text-decoration: none;
+  color: var(--link-color);
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .link .link-item:hover {
@@ -36,18 +39,40 @@
 }
 
 .title {
-  background-color: var(--grey-color-1);
   padding-left: 0.3%;
   padding-bottom: 1%;
 }
 
+.title-name {
+  color: var(--text-color-1);
+  transform: translateX(0%);
+  margin-bottom: 25px;
+}
+
 .title-image {
-  width: 40%;
+  width: 390px;
+  height: 425px;
   padding-left: 2%;
+}
+
+.title-image img {
+  height: 100%;
+  width: 100%;
 }
 
 .title-information {
   width: 60%;
+  border-radius: 15px;
+  border: 1px solid black;
+  padding-top: 30px;
+  padding-left: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 10%;
+}
+
+.list-infor .col:last-child {
+  padding-right: 20%;
 }
 
 .main-comic img {
@@ -68,13 +93,18 @@
   margin-left: 0.5vw; 
 }
 
+.list-infor p {
+  font-size: 20px;
+}
+
 .title-button {
-  margin-top: 40%;
+  padding-top: 150px;
   margin-left: 0.5vw;
 }
 
 .title-button .btn {
   margin-left: 0.5vw;
+  border-radius: 20px;
 }
 
 .content,
@@ -95,9 +125,3 @@
 .list-chapter-content .row {
   border-bottom: 0.5px var(--grey-color-1) dashed;
 }
-
-
-/* rank in comic page */
-/* .rank { */
-  /* padding-left: 2%; */
-/* } */

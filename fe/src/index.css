@@ -8,13 +8,14 @@
   --primary-color: #FFFF;
   --header-color-1: #21258E;
   --header-color-2: #BFBFBF;
-  --background-color: #EBEBEB;
+  --background-color: #FDF4F4;
   --text-color-1: #111111;
   --text-color-2: #FFFF;
   --green-color: #188A46;
   --hover-text-color: purple;
   --grey-color-1: rgb(212, 212, 212);
   --grey-color-2: #f2f2f2;
+  --link-color: #1BB0F0;
 }
 
 body {

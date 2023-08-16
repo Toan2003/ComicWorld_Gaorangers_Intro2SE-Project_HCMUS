@@ -6,6 +6,7 @@ export function AuthProvider({children}) {
   const [authenticated, setAuthenticated] = useState((localStorage.getItem('authenticated') || false))
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // localStorage.setItem("idComic", idComic);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -69,7 +70,7 @@ export function AuthProvider({children}) {
     handleRegister,
     handleChangeEmail,
     handleChangePassword,
-    authenticated
+    authenticated,
   }
   
   return (

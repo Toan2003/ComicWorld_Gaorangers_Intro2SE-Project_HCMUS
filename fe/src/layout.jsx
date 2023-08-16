@@ -8,7 +8,6 @@ export default function Layout() {
   // const context = useContext(authContext)
   const context = useContext(AuthContext)
   const checkAuthen = localStorage.getItem('authenticated')
-  console.log(typeof(checkAuthen))
 
   return (
     <>

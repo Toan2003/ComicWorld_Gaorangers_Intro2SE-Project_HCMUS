@@ -2,16 +2,16 @@ import { Link, Outlet } from 'react-router-dom'
 import { getComic } from '../../api/comic'
 import './styles.css'
 import { useEffect, useState } from 'react'
-export default function MainComic(props) {
-  const id = props.id
-  // async function wrapped(){
-  //   return await getComic('64d8e41254bccfc45b142f81',null)
-  // }
-  // const result = wrapped()
-  const [comic, setComic] = useState([]) 
+import { useParams } from 'react-router-dom';
+
+export default function MainComic() {
+  const { id } = useParams()
+  const [comic, setComic] = useState([])
 
   async function loadData() {
+    console.log(typeof(id))
     const result = await getComic(id, null)
+    console.log(result.data)
     setComic(result.data.data.comic)
   }
 
@@ -20,38 +20,38 @@ export default function MainComic(props) {
   }, [])
 
   const chapterOpen = false
-  const comicName = comic.nameComics
-  const chapter = 10
-  const image = comic.coverURL
-  const author = '<NAME>'
-  const status = '<STATUS>'
-  const type = '<TYPE>'
+  const content = 'Đang cập nhật'
+  const comicName = comic?.nameComics
+  const image = comic?.coverURL
+  const author = comic?.Uploading?.group
+  const status = comic?.status
+  const type = comic?.type
   const view = 4000
-  const content = 'Võ đạo đỉnh phong, là cô độc, là tịch mịch, là dài đằng đẵng cầu tác, là cao xử bất thắng hàn. Phát triển trong nghịch cảnh, cầu sinh nơi tuyệt địa, bất khuất không buông tha, mới có thể có thể phá võ chi cực đạo. Lăng Tiêu các thí luyện đệ tử kiêm quét rác gã sai vặt Dương Khai ngẫu lấy được một bản vô tự hắc thư, từ nay về sau đạp vào dài đằng đẵng võ đạo.'
-  
-  
+
+  // useEffect(() => {
+  //   // console.log(comic.chapters)
+
+  // }, [comic])
+
   return (
     <div className="main-comic">
       <div className="center">
         <ul className="link">
           <li>
-            <Link className='link-item' to='/'><p>Trang chủ</p></Link>
+            <Link className='link-item' to='/'>Trang chủ</Link>
           </li>
           <li><p>{'>>'}</p></li>
           <li>
-            <Link className='link-item' to='/comic'><p>Truyện</p></Link>
+            <Link className='link-item' to='/comic'>Truyện</Link>
           </li>
           <li><p>{'>>'}</p></li>
           <li>
-            <Link className='link-item' to='/comic/main-comic'><p>{comicName}</p></Link>
+            <Link className='link-item' to='/comic/main-comic'>{comicName}</Link>
           </li>
           <Outlet />
-          {chapterOpen ? <li>{chapter}</li> : <></>}
         </ul>
         <div className='title'>
-          <div className='title-name'>
-            <h2>{comicName}</h2>
-          </div>
+          <h2 className='title-name'>{comicName}</h2>
           <div className='title-center'>
             <div className='title-image'>
               <img src={image} alt="" />
@@ -59,19 +59,19 @@ export default function MainComic(props) {
             <div className='title-information'>
               <div className='list-infor'>
                 <div className='row'>
-                  <p className='col'>Tác giả</p>
+                  <p className='col'>Tác giả: </p>
                   <p className='col'>{author}</p>
                 </div>
                 <div className='row'>
-                  <p className='col'>Tình trạng</p>
+                  <p className='col'>Tình trạng: </p>
                   <p className='col'>{status}</p>
                 </div>
                 <div className='row'>
-                  <p className='col'>Thể loại</p>
+                  <p className='col'>Thể loại: </p>
                   <p className='col'>{type}</p>
                 </div>
                 <div className='row'>
-                  <p className='col'>Lượt xem</p>
+                  <p className='col'>Lượt xem: </p>
                   <p className='col'>{view}</p>
                 </div>
               </div>
@@ -103,51 +103,9 @@ export default function MainComic(props) {
                 <div className='col'>1 ngày trước</div>
                 <div className="col">N/A</div>
               </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
+              {
+                
+              }
             </div>
           </div>
         </div>
