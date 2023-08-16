@@ -21,7 +21,7 @@ export default function Layout() {
           <li>
             <div className="search-bar header-item header-item-1">
               <input type="text" placeholder='Nhập từ khóa tìm kiếm'/>
-              <button><AiOutlineSearch color='#FFFF'/></button>
+              <button className='search-bar-button'><AiOutlineSearch color='#FFFF'/></button>
             </div>
           </li>
           {checkAuthen == 'true' && context.authenticated ? 

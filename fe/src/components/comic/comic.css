@@ -1,0 +1,103 @@
+:root {
+    --container-color: #EBEBEB;
+    --body-color: #fff;
+    --title-color: #1BB0F0;
+    --border-color: #ccc;
+    --hover-color: #f9f8f8;
+}
+
+.section {
+    width: 70%;
+}
+.section-title {
+    margin-left: 10px;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--title-color);
+}
+
+.section-container {
+    margin: 0 8px 0 16px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.comic-container {
+    flex-basis: 25%;
+    margin-top: 16px;
+}
+
+.section-comic {
+    display: block;
+    text-decoration: none;
+    width: 183px;
+    height: 253px;
+    position: relative;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: auto;
+}
+
+.secion-comic-img {
+    width: 100%;
+    height: 100%;
+}
+
+.section-comic-info {
+    position: absolute;
+    padding: 6px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0 , 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+}
+
+.section-comic-stats {
+    display: flex;
+    justify-content: end;
+}
+
+.section-comic-name {
+    color: #fff;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: normal;
+    height: 35px;
+    display: block; /*trong trường hợp trình duyệt không hỗ trợ ưebkit-box*/
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.section-comic:hover .section-comic-name {
+    -webkit-line-clamp: unset;
+    min-height: 35px;
+    height: unset;
+}
+
+.section-stat-wrap {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.section-stat-icon {
+    color: #fff;
+    font-size: 13px;
+    margin-right: 2px;
+}
+
+.section-stat-number {
+    display: inline-block;
+    color: #fff;
+    font-size: 13px;
+    line-height: 13px;
+    font-weight: normal;
+    margin: 0;
+}
