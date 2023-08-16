@@ -1,6 +1,7 @@
 const mongoose=require('mongoose')
 const user=require('./user')
 const chapter=require('./chapter')
+const group=require('./group')
 // const { getComic } = require('../../../fe/src/api/comic')
 
 
@@ -153,13 +154,45 @@ async function returnFollowingComics(idMember)
     
     return {comicsFollowing, fullComic}
 }
+//Caanf doij comicURL cover
+async function createComics(comicname, typecomics, status, dateCreate, uploadingroup, uploadid)
+{
+    const member= await user.findById(uploadid)
+    const groupCheck=await group.find({groupName:uploadinggroup})
+    if(groupCheck)
+    {
+        const newChapter= new chapter ({nameComics:comicname,type: typecomics, chapterImageID: url, Uploading: {uploader:member.name}, datecreate: dateCreate})
+        newChapter.save()
+        const isSuccess=true
+        return {isSuccess}
+    }
+    const isSuccess=false
+    return {isSuccess}
+}
+async function filterType(typename)
+{
+    const findComics= await comics.find({type:typename})
+    return findComics
+}
 
-
+async function returnComicsByUploader(iduploader)
+{
+    const nameMember= await user.findById(iduploader)
+    if(nameMember){
+        const groupMember = await group.findOne({Uploader:nameMember.username})
+        if(groupMember){
+            const comicUpload= await comics.find({"Uploading.group":groupMember.groupName})
+            return comicUpload
+        }
+    }
+} 
 module.exports= {
     comics,
     returnForOneComic,
     returnAllComic,
-    returnComments,
+    returnComments, 
     sortComicBXH, 
-    returnFollowingComics
+    returnFollowingComics, 
+    filterType, 
+    returnComicsByUploader
 };

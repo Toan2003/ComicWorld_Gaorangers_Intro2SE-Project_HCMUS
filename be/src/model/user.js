@@ -46,4 +46,16 @@ async function signup(username,password){
     id= temp._id
     return {isSuccess,type,id}
 }
-module.exports= {user, login, signup};
+
+async function changeMemberRole(name, role)
+{
+    const checkMember = await user.findOne({username: name})
+    if (checkMember)
+    {
+        const member = await user.updateOne({username: user}, {$set:{Role: role}})
+        return true
+    }
+    return false  
+}
+
+module.exports= {user, login, signup, changeMemberRole};
