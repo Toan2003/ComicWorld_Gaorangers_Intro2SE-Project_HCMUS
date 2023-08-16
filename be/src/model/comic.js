@@ -7,8 +7,8 @@ const group=require('./group')
 
 const comicSchema = new mongoose.Schema({
     nameComics: String,
-    type: String,
-    status: String,
+    type: String, //the loai 
+    status: String, 
     coverURL: String,
     view: {
         type: Number,
@@ -19,12 +19,17 @@ const comicSchema = new mongoose.Schema({
         default: 0},
     Uploading: {
             group: String,
+            // uploader:{type: mongoose.Schema.Types.ObjectId, ref: 'user'}
             uploader: String 
     },
-    chapters:[{
-        chaptersID:{type: mongoose.Schema.Types.ObjectId, ref: 'chapter'},
-        chaptersName: String
-        // type: String
+    chapters:[
+    {
+        chapterid:
+        { 
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: 'chapter'
+        },
+        chapterName: String
     }],
     Comments:[{
         content: String,
@@ -49,9 +54,14 @@ const comics=mongoose.model('Comics', comicSchema)
 //Cais nay phai auto co du lieu nha, nen t ko check dau
 async function returnAllComic(){
     const allComics= await comics.find()
-
     return allComics
 }
+
+async function sortComicBXH(){
+    const sortComic=await comics.find().sort({view:-1})
+    return sortComic
+}
+
 //Nayf laf search teen nef
 async function returnOneComic(idComics){
     const oneComics=await comics.findById({idComics})
@@ -64,10 +74,7 @@ async function returnOneComic(idComics){
     return {isSuccess, oneComics}
 }
 
-async function sortComicBXH(){
-    const sortComic=await comics.find().sort({view:-1})
-    return sortComic
-}
+
 
 async function returnForHomePage(idMember){
     const allcomics= await comics.find()
@@ -78,7 +85,7 @@ async function returnForHomePage(idMember){
     const idComics=[]
     for (allcomic of allcomics){
         view.push(allcomic.view)
-        // console.log(allcomic.view)
+        console.log(allcomic.view)
         nameComics.push(allcomic.nameComics)
         idComics.push(allcomic._id)
     }
@@ -86,11 +93,10 @@ async function returnForHomePage(idMember){
     {
         const member= await user.findById(idMember)
         const followComics=member.followingcomics
-        // console.log(followComics)
+        console.log(followComics)
     }
     else followComics=[]
-    sortComic=await sortComicBXH()
-    return {view, nameComics, idComics, sortComic}
+    return {view, nameComics, idComics}
 }
 async function returnForOneComic (idMember, idComics)
 {

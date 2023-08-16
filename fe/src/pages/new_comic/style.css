@@ -1,9 +1,23 @@
-
 select
 {
   width:150px;
 }
-
+body {
+  font-family: Tahoma,sans-serif,Helvetica,Arial;
+  font-weight: 400;
+  font-size: 14px;
+  background-color: #ebebeb
+}
+.background
+{
+  position: relative;
+  height: 3974px;
+  width:100%;
+  left: 0px;
+  top: 0px;
+  background: #D9D9D9;
+  z-index: 1;
+}
 .Logo_background{
   position: absolute;
   width: 100%;
@@ -58,21 +72,7 @@ select
 .text-button:hover {
   color: blue;
 }
-.nav_bar{
 
-position: absolute;
-width: 290px;
-height: 25px;
-left: 9%;
-top: 90px;
-
-color: #000000;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 21px;
-line-height: 25px;
-}
 
 
 
@@ -248,28 +248,23 @@ color: #000000;
 .checkbox1{
 
 position: absolute;
-
-left: 160px;
-top: 755px;
-
+left: 155px;
+top: 740px;
+width:20px;
 
 }
 
 .checkbox2{
-
 position: absolute;
-
-left: 160px;
-top: 800px;
-
-
-color: #000000;
+left: 155px;
+top: 782px;
+width:20px;
 }
 .checkbox3{
 position: absolute;
-
-left: 160px;
-top: 845px;
+left: 155px;
+top: 833px;
+width:20px;
 }
 .inProgress
 {
@@ -343,8 +338,9 @@ border-radius: 10px;
 }
 .commentbox{
   display:flex;
+  height:250px;
   position:relative;
-  overflow: hidden;
+  overflow: scroll;
   border-radius: 10px;
   border:1px solid #000000;
   width: 1157px;
@@ -370,9 +366,15 @@ color: #000000;
 }
 .Input_file
 {
-  position:absolute;
+  position:relative;
+  width: 850px;
+  height:100px;
   margin-top: 50px;
-  font-size: 28px;
+  font-size: 30px;
+  border:None;
+  border-radius: 0;
+  outline: none;
+  background-color: transparent;
   left:9%;
 }
 .UploadPic{
@@ -384,9 +386,9 @@ margin-top: 50px;
 left: 43%;
 font-size: 28px;
 color:white;
-background: #3E45E9;
+background: #090fac;
 border: 1px solid #000000;
-border-radius: 10px;
+border-radius: 5px;
 }
 
 .ButtonSave
@@ -398,11 +400,11 @@ width: 168px;
 height: 42px;
 margin-top: 200px;
 left:38%;
-font-size:32px;
+font-size:28px;
 color:white;
-background: #3E45E9;
+background: #090fac;
 border: 1px solid #000000;
-border-radius: 10px;
+border-radius: 5px;
 
 }
 .ButtonCancel
@@ -414,21 +416,126 @@ width: 168px;
 height: 42px;
 margin-top: 200px;
 left:54%;
-font-size:32px;
+font-size:28px;
 color:white;
-background: #3E45E9;
+background: #090fac;
 border: 1px solid #000000;
-border-radius: 10px;
+border-radius: 5px;
 }
 .UploadPic:hover
 {
-  background: #777CF6;
+  background: #2027dd;
 }
 .ButtonSave:hover
 {
-  background: #777CF6;
+  background: #2027dd;
 }
 .ButtonCancel:hover
 {
   background: #777CF6;
+}
+.Nav_menu
+{
+/* Trang Chủ */
+position: absolute;
+top: 90px;
+left:41%;
+z-index: 1;
+text-align: center;
+}
+.Nav_button
+{
+/* Trang Chủ */
+position: relative;
+color: black;
+left: 0px;
+top: 0px;
+font-size: 16px;
+border:None;
+background-color: transparent;
+z-index: 1;
+
+}
+.Nav_button:hover
+{
+  color: blue;
+}
+input
+{
+  position: absolute;
+  width: 331px;
+  height: 38px;
+  left:39%;
+  top: 3%;
+  font-size: 19px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  border-radius: 20px;
+}
+.Avatar img 
+{
+  width: 60px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.Username
+{
+  position: absolute;
+  
+  left: 87%;
+  top: 4%;
+  border:None;
+  outline: None;
+  display:inline-block;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 19px;
+  background-color: transparent;
+  color:white;
+}
+.Username:hover
+{
+  color:blue;
+}
+.Logo
+{
+  position: absolute;
+  left: 30px;
+  top:20px;
+  font-family: 'Irish Grover';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 30px;
+  color: white;
+  z-index: 1;
+}
+.Avatar
+{
+  position: absolute;
+  left: 82%;
+  top: 1%;
+  z-index: 1;
+}
+.Avatar img 
+{
+  width: 60px;
+  
+  position: absolute;
+  overflow: hidden;
+  border-radius: 50%;
+  z-index: 1;
+}
+.background_pic
+{
+  position: absolute;
+  height:100%;
+  width:100%;
+  left: 0px;
+  top: 0px;
+  background: #ac2f2f;
+  z-index: 2;
 }

@@ -2,25 +2,16 @@ import { Link, Outlet } from 'react-router-dom'
 import { getComic } from '../../api/comic'
 import './styles.css'
 import { useEffect, useState } from 'react'
-export default function MainComic() {
+export default function MainComic(props) {
+  const id = props.id
   // async function wrapped(){
   //   return await getComic('64d8e41254bccfc45b142f81',null)
   // }
   // const result = wrapped()
   const [comic, setComic] = useState([]) 
-  // useEffect(() => {
-  //   const result = getComic('64d8e41254bccfc45b142f81',null)
-  //   setComic(result.data.data.comic)
-  // },[])
-//   useEffect(()=>{
-//   const fetchData=async ()=>{
-//     const result=await getComic('64d8e41254bccfc45b142f81',null)
-//     setComic(result.data.data.comic)
-//   }
-//   fetchData()
-// .catch(console.error)},[])
+
   async function loadData() {
-    const result = await getComic('64d8e46ca90a7477dedca07f',null)
+    const result = await getComic(id, null)
     setComic(result.data.data.comic)
   }
 
@@ -28,28 +19,17 @@ export default function MainComic() {
     loadData()
   }, [])
 
-  // // console.log(result.data)
-  // // console.log(result.data.comic)
-  //const comic = result.data.data.comic
-  // console.log(comic)
   const chapterOpen = false
   const comicName = comic.nameComics
   const chapter = 10
   const image = comic.coverURL
-  // const author = 'comic.Uploading.group'
-  // const status = comic.status
-  // const type = comic.type
-  // const view = comic.view
-  // const chapterOpen = false
-  // const comicName = 'VÕ LUYỆN ĐỈNH PHONG'
-  // const chapter = 123
-  // const image = 'https://st.nettruyenmax.com/data/comics/32/vo-luyen-dinh-phong.jpg'
   const author = '<NAME>'
   const status = '<STATUS>'
   const type = '<TYPE>'
   const view = 4000
   const content = 'Võ đạo đỉnh phong, là cô độc, là tịch mịch, là dài đằng đẵng cầu tác, là cao xử bất thắng hàn. Phát triển trong nghịch cảnh, cầu sinh nơi tuyệt địa, bất khuất không buông tha, mới có thể có thể phá võ chi cực đạo. Lăng Tiêu các thí luyện đệ tử kiêm quét rác gã sai vặt Dương Khai ngẫu lấy được một bản vô tự hắc thư, từ nay về sau đạp vào dài đằng đẵng võ đạo.'
-  // const numberChapters = 1000
+  
+  
   return (
     <div className="main-comic">
       <div className="center">
