@@ -1,6 +1,7 @@
 import './type_comic.css'
 import { Link } from 'react-router-dom'
 import { ComicSection } from '../../components/comic/comic'
+import { getComicAccordingToType } from "../../api/comic"
 
 export default function TypeComic() {
   const bttnlist = [
@@ -20,6 +21,12 @@ export default function TypeComic() {
       text: 'fiction'
     }
   ]
+
+  let sectionTitle = undefined
+
+  function handleTypeButtonClick(sectionTitle) {
+    sectionTitle = ""
+  }
 
   return (
     <div className="type-container">
