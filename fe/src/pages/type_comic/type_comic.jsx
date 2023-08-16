@@ -1,29 +1,31 @@
 import './type_comic.css'
 import { Link } from 'react-router-dom'
 import { ComicSection } from '../../components/comic/comic'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { getComicAccordingToType } from "../../api/comic"
+
 
 export default function TypeComic() {
-  const bttnlist = [
+  const typeList = [
     {
-      text: 'manga'
+      text: 'Action'
     },
     {
-      text:'manhwa'
+      text: 'Romance'
     },
     {
-      text: 'romance'
-    },
-    {
-      text: 'horror'
-    },
-    {
-      text: 'fiction'
+      text: 'Horror'
     }
   ]
 
   const [comic, setComic] = useState([])
+  const [typeTitle, setTypeTitle] = useState(undefined)
 
+  async function handleClickTypeButton(typeName) {
+    const comics = await getComicAccordingToType({type : typeName})
+    setComic(comics.data.data.listComic)
+    setTypeTitle('Danh sách truyện thể loại ' + typeName)
+  }
 
   return (
     <div className="type-container">
@@ -31,20 +33,20 @@ export default function TypeComic() {
         <h3 className="type-title">Thể Loại</h3>
         <div className="type-button-box">
           {
-            bttnlist.map((cur, index) => (<TypeButton props={cur} key={index}></TypeButton>))
+            typeList.map((cur, index) => (<TypeButton clickFunction={() => handleClickTypeButton(cur.text)} text={cur.text} key={index}></TypeButton>))
           }
         </div>
-        <ComicSection data={comic}></ComicSection>
+        <ComicSection title={typeTitle} data={comic}></ComicSection>
       </div>
     </div>
   )
 }
 
-function TypeButton({ props }) {
+function TypeButton({ clickFunction, text }) {
   return (
     <div className="type-button-container">
-      <button className="type-button" to="">
-        <h3 className="type-button-text">{props.text}</h3>
+      <button onClick={clickFunction} className="type-button" to="">
+        <h3 className="type-button-text">{text}</h3>
       </button>
     </div>
   )
