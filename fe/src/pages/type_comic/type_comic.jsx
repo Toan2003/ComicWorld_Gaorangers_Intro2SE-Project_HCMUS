@@ -1,7 +1,7 @@
 import './type_comic.css'
 import { Link } from 'react-router-dom'
 import { ComicSection } from '../../components/comic/comic'
-import { getComicAccordingToType } from "../../api/comic"
+import { useState } from 'react'
 
 export default function TypeComic() {
   const bttnlist = [
@@ -22,11 +22,8 @@ export default function TypeComic() {
     }
   ]
 
-  let sectionTitle = undefined
+  const [comic, setComic] = useState([])
 
-  function handleTypeButtonClick(sectionTitle) {
-    sectionTitle = ""
-  }
 
   return (
     <div className="type-container">
@@ -37,7 +34,7 @@ export default function TypeComic() {
             bttnlist.map((cur, index) => (<TypeButton props={cur} key={index}></TypeButton>))
           }
         </div>
-        <ComicSection></ComicSection>
+        <ComicSection data={comic}></ComicSection>
       </div>
     </div>
   )
