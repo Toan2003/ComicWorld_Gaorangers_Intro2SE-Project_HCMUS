@@ -26,12 +26,15 @@ export default function Home() {
   return (
     <div className="homepage-container">
       <div className="homepage-body">
-        <ComicSection title="Danh Sách Truyện" data={comic}></ComicSection>
+        <span className= 'comic-section'>
+          <ComicSection title="Danh Sách Truyện" data={comic}></ComicSection>
+        </span>
         <span className='tableSection'>
-        <Table name="Bảng Xếp Hạng" data={rank}></Table>
-        <Table name="Truyện Đang Theo Dõi" ></Table>
+          <Table name="Bảng Xếp Hạng" data={rank}></Table>
+          <Table name="Truyện Đang Theo Dõi" ></Table>
         </span>
       </div>
     </div>
   )
 }
+

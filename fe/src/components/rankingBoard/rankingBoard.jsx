@@ -19,7 +19,7 @@ export function Table({name, data}){
 
 function Row({ data }){
 return (
-    <Link className="homepage-row-container" to="">
+    <Link className="homepage-row-container" to={`/type-comic/main-comic/${data._id}`}>
     <img className="homepage-row-img" src={data.coverURL} alt="" />
     <div className="homepage-row-info">
         <h3 className="homepage-row-name">{data.nameComics}</h3>
