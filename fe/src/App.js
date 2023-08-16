@@ -7,6 +7,7 @@ import Register from './pages/login/register'
 import MainComic from './pages/main_comic/main_comic'
 import Profile from './pages/profile/profile'
 import Layout from './layout'
+import UploadComic from './pages/new_comic/new_comic'
 import TypeComic from './pages/type_comic/type_comic'
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="type-comic/main-comic/:id" element={<MainComic />} />
           <Route path="type-comic/main-comic/:idComic/:idChapter" element={<Comic />} />
-          <Route path="profile/Dashboard" element={<Profile />} /> 
+          <Route path="profile/Dashboard" element={<Profile />} />
+          <Route path="profile/upload" element={<UploadComic />} />
           {/* <Route path="*" element={<NoPage />} /> */}
         </Route>
       </Routes>

@@ -20,7 +20,7 @@ async function getChapter(req,res) {
             status: res.statusCode,
             data: {
                 chapterName: result.chapterName,
-                chapterImageId: result.chapterImageId
+                chapterImageID: result.chapterImageID
             }
         })
     } else {

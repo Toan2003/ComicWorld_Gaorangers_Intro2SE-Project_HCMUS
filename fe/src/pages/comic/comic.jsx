@@ -1,14 +1,31 @@
 import './style.css';
 import { FaHome, FaListUl, FaChevronRight, FaChevronLeft, FaHeart, FaChevronDown, FaRegWindowClose } from "react-icons/fa"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { getChapter, getAllChapterOfComic } from '../../api/chapter'
 import { useParams } from 'react-router-dom'
 
 function Comic() {
-  const { id } = useParams()
-  const NameComic = "Comic Name"
-  const CurChapter = "Chapter 0";
+  const { idComic, idChapter } = useParams()
+
+  const [chapter, setOneChapter] = useState([])
+  // const [allChapter, setAllChapter] = useState([])
+   
+  async function loadData() {
+    // const comic = await getAllChapterOfComic(idComic, null)
+    const chapters = await getChapter(idChapter, null)
+    setOneChapter(chapters.data.data)
+    // setAllChapter(comic.data.data.)
+  }
+  
+
+  useEffect(() => {
+    loadData()  
+  }, [])
+
+  const NameComic = chapter.chapterName
+  const CurChapter = chapter.chapterName;
   const [ComicsChapter, setChapter] = useState([
     'Chap 1',
     'Chap 2',
@@ -18,16 +35,15 @@ function Comic() {
     'Chap 6',
     'Chap 7',
     'Chap 8',
-
   ]);
-  const [input, setInput] = useState("")
-  const [comicImages, setComicImages] = useState([
-    './1',
-    './2',
-    './3',
-    './4'
-    // ...Thêm các hình ảnh truyện tranh khác vào đây HÌNH phải là đuôi jpg và xóa đuôi nó đi
-  ]);
+  // const [input, setInput] = useState("")
+  // const [comicImages, setComicImages] = useState([
+  //   './1',
+  //   './2',
+  //   './3',
+  //   './4'
+  //   // ...Thêm các hình ảnh truyện tranh khác vào đây HÌNH phải là đuôi jpg và xóa đuôi nó đi
+  // ]);
   const AvatarImage = './avatar'
   const Username = "abc123"
   const [comment, setComment] = useState("")
@@ -89,12 +105,12 @@ function Comic() {
         <button type="button" class="btnbtn-success" ><FaHeart size={25} color='white' /> Follow</button>
       </div>
 
-      {/* <div className="comic-page">
-        {comicImages.map((image, index) => (
+      <div className="comic-page">
+        {chapter?.chapterImageID?.map((image) => (
 
-          <img key={index} src={require(image + '.jpg')} alt={`Comic Image ${index}`} />
+          <img src={image} />
         ))}
-      </div> */}
+      </div>
 
       <div className="nav_end_chap">
         <button type="button" class="btnbtn-danger" ><FaChevronLeft size={25} color='white' /> Previous Chapter</button>&nbsp;&nbsp;
