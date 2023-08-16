@@ -6,12 +6,6 @@
     text-align: center;
 }
 
-.tableSection {
-    display: block;
-    width: 30%;
-    margin-right: 24px;
-}
-
 .homepage-table-container {
     width: 100%;
     border: 1px solid var(--border-color);

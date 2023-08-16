@@ -19,3 +19,9 @@
     padding: 27px 0;
     display: flex;
 }
+
+.tableSection {
+    display: block;
+    width: 30%;
+    margin-right: 24px;
+}
