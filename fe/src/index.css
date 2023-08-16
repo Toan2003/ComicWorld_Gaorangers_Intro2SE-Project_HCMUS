@@ -1,3 +1,4 @@
+
 :root {
   --primary-color: #FFFF;
   --header-color-1: #21258E;
@@ -38,7 +39,7 @@
 }
 
 .header-search_bar {
-  width: 400px;
+  width: 450px;
   height: 35px;
   position: relative;
 }
@@ -49,7 +50,12 @@
   outline: none;
   border: none;
   border-radius: 20px;
-  padding: 0 40px 0 8px;
+  padding: 0 40px 0 10px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 15px;
+  line-height: 15px;
 }
 
 .header-search_bar-btn {
@@ -65,6 +71,10 @@
   color: #fff;
 }
 
+.header-search_bar-btn:hover {
+  background-color: rgba(24, 138, 70, 0.8);
+}
+
 .header-search_bar-icon {
   height: 20px;
   width: 20px;
@@ -77,6 +87,10 @@
   font-weight: 500;
   line-height: 16px;
   position: relative;
+}
+
+.header-login_register:hover {
+  color: var(--link-color);
 }
 
 .header-login_register:first-child:after {
@@ -114,4 +128,8 @@
   font-size: 16px;
   line-height: 16px;
   font-weight: 500;
+}
+
+.header-sticky_nav-item:hover {
+  color: var(--link-color);
 }
