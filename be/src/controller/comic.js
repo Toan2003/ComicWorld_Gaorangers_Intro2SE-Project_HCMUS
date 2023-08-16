@@ -135,5 +135,6 @@ module.exports = {
     getAllComic,
     getRankingBoard,
     getFollowedComic,
-    getsearchComic
+    getsearchComic,
+    postCreatComic
 }

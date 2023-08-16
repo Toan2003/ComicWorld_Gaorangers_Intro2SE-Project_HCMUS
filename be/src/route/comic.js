@@ -11,7 +11,6 @@ route.get('/comic/comment',(req,text) =>{console.log('still developing')})
 route.get('/comic/search/:name',controller.getsearchComic)
 
 
-route.post('/comic/create', controller.createComic)
-
+route.post('/comic/create', controller.postCreatComic)
 
 module.exports = route
