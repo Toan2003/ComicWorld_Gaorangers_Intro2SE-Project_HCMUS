@@ -9,7 +9,7 @@ route.get('/comic/getRankingBoard', controller.getRankingBoard)
 route.get('/comic/getFollowedComic', controller.getFollowedComic)
 route.get('/comic/comment',(req,text) =>{console.log('still developing')})
 route.get('/comic/search/:name',controller.getsearchComic)
-route.get('/comic/type',controller.getComicAccordingToType)
+route.post('/comic/type',controller.getComicAccordingToType)
 
 route.post('/comic/create', controller.postCreatComic) 
 

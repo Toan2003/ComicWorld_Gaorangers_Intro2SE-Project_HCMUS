@@ -130,6 +130,7 @@ async function postCreatComic(req,res) {
 }
 
 async function getComicAccordingToType(req,res) {
+    console.log(req.body)
     let type = req?.body?.type
     if (type == '' || type == null) {
         return res.json({
