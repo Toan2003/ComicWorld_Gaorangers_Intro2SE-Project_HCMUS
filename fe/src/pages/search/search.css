@@ -6,28 +6,16 @@
     --hover-color: #f9f8f8;
 }
 
-.homepage-container {
+.search-container {
     width: 100%;
     background-color: var(--container-color);
 }
 
-.homepage-body {
+.search-body {
     width: 100%;
     max-width: 1200px;
     background-color: #fff;
     margin: 0 auto;
     padding: 27px 0;
     display: flex;
-}
-
-.tableSection {
-    display: block;
-    width: 30%;
-    margin-right: 24px;
-}
-
-.comic-section {
-    display: block;
-    width: 70%;
-    
 }

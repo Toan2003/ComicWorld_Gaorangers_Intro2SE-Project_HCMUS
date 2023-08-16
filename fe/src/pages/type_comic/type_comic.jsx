@@ -14,6 +14,9 @@ export default function TypeComic() {
       text: 'Romance'
     },
     {
+      text: 'Fiction'
+    },
+    {
       text: 'Horror'
     }
   ]

@@ -8,6 +8,7 @@ import MainComic from './pages/main_comic/main_comic'
 import Profile from './pages/profile/profile'
 import Layout from './layout'
 import TypeComic from './pages/type_comic/type_comic'
+import Search from './pages/search/search'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="type-comic/main-comic/:id" element={<MainComic />} />
           <Route path="type-comic/main-comic/:idComic/:idChapter" element={<Comic />} />
           <Route path="profile/Dashboard" element={<Profile />} /> 
+          <Route path="searching-result" element={<Search />} /> 
           {/* <Route path="*" element={<NoPage />} /> */}
         </Route>
       </Routes>
