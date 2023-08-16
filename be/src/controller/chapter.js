@@ -13,7 +13,6 @@ async function getChapter(req,res) {
     }
     let result = await database.getOneChapter(id)
     console.log(result)
-
     if (result) {
         return res.json({
             isSuccess: true,

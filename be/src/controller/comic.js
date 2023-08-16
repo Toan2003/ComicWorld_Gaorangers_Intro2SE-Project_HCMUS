@@ -13,6 +13,14 @@ async function getOneComic(req,res) {
             data: ''
         })
     }
+    if (idComic.length != 12) {
+        return res.json({
+            isSuccess: false,
+            message: 'idComic is invalid',
+            status: res.statusCode,
+            data: ''
+        })
+    }
     let result = await database.returnForOneComic(idMember,idComic)
     console.log(result)
     if (result.oneComics) {
@@ -59,7 +67,6 @@ async function getAllComic(req,res) {
     })
 }
 
-
 async function getRankingBoard(req,res) {
     let sorted = await database.sortComicBXH().catch(
         error => {
@@ -87,7 +94,17 @@ async function getRankingBoard(req,res) {
 }
 
 async function getFollowedComic(req,res) {
-    let List = await database.returnFollowingComics.catch(
+    id = req.params.id
+    if (id.length != 12) {
+        return res.json({
+            isSuccess: false,
+            message: 'idComic is invalid',
+            status: res.statusCode,
+            data: ''
+        })
+    }
+    let List = await database.returnFollowingComics(id).
+    catch(
         error => {
             console.log(error)
             return res.json({
@@ -107,14 +124,16 @@ async function getFollowedComic(req,res) {
         }
     })
 }
+async function getsearchComic(req,res) {}
 
+async function postCreatComic(req,res) {
 
-async function searchComic(req,res) {}
+}
 
 module.exports = {
     getOneComic,
     getAllComic,
     getRankingBoard,
     getFollowedComic,
-    searchComic
+    getsearchComic
 }

@@ -74,8 +74,6 @@ async function returnOneComic(idComics){
     return {isSuccess, oneComics}
 }
 
-
-
 async function returnForHomePage(idMember){
     const allcomics= await comics.find()
     // console.log(allcomics)
@@ -98,6 +96,7 @@ async function returnForHomePage(idMember){
     else followComics=[]
     return {view, nameComics, idComics}
 }
+
 async function returnForOneComic (idMember, idComics)
 {
     const oneComics = await comics.findById(idComics)
@@ -131,6 +130,7 @@ async function returnForOneComic (idMember, idComics)
 
     return {oneComics, isFollowed}
 }
+
 async function returnComments(idComics)
 {
     const oneComics = await comics.findById(idComics)
@@ -138,6 +138,7 @@ async function returnComments(idComics)
     return {comments}
 
 }
+
 async function returnFollowingComics(idMember)
 {
     const fullComic=[]
@@ -185,5 +186,13 @@ async function returnComicsByUploader(iduploader)
         }
     }
 } 
-module.exports= {comics,returnForOneComic,returnAllComic,returnComments, 
-    sortComicBXH, returnFollowingComics, filterType, returnComicsByUploader};
+module.exports= {
+    comics,
+    returnForOneComic,
+    returnAllComic,
+    returnComments, 
+    sortComicBXH, 
+    returnFollowingComics, 
+    filterType, 
+    returnComicsByUploader
+};
