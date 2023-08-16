@@ -3,7 +3,7 @@ const database = require('../model/chapter')
 
 async function getChapter(req,res) {
     let id= req.params.idChapter
-    if (id == '') {
+    if (id == '' || id == null) {
         return res.json({
             isSuccess: false,
             message: 'idChapter is missing',
