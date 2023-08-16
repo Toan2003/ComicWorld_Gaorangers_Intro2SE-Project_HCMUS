@@ -1,18 +1,32 @@
 import { Link, Outlet } from 'react-router-dom'
 import { getComic } from '../../api/comic'
 import './styles.css'
-import { useEffect, useState } from 'react'
-export default function MainComic(props) {
-  const id = props.id
-  // async function wrapped(){
-  //   return await getComic('64d8e41254bccfc45b142f81',null)
-  // }
-  // const result = wrapped()
+import { useEffect, useState, useContext } from 'react'
+import { AuthContext } from '../../context/context'
+export default function MainComic() {
   const [comic, setComic] = useState([]) 
+  const [comicName, setComicName] = useState([])
+  const [chapter, setChapter] = useState([])
+  const [image, setImage] = useState([])
+  const [author, setAuthor] = useState([])
+  const [status, setStatus] = useState([])
+  const [type, setType] = useState([])
+  const [view, setView] = useState([])
+
+  const context = useContext(AuthContext)
 
   async function loadData() {
-    const result = await getComic(id, null)
+    const result = await getComic(context.idComic, null)
     setComic(result.data.data.comic)
+    console.log(result.data.data)
+    setComicName(comic.nameComics)
+    setChapter(10)
+    setImage(comic.coverURL)
+    console.log(comic.Uploading)
+    setAuthor("comic.Uploading.group")
+    setStatus(comic.status)
+    setType(comic.type)
+    setView(comic.view)
   }
 
   useEffect(() => {
@@ -20,15 +34,7 @@ export default function MainComic(props) {
   }, [])
 
   const chapterOpen = false
-  const comicName = comic.nameComics
-  const chapter = 10
-  const image = comic.coverURL
-  const author = '<NAME>'
-  const status = '<STATUS>'
-  const type = '<TYPE>'
-  const view = 4000
-  const content = 'Võ đạo đỉnh phong, là cô độc, là tịch mịch, là dài đằng đẵng cầu tác, là cao xử bất thắng hàn. Phát triển trong nghịch cảnh, cầu sinh nơi tuyệt địa, bất khuất không buông tha, mới có thể có thể phá võ chi cực đạo. Lăng Tiêu các thí luyện đệ tử kiêm quét rác gã sai vặt Dương Khai ngẫu lấy được một bản vô tự hắc thư, từ nay về sau đạp vào dài đằng đẵng võ đạo.'
-  
+  const content = 'Đang cập nhật'
   
   return (
     <div className="main-comic">

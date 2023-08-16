@@ -5,6 +5,9 @@ import { MdModeComment } from "react-icons/md";
 import { AiFillStar } from "react-icons/ai";
 import { getAllComic,getRankingBoard,getFollowedComic } from "../../api/comic"
 import { useEffect, useState } from 'react';
+import { AuthContext } from '../../context/context';
+import { useContext } from 'react'
+
 export default function Home() {
   const [comic, setComic] = useState([])
   const [rank, setRank] = useState([])
@@ -47,9 +50,15 @@ function Section({ title, data }) {
 }
 
 function Comic({data}) {
+  const context = useContext(AuthContext)
+  const handleSetId = (id) => {
+    // console.log(id)
+    context.setIdComic(id)
+  }
+
   return (
     <div className="comic-container">
-      <Link className="section-comic" to='/type-comic/main-comic' id={data._id}>
+      <Link className="section-comic" to='/type-comic/main-comic' onClick={() => handleSetId(data._id)}>
         <img className="secion-comic-img" src={data.coverURL} alt={data.nameComics} />
         <div className="section-comic-info">
           <h3 className="section-comic-name">{data.nameComics}</h3>

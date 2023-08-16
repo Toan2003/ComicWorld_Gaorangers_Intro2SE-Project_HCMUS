@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/context"
 
 export default function Register() {
   const context = useContext(AuthContext)
-
+  
   if (!context.authenticated) {
     return (
       <div className="register">
