@@ -5,7 +5,7 @@ async function getOneComic(req,res) {
     let idMember = req.body.idMember
     // console.log(idMember)
     // mongoose.ObjectId.isValid(idMember)
-    if (idComic == '') {
+    if (idComic == '' || idComic == null) {
         return res.json({
             isSuccess: false,
             message: 'idComic or idMember is missing',
@@ -127,7 +127,36 @@ async function getFollowedComic(req,res) {
 async function getsearchComic(req,res) {}
 
 async function postCreatComic(req,res) {
+}
 
+async function getComicAccordingToType(req,res) {
+    let type = req?.body?.type
+    if (type == '' || type == null) {
+        return res.json({
+            isSuccess: false,
+            message: 'type is missing',
+            status: res.statusCode,
+            data: ''
+        })
+    }
+    let result = await database.filterType(type).
+    catch((err) => {
+        console.log(err)
+        return res.json({
+            isSuccess: false,
+            message:'request Failure',
+            status: res.statusCode,
+            data: ''
+        })
+    })
+    return res.json({
+        isSuccess: true,
+        message:'request Successfully',
+        status: res.statusCode,
+        data: {
+            listComic: result
+        }
+    })
 }
 
 module.exports = {
@@ -136,5 +165,6 @@ module.exports = {
     getRankingBoard,
     getFollowedComic,
     getsearchComic,
-    postCreatComic
+    postCreatComic,
+    getComicAccordingToType
 }
