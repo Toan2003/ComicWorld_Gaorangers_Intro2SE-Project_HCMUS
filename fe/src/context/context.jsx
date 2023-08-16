@@ -6,8 +6,6 @@ export function AuthProvider({children}) {
   const [authenticated, setAuthenticated] = useState((localStorage.getItem('authenticated') || false))
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [idComic, setIdComic] = useState("");
-
   // localStorage.setItem("idComic", idComic);
 
   const handleLogin = async (e) => {
@@ -73,8 +71,6 @@ export function AuthProvider({children}) {
     handleChangeEmail,
     handleChangePassword,
     authenticated,
-    idComic,
-    setIdComic
   }
   
   return (

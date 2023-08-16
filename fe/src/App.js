@@ -19,8 +19,8 @@ function App() {
           <Route path="follow" element={<Follow />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="type-comic/main-comic" element={<MainComic />} />
-          <Route path="type-comic/main-comic/comic" element={<Comic />} />
+          <Route path="type-comic/main-comic/:id" element={<MainComic />} />
+          {/* <Route path="type-comic/main-comic/:id" element={<Comic />} /> */}
           <Route path="profile/Dashboard" element={<Profile />} /> 
           {/* <Route path="*" element={<NoPage />} /> */}
         </Route>

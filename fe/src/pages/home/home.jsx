@@ -50,15 +50,9 @@ function Section({ title, data }) {
 }
 
 function Comic({data}) {
-  const context = useContext(AuthContext)
-  const handleSetId = (id) => {
-    // console.log(id)
-    context.setIdComic(id)
-  }
-
   return (
     <div className="comic-container">
-      <Link className="section-comic" to='/type-comic/main-comic' onClick={() => handleSetId(data._id)}>
+      <Link className="section-comic" to={`/type-comic/main-comic/${data._id}`}>
         <img className="secion-comic-img" src={data.coverURL} alt={data.nameComics} />
         <div className="section-comic-info">
           <h3 className="section-comic-name">{data.nameComics}</h3>

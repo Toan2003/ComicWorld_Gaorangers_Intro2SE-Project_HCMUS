@@ -1,32 +1,16 @@
 import { Link, Outlet } from 'react-router-dom'
 import { getComic } from '../../api/comic'
 import './styles.css'
-import { useEffect, useState, useContext } from 'react'
-import { AuthContext } from '../../context/context'
-export default function MainComic() {
-  const [comic, setComic] = useState([]) 
-  const [comicName, setComicName] = useState([])
-  const [chapter, setChapter] = useState([])
-  const [image, setImage] = useState([])
-  const [author, setAuthor] = useState([])
-  const [status, setStatus] = useState([])
-  const [type, setType] = useState([])
-  const [view, setView] = useState([])
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
 
-  const context = useContext(AuthContext)
+export default function MainComic() {
+  const { id } = useParams()
+  const [comic, setComic] = useState([])
 
   async function loadData() {
-    const result = await getComic(context.idComic, null)
+    const result = await getComic(id, null)
     setComic(result.data.data.comic)
-    console.log(result.data.data)
-    setComicName(comic.nameComics)
-    setChapter(10)
-    setImage(comic.coverURL)
-    console.log(comic.Uploading)
-    setAuthor("comic.Uploading.group")
-    setStatus(comic.status)
-    setType(comic.type)
-    setView(comic.view)
   }
 
   useEffect(() => {
@@ -35,29 +19,37 @@ export default function MainComic() {
 
   const chapterOpen = false
   const content = 'Đang cập nhật'
-  
+  const comicName = comic.nameComics
+  const image = comic.coverURL
+  const author = comic?.Uploading?.group
+  const status = comic.status
+  const type = comic.type
+  const view = 4000
+  const listChapters = comic?.chapters
+  console.log(listChapters)
+  useEffect(() => {
+    console.log(comic.chapters)
+  }, [comic])
+
   return (
     <div className="main-comic">
       <div className="center">
         <ul className="link">
           <li>
-            <Link className='link-item' to='/'><p>Trang chủ</p></Link>
+            <Link className='link-item' to='/'>Trang chủ</Link>
           </li>
           <li><p>{'>>'}</p></li>
           <li>
-            <Link className='link-item' to='/comic'><p>Truyện</p></Link>
+            <Link className='link-item' to='/comic'>Truyện</Link>
           </li>
           <li><p>{'>>'}</p></li>
           <li>
-            <Link className='link-item' to='/comic/main-comic'><p>{comicName}</p></Link>
+            <Link className='link-item' to='/comic/main-comic'>{comicName}</Link>
           </li>
           <Outlet />
-          {chapterOpen ? <li>{chapter}</li> : <></>}
         </ul>
         <div className='title'>
-          <div className='title-name'>
-            <h2>{comicName}</h2>
-          </div>
+          <h2 className='title-name'>{comicName}</h2>
           <div className='title-center'>
             <div className='title-image'>
               <img src={image} alt="" />
@@ -65,19 +57,19 @@ export default function MainComic() {
             <div className='title-information'>
               <div className='list-infor'>
                 <div className='row'>
-                  <p className='col'>Tác giả</p>
+                  <p className='col'>Tác giả: </p>
                   <p className='col'>{author}</p>
                 </div>
                 <div className='row'>
-                  <p className='col'>Tình trạng</p>
+                  <p className='col'>Tình trạng: </p>
                   <p className='col'>{status}</p>
                 </div>
                 <div className='row'>
-                  <p className='col'>Thể loại</p>
+                  <p className='col'>Thể loại: </p>
                   <p className='col'>{type}</p>
                 </div>
                 <div className='row'>
-                  <p className='col'>Lượt xem</p>
+                  <p className='col'>Lượt xem: </p>
                   <p className='col'>{view}</p>
                 </div>
               </div>
@@ -109,51 +101,9 @@ export default function MainComic() {
                 <div className='col'>1 ngày trước</div>
                 <div className="col">N/A</div>
               </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
-              <div className='row'>
-                <div className='col'>Chapter 1</div>
-                <div className='col'>1 ngày trước</div>
-                <div className="col">N/A</div>
-              </div>
+              {
+                
+              }
             </div>
           </div>
         </div>
