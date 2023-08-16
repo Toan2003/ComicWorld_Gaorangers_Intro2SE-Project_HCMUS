@@ -43,7 +43,7 @@
     flex-basis: 20%;
 }
 
-.type-button-link {
+.type-button {
     display: block;
     text-decoration: none;
     width: 150px;
@@ -51,10 +51,11 @@
     border: 1px solid #000;
     border-radius: 5px;
     margin: 12px auto;
+    background-color: #fff;
 }
 
-.type-button-link:hover .type-button-text,
-.type-button-link:hover {
+.type-button:hover .type-button-text,
+.type-button:hover {
     border-color: var(--button-hover) ;
     color: var(--button-hover);
 }
