@@ -15,6 +15,7 @@ export function AuthProvider({children}) {
   // const history = useHistory()
   // function Logout
   const handleLogout =  () => {
+    setAuthenticated(false)
     localStorage.removeItem("name")
     localStorage.setItem("authenticated", false)
     localStorage.setItem("id", null)
