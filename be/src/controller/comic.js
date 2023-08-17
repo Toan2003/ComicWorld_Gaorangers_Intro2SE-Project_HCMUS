@@ -94,7 +94,7 @@ async function getRankingBoard(req,res) {
 }
 
 async function getFollowedComic(req,res) {
-    id = req.params.id
+    let id = req.params.idMember
     if (id.length != 24) {
         return res.json({
             isSuccess: false,
@@ -124,14 +124,86 @@ async function getFollowedComic(req,res) {
         }
     })
 }
-async function getsearchComic(req,res) {}
+async function getSearchComic(req,res) {
+    let {name} = req.query
+    console.log(name)
+    if (name == '' || name == null){
+        return res.json({
+            isSuccess: false,
+            message: 'name is missing',
+            status: res.statusCode,
+            data: ''
+        })
+    }
+    let result = await database.searchComic(name)
+    .catch(err => {
+        console.log(err)
+        return res.json({
+            isSuccess: false,
+            message:'request Failure',
+            status: res.statusCode,
+            data: ''
+    })})
+    if (result) {
+        return res.json({
+            isSuccess: true,
+            message:'request Successfully',
+            status: res.statusCode,
+            data: {
+                listComic: result
+            }
+        })
+    } 
+}
 
 async function postCreatComic(req,res) {
+    let {name,date,group,member,type,status,description,coverURL} = req.body
+    
+    if (name == null || date == null || group == null || member == null || type == null || status == null || description == null || coverURL == null) {
+        return res.json({
+            isSuccess: false,
+            message: 'name, date, author, type, status, description, coverURL is missing',
+            status: res.statusCode,
+            data: ''
+        })
+    }
+    if (idMember.length != 24) {
+        return res.json({
+            isSuccess: false,
+            message: 'idMember is invalid',
+            status: res.statusCode,
+            data: ''
+        })
+    }
+    let result = await database.createComic(name,type,status,date,group,idMember,coverURL)
+    .catch(err => {
+        console.log(err)
+        return res.json({
+            isSuccess: false,
+            message:'Failed to create',
+            status: res.statusCode,
+            data: ''
+        });
+    })
+    if (result) {
+        return res.json({
+            isSuccess: true,
+            message:'Created successfully',
+            status: res.statusCode,
+            data: ''
+        })
+    } else {
+        return res.json({
+            isSuccess: false,
+            message:'Failed to create',
+            status: res.statusCode,
+            data: ''
+        })
+    }
 }
 
 async function getComicAccordingToType(req,res) {
-    console.log(req.body)
-    let type = req?.body?.type
+    let type = req?.params?.type
     if (type == '' || type == null) {
         return res.json({
             isSuccess: false,
@@ -165,7 +237,7 @@ module.exports = {
     getAllComic,
     getRankingBoard,
     getFollowedComic,
-    getsearchComic,
+    getSearchComic,
     postCreatComic,
     getComicAccordingToType
 }
