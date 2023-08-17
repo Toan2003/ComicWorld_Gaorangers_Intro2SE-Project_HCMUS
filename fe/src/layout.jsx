@@ -2,15 +2,13 @@ import { Link, Outlet, redirect } from 'react-router-dom'
 import LOGO from './assets/logo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { AuthContext } from './context/context'
-import { useContext } from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import DefaultAvatar from './assets/default-avatar.jpg'
 
 export default function Layout() {
+  const {authenticated} = useContext(AuthContext)
   const checkAuthen = JSON.parse(localStorage.getItem('authenticated'))
-  const { isAuthenticated } = useContext(AuthContext)
-
+  
   // handle search bar
   const [inputText, setInputText] = useState("");
   let inputHandler = (e) => {
@@ -38,15 +36,19 @@ export default function Layout() {
             </Link>
           </div>
         </div>
-        {checkAuthen && isAuthenticated ? 
-        (<Link to='/profile/dashboard' className='layout-profile'>
-          <img src={DefaultAvatar} alt="" className='layout-profile-avatar' />
-        </Link>) : 
-        (<div className="header-login_register-wrap">
-          <Link to="/login" className="header-login_register">Đăng Nhập</Link>
-          <Link to="/register" className="header-login_register">Đăng Kí</Link>
-        </div>)}
+        {
+          authenticated ? 
+          (<Link to='/profile/dashboard' className='layout-profile'>
+            <img src={DefaultAvatar} alt="" className='layout-profile-avatar' />
+          </Link>) 
+          : 
+          (<div className="header-login_register-wrap">
+              <Link to="/login" className="header-login_register">Đăng Nhập</Link>
+              <Link to="/register" className="header-login_register">Đăng Kí</Link>
+            </div>)
+        }
       </div>
+
       <div className="header-sticky_nav">
         <ul className="header-sticky_nav-list">
           <li>
@@ -60,8 +62,8 @@ export default function Layout() {
           </li>
         </ul>
       </div>
-
-      <Outlet />
+      
+      <Outlet/>
     </div>
   )
 }

@@ -23,4 +23,4 @@ const axiosClient = axios.create({
     }
 })
 
-export {axiosClient};
+export {axiosClient,cloud};
