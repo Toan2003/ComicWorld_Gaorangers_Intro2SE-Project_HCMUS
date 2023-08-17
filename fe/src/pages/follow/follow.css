@@ -6,22 +6,31 @@
     --hover-color: #f9f8f8;
 }
 
-.search-container {
+.follow-container {
     width: 100%;
     background-color: var(--container-color);
 }
 
-.search-body {
+.follow-body {
     width: 100%;
     max-width: 1200px;
     background-color: #fff;
     margin: 0 auto;
-    padding: 27px 0;
+    padding: 27px 16px;
     min-height: 1000px;
 }
 
-.search-no_result {
-    width: 100%;
-    padding: 27px 100px;
+.follow-not_logged_in {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
     text-align: center;
+}
+
+.follow-link {
+    text-decoration: none;
+    color: var(--title-color);
+}
+.follow-link:hover {
+    text-decoration: underline;
 }

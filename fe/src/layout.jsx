@@ -2,12 +2,17 @@ import { Link, Outlet } from 'react-router-dom'
 import LOGO from './assets/logo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { AuthContext } from './context/context'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
  
 export default function Layout() {
-  // const context = useContext(authContext)
   const context = useContext(AuthContext)
   const checkAuthen = localStorage.getItem('authenticated')
+
+  // handle search bar
+  const [inputText, setInputText] = useState("");
+  let inputHandler = (e) => {
+    setInputText(e.target.value);
+  };
 
   return (
     <div className="header-container">
@@ -19,9 +24,11 @@ export default function Layout() {
         </div>
 
         <div className="header-search_bar">
-          <input type="text" placeholder="Nhập từ khóa tìm kiếm" className="header-search_bar-input" />
+          <input type="text" onChange={inputHandler} placeholder="Nhập từ khóa tìm kiếm" className="header-search_bar-input" />
           <button className="header-search_bar-btn">
-            <AiOutlineSearch className="header-search_bar-icon"></AiOutlineSearch>
+            <Link className="header-search_bar-link" to={"/search-result?key=" + inputText}>
+              <AiOutlineSearch className="header-search_bar-icon"></AiOutlineSearch>
+            </Link>
           </button>
         </div>
 

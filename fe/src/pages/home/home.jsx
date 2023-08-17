@@ -1,8 +1,4 @@
 import './home.css'
-import { Link } from 'react-router-dom'
-import { FaEye } from "react-icons/fa";
-import { MdModeComment } from "react-icons/md";
-import { AiFillStar } from "react-icons/ai";
 import { getAllComic,getRankingBoard,getFollowedComic } from "../../api/comic"
 import { useEffect, useState } from 'react';
 import { ComicSection } from '../../components/comic/comic';
@@ -10,13 +6,16 @@ import { Table } from '../../components/rankingBoard/rankingBoard';
 
 export default function Home() {
   const [comic, setComic] = useState([])
-  const [rank, setRank] = useState([])
+  const [rank, setRank] = useState(undefined)
+  const [follow, setFollow] = useState(undefined)
   
   async function loadDataPage() {
     const comics = await getAllComic()
     const ranks = await getRankingBoard()
+    // const follows = await getFollowedComic()
     setComic(comics.data.data.listComic)
     setRank(ranks.data.data.rankingList)
+    // setFollow(follows.data.data.followingList)
   }
 
   useEffect(() => {
@@ -31,7 +30,7 @@ export default function Home() {
         </span>
         <span className='tableSection'>
           <Table name="Bảng Xếp Hạng" data={rank}></Table>
-          <Table name="Truyện Đang Theo Dõi" ></Table>
+          <Table name="Truyện Đang Theo Dõi" data ={follow}></Table>
         </span>
       </div>
     </div>

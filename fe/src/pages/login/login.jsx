@@ -7,8 +7,10 @@ import { AuthContext } from "../../context/context"
 export default function Login() {
   const context = useContext(AuthContext)
   // console.log(context.authenticated)
-  
-  if (!context.authenticated) {
+  // console.log(typeof(context.authenticated))
+  // console.log(context.authenticated)
+  if (context.authenticated==false || context.authenticated=='false') {
+    
     return (
       <div className="login">
         <form onSubmit={context.handleLogin} className="login-form">

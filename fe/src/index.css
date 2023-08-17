@@ -71,6 +71,13 @@
   color: #fff;
 }
 
+.header-search_bar-link{
+  width: 100%;
+  min-height: 100%;
+  text-decoration: none;
+  color: #fff;
+}
+
 .header-search_bar-btn:hover {
   background-color: rgba(24, 138, 70, 0.8);
 }
