@@ -95,10 +95,11 @@ async function getRankingBoard(req,res) {
 
 async function getFollowedComic(req,res) {
     let id = req.params.idMember
+    console.log(id)
     if (id.length != 24) {
         return res.json({
             isSuccess: false,
-            message: 'idComic is invalid',
+            message: 'idMember is invalid',
             status: res.statusCode,
             data: ''
         })
