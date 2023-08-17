@@ -1,8 +1,15 @@
 import './upload_chapter.css'
 import { BiSolidDownArrow } from "react-icons/bi";
 import { BsImage } from "react-icons/bs";
+import { useState } from 'react';
 
 export default function UploadChapter() {
+    const [fileList, setFileList] = useState(null);
+
+    const handleFileChange = (e) => {
+        setFileList(e.target.files);
+    };
+    console.log(fileList);
 
     return (
         <div className="upload_chapter-container">
@@ -17,7 +24,7 @@ export default function UploadChapter() {
                     <h3 className="upload_chapter-sub-title">File truyện</h3>    
                     <span className="upload_chapter-upload-wrap">
                         <BsImage className="upload_chapter-upload-icon"/>
-                        <button className="upload_chapter-button">Đăng ảnh</button>
+                        <input onChange={(e) => setFileList(e.target.files)} name="Chọn ảnh" type='file' className="upload_chapter-file_input" multiple/>
                     </span>
                 </div>
 

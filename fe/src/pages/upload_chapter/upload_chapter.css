@@ -88,6 +88,10 @@
     color: #ffff;
 }
 
+.upload_chapter-file_input {
+    margin-left: 10px;
+}
+
 .upload_chapter-button:hover {
     background-color: rgba(102, 206, 250, 0.8);
 }

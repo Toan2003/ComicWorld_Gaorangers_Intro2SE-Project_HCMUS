@@ -26,7 +26,6 @@ export default function Home() {
   return (
     <div className="homepage-container">
       <div className="homepage-body">
-        {/* <Link to="/upload-chapter">chuyển tới upload chapter</Link> */}
         <span className= 'comic-section'>
           <ComicSection title="Danh Sách Truyện" data={comic}></ComicSection>
         </span>
