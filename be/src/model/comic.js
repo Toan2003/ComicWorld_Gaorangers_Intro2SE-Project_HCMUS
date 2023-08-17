@@ -356,16 +356,20 @@ async function returnComments(idComics)
 async function returnFollowingComics(idMember)
 {
     const fullComic=[]
+    // console.log(typeof(idMember))
     const member= await user.user.findById(idMember)
+    
     const comicsFollowing= member.followingcomics
+    console.log(comicsFollowing)
     if(comicsFollowing)
     {
         for (comic of comicsFollowing){
             const temp=await comics.findById(comic)
             fullComic.push(temp)
         }
+        console.log(fullComic)
     }
-    
+     
     return {comicsFollowing, fullComic}
 }
 //Caanf doij comicURL cover

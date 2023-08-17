@@ -57,6 +57,9 @@
   width: 390px;
   height: 425px;
   margin-right: 2%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .title-image img {
