@@ -1,0 +1,100 @@
+:root {
+    --container-color: #EBEBEB;
+    --body-color: #fff;
+    --title-color: #1BB0F0;
+    --border-color: #ccc;
+    --hover-color: #f9f8f8;
+    --upload-button-color: #66CEFA;
+}
+
+.upload_chapter-container {
+    width: 100%;
+    background-color: var(--container-color);
+}
+
+.upload_chapter-body {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 27px 16px;
+    min-height: 650px;
+}
+
+.upload_chapter-title {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.upload_chapter-sub-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 16px 0;
+}
+
+.upload_chapter-list {
+    list-style: none;
+    padding: 0 8px;
+    margin: 0;
+    height: 35px;
+    width: 300px;
+    line-height: 30px;
+    border: 1px solid #070707;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.upload_chapter-list-icon {
+    font-size: 10px;
+}
+
+.upload_chapter-input {
+    outline: none;
+    height: 40px;
+    width: 80%;
+    border: 1px solid #070707;
+    border-radius: 5px;
+    padding: 0 8px;
+}
+
+.upload_chapter-upload {
+    width: 500px;
+    height: 200px;
+}
+
+.upload_chapter-upload-wrap {
+    display: block;
+    width: 100%;
+}
+
+.upload_chapter-upload-icon {
+    font-size: 80px;
+}
+
+.upload_chapter-button {
+    width: 120px;
+    height: 35px;
+    outline: none;
+    border: 1px solid #070707;
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: var(--upload-button-color);
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 700;
+    color: #ffff;
+}
+
+.upload_chapter-button:hover {
+    background-color: rgba(102, 206, 250, 0.8);
+}
+
+.upload_chapter-button_section {
+    margin: 0 auto;
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+}

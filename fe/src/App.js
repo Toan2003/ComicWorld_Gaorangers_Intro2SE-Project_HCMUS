@@ -10,6 +10,7 @@ import Layout from './layout'
 import UploadComic from './pages/new_comic/new_comic'
 import TypeComic from './pages/type_comic/type_comic'
 import Search from './pages/search/search'
+import UploadChapter from './pages/upload_chapter/upload_chapter'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="profile/Dashboard" element={<Profile />} />
           <Route path="profile/upload" element={<UploadComic />} />
           <Route path="search-result" element={<Search />} />
+          <Route path="upload-chapter" element={<UploadChapter />} />
           {/* <Route path="*" element={<NoPage />} /> */}
         </Route>
       </Routes>

@@ -1,4 +1,5 @@
 import './home.css'
+import { Link } from 'react-router-dom'
 import { getAllComic,getRankingBoard,getFollowedComic } from "../../api/comic"
 import { useEffect, useState } from 'react';
 import { ComicSection } from '../../components/comic/comic';
@@ -25,6 +26,7 @@ export default function Home() {
   return (
     <div className="homepage-container">
       <div className="homepage-body">
+        {/* <Link to="/upload-chapter">chuyển tới upload chapter</Link> */}
         <span className= 'comic-section'>
           <ComicSection title="Danh Sách Truyện" data={comic}></ComicSection>
         </span>
