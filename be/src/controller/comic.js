@@ -137,6 +137,7 @@ async function getSearchComic(req,res) {
     }
     let result = await database.searchComic(name)
     .catch(err => {
+        console.log('loi')
         console.log(err)
         return res.json({
             isSuccess: false,
@@ -145,6 +146,8 @@ async function getSearchComic(req,res) {
             data: ''
     })})
     if (result) {
+        console.log('thanhcong')
+        console.log(result)
         return res.json({
             isSuccess: true,
             message:'request Successfully',
@@ -204,6 +207,7 @@ async function postCreatComic(req,res) {
 
 async function getComicAccordingToType(req,res) {
     let type = req?.params?.type
+    // console.log(type)
     if (type == '' || type == null) {
         return res.json({
             isSuccess: false,

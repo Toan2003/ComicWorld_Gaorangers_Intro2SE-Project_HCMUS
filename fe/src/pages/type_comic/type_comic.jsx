@@ -28,7 +28,8 @@ export default function TypeComic() {
   const [typeTitle, setTypeTitle] = useState(undefined)
 
   async function handleClickTypeButton(typeName) {
-    const comics = await getComicAccordingToType({type : typeName})
+    const comics = await getComicAccordingToType(typeName)
+    console.log(comics);
     setComic(comics.data.data.listComic)
     setTypeTitle('Danh sách truyện thể loại: ' + typeName)
   }

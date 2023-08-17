@@ -1,6 +1,6 @@
-import axiosClient from "./axiosConnect"
+import {axiosClient} from "./axiosConnect"
 
-import cloud from "./axiosConnect"
+// import {cloud} from "./axiosConnect"
         
 async function getComic(idComic, idMember) { 
     let link = '/comic/getOneComic/' + idComic
@@ -35,21 +35,20 @@ async function getComicAccordingToType(type) {
 }
 //type
 
-async function postCreatComic(name,date,group,member,type,status,description,cover) {
-    let link = '/comic/create'
-    let coverURL = await cloud.uploader.upload(cover, {
-        folder: "CoverImage"
-    },(error, result) => {console.log(error);});
-    return await axiosClient.post(link, {name,date,group,member,type,status,description,coverURL}).then
-}
+// async function postCreatComic(name,date,group,member,type,status,description,cover) {
+//     let link = '/comic/create'
+//     let coverURL = await cloud.uploader.upload(cover, {
+//         folder: "CoverImage"
+//     },(error, result) => {console.log(error);});
+//     return await axiosClient.post(link, {name,date,group,member,type,status,description,coverURL}).then
+// }
 
 export {
     getComic, 
-    getSearhComic, 
     getAllComic, 
     getRankingBoard, 
     getFollowedComic,
     getComicAccordingToType,
-    getSearhComic,
-    postCreatComic
+    getSearhComic
+    // postCreatComic
 } 

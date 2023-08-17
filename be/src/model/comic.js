@@ -197,10 +197,8 @@ async function searchComic(name)
         words[i] = words[i][0].toUpperCase() + words[i].substr(1);
     }
     name=words.join(" ");
-    // console.log(name)
     const searchingComic = await comics.find({nameComics:{$regex: name}})
-    console.log(searchingComic)
-    return searchComic
+    return searchingComic
 }
 
 

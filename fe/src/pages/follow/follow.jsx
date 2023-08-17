@@ -20,7 +20,7 @@ export default function Follow() {
           :
           (
             <h3 className="follow-not_logged_in">
-              Vui lòng <Link className="follow-link" to="/login">Đăng Nhập</Link> để xem
+              Vui lòng <Link className="follow-link" to="/login">Đăng Nhập</Link> để thực hiện chức năng này
             </h3>
           )
         }
