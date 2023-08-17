@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 const database=require('../database/database')
-
+const comic = require('./comic')
 
 const chapterSchema= new mongoose.Schema({
     chapterName: String,
@@ -36,4 +36,13 @@ async function getOneChapter(idChapter)
     return chapterChoose
 }
 
-module.exports= {chapter,getOneChapter};
+async function getAllChapter(idComic)
+{
+    const comicsChoose = await comic.findById(idComic)
+    if (comicChoose)
+    {
+        const chooseComic= comicChoose.chapters
+    }
+    return chooseComic
+}
+module.exports= {chapter,getOneChapter, getAllChapter};
