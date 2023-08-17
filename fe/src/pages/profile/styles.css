@@ -1,6 +1,6 @@
 @import url('../../index.css');
 
-.profile {
+.profile-container {
   width: 100%;
   padding: 1.5% 1.5% 0 1.5%;
   display: flex;
@@ -9,28 +9,28 @@
   margin: auto
 }
 
-.member .link-member {
+.profile .profile-link-user {
   display: flex;
   gap: 0.5vw;
   padding-left: 0;
   margin-bottom: 0;
 }
 
-.member {
+.profile {
   width: 100%;
   max-width: 1200px;
 }
 
-.link-member .link-item:hover {
+.profile-link-user .link-item:hover {
   color: var(--hover-text-color)
 }
 
-.main-member .account {
+.main-profile .account {
   width: 20%;
   background-color: var(--grey-color-2);
 }
 
-.main-member .account .user-name-box {
+.main-profile .account .user-name-box {
   background-color: antiquewhite;
   padding: 5%;
   align-items: center;
@@ -57,11 +57,11 @@
   background-color: gainsboro;
 }
 
-.main-member {
+.main-profile {
   display: flex;
 }
 
-.main-member .information { 
+.main-profile .information { 
   margin-left: 2vw;
   width: 70%;
 }

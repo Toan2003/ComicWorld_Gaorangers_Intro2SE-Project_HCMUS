@@ -2,6 +2,8 @@ import { useState, createContext } from 'react';
 import { getLogin, postSignup } from '../api/authorize';
 import { useHistory } from 'react-router-dom';
 
+
+
 export const AuthContext = createContext()
 export function AuthProvider({children}) {
   const [authenticated, setAuthenticated] = useState((JSON.parse(localStorage.getItem('authenticated')) || false))
@@ -9,18 +11,20 @@ export function AuthProvider({children}) {
   const [password, setPassword] = useState("");
   const [idUser, setIDUser] = useState("");
   const [typeUser, setTypeUser] = useState("");
-  // const [isLogout, setIsLogout] = useState(false);
   const [name, setName] = useState("")
 
-  // const history = useHistory()
+  // set local storage
+  function setLocalStorage(authenticated, id, type, username) {
+    localStorage.setItem("username", username)
+    localStorage.setItem("authenticated", authenticated)
+    localStorage.setItem("id", id)
+    localStorage.setItem("type", type)
+  }
+
   // function Logout
   const handleLogout =  () => {
-    setAuthenticated(false)
-    localStorage.removeItem("name")
-    localStorage.setItem("authenticated", false)
-    localStorage.setItem("id", null)
-    localStorage.setItem("type", null)
-    // setIsLogout(!isLogout)
+    setAuthenticated(!authenticated)
+    setLocalStorage(!authenticated, null, null, null)
   }
 
   // function Login
@@ -36,14 +40,9 @@ export function AuthProvider({children}) {
 
     if (checkLogin.isSuccess == true) {
       setName(email)
-      localStorage.setItem('authenticated', checkLogin.isSuccess);
-      localStorage.setItem('type', checkLogin.data.type);
-      localStorage.setItem('id', checkLogin.data.id);
-      localStorage.setItem('username', name)
+      setLocalStorage(checkLogin.isSuccess, checkLogin.data.id, checkLogin.data.type, email)
     } else {
-      localStorage.setItem('authenticated', false);
-      localStorage.setItem('type', null);
-      localStorage.setItem('id', null);
+      setLocalStorage(false, null, null, null)
     }
     
     setEmail("");
@@ -63,14 +62,9 @@ export function AuthProvider({children}) {
 
     if (register.isSuccess == true) {
       setName(email)
-      localStorage.setItem('authenticated', register.isSuccess);
-      localStorage.setItem('type', register.data.type);
-      localStorage.setItem('id', register.data.id);
-      localStorage.setItem('username', name);
+      setLocalStorage(register.isSuccess, register.data.id, register.data.type, email)
     } else {
-      localStorage.setItem('authenticated', false);
-      localStorage.setItem('type', null);
-      localStorage.setItem('id', null);
+      setLocalStorage(false, null, null, null)
       alert(register.message)
     }
 
