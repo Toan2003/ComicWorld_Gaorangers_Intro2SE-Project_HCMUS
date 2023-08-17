@@ -1,8 +1,8 @@
 @import url('../../index.css');
 
 .main-comic {
-  width: 60%;
-  padding: 1.5% 0 0 1.5%;
+  width: 100%;
+  padding: 1.5% 1.5% 0 1.5%;
   display: flex;
   background-color: var(--primary-color);
   width: 1200px;
@@ -17,6 +17,10 @@
 .rank {
   width: 30%;
   right: 0;
+}
+
+.rank .main-comic-rank-board {
+  width: 30%;
 }
 
 /* title in comic page */
@@ -52,7 +56,7 @@
 .title-image {
   width: 390px;
   height: 425px;
-  padding-left: 2%;
+  margin-right: 2%;
 }
 
 .title-image img {
@@ -75,7 +79,7 @@
   padding-right: 20%;
 }
 
-.main-comic img {
+.main-comic .tital-image-cover-urlg {
   width: 90%;
   height: 100%;
 }

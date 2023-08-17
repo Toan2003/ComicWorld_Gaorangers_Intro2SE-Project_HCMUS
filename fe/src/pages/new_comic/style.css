@@ -1,123 +1,58 @@
-select
+.new_comic
 {
-  width:150px;
+  width: 60%;
+  padding: 1.5% 0 0 1.5%;
+  display: flex;
+  background-color: var(--primary-color);
+  width: 1200px;
+  margin: auto
 }
-body {
-  font-family: Tahoma,sans-serif,Helvetica,Arial;
-  font-weight: 400;
-  font-size: 14px;
-  background-color: #ebebeb
-}
-.background
-{
-  position: relative;
-  height: 3974px;
-  width:100%;
-  left: 0px;
-  top: 0px;
-  background: #D9D9D9;
-  z-index: 1;
-}
-.Logo_background{
-  position: absolute;
-  width: 100%;
-  height: 80px;
-  left: 0px;
-  top: -4px;
-  background: #21258E;
-}
-.Gray_after{
-  position: absolute;
-  width: 100%;
-  height: 50px;
-  left: 0px;
-  top: 76px;
-  background: #ADADAD;
+.center {
+  width: 70%;
+  left: 0;
+} 
+
+.center .link_newcomic {
+  display: flex;
+  gap: 0.5vw;
+  padding-left: 0;
+  margin-bottom: 0;
 }
 
-
-.input1{
-  position: absolute;
-  width: 518px;
-  height: 37px;
-  left: 407px;
-  top: 24px;
-  font-size: 20px;
-  background: white;
-  border: 1px solid #000000;
+.link_newcomic .link_newcomic-item {
+  text-decoration: none;
+  color: var(--link-color);
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.homepage
-{
-  
-  position: absolute;
-  left: 75%;
-  top: 24px;
-  z-index: 1;
-  font-size:32px;
-  font-family: 'Inria Sans';
-
-}
-
-.text-button
-{
-  outline:none;
-  background: transparent;
-  font-size: 28px;
-  border:None;
-  
-  color: white;
-  
-}
-.text-button:hover {
-  color: blue;
-}
-
-
-
-
-.text-button1
-{
-  outline:none;
-  background: transparent;
-  font-size: 21px;
-  border:None;
-  color: #000000;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 21px;
-  line-height: 25px;
-}
-.text-button1:hover {
-  color: blue;
+.link_newcomic .link_newcomic-item:hover {
+  color: var(--hover-text-color)
 }
 .Newcomics
 {
 position: absolute;
 width: 372px;
 height: 47px;
-left: 9%;
-top: 159px;
-
-font-family: 'Inter';
-font-style: normal;
+padding-bottom: 2px;
+color: var(--link-color);
+text-decoration: none;
+font-size:28px;
 font-weight: 600;
-font-size: 36px;
-line-height: 44px;
 
 color: #000000;
 
 }
-
+.Information
+{
+  padding-left: 10px;
+  padding-bottom:50px;
+}
 .Name
 {
-  position: absolute;
   width: 256px;
   height: 49px;
-  left: 139px;
-  top: 236px;
-
+  padding-top:5px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -131,11 +66,8 @@ color: #000000;
 
 box-sizing: border-box;
 
-position: absolute;
 width: 1159px;
 height: 51px;
-left: 139px;
-top: 285px;
 font-size: 20px;
 background: #FFFFFF;
 border: 1px solid #000000;
@@ -144,398 +76,161 @@ border-radius: 14px;
 
 .Author{
 
-position: absolute;
 width: 256px;
 height: 49px;
-left: 141px;
-top: 349px;
-
+padding-top:5px;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 400;
 font-size: 20px;
 line-height: 24px;
-
+padding-top:10px;
 color: #000000;
 }
 .Authorinput{
 
 box-sizing: border-box;
 
-position: absolute;
 width: 1159px;
 height: 51px;
-left: 139px;
-top: 398px;
 font-size: 20px;
 background: #FFFFFF;
 border: 1px solid #000000;
 border-radius: 14px;
 }
 .Type{
-
-position: absolute;
-width: 256px;
-height: 49px;
-left: 147px;
-top: 473px;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-line-height: 24px;
-
-color: #000000;
-}
-select{
-box-sizing: border-box;
-position: absolute;
-width: 1157px;
-height: 51px;
-left: 141px;
-top: 529px;
-font-size: 20px;
-background: #FFFFFF;
-border: 1px solid #000000;
-border-radius: 14px;
-}
-.Date{
-
-position: absolute;
-width: 96px;
-height: 35px;
-left: 141px;
-top: 597px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-line-height: 24px;
-
-color: #000000;
-}
-.Dateinput{
-
-box-sizing: border-box;
-
-position: absolute;
-width: 281px;
-height: 43px;
-left: 141px;
-top: 633px;
-font-size: 20px;
-background: #FFFFFF;
-border: 1px solid #000000;
-border-radius: 10px;
-}
-.Status{
-
-position: absolute;
-width: 256px;
-height: 49px;
-left: 139px;
-top: 711px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-line-height: 24px;
-
-color: #000000;
-}
-.checkbox1{
-
-position: absolute;
-left: 155px;
-top: 740px;
-width:20px;
-
-}
-
-.checkbox2{
-position: absolute;
-left: 155px;
-top: 782px;
-width:20px;
-}
-.checkbox3{
-position: absolute;
-left: 155px;
-top: 833px;
-width:20px;
-}
-.inProgress
-{
-  position: absolute;
+  padding-top:10px;
   width: 256px;
   height: 49px;
-  left: 200px;
-  top: 750px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
+  
   color: #000000;
-}
-.Complete
-{
-  position: absolute;
-  width: 256px;
-  height: 49px;
-  left: 200px;
-  top: 796px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  color: #000000;
-}
-.Drop
-{
-  position: absolute;
-  width: 256px;
-  height: 49px;
-  left: 200px;
-  top: 843px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  color: #000000;
-}
-.Description{
-position: absolute;
-width: 256px;
-height: 49px;
-left: 139px;
-top: 893px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-line-height: 24px;
-
-color: #000000;
-}
-.Description_Input{
-box-sizing: border-box;
-
-position: absolute;
-width: 1157px;
-height: 184px;
-left: 141px;
-top: 925px;
-
-background: #FFFFFF;
-border: 1px solid #000000;
-border-radius: 10px;
-}
-.commentbox{
-  display:flex;
-  height:250px;
-  position:relative;
-  overflow: scroll;
-  border-radius: 10px;
-  border:1px solid #000000;
+  }
+  select{
+  box-sizing: border-box;
   width: 1157px;
-  left: 8.5%;
-  background-color: white;
-  margin-top: 932px; /*957*/
-  font-size:20px;
-  
-}
-.Cover{
-  
-position:absolute;
-font-size: 20px;
-left: 8%;
-margin-top: 10px;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-line-height: 24px;
+  height: 51px;
 
-color: #000000;
-}
-.Input_file
-{
-  position:relative;
-  width: 850px;
-  height:100px;
-  margin-top: 50px;
-  font-size: 30px;
-  border:None;
-  border-radius: 0;
-  outline: none;
-  background-color: transparent;
-  left:9%;
-}
-.UploadPic{
-position: absolute;
-box-sizing: border-box;
-width: 249px;
-height: 44px;
-margin-top: 50px;
-left: 43%;
-font-size: 28px;
-color:white;
-background: #090fac;
-border: 1px solid #000000;
-border-radius: 5px;
-}
-
-.ButtonSave
-{
-position: absolute;
-box-sizing: border-box;
-position: absolute;
-width: 168px;
-height: 42px;
-margin-top: 200px;
-left:38%;
-font-size:28px;
-color:white;
-background: #090fac;
-border: 1px solid #000000;
-border-radius: 5px;
-
-}
-.ButtonCancel
-{
-position: absolute;
-box-sizing: border-box;
-position: absolute;
-width: 168px;
-height: 42px;
-margin-top: 200px;
-left:54%;
-font-size:28px;
-color:white;
-background: #090fac;
-border: 1px solid #000000;
-border-radius: 5px;
-}
-.UploadPic:hover
-{
-  background: #2027dd;
-}
-.ButtonSave:hover
-{
-  background: #2027dd;
-}
-.ButtonCancel:hover
-{
-  background: #777CF6;
-}
-.Nav_menu
-{
-/* Trang Chủ */
-position: absolute;
-top: 90px;
-left:41%;
-z-index: 1;
-text-align: center;
-}
-.Nav_button
-{
-/* Trang Chủ */
-position: relative;
-color: black;
-left: 0px;
-top: 0px;
-font-size: 16px;
-border:None;
-background-color: transparent;
-z-index: 1;
-
-}
-.Nav_button:hover
-{
-  color: blue;
-}
-input
-{
-  position: absolute;
-  width: 331px;
-  height: 38px;
-  left:39%;
-  top: 3%;
-  font-size: 19px;
+  font-size: 20px;
   background: #FFFFFF;
   border: 1px solid #000000;
-  border-radius: 20px;
-}
-.Avatar img 
-{
-  width: 60px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 50%;
-}
-.Username
-{
-  position: absolute;
+  border-radius: 14px;
+  }
+  .Date{
   
-  left: 87%;
-  top: 4%;
-  border:None;
-  outline: None;
-  display:inline-block;
+  padding-top: 10px;
+  width: 96px;
+  height: 35px;
+  
+  
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 600;
-  font-size: 25px;
-  line-height: 19px;
-  background-color: transparent;
-  color:white;
-}
-.Username:hover
-{
-  color:blue;
-}
-.Logo
-{
-  position: absolute;
-  left: 30px;
-  top:20px;
-  font-family: 'Irish Grover';
-  font-style: normal;
   font-weight: 400;
-  font-size: 35px;
-  line-height: 30px;
-  color: white;
-  z-index: 1;
-}
-.Avatar
-{
-  position: absolute;
-  left: 82%;
-  top: 1%;
-  z-index: 1;
-}
-.Avatar img 
-{
-  width: 60px;
+  font-size: 20px;
+  line-height: 24px;
   
-  position: absolute;
-  overflow: hidden;
-  border-radius: 50%;
-  z-index: 1;
-}
-.background_pic
-{
-  position: absolute;
-  height:100%;
-  width:100%;
-  left: 0px;
-  top: 0px;
-  background: #ac2f2f;
-  z-index: 2;
-}
+  color: #000000;
+  }
+  .Date_box
+  {
+    padding-top:10px
+  }
+  .Dateinput{
+  box-sizing: border-box;
+  width: 281px;
+  height: 43px;
+  
+  font-size: 20px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  }
+  .Status{
+  width: 256px;
+  height: 43px;
+  padding-top:10px;
+  
+  font-family: 'Inter';
+  font-style: normal;
+  font-size: 20px;
+  
+  color: #000000;
+  }
+  .checkbox1{
+  width:40px;
+  }
+  
+  .checkbox2{
+  width:40px;
+  }
+  .checkbox3{
+  width:40px;
+  }
+  .Box
+  {
+    font-size: 20px
+  }
+  .Description{
+    position: absolute;
+    width: 256px;
+    height: 49px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    
+    color: #000000;
+    }
+    .Description_Input{
+    box-sizing: border-box;
+    
+    position: absolute;
+    width: 1157px;
+    height: 184px;
+    
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    }
+  .Input_file
+  {
+    border:None;
+    outline: None;
+    width:500px;
+    font-size:25px ;
+
+  }
+  .Button_group
+  {
+    display:inline-block;
+    padding-left: 50%;
+    padding-top: 50px;
+    
+  }
+  
+  .Button_accept
+  {
+  box-sizing: border-box;
+  width: 168px;
+  height: 42px;
+  
+  margin-left: 15px;
+  left:54%;
+  font-size:28px;
+  color:white;
+  background: #090fac;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  }
+  .Button_accept:hover
+  {
+    background: #2027dd;
+  }
+  
+

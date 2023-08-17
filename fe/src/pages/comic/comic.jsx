@@ -1,4 +1,5 @@
 import './style.css';
+import { Link, Outlet } from 'react-router-dom'
 import { FaHome, FaListUl, FaChevronRight, FaChevronLeft, FaHeart, FaChevronDown, FaRegWindowClose } from "react-icons/fa"
 import React, { useEffect, useState } from "react"
 import Popup from 'reactjs-popup';
@@ -55,77 +56,115 @@ function Comic() {
     event.target.style.height = `90px`;
   }
   return (
-    <div className="App">
+    <div className="comic">
       <div className="Contrucst">
       </div>
-      <div className="Top_Navi_Bar">
-        <button className="text-button1">Home</button> &gt;&gt;
-        <button className="text-button1">Category</button> &gt;&gt;
-        <button className="text-button1">Comic Name</button> &gt;&gt;
-        <button className="text-button1">Chapter</button>
-        <button className="text-button1">Home</button> &gt;&gt;
-        <button className="text-button1">Category</button> &gt;&gt;
-        <button className="text-button1">Comic Name</button> &gt;&gt;
-        <button className="text-button1">Chapter</button>
+      <div className="center">
+      <ul className="link_comic">
+          <li>
+            <Link className='link_comic-item' to='/'>Trang chủ</Link>
+          </li>
+          <li><p>{'>>'}</p></li>
+          <li>
+            <Link className='link_comic-item' to='/type-comic'>Thể Loại</Link>
+          </li>
+          <li ><p >{'>>'}</p></li>
+          <li>
+            <Link className='link_comic-item' to={`/comic/main-comic/${idComic}`}>{NameComic}</Link>
+          </li>
+          <li ><p >{'>>'}</p></li>
+          <li>
+            <Link className='link_comic-item' to={`/comic/main-comic/${idComic}/${idChapter}`}>{NameComic}</Link>
+          </li>
+          <Outlet />
+      </ul>
+
+      <ul className='title_link'>
+        <li>
+          <h3><Link className='title_link-item' to={`/comic/main-comic/${idComic}`}>{NameComic}</Link> </h3>
+          </li>
+        <li classname="pass"><div className='pass'>{'>>'}</div></li>
+        <li>
+          <h3><Link className='title_link-item' to={`/comic/main-comic/${idComic}/${idChapter}`}>{CurChapter}</Link> </h3>
+            </li>
+        </ul>
+      
+      <div className='Instruct'>
+          <div className='Rectangle_move'>
+            <div className='text_ins'>Sử dụng mũi tên ( {'<'}- ) hoặc (-{'>'} ) để chuyển chapter ( ^.^ )</div>
+          </div>
       </div>
-      <div className='Titlepos'>
-        <button className="Title"> {NameComic}</button>
-        <div className="Pass"> &nbsp; &nbsp; &gt;&gt; &nbsp; &nbsp;</div>
-        <button className="Chap"> {CurChapter} </button>
-      </div>
-      <div className="Rectangle_move"></div>
-      <div className="Text_instruct">Sử dụng mũi tên ( &lt;- ) hoặc (-&gt; ) để chuyển chapter ( ^.^ ) </div>
       <div className="icon_button">
 
-        <button class="btnbtn-danger"><FaHome size={25} color='white' /></button> &nbsp;
-        <button class="btnbtn-danger" ><FaListUl size={25} color='white' /></button> &nbsp;
-        <button class="btnbtn-danger" ><FaChevronLeft size={25} color='white' /></button> &nbsp; &nbsp;
+        <button className='btn btn-danger'><FaHome size={25} color='white' /></button> &nbsp;
+        <button className='btn btn-danger' ><FaListUl size={25} color='white' /></button> &nbsp;
+        <button className='btn btn-danger' ><FaChevronLeft size={25} color='white' /></button> &nbsp; &nbsp;
         <Popup
-          modal
-          trigger={<button className="Choose_Chap"> {CurChapter} <FaChevronDown size={15} /></button>}
-          contentStyle={{
-            width: '637px'
-            , height: '631px', overflow: 'scroll', background: '#ebebeb'
-          }} 
-        >
-          
-          <button className="CloseWin"  > <FaRegWindowClose size={35} /> <popupClose/></button>
-
-          <input type="text" className="SearchChapBar" placeholder='Nhập số chap...'></input>
-          <div className='Body_Modal'>
-            <div className='Chap_Pos'>
-              {ComicsChapter.map((chapter, index) => (
-                <button className='Chap_but'>{chapter}</button>
-              ))}
-            </div>
-          </div>
-        </Popup>
-        &nbsp; &nbsp;
-        <button type="button" class="btnbtn-danger" ><FaChevronRight size={25} color='white' /></button> &nbsp;
-        <button type="button" class="btnbtn-success" ><FaHeart size={25} color='white' /> Follow</button>
+              modal
+              trigger={<button  class="btn btn-outline-secondary"> {CurChapter} <FaChevronDown size={15} /></button>}
+              contentStyle={{
+                width: '590px'
+                , height: '590px', overflow: 'scroll', background: '#ebebeb'
+              }} 
+            >
+              {close => (
+                <div className='PA'>
+              <div className='Close_Popup'>
+              <button className="CloseWin" 
+              onClick={() => {
+                console.log('modal closed ');
+                close();}} > <FaRegWindowClose size={35} />  </button>
+              </div>
+              <div className='SearchChap_Popup'>
+              <input type="text" className="SearchChapBar_Popup" placeholder='Nhập số chap...'></input>
+              </div>
+              <div className='Body_Modal'>
+                <div className='Chap_Pos'>
+                  {ComicsChapter.map((chapter, index) => (
+                    <button className='Chap_but'>{chapter}</button>
+                  ))}
+                </div>
+              </div>
+              </div>
+              )}
+            </Popup>  &nbsp; &nbsp;
+        <button type="button" class='btn btn-danger' ><FaChevronRight size={25} color='white' /></button> &nbsp;
+        <button type="button" class='btn btn-success' ><FaHeart size={25} color='white' /> Theo dõi</button>
       </div>
-
       <div className="comic-page">
         {chapter?.chapterImageID?.map((image) => (
 
           <img src={image} />
         ))}
       </div>
-
       <div className="nav_end_chap">
-        <button type="button" class="btnbtn-danger" ><FaChevronLeft size={25} color='white' /> Previous Chapter</button>&nbsp;&nbsp;
-        <button type="button" class="btnbtn-danger" > Next Chapter <FaChevronRight size={25} color='white' /></button>
+        <button type="button" class="btn btn-danger" ><FaChevronLeft size={25} color='white' /> Chap sau</button>&nbsp;&nbsp;
+        <button type="button" class="btn btn-danger" > Chap trước <FaChevronRight size={23} color='white' /></button>
       </div>
-      <div className="nav_end">
-        <button type="button" className="text-button1">Home</button> &gt;&gt;
-        <button type="button" className="text-button1">Category</button> &gt;&gt;
-        <button type="button" className="text-button1">Comic Name</button> &gt;&gt;
-        <button type="button" className="text-button1">Chapter</button>
-      </div>
+      <ul className="link_comic">
+          <li>
+            <Link className='link_comic-item' to='/'>Trang chủ</Link>
+          </li>
+          <li><p>{'>>'}</p></li>
+          <li>
+            <Link className='link_comic-item' to='/type-comic'>Thể Loại</Link>
+          </li>
+          <li ><p >{'>>'}</p></li>
+          <li>
+            <Link className='link_comic-item' to={`/comic/main-comic/${idComic}`}>{NameComic}</Link>
+          </li>
+          <li ><p >{'>>'}</p></li>
+          <li>
+            <Link className='link_comic-item' to={`/comic/main-comic/${idComic}/${idChapter}`}>{NameComic}</Link>
+          </li>
+          <Outlet />
+      </ul>
+
+      <div classname="CommentSection">
       <textarea value={comment} onChange={handleChange} onInput={handleResize} className='commentbox' placeholder='Mời bạn thảo luận.... Vui lòng không spam,... để tránh bị khóa tài khoản' />
-
+      </div>
+      </div>
     </div >
-
 
   );
 }

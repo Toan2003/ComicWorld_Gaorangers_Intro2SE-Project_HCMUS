@@ -1,23 +1,25 @@
 import { Link, Outlet } from 'react-router-dom'
-import { getComic } from '../../api/comic'
+import { getComic, getRankingBoard } from '../../api/comic'
 import './styles.css'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import { Table } from '../../components/rankingBoard/rankingBoard'
 
 export default function MainComic() {
   const { id } = useParams()
   const [comic, setComic] = useState([])
+  const [rank, setRank] = useState([])
 
   async function loadData() {
-    console.log(typeof(id))
-    const result = await getComic(id, null)
-    console.log(result.data)
-    setComic(result.data.data.comic)
+    const COMIC = await getComic(id, null)
+    const RANK = await getRankingBoard()
+    setComic(COMIC.data.data.comic)
+    setRank(RANK.data.data.rankingList)
   }
 
   useEffect(() => {
     loadData()
-  }, [])
+  }, [rank])
 
   const content = 'Đang cập nhật'
   const comicName = comic?.nameComics
@@ -25,12 +27,7 @@ export default function MainComic() {
   const author = comic?.Uploading?.group
   const status = comic?.status
   const type = comic?.type
-  const view = 4000 
-
-  // useEffect(() => {
-  //   console.log(comic.chapters)
-
-  // }, [comic])
+  const view = comic?.view
 
   return (
     <div className="main-comic">
@@ -53,7 +50,7 @@ export default function MainComic() {
           <h2 className='title-name'>{comicName}</h2>
           <div className='title-center'>
             <div className='title-image'>
-              <img src={image} alt="" />
+              <img src={image} alt="" className='tital-image-cover-url'/>
             </div>
             <div className='title-information'>
               <div className='list-infor'>
@@ -113,29 +110,7 @@ export default function MainComic() {
         </div>
       </div>
       <div className="rank">
-        <h4>BẢNG XẾP HẠNG</h4>
-        <ul>
-          <li>
-            <p>Tên truyện</p>
-            <p>Số chapter</p>
-          </li>
-          <li>
-            <p>Tên truyện</p>
-            <p>Số chapter</p>
-          </li>
-          <li>
-            <p>Tên truyện</p>
-            <p>Số chapter</p>
-          </li>
-          <li>
-            <p>Tên truyện</p>
-            <p>Số chapter</p>
-          </li>
-          <li>
-            <p>Tên truyện</p>
-            <p>Số chapter</p>
-          </li>
-        </ul>
+        <Table name="Bảng Xếp Hạng" data={rank}></Table>
       </div>
     </div>
   );
