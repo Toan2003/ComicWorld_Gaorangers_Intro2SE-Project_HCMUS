@@ -5,16 +5,15 @@ import Admin from '../../components/admin/admin'
 import './styles.css' 
 import { useContext } from "react";
 import { AuthProvider } from "../../context/context"
-import Login from '../login/login'
 import { useEffect, useState } from "react";
 
 export default function Profile() {
   const context = useContext(AuthProvider)
-  
-  // useEffect(() => {
-  //   console.log(context.idUser, context.typeUser)
-  // }, [])
   const [profileUser, setProfileUser] = useState(<Member />)
+
+  // useEffect(() => {
+  //   handleProfile()
+  // }, [profileUser])
 
   const handleProfile = () => {
     if (context.typeUser == 'member') {
@@ -30,8 +29,7 @@ export default function Profile() {
 
   return (
     <div className="profile">
-      <Member />
-      
+      {profileUser}
     </div>
   );
 }

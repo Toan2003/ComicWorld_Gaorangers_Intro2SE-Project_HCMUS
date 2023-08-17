@@ -1,5 +1,6 @@
 import { useState, createContext } from 'react';
 import { getLogin, postSignup } from '../api/authorize';
+import { useHistory } from 'react-router-dom';
 
 export const AuthContext = createContext()
 export function AuthProvider({children}) {
@@ -8,10 +9,17 @@ export function AuthProvider({children}) {
   const [password, setPassword] = useState("");
   const [idUser, setIDUser] = useState("");
   const [typeUser, setTypeUser] = useState("");
+  // const [isLogout, setIsLogout] = useState(false);
+  const [name, setName] = useState("")
 
+  // const history = useHistory()
   // function Logout
-  const handleLogout = () => {
-    
+  const handleLogout =  () => {
+    localStorage.removeItem("name")
+    localStorage.setItem("authenticated", false)
+    localStorage.setItem("id", null)
+    localStorage.setItem("type", null)
+    // setIsLogout(!isLogout)
   }
 
   // function Login
@@ -26,11 +34,15 @@ export function AuthProvider({children}) {
     setTypeUser(checkLogin.data.type);
 
     if (checkLogin.isSuccess == true) {
+      setName(email)
       localStorage.setItem('authenticated', checkLogin.isSuccess);
       localStorage.setItem('type', checkLogin.data.type);
       localStorage.setItem('id', checkLogin.data.id);
+      localStorage.setItem('username', name)
     } else {
       localStorage.setItem('authenticated', false);
+      localStorage.setItem('type', null);
+      localStorage.setItem('id', null);
     }
     
     setEmail("");
@@ -49,11 +61,15 @@ export function AuthProvider({children}) {
     setTypeUser(register.data.type);
 
     if (register.isSuccess == true) {
+      setName(email)
       localStorage.setItem('authenticated', register.isSuccess);
       localStorage.setItem('type', register.data.type);
       localStorage.setItem('id', register.data.id);
+      localStorage.setItem('username', name);
     } else {
       localStorage.setItem('authenticated', false);
+      localStorage.setItem('type', null);
+      localStorage.setItem('id', null);
       alert(register.message)
     }
 
@@ -73,13 +89,15 @@ export function AuthProvider({children}) {
   const value = {
     email,
     password,
+    name,
     handleLogin,
     handleRegister,
     handleChangeEmail,
     handleChangePassword,
+    handleLogout,
     authenticated,
     idUser,
-    typeUser
+    typeUser,
   }
   
   return (
