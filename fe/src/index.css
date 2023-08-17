@@ -83,6 +83,7 @@ a {
   min-height: 100%;
   text-decoration: none;
   color: #fff;
+  position: relative;
 }
 
 .header-search_bar-btn:hover {
@@ -90,6 +91,9 @@ a {
 }
 
 .header-search_bar-icon {
+  position: absolute;
+  top : 5px;
+  left: 6px;
   height: 20px;
   width: 20px;
 }

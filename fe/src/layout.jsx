@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, redirect } from 'react-router-dom'
 import LOGO from './assets/logo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { AuthContext } from './context/context'
@@ -14,6 +14,10 @@ export default function Layout() {
     setInputText(e.target.value);
   };
 
+  let redirect = "/"
+  // handle search button
+  inputText?.length > 0 ? redirect = "/search-result?key=" + inputText : redirect = "/"
+  
   return (
     <div className="header-container">
       <div className="header">
@@ -25,11 +29,11 @@ export default function Layout() {
 
         <div className="header-search_bar">
           <input type="text" onChange={inputHandler} placeholder="Nhập từ khóa tìm kiếm" className="header-search_bar-input" />
-          <button className="header-search_bar-btn">
-            <Link className="header-search_bar-link" to={"/search-result?key=" + inputText}>
+          <div className="header-search_bar-btn">
+            <Link className="header-search_bar-link" to={redirect}>
               <AiOutlineSearch className="header-search_bar-icon"></AiOutlineSearch>
             </Link>
-          </button>
+          </div>
         </div>
 
         {
