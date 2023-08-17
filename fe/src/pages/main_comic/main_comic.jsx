@@ -11,17 +11,15 @@ export default function MainComic() {
   const [rank, setRank] = useState([])
 
   async function loadData() {
-    console.log(typeof(id))
     const COMIC = await getComic(id, null)
     const RANK = await getRankingBoard()
-    // console.log
     setComic(COMIC.data.data.comic)
-    setRank(RANK.data.data.rank)
+    setRank(RANK.data.data.rankingList)
   }
 
   useEffect(() => {
     loadData()
-  }, [])
+  }, [rank])
 
   const content = 'Đang cập nhật'
   const comicName = comic?.nameComics
@@ -29,7 +27,7 @@ export default function MainComic() {
   const author = comic?.Uploading?.group
   const status = comic?.status
   const type = comic?.type
-  const view = 4000 
+  const view = comic?.view
 
   return (
     <div className="main-comic">
@@ -52,7 +50,7 @@ export default function MainComic() {
           <h2 className='title-name'>{comicName}</h2>
           <div className='title-center'>
             <div className='title-image'>
-              <img src={image} alt="" />
+              <img src={image} alt="" className='tital-image-cover-url'/>
             </div>
             <div className='title-information'>
               <div className='list-infor'>
@@ -112,9 +110,7 @@ export default function MainComic() {
         </div>
       </div>
       <div className="rank">
-        <span className='tableSection'>
-          <Table name="Bảng Xếp Hạng" data={rank}></Table>
-        </span>
+        <Table name="Bảng Xếp Hạng" data={rank}></Table>
       </div>
     </div>
   );

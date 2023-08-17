@@ -155,13 +155,14 @@ async function returnFollowingComics(idMember)
     return {comicsFollowing, fullComic}
 }
 //Caanf doij comicURL cover
-async function createComics(comicname, typecomics, status, dateCreate, uploadingroup, uploadid)
+async function createComics(comicname, typecomics, status, dateCreate, uploadingroup, uploadid, cover)
 {
     const member= await user.findById(uploadid)
     const groupCheck=await group.find({groupName:uploadinggroup})
     if(groupCheck)
     {
-        const newChapter= new chapter ({nameComics:comicname,type: typecomics, chapterImageID: url, Uploading: {uploader:member.name}, datecreate: dateCreate})
+        const newChapter= new chapter ({nameComics:comicname,type: typecomics, chapterImageID: url, 
+            Uploading: {uploader:member.name, group: uploadingroup}, datecreate: dateCreate, coverURL: cover})
         newChapter.save()
         const isSuccess=true
         return {isSuccess}
@@ -186,6 +187,23 @@ async function returnComicsByUploader(iduploader)
         }
     }
 } 
+
+async function searchComic(name)
+{
+    const mySentence = name
+    const words = mySentence.split(" ");
+
+    for (let i = 0; i < words.length; i++) {
+        words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+    }
+    name=words.join(" ");
+    // console.log(name)
+    const searchingComic = await comics.find({nameComics:{$regex: name}})
+    console.log(searchingComic)
+    return searchComic
+}
+
+
 module.exports= {
     comics,
     returnForOneComic,
@@ -194,5 +212,6 @@ module.exports= {
     sortComicBXH, 
     returnFollowingComics, 
     filterType, 
-    returnComicsByUploader
+    returnComicsByUploader,
+    searchComic
 };
