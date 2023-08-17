@@ -186,6 +186,23 @@ async function returnComicsByUploader(iduploader)
         }
     }
 } 
+
+async function searchComic(name)
+{
+    const mySentence = name
+    const words = mySentence.split(" ");
+
+    for (let i = 0; i < words.length; i++) {
+        words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+    }
+    name=words.join(" ");
+    // console.log(name)
+    const searchingComic = await comics.find({nameComics:{$regex: name}})
+    console.log(searchingComic)
+    return searchComic
+}
+
+
 module.exports= {
     comics,
     returnForOneComic,
@@ -194,5 +211,6 @@ module.exports= {
     sortComicBXH, 
     returnFollowingComics, 
     filterType, 
-    returnComicsByUploader
+    returnComicsByUploader,
+    searchComic
 };
