@@ -200,7 +200,7 @@ async function searchComic(name)
     // console.log(name)
     const searchingComic = await comics.find({nameComics:{$regex: name}})
     console.log(searchingComic)
-    return searchComic
+    return searchingComic
 }
 
 
