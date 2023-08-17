@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "member"
     },
-    followingcomics: Number
+    followingcomics: [{type: mongoose.Schema.Types.ObjectId, ref:"comic"}]
 })
 
 const user = mongoose.model('User', userSchema);

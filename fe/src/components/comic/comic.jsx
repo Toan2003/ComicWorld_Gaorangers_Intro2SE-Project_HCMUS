@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { FaEye } from "react-icons/fa";
-import { MdModeComment } from "react-icons/md";
 import { AiFillStar } from "react-icons/ai";
 import './comic.css'
 

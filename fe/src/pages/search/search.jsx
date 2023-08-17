@@ -12,20 +12,16 @@ export default function Search() {
     let query = useQuery();
     let keyword = query.get("key")
 
-    console.log(keyword)
-
     const [result, setResult] =  useState([])
 
     async function loadDataPage() { 
         const returnResult = await getSearhComic(keyword);
         setResult(returnResult?.data?.data?.listComic);
     }
-
+    
     useEffect(() => {
         loadDataPage();
     }, [keyword])
-    
-    
 
     return (
         <div className="search-container">
