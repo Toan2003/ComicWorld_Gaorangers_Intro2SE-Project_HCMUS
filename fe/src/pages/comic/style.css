@@ -1,249 +1,147 @@
-select
-{
-  width:150px;
-  height: 30px;
-  font-size: 20px;
-  overflow: scroll;
-}
+@import url('../../index.css');
+
 body {
   font-family: Tahoma,sans-serif,Helvetica,Arial;
   font-weight: 400;
   font-size: 14px;
   background-color: #ebebeb
 }
-.Logo_background{
-  position: absolute;
-  width: 100%;
-  height: 80px;
-  left: 0px;
-  top: -4px;
-  background: #21258E;
+.comic {
+  width: 60%;
+  padding: 1.5% 0 0 1.5%;
+  display: flex;
+  background-color: var(--primary-color);
+  width: 1200px;
+  margin: auto
 }
-.Gray_after{
-  position: absolute;
-  width: 100%;
-  height: 50px;
-  left: 0px;
-  top: 76px;
-  background: #ADADAD;
+.center {
+  width: 70%;
+  left: 0;
+} 
+
+.center .link_comic {
+  display: flex;
+  gap: 0.5vw;
+  padding-left: 0;
+  margin-bottom: 0;
 }
 
-.Background{
-  position: absolute;
-  width: 1206px;
-  height: 3974px;
-  left: 13%;
-  top: 0px;
-
-  background: #D9D9D9;
-  
-}
-
-.Link{
-position: absolute;
-width: 78px;
-height: 19px;
-left: 160px;
-top: 143px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 16px;
-line-height: 19px;
-text-align: center;
-
-color: #1BB0F0;
-}
-.btnbtn-danger
-{
-  border-radius: 5px;
-  outline:none;
-  background-color: #D9534F;
-  border-radius: 5px;
-  font-size:19px;
-  color: white;
-  text-align:center;
-}
-.btnbtn-danger:hover {
-  color: #b13531;
-}
-.btnbtn-success
-{
-  border-radius: 5px;
-  outline:none;
-  background-color: #5CB85C;
-  border-radius: 5px;
-  font-size:19px;
-  color: white;
-  text-align:center;
-  align-items: center;
-}
-
-.btnbtn-success:hover {
-  color: #387938;
-}
-.Top_Navi_Bar{
-  position: relative;
-  left: 15%;
-  top: 143px;
-  
-  color: #3346ec;
-}
-
-.text-button1
-{
-  outline:none;
-  background: transparent;
-  font-size: 21px;
-  border:None;
-  color: #3346ec;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 21px;
-  line-height: 25px;
-}
-.text-button1:hover {
-  color: rgb(9, 9, 172);
-}
-.Titlepos
-{
-  position: absolute;
-  left: 15%;
-  top: 199px;
-  display: inline-block;
-}
-.Title{
-  
-  border:None;
-  outline: None;
-  font-family: 'Inter';
-  font-style: normal;
+.link_comic .link_comic-item {
+  text-decoration: none;
+  color: var(--link-color);
+  font-size: 16px;
   font-weight: 600;
-  font-size: 32px;
-  background:transparent;
-  /* identical to box height */
-  text-align: center;
-  color: #3346ec;
-}
-.Title:hover
-{
-  color: #1523a1
 }
 
-.Pass{
-
-font-family: 'Inter';
-font-style: normal;
-font-size: 16px;
-display: inline-block;
-color: #0b2bdf;
+.link_comic .link_comic-item:hover {
+  color: var(--hover-text-color)
 }
-.Chap{
+.center .title_link {
+  display: flex;
+  gap: 1vw;
+  padding-left: 0;
   
-  
-  border:None;
-  outline: None;
-  font-family: 'Inter';
-  font-style: normal;
-  font-size: 32px;
-  background-color: transparent;
-  display: inline-block;
-  /* identical to box height */
-  color: #617D8F;
 }
-.Chap:hover
+.title_link{
+  margin-left: 20px;
+  padding-top: 2%;
+}
+.title_link .title_link-item {
+  text-decoration: none;
+  color: var(--link-color);
+  font-weight: 600;
+}
+.title_link .title_link-item:hover {
+  color: var(--hover-text-color)
+}
+.pass
 {
-  color:#2e404b;
+  margin-top: 8px;
+}
+
+.Instruct
+{
+  padding-top: 1px;
+  padding-left: 20px;
 }
 .Rectangle_move{
-box-sizing: border-box;
-
-position: absolute;
-width: 1120px;
-height: 81px;
-left: 16%;
-top: 256px;
-
-background: #D9EDF7;
-opacity: 0.8;
-border: 1px solid #000000;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 15px;
+  box-sizing: border-box;
+  width: 1120px;
+  height: 81px;
+  background-color: #D9EDF7;
+  opacity: 0.8;
+  border: 1px solid black;
+  border-radius: 15px;
 }
-
-/* Sử dụng mũi tên ( <- ) hoặc (-> ) để chuyển chapter ( ^.^ ) */
-.Text_instruct{
-position: absolute;
-width: 435px;
-height: 19px;
-left: 35%;
-top: 288px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 16px;
-line-height: 19px;
-text-align: center;
-
-color: #617D8F;
+.text_ins
+{
+  padding-top: 27px;
+  text-align: center;
+  font-size:16px;
 }
-.icon_button{
-position: absolute;
-left: 34%;
-top: 359px;
-font-size: 20px;
-text-align: center;
-
+.icon_button
+{
+  padding-top:10px;
+  margin-left: 40.4%;
 }
-
+.Dropdown
+{
+  width:150px;
+  height: 40px;
+  font-size: 20px;
+  overflow: scroll;
+  padding-bottom: 5px;
+  text-align: center;
+}
+.Dropdown-menu
+{
+  width:150px;
+  height: 20px;
+  font-size: 20px;
+  overflow: scroll;
+  padding-bottom: 5px;
+  text-align: center;
+}
 .comic-page {
   
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin-left: 23%
 }
 
 .comic-page img {
-  width: 100%;
-  max-width: 500px;
+  width: 750px;
   height: auto;
   margin:0;
   z-index: 1;
 }
 .comic-page img:first-child {
-  margin-top: 370px;
+  margin-top: 10px;
 }
-.nav_end_chap{
-  
-  position: relative;
-  margin-top: 20px;
-  
-  font-size: 12px;
-  text-align: center;
-}
-.nav_end
+.Choose_Chap
 {
-  position: relative;
-  margin-top: 25px;
-  left: 15%;
-  color: blue;
+  width: 120px;
+  font-size:10px;
+  border-radius: 5px;
+  text-align: right;
+  border: 1px solid black;
+  padding-bottom:4px;
+  
 }
-
+.nav_end_chap
+{
+  padding-top:5px;
+  padding-left:53%
+}
 .commentbox
 {
+  padding-left: 10px;
+  padding-top:8px;
   overflow: scroll;
-  position: relative;
-  margin-top: 80px;
-  position: absolute;
   width: 1157px;
   height:90px;
   border-radius: 10px;
   border:1px solid #000000;
-  left: 15%;
-  top: 3303px;
   background-color: white;
   font-family: 'Inter';
   font-style: normal;
@@ -252,126 +150,40 @@ text-align: center;
   line-height: 19px;
   
   }
-.Nav_menu
+.CommentSection
 {
-/* Trang Chủ */
-position: absolute;
-top: 90px;
-left:41%;
-z-index: 1;
-text-align: center;
+  margin-top:20px;
 }
-.Nav_button
+.SearchChap_Popup
 {
-/* Trang Chủ */
-position: relative;
-color: black;
-left: 0px;
-top: 0px;
-font-size: 16px;
-border:None;
-background-color: transparent;
+  padding-left: 15px;
+  padding-top: 15px;
 }
-.Nav_button:hover
-{
-  color: blue;
-}
-.Logo
-{
-
-  position: absolute;
-  
-  left: 30px;
-  top:20px;
-  font-family: 'Irish Grover';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 35px;
-  line-height: 24px;
-  color: white
-}
-input
-{
-  position: absolute;
-  width: 331px;
-  height: 38px;
-  left:39%;
-  top: 3%;
-  font-size: 19px;
-  background: #FFFFFF;
-  border: 1px solid #000000;
-  border-radius: 20px;
-}
-
-.Avatar
-{
-  position: absolute;
-  left: 82%;
-  top: 1%;
-}
-.Avatar img 
-{
-  width: 60px;
-  
-  position: relative;
-  overflow: hidden;
-  border-radius: 50%;
-}
-.Username
-{
-  position: absolute;
-  width: 93px;
-  height: 18px;
-  left: 87%;
-  top: 4%;
-  border:None;
-  outline: None;
-  background-color: transparent;
-  display:inline-block;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 25px;
-  line-height: 19px;
-  color:white;
-}
-.Username:hover
-{
-  color: rgb(61, 53, 53)
-}
-.custom-popup-content{
-  width: 100%;
-  height: 100%;
-}
-.SearchChapBar
+.SearchChapBar_Popup
 {
 box-sizing: border-box;
-
-position: absolute;
 width: 530px;
 height: 56px;
-left: 45px;
-top: 30px;
+padding-left: 20px;
 
 background: #FFFFFF;
 border: 1px solid #000000;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 15px;
 }
+
+
 .Chap_Pos
 {
-  position: absolute;
-  left: 35px;
-  top: 143px;
-  
-  
+  padding-left: 10px;
+  padding-top: 50px;
 }
 .Chap_but
 {
   box-sizing: border-box;
   margin-left: 10px;
   margin-bottom: 10px;
-  width: 73px;
+  width: 80px;
   height: 35px;
   background: #eeebeb;
   border: 1px solid #000000;
@@ -387,13 +199,16 @@ border-radius: 15px;
   border-radius: 5px;
   text-align: left;
 }
+
+.Close_Popup
+{
+  padding-left:93%;
+  padding-top: 10px;
+}
 .CloseWin
 {
-  position:absolute;
   height:25px;
   width:20px;
-  left: 580px;
-  top: 37px;
   color: black;
   font-size: 16px;
   border:None;
