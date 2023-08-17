@@ -1,4 +1,4 @@
-select
+/* select
 {
   width:150px;
   height: 30px;
@@ -122,9 +122,9 @@ color: #1BB0F0;
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
-  background:transparent;
+  background:transparent; */
   /* identical to box height */
-  text-align: center;
+  /* text-align: center;
   color: #3346ec;
 }
 .Title:hover
@@ -149,9 +149,9 @@ color: #0b2bdf;
   font-style: normal;
   font-size: 32px;
   background-color: transparent;
-  display: inline-block;
+  display: inline-block; */
   /* identical to box height */
-  color: #617D8F;
+  /* color: #617D8F;
 }
 .Chap:hover
 {
@@ -171,10 +171,10 @@ opacity: 0.8;
 border: 1px solid #000000;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 15px;
-}
+} */
 
 /* Sử dụng mũi tên ( <- ) hoặc (-> ) để chuyển chapter ( ^.^ ) */
-.Text_instruct{
+/* .Text_instruct{
 position: absolute;
 width: 435px;
 height: 19px;
@@ -253,18 +253,18 @@ text-align: center;
   
   }
 .Nav_menu
-{
+{ */
 /* Trang Chủ */
-position: absolute;
+/* position: absolute;
 top: 90px;
 left:41%;
 z-index: 1;
 text-align: center;
 }
 .Nav_button
-{
+{ */
 /* Trang Chủ */
-position: relative;
+/* position: relative;
 color: black;
 left: 0px;
 top: 0px;
@@ -402,4 +402,4 @@ border-radius: 15px;
 .CloseWin:hover
 {
   color:red
-}
+} */
