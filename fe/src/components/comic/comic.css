@@ -63,7 +63,7 @@
 
 .section-comic-stats {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .section-comic-name {

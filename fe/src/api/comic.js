@@ -42,8 +42,20 @@ async function postCreatComic(name,date,group,member,type,status,description,cov
     },(error, result) => {
         console.log(error);
         console.log(result);
+    }).catch((error) => {
+        console.log("fail to upload cover image");
+        return null;
     });
     return await axiosClient.post(link, {name,date,group,member,type,status,description,coverURL}).then
+}
+
+async function postAddFollowComic(idMember,idComic) {
+    let link = '/comic/followComic'
+    return await axiosClient.post(link, {idMember,idComic})
+}
+async function postUnfollowComic(idMember,idComic) {
+    let links = '/comic/unfollowComic'
+    return await axiosClient.post(links, {idMember,idComic})
 }
 
 export {
@@ -53,5 +65,7 @@ export {
     getFollowedComic,
     getComicAccordingToType,
     getSearhComic,
-    postCreatComic
+    postCreatComic,
+    postAddFollowComic,
+    postUnfollowComic
 } 

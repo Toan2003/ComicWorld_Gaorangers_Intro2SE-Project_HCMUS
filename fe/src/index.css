@@ -4,7 +4,7 @@
   --header-color-2: #BFBFBF;
   --background-color: #FDF4F4;
   --text-color-1: #111111;
-  --text-color-2: #FFFF;
+  --text-color-2: #FFFF;  
   --green-color: #188A46;
   --hover-text-color: purple;
   --grey-color-1: rgb(212, 212, 212);
@@ -49,6 +49,16 @@ a {
   width: 450px;
   height: 35px;
   position: relative;
+}
+
+.layout-profile {
+  display: flex;
+  width: 5vh;
+  height: 5vh;
+}
+
+.layout-profile .layout-profile-avatar {
+  width: 100%;
 }
 
 .header-search_bar-input {
