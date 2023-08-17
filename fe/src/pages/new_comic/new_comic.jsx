@@ -14,6 +14,7 @@ function NewComic() {
   const[Drop, setDrop]=useState(true);
   const [value, setValue] = useState("") //description
   const[file,setFiles]= useState()
+  const[Date,setDate]=useState()
   const handleChange = (event) => {
     setValue(event.target.value);
   }
@@ -41,7 +42,7 @@ function NewComic() {
           <Outlet />
       </ul>
       <div className='Information'>
-      <div className='Newcomics'>Truyện mới</div>
+      <div className='Newcomics'>Tạo truyện</div>
         </div>
         <div className='Status'>Tên truyện</div>
       <input type="text" className="Nameinput" value={Name} onChange={(e)=>setName(e.target.value)}/>
@@ -55,10 +56,9 @@ function NewComic() {
       </select>
       <div className='Date'>Ngày</div>
       <div className="Date_box">
-      <input type='Date' className='Dateinput'/>
+      <input type='Date' className='Dateinput' value={Date} onChange={(e)=>setDate(e.target.value)}/>
       </div>
       <div className='Status'> Tình trạng</div>
-      
       <div className="Box_Place">
         <div className='Box'>
       <input  className="checkbox1" type='checkbox' value={In_Progress} /> Đang tiến triển
