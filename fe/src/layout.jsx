@@ -10,43 +10,47 @@ export default function Layout() {
   const checkAuthen = localStorage.getItem('authenticated')
 
   return (
-    <>
-      <nav className="header">
-        <ul className="static-nav">
-          <li>
-            <Link to="/" className="header-item header-item-1">
-              <img src={LOGO} alt="" />
-            </Link>
-          </li>
-          <li>
-            <div className="search-bar header-item header-item-1">
-              <input type="text" placeholder='Nhập từ khóa tìm kiếm'/>
-              <button className='search-bar-button'><AiOutlineSearch color='#FFFF'/></button>
-            </div>
-          </li>
-          {checkAuthen == 'true' && context.authenticated ? 
-          (<li>
-            <Link to='/profile/dashboard'>profile</Link>
-          </li>) : 
-          (<li>
-            <Link to="/login" className="header-item header-item-1">Đăng Nhập / </Link>
-            <Link to="/register" className="header-item header-item-1">Đăng Kí</Link>
-          </li>)}
-        </ul>
-        <ul className="sticky-nav">
-          <li>
-            <Link to="/" className="header-item header-item-2">Trang Chủ</Link>
-          </li>
-          <li>
-            <Link to="/type-comic" className="header-item header-item-2">Thể Loại</Link>
-          </li>
-          <li>
-            <Link to="/follow" className="header-item header-item-2">Theo Dõi</Link>
-          </li>
-        </ul>
-      </nav>
+    <div className="header-container">
+      <div className="header">
+        <div className="header-logo">
+          <Link to="/" className="header-logo-link">
+            <img src={LOGO} alt="" className='header-logo-img' />
+          </Link>
+        </div>
 
-      <Outlet />
-    </>
-  );
+        <div className="header-search_bar">
+          <input type="text" placeholder="Nhập từ khóa tìm kiếm" className="header-search_bar-input" />
+          <button className="header-search_bar-btn">
+            <AiOutlineSearch className="header-search_bar-icon"></AiOutlineSearch>
+          </button>
+        </div>
+
+        {
+          checkAuthen == 'true' && context.authenticated ? 
+          (<Link to='/profile/dashboard'>profile</Link>) 
+          : 
+          (<div className="header-login_register-wrap">
+              <Link to="/login" className="header-login_register">Đăng Nhập</Link>
+              <Link to="/register" className="header-login_register">Đăng Kí</Link>
+            </div>)
+        }
+      </div>
+
+      <div className="header-sticky_nav">
+        <ul className="header-sticky_nav-list">
+          <li>
+            <Link to="/" className="header-sticky_nav-item">Trang Chủ</Link>
+          </li>
+          <li>
+            <Link to="/type-comic" className="header-sticky_nav-item">Thể Loại</Link>
+          </li>
+          <li>
+            <Link to="/follow" className="header-sticky_nav-item">Theo Dõi</Link>
+          </li>
+        </ul>
+      </div>
+      
+      <Outlet/>
+    </div>
+  )
 }

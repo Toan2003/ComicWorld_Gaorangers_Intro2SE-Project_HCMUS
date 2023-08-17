@@ -9,7 +9,7 @@ export function ComicSection({ title, data }) {
       <div className="section">
         {
           title ?
-          (<h3 className="section-title">{title + ' >'}</h3>)
+          (<h3 className="section-title">{title}</h3>)
           : null
         }
         <div className="section-container">

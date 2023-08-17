@@ -17,6 +17,9 @@ export default function TypeComic() {
       text: 'Fiction'
     },
     {
+      text: 'Comedy'
+    },
+    {
       text: 'Horror'
     }
   ]
@@ -27,7 +30,7 @@ export default function TypeComic() {
   async function handleClickTypeButton(typeName) {
     const comics = await getComicAccordingToType({type : typeName})
     setComic(comics.data.data.listComic)
-    setTypeTitle('Danh sách truyện thể loại ' + typeName)
+    setTypeTitle('Danh sách truyện thể loại: ' + typeName)
   }
 
   return (
