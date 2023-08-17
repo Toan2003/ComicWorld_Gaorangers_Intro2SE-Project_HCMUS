@@ -1,4 +1,4 @@
-import axiosClient from "./axiosConnect"
+import {axiosClient} from "./axiosConnect"
 
 
 async function getFollowingComic(){}

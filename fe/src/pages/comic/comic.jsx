@@ -118,6 +118,7 @@ function Comic() {
               <div className='SearchChap_Popup'>
               <input type="text" className="SearchChapBar_Popup" placeholder='Nhập số chap...'></input>
               </div>
+              
               <div className='Body_Modal'>
                 <div className='Chap_Pos'>
                   {ComicsChapter.map((chapter, index) => (

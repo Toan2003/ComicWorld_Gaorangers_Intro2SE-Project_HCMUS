@@ -4,7 +4,7 @@
   --header-color-2: #BFBFBF;
   --background-color: #FDF4F4;
   --text-color-1: #111111;
-  --text-color-2: #FFFF;
+  --text-color-2: #FFFF;  
   --green-color: #188A46;
   --hover-text-color: purple;
   --grey-color-1: rgb(212, 212, 212);
@@ -51,6 +51,16 @@ a {
   position: relative;
 }
 
+.layout-profile {
+  display: flex;
+  width: 5vh;
+  height: 5vh;
+}
+
+.layout-profile .layout-profile-avatar {
+  width: 100%;
+}
+
 .header-search_bar-input {
   width: 100%;
   height: 100%;
@@ -78,11 +88,22 @@ a {
   color: #fff;
 }
 
+.header-search_bar-link{
+  width: 100%;
+  min-height: 100%;
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+}
+
 .header-search_bar-btn:hover {
   background-color: rgba(24, 138, 70, 0.8);
 }
 
 .header-search_bar-icon {
+  position: absolute;
+  top : 5px;
+  left: 6px;
   height: 20px;
   width: 20px;
 }

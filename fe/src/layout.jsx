@@ -1,13 +1,21 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, redirect } from 'react-router-dom'
 import LOGO from './assets/logo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { AuthContext } from './context/context'
 import { useContext } from 'react'
- 
+import { useEffect } from 'react'
+import { useState } from 'react'
+import DefaultAvatar from './assets/default-avatar.jpg'
+
 export default function Layout() {
-  // const context = useContext(authContext)
-  const context = useContext(AuthContext)
-  const checkAuthen = localStorage.getItem('authenticated')
+  const checkAuthen = JSON.parse(localStorage.getItem('authenticated'))
+  const { isAuthenticated } = useContext(AuthContext)
+
+  // handle search bar
+  const [inputText, setInputText] = useState("");
+  let inputHandler = (e) => {
+    setInputText(e.target.value);
+  };
 
   return (
     <div className="header-container">
@@ -19,23 +27,33 @@ export default function Layout() {
         </div>
 
         <div className="header-search_bar">
-          <input type="text" placeholder="Nhập từ khóa tìm kiếm" className="header-search_bar-input" />
-          <button className="header-search_bar-btn">
-            <AiOutlineSearch className="header-search_bar-icon"></AiOutlineSearch>
-          </button>
+          <input type="text" onChange={inputHandler} placeholder="Nhập từ khóa tìm kiếm" className="header-search_bar-input" />
+          <div className="header-search_bar-btn">
+            {
+              inputText.length > 0 ?
+              (
+                <Link className="header-search_bar-link" to={"/search-result?key=" + inputText}>
+                <AiOutlineSearch className="header-search_bar-icon"></AiOutlineSearch>
+                </Link>
+              )
+              :
+              (
+                <Link className="header-search_bar-link" >
+                <AiOutlineSearch className="header-search_bar-icon"></AiOutlineSearch>
+                </Link>
+              )
+            }
+          </div>
         </div>
-
-        {
-          checkAuthen == 'true' && context.authenticated ? 
-          (<Link to='/profile/dashboard'>profile</Link>) 
-          : 
-          (<div className="header-login_register-wrap">
-              <Link to="/login" className="header-login_register">Đăng Nhập</Link>
-              <Link to="/register" className="header-login_register">Đăng Kí</Link>
-            </div>)
-        }
+        {checkAuthen && isAuthenticated ? 
+        (<Link to='/profile/dashboard' className='layout-profile'>
+          <img src={DefaultAvatar} alt="" className='layout-profile-avatar' />
+        </Link>) : 
+        (<div className="header-login_register-wrap">
+          <Link to="/login" className="header-login_register">Đăng Nhập</Link>
+          <Link to="/register" className="header-login_register">Đăng Kí</Link>
+        </div>)}
       </div>
-
       <div className="header-sticky_nav">
         <ul className="header-sticky_nav-list">
           <li>
@@ -49,8 +67,8 @@ export default function Layout() {
           </li>
         </ul>
       </div>
-      
-      <Outlet/>
+
+      <Outlet />
     </div>
   )
 }

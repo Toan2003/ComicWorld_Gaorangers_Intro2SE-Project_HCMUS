@@ -19,7 +19,7 @@ export default function MainComic() {
 
   useEffect(() => {
     loadData()
-  }, [rank])
+  }, [id])
 
   const content = 'Đang cập nhật'
   const comicName = comic?.nameComics
