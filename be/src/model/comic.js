@@ -419,6 +419,36 @@ async function searchComic(name)
     return searchingComic
 }
 
+async function followOneComic(idComic, idMember)
+{
+    const comicFollow = await comics.findById(idComic)
+    if(idComic)
+    {
+        const member= await user.user.findById(idMember)
+        if (member)
+        {
+            await member.updateOne({$addToSet: {followingcomics: idComic}})
+            return true
+        }
+    }
+    return false
+}
+
+async function unfollowOneComic(idComic, idMember)
+{
+    const comicFollow = await comics.findById(idComic)
+    if(idComic)
+    {
+        const member= await user.user.findById(idMember)
+        if(member)
+        {
+            await member.deleteOne({followingcomics: idComic})
+            return true
+        }
+    }
+    return false
+}
+
 
 module.exports= {
     comics,
@@ -429,5 +459,7 @@ module.exports= {
     returnFollowingComics, 
     filterType, 
     returnComicsByUploader,
-    searchComic
+    searchComic,
+    followOneComic,
+    unfollowOneComic
 };
