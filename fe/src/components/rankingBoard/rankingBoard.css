@@ -74,7 +74,7 @@ background-color: var(--hover-color);
 .homepage-row-stat {
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
     width: 120px;
     position: absolute;
     bottom: 0;
