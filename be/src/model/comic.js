@@ -89,12 +89,120 @@ async function returnForHomePage(idMember){
     }
     if (idMember)
     {
-        const member= await user.findById(idMember)
+        const member= await user.user.findById(idMember)
         const followComics=member.followingcomics
         console.log(followComics)
     }
     else followComics=[]
     return {view, nameComics, idComics}
+}
+
+
+
+async function returnComments(idComics)
+{
+    const oneComics = await comics.findById(idComics)
+    const comments= oneComics.Comments
+    return {comments}
+
+}
+
+async function returnFollowingComics(idMember)
+{
+    const fullComic=[]
+    // console.log(typeof(idMember))
+    const member= await user.user.findById(idMember)
+    
+    const comicsFollowing= member.followingcomics
+    console.log(comicsFollowing)
+    if(comicsFollowing)
+    {
+        for (comic of comicsFollowing){
+            const temp=await comics.findById(comic)
+            fullComic.push(temp)
+        }
+        console.log(fullComic)
+    }
+     
+    return {comicsFollowing, fullComic}
+}
+
+//Caanf doij comicURL cover
+async function createComics(comicname, typecomics, status, dateCreate, uploadingroup, uploadid, cover)
+{
+    const member= await user.user.findById(uploadid)
+    const groupCheck=await group.group.find({groupName:uploadinggroup})
+    if(groupCheck)
+    {
+        const newChapter= new chapter ({nameComics:comicname,type: typecomics, chapterImageID: url, 
+            Uploading: {uploader:member.name, group: uploadingroup}, datecreate: dateCreate, coverURL: cover})
+        newChapter.save()
+        const isSuccess=true
+        return {isSuccess}
+    }
+    const isSuccess=false
+    return {isSuccess}
+}
+
+async function filterType(typename)
+{
+    const findComics= await comics.find({type:typename})
+    return findComics
+}
+
+async function returnComicsByUploader(iduploader)
+{
+    const nameMember= await user.user.findById(iduploader)
+    if(nameMember){
+        const groupMember = await group.findOne({Uploader:nameMember.username})
+        if(groupMember){
+            const comicUpload= await comics.find({"Uploading.group":groupMember.groupName})
+            return comicUpload
+        }
+    }
+} 
+
+async function searchComic(name)
+{
+    const mySentence = name
+    const words = mySentence.split(" ");
+
+    for (let i = 0; i < words.length; i++) {
+        words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+    }
+    name=words.join(" ");
+    const searchingComic = await comics.find({nameComics:{$regex: name}})
+    return searchingComic
+}
+
+async function followOneComic(idComic, idMember)
+{
+    const comicFollow = await comics.findById(idComic)
+    if(idComic)
+    {
+        const member= await user.user.findById(idMember)
+        if (member)
+        {
+            await member.updateOne({$addToSet: {followingcomics: idComic}})
+            return true
+        }
+    }
+    return false
+}
+
+async function unfollowOneComic(idComic, idMember)
+{
+    const comicFollow = await comics.findById(idComic)
+    if(idComic)
+    {
+        const member= await user.user.findById(idMember)
+        if(member)
+        {
+            await member.deleteOne({followingcomics: idComic})
+            return true
+        }
+    }
+    return false
 }
 
 async function returnForOneComic (idMember, idComics)
@@ -130,82 +238,6 @@ async function returnForOneComic (idMember, idComics)
 
     return {oneComics, isFollowed}
 }
-
-async function returnComments(idComics)
-{
-    const oneComics = await comics.findById(idComics)
-    const comments= oneComics.Comments
-    return {comments}
-
-}
-
-async function returnFollowingComics(idMember)
-{
-    const fullComic=[]
-    // console.log(typeof(idMember))
-    const member= await user.user.findById(idMember)
-    console.log(member)
-    const comicsFollowing= member.followingcomics
-    console.log(comicsFollowing)
-    if(comicsFollowing)
-    {
-        for (comic of comicsFollowing){
-            const temp=await comics.findById(comic)
-            fullComic.push(temp)
-        }
-        console.log(fullComic)
-    }
-     
-    return {comicsFollowing, fullComic}
-}
-//Caanf doij comicURL cover
-async function createComics(comicname, typecomics, status, dateCreate, uploadingroup, uploadid, cover)
-{
-    const member= await user.findById(uploadid)
-    const groupCheck=await group.find({groupName:uploadinggroup})
-    if(groupCheck)
-    {
-        const newChapter= new chapter ({nameComics:comicname,type: typecomics, chapterImageID: url, 
-            Uploading: {uploader:member.name, group: uploadingroup}, datecreate: dateCreate, coverURL: cover})
-        newChapter.save()
-        const isSuccess=true
-        return {isSuccess}
-    }
-    const isSuccess=false
-    return {isSuccess}
-}
-async function filterType(typename)
-{
-    const findComics= await comics.find({type:typename})
-    return findComics
-}
-
-async function returnComicsByUploader(iduploader)
-{
-    const nameMember= await user.findById(iduploader)
-    if(nameMember){
-        const groupMember = await group.findOne({Uploader:nameMember.username})
-        if(groupMember){
-            const comicUpload= await comics.find({"Uploading.group":groupMember.groupName})
-            return comicUpload
-        }
-    }
-} 
-
-async function searchComic(name)
-{
-    const mySentence = name
-    const words = mySentence.split(" ");
-
-    for (let i = 0; i < words.length; i++) {
-        words[i] = words[i][0].toUpperCase() + words[i].substr(1);
-    }
-    name=words.join(" ");
-    const searchingComic = await comics.find({nameComics:{$regex: name}})
-    return searchingComic
-}
-
-
 module.exports= {
     comics,
     returnForOneComic,
@@ -215,5 +247,7 @@ module.exports= {
     returnFollowingComics, 
     filterType, 
     returnComicsByUploader,
-    searchComic
+    searchComic,
+    followOneComic,
+    unfollowOneComic
 };

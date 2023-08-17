@@ -3,24 +3,46 @@ import { Link, Outlet } from 'react-router-dom'
 import {FaHome} from "react-icons/fa"
 import React,{useState} from "react"
 function NewComic() {
-  const AvatarImage='./avatar'
-  const Username="tkl"
+  const [TypesList, SetTypeList] = useState([
+    'Lãng mạng',
+    'Hài hước',
+    'Hành động'
+  ]);
+  const [selects_Type,setSelects_Type]=useState()
+  const [StateList, SetStateList] = useState([
+    'Đang tiến hành',
+    'Hoàn thành',
+    'Tạm ngưng'
+  ]);
+  const [Select_state,set_Selects_state]=useState()
   const [input,setInput]=useState()
-  const [selects,setSelects]=useState()
   const[Name,setName]=useState("")
   const[Author,setAuthor]=useState("")
   const[In_Progress, setIProg]=useState(true);
+  var state_comic="";
   const[Complete, setComplete]=useState(true);
   const[Drop, setDrop]=useState(true);
-  const [value, setValue] = useState("") //description
+  const [Description, setDescription] = useState("") //description
   const[file,setFiles]= useState()
   const[Date,setDate]=useState()
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  const handleChange_Description= (event) => {
+    setDescription(event.target.value);
   }
-  const handleResize = (event) => {
+  const handleResize_Description= (event) => {
     event.target.style.height = "auto";
-    event.target.style.height = `3000px`;
+    event.target.style.height = `200px`;
+  }
+  const SendData = (event) => //Hàm button ở đây đã lấy đủ dữ liệu
+  {
+    console.log(Name)
+    console.log(Author)
+    console.log(selects_Type)
+    console.log(Date)
+    console.log(Select_state)
+    console.log(Description)
+    
+    console.log(file)
+    
   }
   return (
     
@@ -49,33 +71,27 @@ function NewComic() {
       <div className='Status'>Tác giả</div>
       <input type="text" className="Authorinput" value={Author} onChange={(e)=>setAuthor(e.target.value)}/>
       <div className='Status'>Thể Loại</div>
-      <select value ={selects} onChange={(e)=>setSelects(e.target.value)}> 
-              <option>Hành động</option>
-              <option>Hài hước</option>
-              <option>Lãng mạng</option>
+      <select value ={selects_Type} onChange={(e)=>setSelects_Type(e.target.value)}>
+          {TypesList.map((Type, index) => (
+                        <option >{Type}</option>
+                      ))}
       </select>
       <div className='Date'>Ngày</div>
       <div className="Date_box">
       <input type='Date' className='Dateinput' value={Date} onChange={(e)=>setDate(e.target.value)}/>
       </div>
       <div className='Status'> Tình trạng</div>
-      <div className="Box_Place">
-        <div className='Box'>
-      <input  className="checkbox1" type='checkbox' value={In_Progress} /> Đang tiến triển
-      </div>
-      <div className='Box'>
-      <input className="checkbox2" type='checkbox' value={Complete} /> Hoàn thành
-      </div>
-      <div className='Box'>
-      <input className="checkbox3" type='checkbox' value={Drop} /> Bỏ dở
-      </div>
-      </div>
+       <select value ={Select_state} onChange={(e)=>set_Selects_state(e.target.value)}>
+       {StateList.map((State, index) => (
+                        <option >{State}</option>
+                      ))}
+      </select> 
       <div className='Status'> Mô tả</div>
-      <textarea value={value} onChange={handleChange} onInput={handleResize} className='commentbox'/>
+      <textarea value={Description} onChange={handleChange_Description} onInput={handleResize_Description} className='Description_Input'  />
       <div className='Status'> Bìa truyện</div>
       <input className='Input_file' type='file' value ={file} onChange={(e)=>setFiles(e.target.value)}/>
       <div class="Button_group">
-            <button className='Button_accept'>Save</button>
+            <button className='Button_accept' onClick={SendData}>Save</button>
             <button className='Button_accept'>Cancel</button>
       </div>
     </div>

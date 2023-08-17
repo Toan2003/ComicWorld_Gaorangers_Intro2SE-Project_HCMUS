@@ -10,13 +10,13 @@ import DefaultAvatar from './assets/default-avatar.jpg'
 export default function Layout() {
   const checkAuthen = JSON.parse(localStorage.getItem('authenticated'))
   const { isAuthenticated } = useContext(AuthContext)
-
+  console.log(checkAuthen)
   // handle search bar
   const [inputText, setInputText] = useState("");
   let inputHandler = (e) => {
     setInputText(e.target.value);
   };
-
+  
   return (
     <div className="header-container">
       <div className="header">
@@ -45,7 +45,7 @@ export default function Layout() {
             }
           </div>
         </div>
-        {checkAuthen && isAuthenticated ? 
+        {checkAuthen ? 
         (<Link to='/profile/dashboard' className='layout-profile'>
           <img src={DefaultAvatar} alt="" className='layout-profile-avatar' />
         </Link>) : 

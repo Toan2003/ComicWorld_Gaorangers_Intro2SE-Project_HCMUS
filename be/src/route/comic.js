@@ -12,6 +12,7 @@ route.get('/comic/search',controller.getSearchComic)
 route.get('/comic/type/:type',controller.getComicAccordingToType)
 
 route.post('/comic/create', controller.postCreatComic) 
-
+route.post('/comic/followComic', controller.postAddFollowComic)
+route.post('/comic/unfollowComic', controller.postCancelFollowComic)
 
 module.exports = route

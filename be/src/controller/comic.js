@@ -237,12 +237,93 @@ async function getComicAccordingToType(req,res) {
     })
 }
 
+async function postAddFollowComic(req, res) {
+    let {idMember,idComic} = req?.body
+    console.log(idMember, idComic)
+    if (idMember == null || idComic == null || idMember == '' || idComic == '') {
+        return res.json({
+            isSuccess: false,
+            message: 'idComic or idMember is missing',
+            statusbar: res.statusCode,
+            data: ''
+        });
+    }
+    if (idMember.length != 24 || idMember.length != 24) {
+        return res.json({
+            isSuccess: false,
+            message: 'idComic or idMember is invalid',
+            statusbar: res.statusCode,
+            data: ''
+        });
+    }
+    let result = await database.addFollowComic(idMember, idComic)
+    if (result) {
+        return res.json({
+            isSuccess: true,
+            message: 'folow comic successfully',
+            statusbar: res.statusCode,
+            data: {
+                isFollowed: result
+            }
+        });
+    } else {
+        return res.json({
+            isSuccess: true,
+            message: 'can not follow comic',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    }
+}
+
+async function postCancelFollowComic(req, res) {
+    let {idMember,idComic} = req?.body
+    console.log(idMember, idComic)
+    if (idMember == null || idComic == null || idMember == '' || idComic == '') {
+        return res.json({
+            isSuccess: false,
+            message: 'idComic or idMember is missing',
+            statusbar: res.statusCode,
+            data: ''
+        });
+    }
+    if (idMember.length != 24 || idMember.length != 24) {
+        return res.json({
+            isSuccess: false,
+            message: 'idComic or idMember is invalid',
+            statusbar: res.statusCode,
+            data: ''
+        });
+    }
+    let result = await database.cancelFollowComic(idMember, idComic)
+    if (result) {
+        return res.json({
+            isSuccess: true,
+            message: 'cancel following successfully',
+            statusbar: res.statusCode,
+            data: {
+                isFollowed: result
+            }
+        });
+    } else {
+        return res.json({
+            isSuccess: true,
+            message: 'fail to cancel following',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    }
+}
+
 module.exports = {
     getOneComic,
     getAllComic,
     getRankingBoard,
     getFollowedComic,
     getSearchComic,
+    getComicAccordingToType,
+    
     postCreatComic,
-    getComicAccordingToType
+    postAddFollowComic,
+    postCancelFollowComic,
 }
