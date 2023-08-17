@@ -25,7 +25,7 @@ function App() {
           <Route path="type-comic/main-comic/:idComic/:idChapter" element={<Comic />} />
           <Route path="profile/Dashboard" element={<Profile />} />
           <Route path="profile/upload" element={<UploadComic />} />
-          <Route path="searching-result" element={<Search />} />
+          <Route path="search-result" element={<Search />} />
           {/* <Route path="*" element={<NoPage />} /> */}
         </Route>
       </Routes>

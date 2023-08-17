@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, redirect } from 'react-router-dom'
 import LOGO from './assets/logo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { AuthContext } from './context/context'
@@ -11,6 +11,16 @@ export default function Layout() {
   const checkAuthen = JSON.parse(localStorage.getItem('authenticated'))
   const { isAuthenticated } = useContext(AuthContext)
 
+  // handle search bar
+  const [inputText, setInputText] = useState("");
+  let inputHandler = (e) => {
+    setInputText(e.target.value);
+  };
+
+  let redirect = "/"
+  // handle search button
+  inputText?.length > 0 ? redirect = "/search-result?key=" + inputText : redirect = "/"
+  
   return (
     <div className="header-container">
       <div className="header">
@@ -21,10 +31,12 @@ export default function Layout() {
         </div>
 
         <div className="header-search_bar">
-          <input type="text" placeholder="Nhập từ khóa tìm kiếm" className="header-search_bar-input" />
-          <button className="header-search_bar-btn">
-            <AiOutlineSearch className="header-search_bar-icon"></AiOutlineSearch>
-          </button>
+          <input type="text" onChange={inputHandler} placeholder="Nhập từ khóa tìm kiếm" className="header-search_bar-input" />
+          <div className="header-search_bar-btn">
+            <Link className="header-search_bar-link" to={redirect}>
+              <AiOutlineSearch className="header-search_bar-icon"></AiOutlineSearch>
+            </Link>
+          </div>
         </div>
         {checkAuthen && isAuthenticated ? 
         (<Link to='/profile/dashboard' className='layout-profile'>
