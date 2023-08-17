@@ -1,4 +1,4 @@
-import { Link, Outlet, redirect } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import LOGO from './assets/logo.png'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { AuthContext } from './context/context'
@@ -7,13 +7,8 @@ import DefaultAvatar from './assets/default-avatar.jpg'
 
 export default function Layout() {
   const {authenticated} = useContext(AuthContext)
-  const checkAuthen = JSON.parse(localStorage.getItem('authenticated'))
-<<<<<<< HEAD
+  // const checkAuthen = JSON.parse(localStorage.getItem('authenticated'))
   
-=======
-  const { isAuthenticated } = useContext(AuthContext)
-  console.log(checkAuthen)
->>>>>>> 86ccc0fcf9415afcf09fee3f708c801eb3ad3075
   // handle search bar
   const [inputText, setInputText] = useState("");
   let inputHandler = (e) => {
@@ -48,7 +43,6 @@ export default function Layout() {
             }
           </div>
         </div>
-<<<<<<< HEAD
         {
           authenticated ? 
           (<Link to='/profile/dashboard' className='layout-profile'>
@@ -60,16 +54,6 @@ export default function Layout() {
               <Link to="/register" className="header-login_register">Đăng Kí</Link>
             </div>)
         }
-=======
-        {checkAuthen ? 
-        (<Link to='/profile/dashboard' className='layout-profile'>
-          <img src={DefaultAvatar} alt="" className='layout-profile-avatar' />
-        </Link>) : 
-        (<div className="header-login_register-wrap">
-          <Link to="/login" className="header-login_register">Đăng Nhập</Link>
-          <Link to="/register" className="header-login_register">Đăng Kí</Link>
-        </div>)}
->>>>>>> 86ccc0fcf9415afcf09fee3f708c801eb3ad3075
       </div>
 
       <div className="header-sticky_nav">
