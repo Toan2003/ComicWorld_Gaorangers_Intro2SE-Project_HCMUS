@@ -46,6 +46,10 @@
     height: 100%;
 }
 
+.secion-comic-img:hover {
+    opacity: 0.8;
+}
+
 .section-comic-info {
     position: absolute;
     padding: 6px;

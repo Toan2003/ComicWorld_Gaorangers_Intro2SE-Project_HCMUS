@@ -3,7 +3,7 @@ import { getLogin, postSignup } from '../api/authorize';
 
 export const AuthContext = createContext()
 export function AuthProvider({children}) {
-  const [authenticated, setAuthenticated] = useState((localStorage.getItem('authenticated') || false))
+  const [authenticated, setAuthenticated] = useState((JSON.parse(localStorage.getItem('authenticated')) || false))
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // localStorage.setItem("idComic", idComic);
@@ -16,16 +16,17 @@ export function AuthProvider({children}) {
     
     // console.log(localStorage.getItem('authenticated')) 
     setAuthenticated(checkLogin.isSuccess);
+    console.log(checkLogin.isSuccess);
+    console.log(typeof(checkLogin.isSuccess))
+
     if (checkLogin.isSuccess == true) {
       localStorage.setItem('authenticated', checkLogin.isSuccess);
-      // localStorage.setItem('status', checkLogin.status);
-      // localStorage.setItem('messages', checkLogin.message);
       localStorage.setItem('type', checkLogin.data.type);
       localStorage.setItem('id', checkLogin.data.id);
     } else {
       localStorage.setItem('authenticated', false);
     }
-    // console.log(authenticated)
+    console.log(authenticated)
     setEmail("");
     setPassword("");
   }

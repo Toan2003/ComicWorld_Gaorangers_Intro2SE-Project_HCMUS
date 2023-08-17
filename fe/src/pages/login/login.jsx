@@ -6,8 +6,7 @@ import { AuthContext } from "../../context/context"
 
 export default function Login() {
   const context = useContext(AuthContext)
-  // console.log(context.authenticated)
-  
+
   if (!context.authenticated) {
     return (
       <div className="login">
@@ -17,7 +16,6 @@ export default function Login() {
           <label htmlFor="password">Mật khẩu</label>
           <input value={context.password} onChange={context.handleChangePassword} type="password" placeholder="*********" id="password" name="password" />
           <button type="submit" className="btn btn-primary">Đăng nhập</button>
-
         </form>
       </div>
     );
