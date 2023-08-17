@@ -39,13 +39,12 @@ color: var(--link-color);
 text-decoration: none;
 font-size:28px;
 font-weight: 600;
-
 color: #000000;
 
 }
 .Information
 {
-  padding-left: 10px;
+  padding-left: 17px;
   padding-bottom:50px;
 }
 .Name
