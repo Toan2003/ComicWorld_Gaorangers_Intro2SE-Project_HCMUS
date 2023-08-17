@@ -174,7 +174,6 @@ border-radius: 14px;
     font-size: 20px
   }
   .Description{
-    position: absolute;
     width: 256px;
     height: 49px;
     
@@ -188,10 +187,8 @@ border-radius: 14px;
     }
     .Description_Input{
     box-sizing: border-box;
-    
-    position: absolute;
     width: 1157px;
-    height: 184px;
+    height: 200px;
     
     background: #FFFFFF;
     border: 1px solid #000000;
