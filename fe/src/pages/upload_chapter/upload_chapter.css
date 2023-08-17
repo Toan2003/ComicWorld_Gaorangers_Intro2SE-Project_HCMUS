@@ -61,13 +61,14 @@
 }
 
 .upload_chapter-upload {
-    width: 500px;
-    height: 200px;
+    width: 700px;
+    height: 300px;
 }
 
 .upload_chapter-upload-wrap {
-    display: block;
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .upload_chapter-upload-icon {
@@ -88,8 +89,39 @@
     color: #ffff;
 }
 
+.upload_chapter-file-box {
+    width: 400px;
+    height: 200px;
+    border-radius: 5px;
+    border: 1px solid #070707;
+    padding: 0 4px 4px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.upload_chapter-file {
+    width: 371px;
+    height: 25px;
+    padding-left: 4px;
+    border: 1px solid #070707;
+    margin-top: 4px;
+    border-radius: 5px;
+}
+
+.upload_chapter-file-text {
+    width: 350px;
+    height: 25px;
+    line-height: 25px;
+    display: block; /*trong trường hợp trình duyệt không hỗ trợ ưebkit-box*/
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 .upload_chapter-file_input {
-    margin-left: 10px;
+    display: none;
 }
 
 .upload_chapter-button:hover {
