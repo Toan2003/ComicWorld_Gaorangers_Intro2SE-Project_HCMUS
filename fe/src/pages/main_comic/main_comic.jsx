@@ -24,6 +24,7 @@ export default function MainComic() {
     setComic(COMIC.data.data.comic)
     setRank(RANK.data.data.rankingList)
     setFollow(COMIC.data.data.isFollowed)
+    // console.log(comic)
   }
   // console.log(follow)
 
