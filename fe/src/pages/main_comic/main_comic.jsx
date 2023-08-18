@@ -13,15 +13,15 @@ export default function MainComic() {
   const [chapters, setChapters] = useState([])
   const userId = localStorage.getItem('id')
   
-  // const [firstChapter, setFistChapter] = useState()
-  let firstChapter = ''
-  let lastChapter =''
+  const [firstChapter, setFistChapter] = useState('')
+  const [lastChapter, setLastChapter] = useState('')
+
   async function loadData() {
     const COMIC = await getComic(id, userId)
     const RANK = await getRankingBoard()
     if (COMIC.data.data.comic.chapters.length > 0) {
-      firstChapter = COMIC.data.data.comic.chapters[0].chaptersID
-      lastChapter = COMIC.data.data.comic.chapters[COMIC.data.data.comic.chapters.length-1].chaptersID
+      setFistChapter(COMIC.data.data.comic.chapters[0].chaptersID)
+      setLastChapter(COMIC.data.data.comic.chapters[COMIC.data.data.comic.chapters.length-1].chaptersID)
     }
     setComic(COMIC.data.data.comic)
     setRank(RANK.data.data.rankingList)
@@ -33,11 +33,6 @@ export default function MainComic() {
     console.log("id ne:", id)
   }
   
-  // console.log(chapters)
-
-  
-  
-
   async function handleFollow() {
     if (follow) {
       let result = await postUnfollowComic(userId , id)
@@ -124,8 +119,8 @@ export default function MainComic() {
                   :
                   <button type='button' onClick={() =>handleFollow()} className='btn btn-success'>Theo dõi</button>
                 }
-                <Link  className='btn btn-primary' id={firstChapter} to={`/type-comic/main-comic/64db285006be8a93a578842a/64d9ec1acf4013d51cacdd73/${id}/${firstChapter}`}>Đọc từ đầu</Link>
-                <Link  className='btn btn-primary' id={lastChapter} to={`/type-comic/main-comic/${id}/${chapters[0]?.chapterid}`}>Đọc mới nhất</Link>
+                <Link  className='btn btn-primary' id={firstChapter} to={`/type-comic/main-comic/${id}/${firstChapter}`}>Đọc từ đầu</Link>
+                <Link  className='btn btn-primary' id={lastChapter} to={`/type-comic/main-comic/${id}/${lastChapter}`}>Đọc mới nhất</Link>
               </div>
             </div>
           </div>
