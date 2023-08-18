@@ -13,29 +13,29 @@ export default function Profile() {
   const [profileUser, setProfileUser] = useState(<Member />)
   const [follow, setFollow] = useState([])
   const [upload, setUpload] = useState([])
+  const [isOnManageAccount, setIsOnManageAccount] = useState(false)
   const { handleLogout } = useContext(AuthContext)
   const username = localStorage.getItem('username')
   const typeUser = localStorage.getItem('type')
 
   async function loadData() {
-    const id = localStorage.getItem('id')
+    let id = localStorage.getItem('id')
     const follows = await getFollowedComic(id)
     const uploads = await getReturnComicByUploader(id)
 
-    if (localStorage.getItem('type') === 'member') {  
+    if (localStorage.getItem('type') === 'member') {
       setProfileUser(<Member handleLogout={handleLogout} />)
     }
     else if (localStorage.getItem('type') === 'uploader') {
       setProfileUser(<Uploader handleLogout={handleLogout} />)
     }
     else {
-      setProfileUser(<Admin handleLogout={handleLogout} />)
+      setProfileUser(<Admin handleLogout={handleLogout} setIsOnManageAccount={setIsOnManageAccount} />)
     }
     if (id != 'null') {
       setFollow(follows.data.data.followList.fullComic)
       setUpload(uploads.data.data.listComic)
     }
-    console.log(uploads.data.data.listComic)
   }
 
   useEffect(() => {
@@ -45,7 +45,16 @@ export default function Profile() {
   return (
     <div className="profile-container">
       <div className="profile">
-        <ProfileLink />
+        <ul className="profile-link-user">
+          <li>
+            <Link className='link-item' to='/'><p>Trang chủ</p></Link>
+          </li>
+          <li><p>{'>>'}</p></li>
+          <li>
+            <Link className='link-item' to='/profile/dashboard'><p>{isOnManageAccount ? "Quản lý account" : "Thông tin chung"}</p></Link>
+          </li>
+          <Outlet />
+        </ul>
         <div className='main-profile'>
           <div className='account'>
             <div className='user-name-box'>
@@ -53,31 +62,18 @@ export default function Profile() {
             </div>
             {profileUser}
           </div>
-          <Information username={username} typeUser={typeUser} follow={follow} upload={upload}/>
+          {
+            !isOnManageAccount ?
+              <Information username={username} typeUser={typeUser} follow={follow} upload={upload} /> :
+              <ManageAccount />
+          }
         </div>
       </div>
     </div>
   );
 }
 
-function ProfileLink() {
-  return (
-    <>
-      <ul className="profile-link-user">
-        <li>
-          <Link className='link-item' to='/'><p>Trang chủ</p></Link>
-        </li>
-        <li><p>{'>>'}</p></li>
-        <li>
-          <Link className='link-item' to='/profile/dashboard'><p>Thông tin chung</p></Link>
-        </li>
-        <Outlet />
-      </ul>
-    </>
-  );
-}
-
-function Information({ username, typeUser, follow, upload}) {
+function Information({ username, typeUser, follow, upload }) {
   return (
     <>
       <div className='information'>
@@ -123,36 +119,84 @@ function Information({ username, typeUser, follow, upload}) {
         </div>
         {/* Truyện đã đăng */}
         <div className="profile-list-upload-comic information-item">
-          <h5 className="information-item-name">Truyện đã đăng</h5> 
+          <h5 className="information-item-name">Truyện đã đăng</h5>
           <div className='profile-list-upload-header row'>
             <div className='col comic-upload-item-col'>TÊN TRUYỆN</div>
             <div className='col comic-upload-item-col'>NGUỜI ĐĂNG</div>
             <div className='col comic-upload-item-col'>THÊM CHAPTER MỚI</div>
           </div>
           {
-            upload ? 
-            (
             upload.map((u) => {
               return (
                 <div className="comic-follow-list-item-row row">
-                <Link className="col comic-follow-item-col comic-follow-item-1">
-                  <img src={u.coverURL} alt="" className="comic-follow-item-image" />
-                  <h3 className="comic-follow-item-name">{u.nameComics}</h3>
-                </Link>
-                <div className="col comic-follow-item-col">{u.Uploading.group}</div>
-                <div className="col comic-follow-item-col">
-                  <button className="btn btn-success">Thêm chap mới</button>
+                  <Link className="col comic-follow-item-col comic-follow-item-1">
+                    <img src={u.coverURL} alt="" className="comic-follow-item-image" />
+                    <h3 className="comic-follow-item-name">{u.nameComics}</h3>
+                  </Link>
+                  <div className="col comic-follow-item-col">{u.Uploading.group}</div>
+                  <div className="col comic-follow-item-col">
+                    <button className="btn btn-success">Thêm chap mới</button>
+                  </div>
                 </div>
-              </div>
               );
             })
-            ) :
-            (
-              <div className="comic-follow-list-item-row row"></div>
-            )
           }
         </div>
       </div>
     </>
+  );
+}
+
+
+const ManageAccount = () => {
+  const [searchResult, setSearchResult] = useState([])
+
+  function handleSearch(query) {
+    const fakeListAccount = [
+      'admin1',
+      'test12345',
+      'test1234',
+      'uploader',
+      '11111111',
+      '22222222',
+      '3333333',
+      '44444444',
+      '55555555',
+      '66666666',
+      '10002134012340',
+      '1234123412341234'
+    ]
+
+    setSearchResult(fakeListAccount)
+  }
+
+  return (
+    <div className='information'>
+      <h4>QUẢN LÝ TÀI KHOẢN NGƯỜI DÙNG</h4>
+      <div className="profile-manage-account-comic information-item">
+          <h5 className="information-item-name">DANH SÁCH</h5>
+          <div className='profile-manage-account-header row'>
+            <div className='col comic-manage-item-col'>NGƯỜI DÙNG</div>
+            <div className='col comic-follow-item-col'>CHỨC NĂNG</div>
+          </div>
+          {/* <div className="profile-manage-"></div> */}
+        </div>
+    </div>
+  );
+}
+
+const SearchAccount = ({ onSearch }) => {
+  const [searchName, setSearchName] = useState([])
+  const handleSubmitSearchAccount = (e) => {
+    e.preventDefault()
+    onSearch(searchName)
+  }
+  return (
+    <div className="profile-search-account-form">
+      <form onSubmit={handleSubmitSearchAccount}>
+        <input type="text" placeholder="Tìm tên người dùng..." value={searchName} onChange={(e) => (setSearchName(e.target.value))}/>
+        <button type="submit">Tìm kiếm</button>
+      </form>
+    </div>
   );
 }

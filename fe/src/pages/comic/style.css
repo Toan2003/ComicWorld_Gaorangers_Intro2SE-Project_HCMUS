@@ -1,10 +1,4 @@
-select
-{
-  width:150px;
-  height: 30px;
-  font-size: 20px;
-  overflow: scroll;
-}
+
 body {
   font-family: Tahoma,sans-serif,Helvetica,Arial;
   font-weight: 400;
