@@ -1,9 +1,12 @@
 import './style.css';
-import { Link, Outlet } from 'react-router-dom'
-import {FaHome} from "react-icons/fa"
-import {postCreateComic} from '../../api/comic'
+import Popup from 'reactjs-popup';
+
+import { Link, Outlet,useNavigate} from 'react-router-dom'
+import { FaHome, FaListUl, FaChevronRight, FaChevronLeft, FaHeart, FaChevronDown, FaRegWindowClose } from "react-icons/fa"
 import React,{useState} from "react"
-import {convertBase64} from "../../api/convertImage"
+import {postCreateComic} from "../../api/comic"
+import { underline } from '@cloudinary/url-gen/qualifiers/textDecoration';
+import {convertBase64} from '../../api/convertImage'
 function NewComic() {
   const [TypesList, SetTypeList] = useState([
     'Lãng mạng',
@@ -27,6 +30,7 @@ function NewComic() {
   const [Description, setDescription] = useState("") //description
   const[file,setFiles]= useState()
   const[Date,setDate]=useState()
+  const navigate = useNavigate();
   const handleChange_Description= (event) => {
     setDescription(event.target.value);
   }
@@ -34,17 +38,41 @@ function NewComic() {
     event.target.style.height = "auto";
     event.target.style.height = `200px`;
   }
-  const SendData = async (event) => //Hàm button ở đây đã lấy đủ dữ liệu
+  const navigate_to=(path)=>
+  {
+    navigate(path);
+  }
+  const navigate_to_home=(e)=>
+  {
+    navigate('/');
+  }
+  const SendData = async(event) => //Hàm button ở đây đã lấy đủ dữ liệu
   {
     // console.log(Name)
     // console.log(Author)
     // console.log(selects_Type)
     // console.log(Date)
     // console.log(Select_state)
-    // console.log(Description)
     // console.log(file)
+    const id = localStorage.getItem('id')
+    if(Name==""||Author==""||selects_Type==""||Date==null||Select_state==""
+    ||file==null){
+      alert("Thông tin trống vui lòng nhập lại!")
+    }
     let f = await convertBase64(file[0])
-    await postCreateComic(Name,Date,Author,'',selects_Type,Select_state,Description,f)
+    // console.log(f)
+    let result = await postCreateComic(Name,Date,Author, id,selects_Type,Select_state,f)
+    console.log(result.data.data.isSuccess)
+    if (result.data.isSuccess) {
+      alert("Thông tin sai vui lòng nhập lại!")
+    }
+    else
+    {
+      
+      alert("Upload thành công!")
+      navigate_to('/');
+      
+    }
   }
   return (
     
@@ -74,6 +102,7 @@ function NewComic() {
       <input type="text" className="Authorinput" value={Author} onChange={(e)=>setAuthor(e.target.value)}/>
       <div className='Status'>Thể Loại</div>
       <select value ={selects_Type} onChange={(e)=>setSelects_Type(e.target.value)}>
+        <option></option>
           {TypesList.map((Type, index) => (
                         <option >{Type}</option>
                       ))}
@@ -84,17 +113,16 @@ function NewComic() {
       </div>
       <div className='Status'> Tình trạng</div>
        <select value ={Select_state} onChange={(e)=>set_Selects_state(e.target.value)}>
+       <option></option>
        {StateList.map((State, index) => (
                         <option >{State}</option>
                       ))}
       </select> 
-      <div className='Status'> Mô tả</div>
-      <textarea value={Description} onChange={handleChange_Description} onInput={handleResize_Description} className='Description_Input'  />
       <div className='Status'> Bìa truyện</div>
       <input className='Input_file' type='file' onChange={(e)=>setFiles(e.target.files)}/>
       <div class="Button_group">
-            <button className='Button_accept' onClick={SendData}>Save</button>
-            <button className='Button_accept'>Cancel</button>
+            <button className='Button_accept' onClick={SendData} >Save</button>
+            <button className='Button_accept' onClick={navigate_to_home}>Cancel</button>
       </div>
     </div>
     </div>

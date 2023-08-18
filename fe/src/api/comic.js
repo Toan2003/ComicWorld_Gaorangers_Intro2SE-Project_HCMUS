@@ -40,7 +40,7 @@ async function getReturnComicByUploader(idUploader) {
     return await axiosClient.get(link);
 }
 
-async function postCreateComic(name,date,group,idMember,type,status,description,cover) {
+async function postCreateComic(name,date,group,idMember,type,status,cover) {
     // const cloud = new Cloudinary({cloud: { 
     //     cloud_name: 'comicimage',
     //     api_key: '648687645831283', 
