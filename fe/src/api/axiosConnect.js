@@ -1,12 +1,12 @@
 import axios from "axios"
 // import {v2 as cloudinary} from "cloudinary"
-import {Cloudinary} from "@cloudinary/url-gen";
+// import {Cloudinary} from "@cloudinary/url-gen";
 
-const cloud = new Cloudinary({cloud: { 
-    cloud_name: 'comicimage',
-    api_key: '648687645831283', 
-    api_secret: 'JC3Pf5ilCtzv0bJj4TV00pwH4cI'  
-}});
+// const cloud = new Cloudinary({cloud: { 
+//     cloud_name: 'comicimage',
+//     api_key: '648687645831283', 
+//     api_secret: 'JC3Pf5ilCtzv0bJj4TV00pwH4cI'  
+// }});
 
 
 // cloudinary.config({ 
@@ -23,4 +23,4 @@ const axiosClient = axios.create({
     }
 })
 
-export {axiosClient,cloud};
+export {axiosClient};

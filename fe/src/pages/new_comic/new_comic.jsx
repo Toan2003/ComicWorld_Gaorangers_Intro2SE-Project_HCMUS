@@ -109,7 +109,7 @@ function NewComic() {
                       ))}
       </select> 
       <div className='Status'> Bìa truyện</div>
-      <input className='Input_file' type='file' value ={file} onChange={(e)=>setFiles(e.target.value)}/>
+      <input className='Input_file' type='file' onChange={(e)=>setFiles(e.target.files)}/>
       <div class="Button_group">
             <button className='Button_accept' onClick={SendData} >Save</button>
             <button className='Button_accept' onClick={navigate_to_home}>Cancel</button>

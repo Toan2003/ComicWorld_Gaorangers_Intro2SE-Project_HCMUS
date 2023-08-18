@@ -10,6 +10,10 @@ async function getAllChapterOfComic(idComic) {
     return await axiosClient.get(link);
 }
 
+async function postCreatChapter(idComic) { 
+    let link = '/chapter/getAllChapterOfComic/'  + idComic
+    return await axiosClient.get(link);
+}
 
 export {
     getChapter,
