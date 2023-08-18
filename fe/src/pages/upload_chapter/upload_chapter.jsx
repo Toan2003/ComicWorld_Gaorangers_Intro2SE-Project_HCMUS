@@ -7,7 +7,7 @@ export default function UploadChapter() {
     const [fileList, setFileList] = useState(null);
     const inputRef = useRef(null);
     // const [comicList, setComicList] = useState([]);
-    const [seclected, setSeclected] = useState("");
+    const [seclected, setSeclected] = useState("Chọn tên truyện");
 
     const handleFileChange = (e) => {
         setFileList(e.target.files);
@@ -41,7 +41,7 @@ export default function UploadChapter() {
                 <h2 className="upload_chapter-title">THÊM CHAPTER</h2>
                 <h3 className="upload_chapter-sub-title">Tên truyện</h3>
                 <div className="upload_chapter-list-wrap">
-                    Chọn tên truyện 
+                    {seclected} 
                     {
                         comicList.length > 0 ?
                         (
@@ -104,4 +104,13 @@ export default function UploadChapter() {
             </div>
         </div>  
     )
+
+    // return (
+    //     <div className="upload_chapter-container">
+    //         <div className="upload_chapter-body">
+    //             <CommentSection></CommentSection>
+
+    //         </div>
+    //     </div>
+    // );
 }

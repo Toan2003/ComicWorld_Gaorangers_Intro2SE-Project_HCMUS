@@ -78,6 +78,11 @@
 .upload_chapter-list_item {
     padding: 0 8px;
     background-color: #fff;
+    display: block; 
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .upload_chapter-list_item:hover {
