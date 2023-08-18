@@ -13,7 +13,7 @@ function Comic() {
 
   const [chapter, setOneChapter] = useState([])
   const [comic, setComic] = useState([])
-  const [follow, setFollow] = useState([])
+  const [follow, setFollow] = useState(false)
 
   // const [allChapter, setAllChapter] = useState([])
   
@@ -22,11 +22,13 @@ function Comic() {
   async function loadData() {
     // const comic = await getAllChapterOfComic(idComic, null)
     const chapters = await getChapter(idChapter, null)
-    const comics = await getComic(idComic, null)
+    const comics = await getComic(idComic, userId)
     // setOneChapter(chapters.data.data)
     setOneChapter(chapters.data.data)
     setComic(comics.data.data.comic)
     setFollow(comics.data.data.isFollowed)
+    // console.log(comics)
+    // console.log(comics.data.data.isFollowed)
   }
 
   async function handleFollow() {
@@ -36,7 +38,6 @@ function Comic() {
       
       if (result.data.isSuccess) {
         setFollow(false)
-        console.assert('Bạn đã theo dõi truyện này')
       }
 
     }
@@ -45,7 +46,6 @@ function Comic() {
       console.log(result)
       if (result.data.isSuccess) {
         setFollow(true)
-        console.assert('Bạn đã bỏ theo dõi truyện này')
       }
     }
   }
@@ -100,22 +100,22 @@ function Comic() {
           </li>
           <li ><p >{'>>'}</p></li>
           <li>
-            <Link className='link_comic-item' to={`/comic/main-comic/${idComic}`}>{NameComic}</Link>
+            <Link className='link_comic-item' to={`/type-comic/main-comic/${idComic}`}>{NameComic}</Link>
           </li>
           <li ><p >{'>>'}</p></li>
           <li>
-            <Link className='link_comic-item' to={`/comic/main-comic/${idComic}/${idChapter}`}>{NameComic}</Link>
+            <Link className='link_comic-item' to={`/type-comic/main-comic/${idComic}/${idChapter}`}>{CurChapter}</Link>
           </li>
           <Outlet />
         </ul>
 
         <ul className='title_link'>
           <li>
-            <h3><Link className='title_link-item' to={`/comic/main-comic/${idComic}`}>{NameComic}</Link> </h3>
+            <h3><Link className='title_link-item' to={`/type-comic/main-comic/${idComic}`}>{NameComic}</Link> </h3>
           </li>
           <li className="pass"><div className='pass'>{'>>'}</div></li>
           <li>
-            <h3><Link className='title_link-item' to={`/comic/main-comic/${idComic}/${idChapter}`}>{CurChapter}</Link> </h3>
+            <h3><Link className='title_link-item' to={`/type-comic/main-comic/${idComic}/${idChapter}`}>{CurChapter}</Link> </h3>
           </li>
         </ul>
 
@@ -161,7 +161,16 @@ function Comic() {
             )}
           </Popup>  &nbsp; &nbsp;
           <button type="button" className='btn btn-danger' ><FaChevronRight size={25} color='white' /></button> &nbsp;
-          <button onClick={() => handleFollow()} type="button" className='btn btn-success' ><FaHeart size={25} color='white' /> Theo dõi</button>
+          {
+            follow ?
+            (
+              <button onClick={() => handleFollow()} type="button" className='btn btn-success' > Bỏ theo dõi</button>
+            )
+            :
+            (
+              <button onClick={() => handleFollow()} type="button" className='btn btn-success' ><FaHeart size={25} color='white' /> Theo dõi</button>
+            )
+          }
         </div>
         <div className="comic-page">
           {chapter?.chapterImageID?.map((image, idx) => (

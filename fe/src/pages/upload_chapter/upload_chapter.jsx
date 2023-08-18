@@ -1,15 +1,18 @@
 import './upload_chapter.css'
 import { BiSolidDownArrow } from "react-icons/bi";
 import { BsImage } from "react-icons/bs";
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { getReturnComicByUploader } from '../../api/comic';
 
 export default function UploadChapter() {
     const [fileList, setFileList] = useState(null);
     const inputRef = useRef(null);
     const [chapterName, setChapterName] = useState("");
-    // const [comicList, setComicList] = useState([]);
+    const [comicList, setComicList] = useState([]);
     const [seclected, setSeclected] = useState("Chọn tên truyện");
-    
+    const [seclectedId, setSeclectedId] = useState('');
+    const id = localStorage.getItem('id');
+
     let inputHandler = (e) => {
         setChapterName(e.target.value);
     };
@@ -24,20 +27,35 @@ export default function UploadChapter() {
 
     const handleSeclectComic = (e) => {
         setSeclected(e.target.innerText);
+        console.log(e.target.key)
     };
 
-    const comicList = [
-        {
-            name : 'Lee Doo Na'
-        },
-        {
-            name : 'Cạm bẫy'
-        },
-        {
-            name : 'Your throne'
-        }
-    ]
+    const handleSubmit = async (e) => {
+        
+    }
 
+    // const comicList = [
+    //     {
+    //         name : 'Lee Doo Na'
+    //     },
+    //     {
+    //         name : 'Cạm bẫy'
+    //     },
+    //     {
+    //         name : 'Your throne'
+    //     }
+    // ]
+
+    async function loadDataPage() {
+        const result = await getReturnComicByUploader(id)
+        setComicList(result.data.data.listComic)
+        // console.log(result)
+    }
+
+    useEffect(() => {
+        loadDataPage()
+    },[])
+ 
     // console.log(seclected);
     // console.log(chapterName);
     // console.log(fileList);
@@ -55,7 +73,7 @@ export default function UploadChapter() {
                             <ul className="upload_chapter-list">
                             {
                             comicList.map((cur, index) => 
-                            <li onClick={(e) => handleSeclectComic(e)} className="upload_chapter-list_item" key={index }>{cur.name}</li>)
+                            <li onClick={(e) => handleSeclectComic(e)} new='dddd' className="upload_chapter-list_item" key={index}>{cur.nameComics}</li>)
                             }
                             </ul>
                         )

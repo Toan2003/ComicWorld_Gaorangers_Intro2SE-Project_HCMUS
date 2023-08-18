@@ -10,25 +10,29 @@ export default function MainComic() {
   const [comic, setComic] = useState([])
   const [rank, setRank] = useState([])
   const [follow, setFollow] = useState([])
-  // const [userId, setUserId] = useState(null)
-  // const userId = '64d8ed909e43edfe49b84fd9'
+  const [chapters, setChapters] = useState([])
   const userId = localStorage.getItem('id')
   
+  const [firstChapter, setFistChapter] = useState('')
+  const [lastChapter, setLastChapter] = useState('')
 
   async function loadData() {
-    // localStorage.getItem( 'id') != 'null' ? setUserId(localStorage.getItem('id')) : setUserId(null)
-    // console.log(userId)
-    // console.log(COMIC.data)
     const COMIC = await getComic(id, userId)
     const RANK = await getRankingBoard()
+    if (COMIC.data.data.comic.chapters.length > 0) {
+      setFistChapter(COMIC.data.data.comic.chapters[0].chaptersID)
+      setLastChapter(COMIC.data.data.comic.chapters[COMIC.data.data.comic.chapters.length-1].chaptersID)
+    }
     setComic(COMIC.data.data.comic)
     setRank(RANK.data.data.rankingList)
     setFollow(COMIC.data.data.isFollowed)
-    // console.log(comic)
+    setChapters(COMIC.data.data.comic.chapters)
+
+    console.log(firstChapter)
+    console.log(lastChapter)
+    console.log("id ne:", id)
   }
-  // console.log(follow)
-
-
+  
   async function handleFollow() {
     if (follow) {
       let result = await postUnfollowComic(userId , id)
@@ -73,11 +77,11 @@ export default function MainComic() {
           </li>
           <li><p>{'>>'}</p></li>
           <li>
-            <Link className='link-item' to='/comic'>Truyện</Link>
+            <Link className='link-item' to='/type-comic'>Truyện</Link>
           </li>
           <li><p>{'>>'}</p></li>
           <li>
-            <Link className='link-item' to={`/comic/main-comic/${id}`}>{comicName}</Link>
+            <Link className='link-item' to={`/type-comic/main-comic/${id}`}>{comicName}</Link>
           </li>
           <Outlet />
         </ul>
@@ -115,8 +119,8 @@ export default function MainComic() {
                   :
                   <button type='button' onClick={() =>handleFollow()} className='btn btn-success'>Theo dõi</button>
                 }
-                <button type='button' className='btn btn-primary'>Đọc từ đầu</button>
-                <button type='button' className='btn btn-primary'>Đọc mới nhất</button>
+                <Link  className='btn btn-primary' id={firstChapter} to={`/type-comic/main-comic/${id}/${firstChapter}`}>Đọc từ đầu</Link>
+                <Link  className='btn btn-primary' id={lastChapter} to={`/type-comic/main-comic/${id}/${lastChapter}`}>Đọc mới nhất</Link>
               </div>
             </div>
           </div>
