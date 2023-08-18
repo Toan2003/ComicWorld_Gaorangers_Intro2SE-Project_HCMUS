@@ -58,8 +58,7 @@ async function postCreateComic(name,date,group,idMember,type,status,cover) {
     //     return null;
     // });
     let res = await axiosClient.post(link, {name,date,group,idMember,type,status,file: cover})
-    console.log(res)
-    return 
+    return res
 }
 
 async function postAddFollowComic(idMember,idComic) {
