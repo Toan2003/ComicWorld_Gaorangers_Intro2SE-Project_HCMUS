@@ -128,15 +128,16 @@ async function returnFollowingComics(idMember)
 }
 
 //Caanf doij comicURL cover
-async function createComics(comicname, typecomics, status, dateCreate, uploadingroup, uploadid, cover)
+async function createComics(comicname, typecomics, status1, dateCreate, uploadinggroup, uploadid, cover)
 {
     const member= await user.user.findById(uploadid)
+    console.log(member)
     const groupCheck=await group.group.find({groupName:uploadinggroup})
     if(groupCheck)
     {
-        const newChapter= new chapter ({nameComics:comicname,type: typecomics, chapterImageID: url, 
-            Uploading: {uploader:member.name, group: uploadingroup}, datecreate: dateCreate, coverURL: cover})
-        newChapter.save()
+        const newComic= new comics ({nameComics:comicname,type: typecomics, status: status1,
+            Uploading: {uploader:member.username, group: uploadinggroup}, datecreate: dateCreate, coverURL: cover})
+        newComic.save()
         const isSuccess=true
         return {isSuccess}
     }
@@ -254,5 +255,6 @@ module.exports= {
     returnComicsByUploader,
     searchComic,
     followOneComic,
-    unfollowOneComic
+    unfollowOneComic,
+    createComics
 };
