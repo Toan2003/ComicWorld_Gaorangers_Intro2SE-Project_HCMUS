@@ -100,22 +100,22 @@ function Comic() {
           </li>
           <li ><p >{'>>'}</p></li>
           <li>
-            <Link className='link_comic-item' to={`/comic/main-comic/${idComic}`}>{NameComic}</Link>
+            <Link className='link_comic-item' to={`/type-comic/main-comic/${idComic}`}>{NameComic}</Link>
           </li>
           <li ><p >{'>>'}</p></li>
           <li>
-            <Link className='link_comic-item' to={`/comic/main-comic/${idComic}/${idChapter}`}>{NameComic}</Link>
+            <Link className='link_comic-item' to={`/type-comic/main-comic/${idComic}/${idChapter}`}>{CurChapter}</Link>
           </li>
           <Outlet />
         </ul>
 
         <ul className='title_link'>
           <li>
-            <h3><Link className='title_link-item' to={`/comic/main-comic/${idComic}`}>{NameComic}</Link> </h3>
+            <h3><Link className='title_link-item' to={`/type-comic/main-comic/${idComic}`}>{NameComic}</Link> </h3>
           </li>
           <li className="pass"><div className='pass'>{'>>'}</div></li>
           <li>
-            <h3><Link className='title_link-item' to={`/comic/main-comic/${idComic}/${idChapter}`}>{CurChapter}</Link> </h3>
+            <h3><Link className='title_link-item' to={`/type-comic/main-comic/${idComic}/${idChapter}`}>{CurChapter}</Link> </h3>
           </li>
         </ul>
 
