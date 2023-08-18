@@ -200,7 +200,7 @@ async function unfollowOneComic(idComic, idMember)
         const member= await user.user.findById(idMember)
         if(member)
         {
-            await member.deleteOne({followingcomics: idComic})
+            await member.updateOne({$pull:{followingcomics: idComic}})
             return true
         }
     }
@@ -209,17 +209,22 @@ async function unfollowOneComic(idComic, idMember)
 
 async function returnForOneComic (idMember, idComics)
 {
+    // console.log(idMember)
     const oneComics = await comics.findById(idComics)
     const member = await user.user.findById(idMember)
     let followComics = null
     let isFollowed = false
+    // console.log(member)
     if (member != null) {
         followComics=member.followingcomics
+        // console.log(followComics)
         if (followComics.includes(idComics))
         {
+            // console.log("ffffff")
             isFollowed= true
         }        
     }    
+
     //Check xem có theo dõi truyện hay ko
 
     //return tên chap
