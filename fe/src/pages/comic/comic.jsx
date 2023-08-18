@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react"
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { getChapter } from '../../api/chapter'
-import { getComic } from '../../api/comic'
+import { getComic, postAddFollowComic, postUnfollowComic } from '../../api/comic'
 import { useParams } from 'react-router-dom'
 
 function Comic() {
@@ -13,7 +13,11 @@ function Comic() {
 
   const [chapter, setOneChapter] = useState([])
   const [comic, setComic] = useState([])
+  const [follow, setFollow] = useState([])
+
   // const [allChapter, setAllChapter] = useState([])
+  
+  const userId = localStorage.getItem('id')
 
   async function loadData() {
     // const comic = await getAllChapterOfComic(idComic, null)
@@ -22,6 +26,28 @@ function Comic() {
     // setOneChapter(chapters.data.data)
     setOneChapter(chapters.data.data)
     setComic(comics.data.data.comic)
+    setFollow(comics.data.data.isFollowed)
+  }
+
+  async function handleFollow() {
+    if (follow) {
+      let result = await postUnfollowComic(userId , idComic)
+      console.log(result)
+      
+      if (result.data.isSuccess) {
+        setFollow(false)
+        console.assert('Bạn đã theo dõi truyện này')
+      }
+
+    }
+    else {
+      let result = await postAddFollowComic(userId, idComic)
+      console.log(result)
+      if (result.data.isSuccess) {
+        setFollow(true)
+        console.assert('Bạn đã bỏ theo dõi truyện này')
+      }
+    }
   }
 
   useEffect(() => {
@@ -135,7 +161,7 @@ function Comic() {
             )}
           </Popup>  &nbsp; &nbsp;
           <button type="button" className='btn btn-danger' ><FaChevronRight size={25} color='white' /></button> &nbsp;
-          <button type="button" className='btn btn-success' ><FaHeart size={25} color='white' /> Theo dõi</button>
+          <button onClick={() => handleFollow()} type="button" className='btn btn-success' ><FaHeart size={25} color='white' /> Theo dõi</button>
         </div>
         <div className="comic-page">
           {chapter?.chapterImageID?.map((image, idx) => (

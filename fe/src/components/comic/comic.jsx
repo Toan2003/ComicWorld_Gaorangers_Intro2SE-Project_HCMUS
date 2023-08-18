@@ -4,6 +4,7 @@ import { AiFillStar } from "react-icons/ai";
 import './comic.css'
 
 export function ComicSection({ title, data }) { 
+
     return (
       <div className="section">
         {

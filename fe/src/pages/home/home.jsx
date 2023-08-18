@@ -17,14 +17,14 @@ export default function Home() {
     const comics = await getAllComic()
     const ranks = await getRankingBoard()
 
-    if (id == 'null') {
+    if (id != 'null') {
       // console.log('1')
-      setFollow(undefined)
+      // setFollow(undefined)// console.log('2')
+      const follows = await getFollowedComic(id)
+      setFollow(follows?.data?.data?.followList?.fullComic)
     }
     else {
-      // console.log('2')
-      const follows = await getFollowedComic(id)
-      setFollow(follows.data.data.followList.fullComic)
+      setFollow(undefined)
     }
 
     setComic(comics.data.data.listComic)
