@@ -19,6 +19,8 @@ async function getRankingBoard() {
 
 async function getFollowedComic(idMember) {
     let link = '/comic/getFollowedComic/' + idMember
+    console.log("dddd")
+    console.log(idMember)
     return await axiosClient.get(link);
 }
 

@@ -114,7 +114,7 @@ async function returnFollowingComics(idMember)
     const member= await user.user.findById(idMember)
     
     const comicsFollowing= member.followingcomics
-    console.log(comicsFollowing)
+    // console.log(comicsFollowing)
     if(comicsFollowing)
     {
         for (comic of comicsFollowing){

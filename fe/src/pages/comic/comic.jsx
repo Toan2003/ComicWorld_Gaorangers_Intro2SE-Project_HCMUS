@@ -15,8 +15,12 @@ function Comic() {
    
   async function loadData() {
     // const comic = await getAllChapterOfComic(idComic, null)
-    const chapters = await getChapter(idChapter, null)
+    console.log(idChapter)
+    const chapters = await getChapter(idChapter)
+    console.log(chapters)
     setOneChapter(chapters.data.data)
+
+    console.log(chapters.data.data)
     // setAllChapter(comic.data.data.)
   }
   
