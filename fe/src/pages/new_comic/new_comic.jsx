@@ -52,14 +52,17 @@ function NewComic() {
     console.log(selects_Type)
     console.log(Date)
     console.log(Select_state)
-    console.log(Description)
     console.log(file)
     if(Name==""||Author==""||selects_Type==""||Date==null||Select_state==""
     ||file==null){
       alert("Thông tin trống vui lòng nhập lại!")
     }
-    navigate_to('/');
-    await postCreateComic(Name,Date,Author,'',selects_Type,Select_state,Description,file)
+    else
+    {
+      alert("Upload thành công!")
+      navigate_to('/');
+      await postCreateComic(Name,Date,Author,'',selects_Type,Select_state,file)
+    }
   }
   return (
     
@@ -105,8 +108,6 @@ function NewComic() {
                         <option >{State}</option>
                       ))}
       </select> 
-      <div className='Status'> Mô tả</div>
-      <textarea value={Description} onChange={handleChange_Description} onInput={handleResize_Description} className='Description_Input'  />
       <div className='Status'> Bìa truyện</div>
       <input className='Input_file' type='file' value ={file} onChange={(e)=>setFiles(e.target.value)}/>
       <div class="Button_group">
