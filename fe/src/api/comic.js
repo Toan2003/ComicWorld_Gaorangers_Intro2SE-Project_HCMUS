@@ -35,9 +35,10 @@ async function getComicAccordingToType(type) {
 }
 //type
 
-async function postCreatComic(name,date,group,member,type,status,description,cover) {
+async function postCreateComic(name,date,group,member,type,status,description,cover) {
     let link = '/comic/create'
-    let coverURL = await cloud.uploader.upload(cover, {
+    console.log("hereeeee")
+    let coverURL = await cloud.uploader.uploadSingle(cover, {
         folder: "CoverImage"
     },(error, result) => {
         console.log(error);
@@ -65,7 +66,7 @@ export {
     getFollowedComic,
     getComicAccordingToType,
     getSearhComic,
-    postCreatComic,
+    postCreateComic,
     postAddFollowComic,
     postUnfollowComic
 } 

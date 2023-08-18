@@ -1,7 +1,11 @@
 import './style.css';
-import { Link, Outlet } from 'react-router-dom'
-import {FaHome} from "react-icons/fa"
+import Popup from 'reactjs-popup';
+
+import { Link, Outlet,useNavigate} from 'react-router-dom'
+import { FaHome, FaListUl, FaChevronRight, FaChevronLeft, FaHeart, FaChevronDown, FaRegWindowClose } from "react-icons/fa"
 import React,{useState} from "react"
+import {postCreateComic} from "../../api/comic"
+import { underline } from '@cloudinary/url-gen/qualifiers/textDecoration';
 function NewComic() {
   const [TypesList, SetTypeList] = useState([
     'Lãng mạng',
@@ -25,6 +29,7 @@ function NewComic() {
   const [Description, setDescription] = useState("") //description
   const[file,setFiles]= useState()
   const[Date,setDate]=useState()
+  const navigate = useNavigate();
   const handleChange_Description= (event) => {
     setDescription(event.target.value);
   }
@@ -32,7 +37,15 @@ function NewComic() {
     event.target.style.height = "auto";
     event.target.style.height = `200px`;
   }
-  const SendData = (event) => //Hàm button ở đây đã lấy đủ dữ liệu
+  const navigate_to=(path)=>
+  {
+    navigate(path);
+  }
+  const navigate_to_home=(e)=>
+  {
+    navigate('/');
+  }
+  const SendData = async(event) => //Hàm button ở đây đã lấy đủ dữ liệu
   {
     console.log(Name)
     console.log(Author)
@@ -40,9 +53,13 @@ function NewComic() {
     console.log(Date)
     console.log(Select_state)
     console.log(Description)
-    
     console.log(file)
-    
+    if(Name==""||Author==""||selects_Type==""||Date==null||Select_state==""
+    ||file==null){
+      alert("Thông tin trống vui lòng nhập lại!")
+    }
+    navigate_to('/');
+    await postCreateComic(Name,Date,Author,'',selects_Type,Select_state,Description,file)
   }
   return (
     
@@ -72,6 +89,7 @@ function NewComic() {
       <input type="text" className="Authorinput" value={Author} onChange={(e)=>setAuthor(e.target.value)}/>
       <div className='Status'>Thể Loại</div>
       <select value ={selects_Type} onChange={(e)=>setSelects_Type(e.target.value)}>
+        <option></option>
           {TypesList.map((Type, index) => (
                         <option >{Type}</option>
                       ))}
@@ -82,6 +100,7 @@ function NewComic() {
       </div>
       <div className='Status'> Tình trạng</div>
        <select value ={Select_state} onChange={(e)=>set_Selects_state(e.target.value)}>
+       <option></option>
        {StateList.map((State, index) => (
                         <option >{State}</option>
                       ))}
@@ -91,8 +110,8 @@ function NewComic() {
       <div className='Status'> Bìa truyện</div>
       <input className='Input_file' type='file' value ={file} onChange={(e)=>setFiles(e.target.value)}/>
       <div class="Button_group">
-            <button className='Button_accept' onClick={SendData}>Save</button>
-            <button className='Button_accept'>Cancel</button>
+            <button className='Button_accept' onClick={SendData} >Save</button>
+            <button className='Button_accept' onClick={navigate_to_home}>Cancel</button>
       </div>
     </div>
     </div>
