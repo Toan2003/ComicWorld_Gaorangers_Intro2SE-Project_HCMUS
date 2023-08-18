@@ -59,19 +59,19 @@ function NewComic() {
     ||file==null){
       alert("Thông tin trống vui lòng nhập lại!")
     }
-    let f = await convertBase64(file[0])
-    // console.log(f)
-    let result = await postCreateComic(Name,Date,Author, id,selects_Type,Select_state,f)
-    console.log(result.data.data.isSuccess)
-    if (result.data.isSuccess) {
-      alert("Thông tin sai vui lòng nhập lại!")
-    }
-    else
-    {
-      
-      alert("Upload thành công!")
-      navigate_to('/');
-      
+    else{
+        let f = await convertBase64(file[0])
+        // console.log(f)
+        let result = await postCreateComic(Name,Date,Author, id,selects_Type,Select_state,f)
+        console.log(result.data.data.isSuccess)
+        if (result.data.isSuccess) {
+          alert("Thông tin sai vui lòng nhập lại!")
+        }
+        else
+        {
+          alert("Upload thành công!")
+          navigate_to('/');
+        }
     }
   }
   return (
