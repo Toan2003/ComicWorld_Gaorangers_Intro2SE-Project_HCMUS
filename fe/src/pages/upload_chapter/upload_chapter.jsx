@@ -1,15 +1,18 @@
 import './upload_chapter.css'
 import { BiSolidDownArrow } from "react-icons/bi";
 import { BsImage } from "react-icons/bs";
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { getReturnComicByUploader } from '../../api/comic';
 
 export default function UploadChapter() {
     const [fileList, setFileList] = useState(null);
     const inputRef = useRef(null);
     const [chapterName, setChapterName] = useState("");
-    // const [comicList, setComicList] = useState([]);
+    const [comicList, setComicList] = useState([]);
     const [seclected, setSeclected] = useState("Chọn tên truyện");
-    
+    const id = localStorage.getItem('id');
+
+
     let inputHandler = (e) => {
         setChapterName(e.target.value);
     };
@@ -26,18 +29,26 @@ export default function UploadChapter() {
         setSeclected(e.target.innerText);
     };
 
-    const comicList = [
-        {
-            name : 'Lee Doo Na'
-        },
-        {
-            name : 'Cạm bẫy'
-        },
-        {
-            name : 'Your throne'
-        }
-    ]
+    const handleSubmit = async (e) => {
+        
+    }
 
+    // const comicList = [
+    //     {
+    //         name : 'Lee Doo Na'
+    //     },
+    //     {
+    //         name : 'Cạm bẫy'
+    //     },
+    //     {
+    //         name : 'Your throne'
+    //     }
+    // ]
+
+    useEffect(async () => {
+        const result = await getReturnComicByUploader( id )
+        setComicList(result.data.data.listComic)
+    },[])
     // console.log(seclected);
     // console.log(chapterName);
     // console.log(fileList);
