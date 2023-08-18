@@ -6,6 +6,8 @@ import { useState, useRef } from 'react';
 export default function UploadChapter() {
     const [fileList, setFileList] = useState(null);
     const inputRef = useRef(null);
+    // const [comicList, setComicList] = useState([]);
+    const [seclected, setSeclected] = useState("");
 
     const handleFileChange = (e) => {
         setFileList(e.target.files);
@@ -15,14 +17,46 @@ export default function UploadChapter() {
         inputRef.current?.click();
     };
 
+    const handleSeclectComic = (e) => {
+        setSeclected(e.target.innerText);
+    };
+
+    const comicList = [
+        {
+            name : 'Lee Doo Na'
+        },
+        {
+            name : 'Cạm bẫy'
+        },
+        {
+            name : 'Your throne'
+        }
+    ]
+
+    // console.log(seclected);
+
     return (
         <div className="upload_chapter-container">
             <div className="upload_chapter-body">
                 <h2 className="upload_chapter-title">THÊM CHAPTER</h2>
                 <h3 className="upload_chapter-sub-title">Tên truyện</h3>
-                <ul className="upload_chapter-list">Chọn tên truyện 
+                <div className="upload_chapter-list-wrap">
+                    Chọn tên truyện 
+                    {
+                        comicList.length > 0 ?
+                        (
+                            <ul className="upload_chapter-list">
+                            {
+                            comicList.map((cur, index) => 
+                            <li onClick={(e) => handleSeclectComic(e)} className="upload_chapter-list_item" key={index }>{cur.name}</li>)
+                            }
+                            </ul>
+                        )
+                        : null
+                    }
+                    
                     <BiSolidDownArrow className="upload_chapter-list-icon"/>
-                </ul>
+                </div>
                 <h3 className="upload_chapter-sub-title">Tên chapter</h3>
                 <input type="text" className="upload_chapter-input" />
 
@@ -40,21 +74,26 @@ export default function UploadChapter() {
                         {
                             fileList ?
                             (
-                                <div className="upload_chapter-file-box">
-                                    {
-                                        Object.keys(fileList).map((obj, i) => 
-                                        <div className="upload_chapter-file" key={i}>
-                                            <p className="upload_chapter-file-text">{fileList[obj].name}</p>
-                                        </div>)
-                                    }
-                                </div>
+                                <>
+                                    <div className="upload_chapter-file-box">
+                                        {
+                                            Object.keys(fileList).map((obj, i) => 
+                                            <div className="upload_chapter-file" key={i}>
+                                                <p className="upload_chapter-file-text">{fileList[obj].name}</p>
+                                            </div>)
+                                        }
+                                    </div>
+                                    <button className='upload_chapter-button' onClick={handleUploadClick}>Chọn lại</button>
+                                </>
                             )
                                 :
                             (
-                                <BsImage className="upload_chapter-upload-icon"/>
+                                <>
+                                    <BsImage className="upload_chapter-upload-icon"/>
+                                    <button className='upload_chapter-button' onClick={handleUploadClick}>Tải ảnh</button>
+                                </>
                             )
                         }
-                        <button className='upload_chapter-button' onClick={handleUploadClick}>Tải ảnh</button>
                     </span>
                 </div>
 
