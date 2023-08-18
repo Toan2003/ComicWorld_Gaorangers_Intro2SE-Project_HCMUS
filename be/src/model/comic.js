@@ -155,12 +155,13 @@ async function returnComicsByUploader(iduploader)
 {
     const nameMember= await user.user.findById(iduploader)
     if(nameMember){
-        const groupMember = await group.findOne({Uploader:nameMember.username})
+        const groupMember = await group.group.findOne({Uploader:nameMember.username})
         if(groupMember){
             const comicUpload= await comics.find({"Uploading.group":groupMember.groupName})
             return comicUpload
         }
     }
+    return []
 } 
 
 async function searchComic(name)
