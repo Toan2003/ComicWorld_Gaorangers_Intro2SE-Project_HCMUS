@@ -6,6 +6,7 @@ import { FaHome, FaListUl, FaChevronRight, FaChevronLeft, FaHeart, FaChevronDown
 import React,{useState} from "react"
 import {postCreateComic} from "../../api/comic"
 import { underline } from '@cloudinary/url-gen/qualifiers/textDecoration';
+import {convertBase64} from '../../api/convertImage'
 function NewComic() {
   const [TypesList, SetTypeList] = useState([
     'Lãng mạng',
@@ -47,21 +48,30 @@ function NewComic() {
   }
   const SendData = async(event) => //Hàm button ở đây đã lấy đủ dữ liệu
   {
-    console.log(Name)
-    console.log(Author)
-    console.log(selects_Type)
-    console.log(Date)
-    console.log(Select_state)
-    console.log(file)
+    // console.log(Name)
+    // console.log(Author)
+    // console.log(selects_Type)
+    // console.log(Date)
+    // console.log(Select_state)
+    // console.log(file)
+    const id = localStorage.getItem('id')
     if(Name==""||Author==""||selects_Type==""||Date==null||Select_state==""
     ||file==null){
       alert("Thông tin trống vui lòng nhập lại!")
     }
+    let f = await convertBase64(file[0])
+    // console.log(f)
+    let result = await postCreateComic(Name,Date,Author, id,selects_Type,Select_state,f)
+    console.log(result.data.data.isSuccess)
+    if (result.data.isSuccess) {
+      alert("Thông tin sai vui lòng nhập lại!")
+    }
     else
     {
+      
       alert("Upload thành công!")
       navigate_to('/');
-      await postCreateComic(Name,Date,Author,'',selects_Type,Select_state,file)
+      
     }
   }
   return (
