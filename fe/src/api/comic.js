@@ -3,8 +3,8 @@ import {axiosClient} from "./axiosConnect"
 import {cloud} from "./axiosConnect"
         
 async function getComic(idComic, idMember) { 
-    let link = '/comic/getOneComic/' + idComic
-    return await axiosClient.get(link,idMember);
+    let link = '/comic/getOneComic/' + idComic + '/' + idMember
+    return await axiosClient.get(link);
 }
 
 async function getAllComic() {

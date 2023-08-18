@@ -1,5 +1,5 @@
 import { Link, Outlet } from 'react-router-dom'
-import { getComic, getRankingBoard } from '../../api/comic'
+import { getComic, getRankingBoard, postAddFollowComic, postUnfollowComic } from '../../api/comic'
 import './styles.css'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
@@ -9,17 +9,49 @@ export default function MainComic() {
   const { id } = useParams()
   const [comic, setComic] = useState([])
   const [rank, setRank] = useState([])
+  const [follow, setFollow] = useState([])
+  // const [userId, setUserId] = useState(null)
+  // const userId = '64d8ed909e43edfe49b84fd9'
+  const userId = localStorage.getItem('id')
+  
 
   async function loadData() {
-    const COMIC = await getComic(id, null)
+    // localStorage.getItem( 'id') != 'null' ? setUserId(localStorage.getItem('id')) : setUserId(null)
+    // console.log(userId)
+    // console.log(COMIC.data)
+    const COMIC = await getComic(id, userId)
     const RANK = await getRankingBoard()
     setComic(COMIC.data.data.comic)
     setRank(RANK.data.data.rankingList)
+    setFollow(COMIC.data.data.isFollowed)
   }
+  // console.log(follow)
+
+
+  async function handleFollow() {
+    if (follow) {
+      let result = await postUnfollowComic(userId , id)
+      // console.log(result)
+      
+      if (result.data.isSuccess) {
+        setFollow(false)
+      }
+
+    }
+    else {
+      let result = await postAddFollowComic(userId, id)
+      // console.log(result)
+      if (result.data.isSuccess) {
+        setFollow(true)
+      }
+    }
+  }
+
+
 
   useEffect(() => {
     loadData()
-  }, [id])
+  }, [])
 
   const content = 'Đang cập nhật'
   const comicName = comic?.nameComics
@@ -28,6 +60,8 @@ export default function MainComic() {
   const status = comic?.status
   const type = comic?.type
   const view = comic?.view
+
+  // console.log(follow)
 
   return (
     <div className="main-comic">
@@ -72,7 +106,14 @@ export default function MainComic() {
                 </div>
               </div>
               <div className='title-button'>
-                <button type='button' className='btn btn-success'>Theo dõi</button>
+                {
+                  follow ?
+                  (
+                    <button type='button' onClick={() =>handleFollow()} className='btn btn-success'>Bỏ theo dõi</button>
+                  )
+                  :
+                  <button type='button' onClick={() =>handleFollow()} className='btn btn-success'>Theo dõi</button>
+                }
                 <button type='button' className='btn btn-primary'>Đọc từ đầu</button>
                 <button type='button' className='btn btn-primary'>Đọc mới nhất</button>
               </div>
@@ -95,9 +136,9 @@ export default function MainComic() {
             </div>
             <div className='list-chapter-content'>
               {
-                comic?.chapters?.map((chapter) => {
+                comic?.chapters?.map((chapter, index) => {
                   return (
-                    <div className='row'>
+                    <div className='row' key={index}>
                       <Link className='col' id={chapter?.chaptersID} to={`/type-comic/main-comic/${id}/${chapter?.chaptersID}`}>{chapter.chaptersName}</Link> 
                       <div className='col'>1 ngày trước</div>
                       <div className="col">N/A</div>

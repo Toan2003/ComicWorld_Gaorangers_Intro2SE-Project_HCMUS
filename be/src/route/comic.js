@@ -3,7 +3,7 @@ const controller = require('../controller/comic')
 const express = require('express')
 const route = express.Router()
 
-route.get('/comic/getOneComic/:idComic', controller.getOneComic)
+route.get('/comic/getOneComic/:idComic/:idMember', controller.getOneComic)
 route.get('/comic/getAllComic', controller.getAllComic)
 route.get('/comic/getRankingBoard', controller.getRankingBoard)
 route.get('/comic/getFollowedComic/:idMember', controller.getFollowedComic)

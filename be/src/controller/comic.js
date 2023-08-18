@@ -2,7 +2,7 @@ const database = require('../model/comic')
 
 async function getOneComic(req,res) {
     let idComic = req.params.idComic
-    let idMember = req.body.idMember
+    let idMember = req.params.idMember
     // console.log(idMember)
     // mongoose.ObjectId.isValid(idMember)
     if (idComic == '' || idComic == null) {
@@ -16,13 +16,16 @@ async function getOneComic(req,res) {
     if (idComic.length != 24) {
         return res.json({
             isSuccess: false,
-            message: 'idComic is invalid',
+            message: 'idComic or idMember is invalid',
             status: res.statusCode,
             data: ''
         })
     }
+    if (idMember.length != 24) {
+        idMember = null
+    }
     let result = await database.returnForOneComic(idMember,idComic)
-    console.log(result)
+    // console.log(result)
     if (result.oneComics) {
         return res.json({
             isSuccess: true,
@@ -256,7 +259,7 @@ async function postAddFollowComic(req, res) {
             data: ''
         });
     }
-    let result = await database.addFollowComic(idMember, idComic)
+    let result = await database.followOneComic(idComic, idMember)
     if (result) {
         return res.json({
             isSuccess: true,
@@ -278,7 +281,7 @@ async function postAddFollowComic(req, res) {
 
 async function postCancelFollowComic(req, res) {
     let {idMember,idComic} = req?.body
-    console.log(idMember, idComic)
+    // console.log(idMember, idComic)
     if (idMember == null || idComic == null || idMember == '' || idComic == '') {
         return res.json({
             isSuccess: false,
@@ -295,7 +298,7 @@ async function postCancelFollowComic(req, res) {
             data: ''
         });
     }
-    let result = await database.cancelFollowComic(idMember, idComic)
+    let result = await database.unfollowOneComic(idComic, idMember)
     if (result) {
         return res.json({
             isSuccess: true,
@@ -307,7 +310,7 @@ async function postCancelFollowComic(req, res) {
         });
     } else {
         return res.json({
-            isSuccess: true,
+            isSuccess: false,
             message: 'fail to cancel following',
             statusbar: res.statusCode,
             data: ''

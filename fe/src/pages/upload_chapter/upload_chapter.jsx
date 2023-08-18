@@ -6,8 +6,13 @@ import { useState, useRef } from 'react';
 export default function UploadChapter() {
     const [fileList, setFileList] = useState(null);
     const inputRef = useRef(null);
+    const [chapterName, setChapterName] = useState("");
     // const [comicList, setComicList] = useState([]);
     const [seclected, setSeclected] = useState("Chọn tên truyện");
+    
+    let inputHandler = (e) => {
+        setChapterName(e.target.value);
+    };
 
     const handleFileChange = (e) => {
         setFileList(e.target.files);
@@ -34,6 +39,8 @@ export default function UploadChapter() {
     ]
 
     // console.log(seclected);
+    // console.log(chapterName);
+    // console.log(fileList);
 
     return (
         <div className="upload_chapter-container">
@@ -58,7 +65,7 @@ export default function UploadChapter() {
                     <BiSolidDownArrow className="upload_chapter-list-icon"/>
                 </div>
                 <h3 className="upload_chapter-sub-title">Tên chapter</h3>
-                <input type="text" className="upload_chapter-input" />
+                <input type="text" onChange={(e) => inputHandler(e)} className="upload_chapter-input" />
 
                 <div className="upload_chapter-upload">
                     <h3 className="upload_chapter-sub-title">File truyện</h3>    
