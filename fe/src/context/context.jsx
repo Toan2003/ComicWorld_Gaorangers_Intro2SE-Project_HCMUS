@@ -43,6 +43,7 @@ export function AuthProvider({children}) {
       setLocalStorage(checkLogin.isSuccess, checkLogin.data.id, checkLogin.data.type, email)
     } else {
       setLocalStorage(false, null, null, null)
+      alert(checkLogin.message)
     }
     
     setEmail("");
