@@ -1,7 +1,9 @@
 import './style.css';
 import { Link, Outlet } from 'react-router-dom'
 import {FaHome} from "react-icons/fa"
+import {postCreateComic} from '../../api/comic'
 import React,{useState} from "react"
+import {convertBase64} from "../../api/convertImage"
 function NewComic() {
   const [TypesList, SetTypeList] = useState([
     'Lãng mạng',
@@ -32,17 +34,17 @@ function NewComic() {
     event.target.style.height = "auto";
     event.target.style.height = `200px`;
   }
-  const SendData = (event) => //Hàm button ở đây đã lấy đủ dữ liệu
+  const SendData = async (event) => //Hàm button ở đây đã lấy đủ dữ liệu
   {
-    console.log(Name)
-    console.log(Author)
-    console.log(selects_Type)
-    console.log(Date)
-    console.log(Select_state)
-    console.log(Description)
-    
-    console.log(file)
-    
+    // console.log(Name)
+    // console.log(Author)
+    // console.log(selects_Type)
+    // console.log(Date)
+    // console.log(Select_state)
+    // console.log(Description)
+    // console.log(file)
+    let f = await convertBase64(file[0])
+    await postCreateComic(Name,Date,Author,'',selects_Type,Select_state,Description,f)
   }
   return (
     
@@ -89,7 +91,7 @@ function NewComic() {
       <div className='Status'> Mô tả</div>
       <textarea value={Description} onChange={handleChange_Description} onInput={handleResize_Description} className='Description_Input'  />
       <div className='Status'> Bìa truyện</div>
-      <input className='Input_file' type='file' value ={file} onChange={(e)=>setFiles(e.target.value)}/>
+      <input className='Input_file' type='file' onChange={(e)=>setFiles(e.target.files)}/>
       <div class="Button_group">
             <button className='Button_accept' onClick={SendData}>Save</button>
             <button className='Button_accept'>Cancel</button>

@@ -1,4 +1,11 @@
 const database = require('../model/comic')
+const Cloudinary =  require('cloudinary').v2;
+          
+Cloudinary.config({ 
+    cloud_name: 'comicimage',
+    api_key: '648687645831283', 
+    api_secret: 'JC3Pf5ilCtzv0bJj4TV00pwH4cI'  
+});
 
 async function getOneComic(req,res) {
     let idComic = req.params.idComic
@@ -160,10 +167,19 @@ async function getSearchComic(req,res) {
     } 
 }
 
-async function postCreatComic(req,res) {
-    let {name,date,group,member,type,status,description,coverURL} = req.body
-    
-    if (name == null || date == null || group == null || member == null || type == null || status == null || description == null || coverURL == null) {
+async function postCreateComic(req,res) {
+    // console.log("here")
+    // let a = req.body.file
+    let {name,date,group,idMember,type,status,file} = req.body
+    // console.log(req.body)
+    const result1 = await Cloudinary.uploader
+    .upload(file,{
+        folder: 'CoverImage'
+    })
+    .catch(error=>console.log(error));
+    console.log(result1)
+    coverURL = result1.secure_url
+    if (name == null || date == null || group == null || idMember == null || type == null || status == null || coverURL == null) {
         return res.json({
             isSuccess: false,
             message: 'name, date, author, type, status, description, coverURL is missing',
@@ -171,6 +187,8 @@ async function postCreatComic(req,res) {
             data: ''
         })
     }
+    // idMember = '64d8ed6698409d70ef8a58c6'
+    // group = 'Imyourhope'
     if (idMember.length != 24) {
         return res.json({
             isSuccess: false,
@@ -179,12 +197,12 @@ async function postCreatComic(req,res) {
             data: ''
         })
     }
-    let result = await database.createComic(name,type,status,date,group,idMember,coverURL)
+    let result = await database.createComics(name,type,status,date,group,idMember,coverURL)
     .catch(err => {
         console.log(err)
         return res.json({
             isSuccess: false,
-            message:'Failed to create',
+            message:'Failed to create becasue of database',
             status: res.statusCode,
             data: ''
         });
@@ -315,6 +333,47 @@ async function postCancelFollowComic(req, res) {
     }
 }
 
+async function getReturnComicByUploader(req,res) {
+    let idUploader = req.params.idUploader;
+    console.log(idUploader);
+    if (idUploader == null || idUploader.length != 24 || idUploader == '') {
+        return res.json({
+            isSuccess: false,
+            message: 'idMember is missing',
+            status: res.statusCode,
+            data: ''
+        })
+    }
+    let result = await database.returnComicsByUploader(idUploader)
+    .catch((err)=>{
+        console.log(err)
+        return res.json({
+            isSuccess: false,
+            message:'fail because of database',
+            status: res.statusCode,
+            data: ''
+        })
+    })
+    
+    if (result != null) {
+        return res.json({
+            isSuccess: true,
+            message:'request Successfully',
+            status: res.statusCode,
+            data: {
+                listComic: result
+            }
+        })
+    } else {
+        return res.json({
+            isSuccess: false,
+            message:'request Failure',
+            status: res.statusCode,
+            data: ''
+        })
+    }
+}
+
 module.exports = {
     getOneComic,
     getAllComic,
@@ -322,8 +381,9 @@ module.exports = {
     getFollowedComic,
     getSearchComic,
     getComicAccordingToType,
-    
-    postCreatComic,
+    getReturnComicByUploader,
+
+    postCreateComic,
     postAddFollowComic,
     postCancelFollowComic,
 }
