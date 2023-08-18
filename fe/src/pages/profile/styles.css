@@ -70,61 +70,82 @@
   border-bottom: 5px solid red;
 }
 
-.information .account-infor {
-  display: flex;
-  gap: 1vw;
-}
-
 .information-item {
-  padding-left: 1vw;
-  margin-top: 2vw;  
-  border-left: 2px solid red;
+  margin-top: 3vh;
 }
 
-.comic-follow-list .col {
+.information-item .information-item-name {
+  border-bottom: 3px solid red;
+  max-width: 250px;
+  width: 100%;
+  padding-bottom: 0.5vh;
   font-weight: 700;
-  margin-top: 1vw;
+}
+
+.profile-box-account {
+  border-radius: 15px;
+  border: none;
+  background-color: antiquewhite;
+  max-width: 600px;
+  width: 100%;
+  padding: 1vh 0 1vh 0
+}
+
+.box-account-item {
+  padding: 10px 0 0 10px;
+}
+
+.box-account-item-1, .box-account-item-2 {
   font-size: 15px;
+}
+
+.box-account-item-1 {
+  font-weight: 600
+}
+
+.profile-list-followed-comic,
+.profile-list-upload-comic {
+  max-width: 600px;
+}
+
+.profile-list-followed-header,
+.profile-list-upload-header {
+  color: white;
   background-color: black;
-  color: var(--primary-color);
-  padding-left: 4vh;
-  /* padding */
 }
 
-.comic-follow-list-item-row {
-  margin-top: 10px;
-  max-width: 700px;
+.comic-follow-item-col,
+.comic-upload-item-col {
+  max-width: 400px;
   width: 100%;
-}
-
-.comic-follow-item-col {
-  display: flex;
-  gap: 1vw;
-}
-
-.comic-follow-item-col-1 {
-  font-size: 20px;
-}
-
-.btn-follow {
-  max-width: 140px;
-  width: 100%;
-}
-
-.comic-follow-item-name {
-  font-size: 20px;
+  padding: 10px;
   text-align: center;
 }
 
-.comic-follow-item-col .comic-follow-item-image{
-  max-width: 30px
+.comic-follow-item-col:last-child,
+.comic-upload-item-col:last-child {
+  text-align: center;
 }
 
-.box-account {
-  width: 50%;
-  margin-top: 1vw;
-  background-color: antiquewhite;
-  padding: 1vw;
-  border: none;
-  border-radius: 15px;
+.comic-follow-item-image {
+  width: 100%;
+  max-width: 40px;
 }
+
+.comic-follow-item-1 {
+  display: flex;
+}
+
+.comic-follow-item-1 .comic-follow-item-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
+  margin-left: 1vw;
+}
+
+.comic-follow-list-item-row {
+  border: 1px solid black;
+}
+
+
+

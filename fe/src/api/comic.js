@@ -80,5 +80,6 @@ export {
     getSearhComic,
     postCreateComic,
     postAddFollowComic,
-    postUnfollowComic
+    postUnfollowComic,
+    getReturnComicByUploader
 } 
