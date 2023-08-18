@@ -9,6 +9,7 @@ import { getComic, postAddFollowComic, postUnfollowComic } from '../../api/comic
 import { useParams } from 'react-router-dom'
 
 function Comic() {
+
   const { idComic, idChapter } = useParams()
 
   const [chapter, setOneChapter] = useState([])
@@ -77,6 +78,7 @@ function Comic() {
   // ]);
   // const AvatarImage = './avatar'
   // const Username = "abc123"
+  const[searchInput,setSearchInput]= useState("")
   const [comment, setComment] = useState("")
   const handleChange = (event) => {
     setComment(event.target.value);
@@ -147,15 +149,16 @@ function Comic() {
                     }} > <FaRegWindowClose size={35} />  </button>
                 </div>
                 <div className='SearchChap_Popup'>
-                  <input type="text" className="SearchChapBar_Popup" placeholder='Nhập số chap...'></input>
+                  <input type="text" className="SearchChapBar_Popup" placeholder='Nhập số chap...' value={searchInput} onChange={(e)=>setSearchInput(e.target.value)}></input>
+                    
                 </div>
 
                 <div className='Body_Modal'>
-                  <div className='Chap_Pos'>
-                    {ComicsChapter.map((chapter, index) => (
-                      <button className='Chap_but'>{chapter}</button>
+                  {/* <div className='Chap_Pos'>
+                      comic?.chapters?.map((chapter, index) => (
+                      <Link className='Chap_but' id={chapter?.chaptersID} to={`/type-comic/main-comic/${id}/${chapter?.chaptersID}`}> {chapter.chaptersName}</Link>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             )}
