@@ -105,7 +105,7 @@ async function getRankingBoard(req,res) {
 
 async function getFollowedComic(req,res) {
     let id = req.params.idMember
-    console.log(id)
+    // console.log(id)
     if (id.length != 24) {
         return res.json({
             isSuccess: false,
@@ -138,7 +138,7 @@ async function getFollowedComic(req,res) {
 }
 async function getSearchComic(req,res) {
     let {name} = req.query
-    console.log(name)
+    // console.log(name)
     if (name == '' || name == null){
         return res.json({
             isSuccess: false,
@@ -149,8 +149,8 @@ async function getSearchComic(req,res) {
     }
     let result = await database.searchComic(name)
     .catch(err => {
-        console.log('loi')
-        console.log(err)
+        // console.log('loi')
+        // console.log(err)
         return res.json({
             isSuccess: false,
             message:'request Failure',
@@ -158,8 +158,8 @@ async function getSearchComic(req,res) {
             data: ''
     })})
     if (result) {
-        console.log('thanhcong')
-        console.log(result)
+        // console.log('thanhcong')
+        // console.log(result)
         return res.json({
             isSuccess: true,
             message:'request Successfully',
@@ -181,7 +181,7 @@ async function postCreateComic(req,res) {
         folder: 'CoverImage'
     })
     .catch(error=>console.log(error));
-    console.log(result1)
+    // console.log(result1)
     coverURL = result1.secure_url
     if (name == null || date == null || group == null || idMember == null || type == null || status == null || coverURL == null) {
         return res.json({
@@ -261,7 +261,7 @@ async function getComicAccordingToType(req,res) {
 
 async function postAddFollowComic(req, res) {
     let {idMember,idComic} = req?.body
-    console.log(idMember, idComic)
+    // console.log(idMember, idComic)
     if (idMember == null || idComic == null || idMember == '' || idComic == '') {
         return res.json({
             isSuccess: false,
@@ -339,7 +339,7 @@ async function postCancelFollowComic(req, res) {
 
 async function getReturnComicByUploader(req,res) {
     let idUploader = req.params.idUploader;
-    console.log(idUploader);
+    // console.log(idUploader);
     if (idUploader == null || idUploader.length != 24 || idUploader == '') {
         return res.json({
             isSuccess: false,
@@ -378,6 +378,86 @@ async function getReturnComicByUploader(req,res) {
     }
 }
 
+async function postAddComment(req, res) {
+    let {idMember, idComic, content} = req.body
+    if (idMember == null || idComic == null) {
+        res.json({
+            isSuccess: false,
+            message: 'idComic or idMember is missing',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    }
+    if (content == null || content.length == 0) {
+        res.json({
+            isSuccess: false,
+            message: 'content is missing',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    }
+    let result = await database.newComment(idComic, idMember, content)
+    if (result) {
+        return res.json({
+            isSuccess: true,
+            message: 'comment successfully',
+            statusbar: res.statusCode,
+            data: ""
+        })
+    } else {
+        return res.json({
+            isSuccess: false,
+            message: 'fail to comment',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    }
+}
+
+async function postRating(req, res) {
+    let {idMember, idComic,star} = req.body
+    if (idMember == null || idComic == null) {
+        res.json({
+            isSuccess: false,
+            message: 'idComic or idMember is missing',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    }
+    if (idMember.length != 24 || idComic.length != 24) {
+        res.json({
+            isSuccess: false,
+            message: 'idComic or idMember is invalid',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    }
+    if (star <0 || star > 5) {
+        res.json({
+            isSuccess: false,
+            message:'star is invalid',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    } 
+    let result = await database.ratingComic(idComic, idMember, star)
+    if (result) {
+        return res.json({
+                    isSuccess: true,
+                    message: 'rating successfully',
+                    statusbar: res.statusCode,
+                    data: ""
+                })
+    } else {
+        return res.json({
+            isSuccess: false,
+            message: 'fail to rating',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    }
+}
+
 module.exports = {
     getOneComic,
     getAllComic,
@@ -390,4 +470,7 @@ module.exports = {
     postCreateComic,
     postAddFollowComic,
     postCancelFollowComic,
+
+    postAddComment,
+    postRating
 }

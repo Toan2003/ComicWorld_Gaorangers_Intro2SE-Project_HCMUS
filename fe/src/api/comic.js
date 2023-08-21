@@ -68,8 +68,18 @@ async function postAddFollowComic(idMember,idComic) {
     return await axiosClient.post(link, {idMember,idComic})
 }
 async function postUnfollowComic(idMember,idComic) {
-    let links = '/comic/unfollowComic'
-    return await axiosClient.post(links, {idMember,idComic})
+    let link = '/comic/unfollowComic'
+    return await axiosClient.post(link, {idMember,idComic})
+}
+
+async function postAddComment(idComic ,idMember,content) {
+    let link ='/comic/addComment'
+    return await axiosClient.post(link, {idMember, idComic, content})
+}
+
+async function postRating(idMember,idComic, star) {
+    let link = '/comic/rating'
+    return await axiosClient.post(link, {idMember, idComic, star})
 }
 
 export {
@@ -82,5 +92,7 @@ export {
     postCreateComic,
     postAddFollowComic,
     postUnfollowComic,
-    getReturnComicByUploader
+    getReturnComicByUploader,
+
+    postAddComment
 } 

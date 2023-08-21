@@ -97,8 +97,6 @@ async function returnForHomePage(idMember){
     return {view, nameComics, idComics}
 }
 
-
-
 async function returnComments(idComics)
 {
     const oneComics = await comics.findById(idComics)
@@ -121,7 +119,7 @@ async function returnFollowingComics(idMember)
             const temp=await comics.findById(comic)
             fullComic.push(temp)
         }
-        console.log(fullComic)
+        // console.log(fullComic)
     }
      
     return {comicsFollowing, fullComic}
@@ -131,7 +129,7 @@ async function returnFollowingComics(idMember)
 async function createComics(comicname, typecomics, status1, dateCreate, uploadinggroup, uploadid, cover)
 {
     const member= await user.user.findById(uploadid)
-    console.log(member)
+    // console.log(member)
     const groupCheck=await group.group.find({groupName:uploadinggroup})
     if(groupCheck)
     {
@@ -209,7 +207,7 @@ async function unfollowOneComic(idComic, idMember)
 
 async function returnForOneComic (idMember, idComics)
 {
-    // console.log(idMember)
+    // console.log(idComics)
     const oneComics = await comics.findById(idComics)
     const member = await user.user.findById(idMember)
     let followComics = null

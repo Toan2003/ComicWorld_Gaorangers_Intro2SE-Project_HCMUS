@@ -6,6 +6,6 @@ const route = express.Router()
 route.get('/chapter/getOneChapter/:idChapter', controller.getChapter)
 route.get('/chapter/getAllChapterOfComic/:idComic', controller.getAllChapter)
 
-route.post('/chapter/createChapter', controller.createChapter)
+route.post('/chapter/createChapter', controller.postCreateChapter)
 
 module.exports = route

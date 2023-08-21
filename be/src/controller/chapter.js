@@ -1,5 +1,5 @@
 const database = require('../model/chapter');
-const { returnOneComic } = require('../model/comic');
+const { returnForOneComic } = require('../model/comic');
 const Cloudinary =  require('cloudinary').v2;
           
 Cloudinary.config({ 
@@ -10,12 +10,7 @@ Cloudinary.config({
 
 async function getChapter(req,res) {
     let id= req.params.idChapter
-<<<<<<< HEAD
-    console.log(id)
-    if (id == '' || id == null || id.length!=24 ) {
-=======
     if (id == '' || id == null || id.length != 24) {
->>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
         return res.json({
             isSuccess: false,
             message: 'idChapter is missing',
@@ -84,9 +79,10 @@ async function getAllChapter(req,res) {
     }
 }
 
-async function createChapter(res,req) {
-    let {idComic, listChapter, chapterName} = req.body
-    console.log(idComic, listChapter, chapterName)
+async function postCreateChapter(req,res) {
+    // console.log(req.body)
+    let {idComic,idMember,listChapter, chapterName} = req.body
+    console.log(idComic)
     if (idComic == '' || idComic == null) {
         return res.json({
             isSuccess: false,
@@ -95,34 +91,62 @@ async function createChapter(res,req) {
             data: ''
         })
     }
-    if (idComic.length!= 24) {
+    if (idComic.length!= 24 || idMember.length!= 24) {
         return res.json({
             isSuccess: false,
-            message: 'idComic is invalid',
+            message: 'idComic or idMember is invalid',
             status: res.statusCode,
             data: ''
         })
     }
-    let {isSuccess} = await returnOneComic(idComic)
-    if (isSuccess) {
-        return res.json({
-            isSuccess: false,
-            message: 'database can not work',
-            status: res.statusCode,
-            data: ''
+    list = []
+    for (let i = 0; i < listChapter.length; i++){
+        let result = await Cloudinary.uploader
+        .upload(listChapter[i],{
+            folder: chapterName
         })
-    } else {
-        return res.json({
-            isSuccess: false,
-            message: 'comic is not existing',
-            status: res.statusCode,
-            data: ''
-        })
+        .catch(error=>{
+            console.log(error)
+            return res.json({
+                isSuccess: false,
+                message: "can not upload to cloud",
+                status: res.statusCode,
+                data: ''
+            })
+        });
+        list.push(result.secure_url)
     }
+    console.log(list)
+    result = await database.postCreateChapter().catch((error)=> {
+        console.log(error)
+        return res.json({
+            isSuccess: false,
+            message: 'chapter is not created because of database',
+            status: res.statusCode,
+            data: ''
+        })
+    })
+    return res.json({
+        isSuccess: true,
+        message: 'chapter is created',
+        status: res.statusCode,
+        data: ''
+    })
+    // let isSuccess = true
+    // if (isSuccess) {
+       
+    // } else {
+    //     return res.json({
+    //         isSuccess: false,
+    //         message: 'comic is not existing',
+    //         status: res.statusCode,
+    //         data: ''
+    //     })
+    // }
 }
 
 module.exports = {
     getAllChapter, 
     getChapter,
-    createChapter
+    postCreateChapter
 }

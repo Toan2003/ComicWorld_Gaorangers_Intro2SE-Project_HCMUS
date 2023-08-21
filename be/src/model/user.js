@@ -64,6 +64,6 @@ async function returnUsername(name)
     return checkUser
     
 }
-
-
-module.exports= {user, login, signup, changeMemberRole};
+module.exports= {user, login, signup, 
+    changeMemberRole,
+    returnUsername};
