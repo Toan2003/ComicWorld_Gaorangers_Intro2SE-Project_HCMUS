@@ -10,21 +10,27 @@ async function getAllChapterOfComic(idComic) {
     return await axiosClient.get(link);
 }
 
-async function postCreateChapter(idComic, listChapter, chapterName) { 
+async function postCreateChapter(idMember, idComic, listChapter1, chapterName) { 
     let link = '/chapter/createChapter'
-    let list = await listChapter.map((i)=>{
-        return convertBase64(i)
-    })
-    return await axiosClient.get(link,
-        {
-            idComic,
-            chapterName,
-            listChpater: list
-        });
+    let list = []
+    for (let i = 0; i < listChapter1.length; i++) {
+        list.push(await convertBase64(listChapter1[i]))
+    }
+    console.log(idComic)
+    // console.log(list)
+    let data = {
+        idMember: idMember,
+        idComic : idComic,
+        chapterName: chapterName,
+        listChapter: list
+    }
+    console.log(data)
+    return await axiosClient.post(link,data);
 }
 
 
 export {
     getChapter,
-    getAllChapterOfComic
+    getAllChapterOfComic,
+    postCreateChapter
 }

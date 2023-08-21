@@ -105,7 +105,7 @@ async function getRankingBoard(req,res) {
 
 async function getFollowedComic(req,res) {
     let id = req.params.idMember
-    console.log(id)
+    // console.log(id)
     if (id.length != 24) {
         return res.json({
             isSuccess: false,
@@ -137,7 +137,7 @@ async function getFollowedComic(req,res) {
 }
 async function getSearchComic(req,res) {
     let {name} = req.query
-    console.log(name)
+    // console.log(name)
     if (name == '' || name == null){
         return res.json({
             isSuccess: false,
@@ -148,8 +148,8 @@ async function getSearchComic(req,res) {
     }
     let result = await database.searchComic(name)
     .catch(err => {
-        console.log('loi')
-        console.log(err)
+        // console.log('loi')
+        // console.log(err)
         return res.json({
             isSuccess: false,
             message:'request Failure',
@@ -157,8 +157,8 @@ async function getSearchComic(req,res) {
             data: ''
     })})
     if (result) {
-        console.log('thanhcong')
-        console.log(result)
+        // console.log('thanhcong')
+        // console.log(result)
         return res.json({
             isSuccess: true,
             message:'request Successfully',
@@ -180,7 +180,7 @@ async function postCreateComic(req,res) {
         folder: 'CoverImage'
     })
     .catch(error=>console.log(error));
-    console.log(result1)
+    // console.log(result1)
     coverURL = result1.secure_url
     if (name == null || date == null || group == null || idMember == null || type == null || status == null || coverURL == null) {
         return res.json({
@@ -260,7 +260,7 @@ async function getComicAccordingToType(req,res) {
 
 async function postAddFollowComic(req, res) {
     let {idMember,idComic} = req?.body
-    console.log(idMember, idComic)
+    // console.log(idMember, idComic)
     if (idMember == null || idComic == null || idMember == '' || idComic == '') {
         return res.json({
             isSuccess: false,
@@ -338,7 +338,7 @@ async function postCancelFollowComic(req, res) {
 
 async function getReturnComicByUploader(req,res) {
     let idUploader = req.params.idUploader;
-    console.log(idUploader);
+    // console.log(idUploader);
     if (idUploader == null || idUploader.length != 24 || idUploader == '') {
         return res.json({
             isSuccess: false,

@@ -3,7 +3,7 @@ import { BiSolidDownArrow } from "react-icons/bi";
 import { BsImage } from "react-icons/bs";
 import { useState, useRef, useEffect } from 'react';
 import { getReturnComicByUploader } from '../../api/comic';
-
+import { postCreateChapter } from '../../api/chapter'
 export default function UploadChapter() {
     const [fileList, setFileList] = useState(null);
     const inputRef = useRef(null);
@@ -27,11 +27,12 @@ export default function UploadChapter() {
 
     const handleSeclectComic = (e) => {
         setSeclected(e.target.innerText);
-        console.log(e.target.key)
+        setSeclectedId(e.target.value);
     };
 
     const handleSubmit = async (e) => {
-        
+        let result = postCreateChapter(id,seclectedId,fileList,chapterName)
+        // console.log(result);
     }
 
     // const comicList = [
@@ -73,7 +74,7 @@ export default function UploadChapter() {
                             <ul className="upload_chapter-list">
                             {
                             comicList.map((cur, index) => 
-                            <li onClick={(e) => handleSeclectComic(e)} new='dddd' className="upload_chapter-list_item" key={index}>{cur.nameComics}</li>)
+                            <option onClick={(e) => handleSeclectComic(e)} value={cur._id} className="upload_chapter-list_item" key={index}>{cur.nameComics}</option>)
                             }
                             </ul>
                         )
@@ -123,7 +124,7 @@ export default function UploadChapter() {
                 </div>
 
                 <div className="upload_chapter-button_section">
-                    <button className="upload_chapter-button">Lưu</button>
+                    <button onClick={(e) =>handleSubmit(e)} className="upload_chapter-button">Lưu</button>
                     <button className="upload_chapter-button">Hủy</button>
                 </div>
             </div>
