@@ -21,12 +21,22 @@ async function getOneChapter(idChapter)
 
 async function getAllChapter(idComic)
 {
+    let viewComic=[]
     const comicsChoose = await comics.findById(idComic)
-    if (comicChoose)
+    if (comicsChoose)
     {
-        const chooseComic= comicChoose.chapters
+        const chooseComic= comicsChoose.chapters
+        // console.log(chooseComic)
+        for (let i=0; i<chooseComic.length; i++)
+        {
+            // console.log(chooseComic[i].chaptersID)
+            let chapterChoose = await chapter. findOne({_id:chooseComic[i].chaptersID})
+            // console.log(chapterChoose)
+            viewComic.push(chapterChoose)
+        }
+        // console.log(viewComic)
     }
-    return chooseComic
+    return viewComic
 }
 
 async function postCreateChapter(chapterName1, chapterImage, idMember, idComic)

@@ -443,7 +443,7 @@ async function postRating(req, res) {
     } 
     // console.log(idMember, idComic, star)
     let result = await database.ratingComic(idComic, idMember, star)
-    console.log(result)
+    // console.log(result)
     if (result) {
         return res.json({
                     isSuccess: true,
@@ -508,6 +508,7 @@ async function getComment(req,res) {
 
 async function getIsRating(req,res) {
     let {idComic, idMember}=req.params
+    // console.log(idComic, idMember)
     if (idComic == null || idComic.length == 0 || idMember == null || idMember.length == 0) {
         return res.json({
             isSuccess: false,
@@ -532,6 +533,7 @@ async function getIsRating(req,res) {
             data: ''
         })
     })
+    //  console.log(star)
     if (isRating) {
         return res.json({
             isSuccess: true,

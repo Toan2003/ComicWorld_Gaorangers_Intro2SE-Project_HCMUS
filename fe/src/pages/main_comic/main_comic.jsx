@@ -1,36 +1,52 @@
 import { Link, Outlet } from 'react-router-dom'
 import { getComic, getRankingBoard, postAddFollowComic, postUnfollowComic } from '../../api/comic'
+import { getAllChapterOfComic } from '../../api/chapter'
 import './styles.css'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
 import { Table } from '../../components/rankingBoard/rankingBoard'
-import { AiFillStar } from 'react-icons/ai';
-import { postRating } from '../../api/comic';
+import { AiFillStar } from 'react-icons/ai'
+import { postRating, isRating } from '../../api/comic'
 import { CommentSection } from '../../components/comment/comment'
 
 export default function MainComic() {
-  const { id } = useParams()
+  const { id } = useParams() //cai nay la id comic
   const [comic, setComic] = useState([])
   const [rank, setRank] = useState([])
   const [follow, setFollow] = useState([])
   const [chapters, setChapters] = useState([])
+  const [allChapters, setAllChapters] = useState([])
+
   const userId = localStorage.getItem('id')
+  const [isRated, setIsRated] = useState(-1)
+
   
   const [firstChapter, setFistChapter] = useState('')
   const [lastChapter, setLastChapter] = useState('')
 
+  // console.log(allChapters)
   async function loadData() {
+    const ISRATING = await isRating(id, userId)
+    // console.log(ISRATING)
     const COMIC = await getComic(id, userId)
     const RANK = await getRankingBoard()
+    const allChapter = await getAllChapterOfComic(id) // cai nay la id comic
+
+    // console.log(allChapter)
     if (COMIC.data.data.comic.chapters.length > 0) {
       setFistChapter(COMIC.data.data.comic.chapters[0].chaptersID)
       setLastChapter(COMIC.data.data.comic.chapters[COMIC.data.data.comic.chapters.length-1].chaptersID)
     }
+
     setComic(COMIC.data.data.comic)
     setRank(RANK.data.data.rankingList)
     setFollow(COMIC.data.data.isFollowed)
     setChapters(COMIC.data.data.comic.chapters)
+    setAllChapters(allChapter.data.data.listChapters)
+    
+    setIsRated(ISRATING.data.data.star)
 
+    // console.log(ISRATING.data)
     // console.log(firstChapter)
     // console.log(lastChapter)
     // console.log("id ne:", id)
@@ -58,14 +74,12 @@ export default function MainComic() {
   async function handleClickRating(number) {
     //gọi api  gửi number(số sao người dùng chọn)
     postRating(userId, id, number)
-    // console.log(number)
-    loadData();
+    setIsRated(number)
   }
-
 
   useEffect(() => {
     loadData()
-  }, [])
+  }, [isRated])
 
   const content = 'Đang cập nhật'
   const comicName = comic?.nameComics
@@ -76,8 +90,8 @@ export default function MainComic() {
   const view = comic?.view
   const rating = comic?.ratingAvg
   
-  const isRated = -1
-  console.log(comic)
+  // console.log(comic)
+  // console.log(isRated)
 
   
   return (
@@ -179,12 +193,12 @@ export default function MainComic() {
               </div>
               <div className='list-chapter-content'>
                 {
-                  comic?.chapters?.map((chapter, index) => {
+                  allChapters?.map((chapter, index) => {
                     return (
                       <div className='row' key={index}>
-                        <Link className='col' id={chapter?.chaptersID} to={`/type-comic/main-comic/${id}/${chapter?.chaptersID}`}>{chapter.chaptersName}</Link> 
-                        <div className='col'>1 ngày trước</div>
-                        <div className="col">N/A</div>
+                        <Link className='col' id={chapter?._id} to={`/type-comic/main-comic/${id}/${chapter?._id}`}>{chapter?.chapterName}</Link> 
+                        <div className='col'>{chapter?.dateCreate}</div>
+                        <div className="col">{chapter?.view}</div>
                       </div>
                     )
                   })
