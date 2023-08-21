@@ -99,8 +99,7 @@ function NewComic() {
       <div className='Status'>Tác giả</div>
       <input type="text" className="Authorinput" value={Author} onChange={(e)=>setAuthor(e.target.value)}/>
       <div className='Status'>Thể Loại</div>
-      <select value ={selects_Type} onChange={(e)=>setSelects_Type(e.target.value)}>
-        <option></option>
+      <select className="Select-1" value ={selects_Type} onChange={(e)=>setSelects_Type(e.target.value)}>
           {TypesList.map((Type, index) => (
                         <option >{Type}</option>
                       ))}
@@ -110,8 +109,7 @@ function NewComic() {
       <input type='Date' className='Dateinput' value={Date} onChange={(e)=>setDate(e.target.value)}/>
       </div>
       <div className='Status'> Tình trạng</div>
-       <select value ={Select_state} onChange={(e)=>set_Selects_state(e.target.value)}>
-       <option></option>
+       <select className="Select-1" value ={Select_state} onChange={(e)=>set_Selects_state(e.target.value)}>
        {StateList.map((State, index) => (
                         <option >{State}</option>
                       ))}
