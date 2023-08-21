@@ -124,9 +124,8 @@ export default function MainComic() {
                 {
                   isRated != -1 ?
                   (
-                    <div className='row'>
-                      <p className='col user-rating-number'>Đánh giá của bạn: </p>
-                      <p className='col'>{isRated}<AiFillStar className='star-icon'/></p>
+                    <div className='user-rating'>
+                      <p className='user-rating-title'>Đánh giá của bạn: {isRated}<AiFillStar className='star-icon'/></p>
                     </div>
                   )
                   :

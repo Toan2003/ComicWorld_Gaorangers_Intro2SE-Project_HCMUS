@@ -131,7 +131,7 @@
   border-bottom: 0.5px var(--grey-color-1) dashed;
 }
 
-.col .star-icon {
+.star-icon {
   color: #cdf007;
   margin-bottom: 3px;
 }
@@ -163,6 +163,6 @@
   cursor: pointer;
 }
 
-.list-infor .user-rating-number {
-  font-size: 17px;
+.user-rating {
+  display: flex;
 }
