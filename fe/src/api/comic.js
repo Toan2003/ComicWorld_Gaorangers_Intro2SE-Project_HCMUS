@@ -87,7 +87,7 @@ async function getComment(idComic){
     return await axiosClient.get(link)
 }
 
-async function isRating(idMember,idComic) {
+async function isRating(idComic,idMember) {
     let link = '/comic/isRating/' + idComic + '/' + idMember
     return await axiosClient.get(link)
 }
