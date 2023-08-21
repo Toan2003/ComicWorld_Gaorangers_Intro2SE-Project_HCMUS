@@ -19,7 +19,7 @@ async function postChangeRole(req,res) {
             data: ''
         })
     }
-    let result = database.changeMemberRole(name, role)
+    let result = await database.changeMemberRole(name, role)
     if (result) {
         return res.json({
             isSuccess: true,
@@ -38,7 +38,7 @@ async function postChangeRole(req,res) {
 }
 
 async function getSearchUser(req, res) {
-    const {name} = req.query
+    const {name} = req.params
     if (name == null || name == '') {
         return res.json({
             isSuccess: false,
@@ -47,8 +47,27 @@ async function getSearchUser(req, res) {
             data: ''
         })
     }
+    let result = await database.returnUsername(name)
+    if (result) {
+        return res.json({
+            isSuccess: true,
+            message: 'username found',
+            status: res.statusCode,
+            data: {
+                user: result
+            }
+        })
+    } else {
+        return res.json({
+            isSuccess: false,
+            message: 'username not found',
+            status: res.statusCode,
+            data: ''
+        })
+    }
 }
 
 module.exports = {
-    postChangeRole
+    postChangeRole,
+    getSearchUser
 }

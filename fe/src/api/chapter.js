@@ -17,7 +17,7 @@ async function postCreateChapter(idMember, idComic, listChapter1, chapterName) {
     for (let i = 0; i < listChapter1.length; i++) {
         list.push(await convertBase64(listChapter1[i]))
     }
-    console.log(idComic)
+    // console.log(idComic)
     // console.log(list)
     let data = {
         idMember: idMember,

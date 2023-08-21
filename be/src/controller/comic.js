@@ -378,6 +378,87 @@ async function getReturnComicByUploader(req,res) {
     }
 }
 
+async function postAddComment(req, res) {
+    let {idMember, idComic, content} = req.body
+    if (idMember == null || idComic == null) {
+        res.json({
+            isSuccess: false,
+            message: 'idComic or idMember is missing',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    }
+    if (content == null || content.length == 0) {
+        res.json({
+            isSuccess: false,
+            message: 'content is missing',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    }
+    let result = await database.newComment(idComic, idMember, content)
+    if (result) {
+        return res.json({
+            isSuccess: true,
+            message: 'comment successfully',
+            statusbar: res.statusCode,
+            data: ""
+        })
+    } else {
+        return res.json({
+            isSuccess: false,
+            message: 'fail to comment',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    }
+}
+
+async function postRating(req, res) {
+    let {idMember, idComic,star} = req.body
+    if (idMember == null || idComic == null) {
+        res.json({
+            isSuccess: false,
+            message: 'idComic or idMember is missing',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    }
+    if (idMember.length != 24 || idComic.length != 24) {
+        res.json({
+            isSuccess: false,
+            message: 'idComic or idMember is invalid',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    }
+    if (star <0 || star > 5) {
+        res.json({
+            isSuccess: false,
+            message:'star is invalid',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    }
+    let result 
+    // let result = await database.newRating(idComic, idMember, star)
+    if (result) {
+        return res.json({
+                    isSuccess: true,
+                    message: 'rating successfully',
+                    statusbar: res.statusCode,
+                    data: ""
+                })
+    } else {
+        return res.json({
+            isSuccess: false,
+            message: 'fail to rating',
+            statusbar: res.statusCode,
+            data: ''
+        })
+    }
+}
+
 module.exports = {
     getOneComic,
     getAllComic,
@@ -390,4 +471,7 @@ module.exports = {
     postCreateComic,
     postAddFollowComic,
     postCancelFollowComic,
+
+    postAddComment,
+    postRating
 }
