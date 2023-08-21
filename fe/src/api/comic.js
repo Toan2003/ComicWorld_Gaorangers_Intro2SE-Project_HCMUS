@@ -19,8 +19,8 @@ async function getRankingBoard() {
 
 async function getFollowedComic(idMember) {
     let link = '/comic/getFollowedComic/' + idMember
-    console.log("dddd")
-    console.log(idMember)
+    // console.log("dddd")
+    // console.log(idMember)
     return await axiosClient.get(link);
 }
 
@@ -82,6 +82,11 @@ async function postRating(idMember,idComic, star) {
     return await axiosClient.post(link, {idMember, idComic, star})
 }
 
+async function getComment(idComic){
+    let link ='/comic/getComment/' +idComic
+    return await axiosClient.get(link)
+}
+
 export {
     getComic, 
     getAllComic, 
@@ -94,5 +99,6 @@ export {
     postUnfollowComic,
     getReturnComicByUploader,
     postRating,
-    postAddComment
+    postAddComment,
+    getComment
 } 
