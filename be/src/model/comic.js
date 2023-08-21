@@ -1,3 +1,4 @@
+'use strict';
 const mongoose=require('mongoose')
 const user=require('./user')
 const chapter=require('./chapter')
@@ -13,7 +14,7 @@ const comicSchema = new mongoose.Schema({
     view: {
         type: Number,
         default: 0},
-    datecreate: Date,
+    datecreate: Dat
     ratingAvg: {
         type: Number,
         default: 0},

@@ -1,3 +1,4 @@
+'use strict'
 const mongoose=require('mongoose')
 const database=require('../database/database')
 const comic = require('./comic')
@@ -34,7 +35,7 @@ async function getOneChapter(idChapter)
         await chapter.findOneAndUpdate({_id:idChapter},{view: updateView})
         const newComic = await comic.comics.findOne({"chapters.chapterid":idChapter})
         let newView= newComic.view+1
-        await newComic.findOneAndUpdate({$set:{view:newView}})
+        // await newComic.updateOne({$set:{view:newView}})
     }
     return chapterChoose
 }

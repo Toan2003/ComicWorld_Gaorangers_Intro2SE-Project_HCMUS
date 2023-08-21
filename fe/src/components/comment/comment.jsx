@@ -1,22 +1,33 @@
 import './comment.css';
 import { AiOutlineWarning } from 'react-icons/ai'
-// import { MdArrowBackIos } from 'react-icons/md'
+import { useState } from 'react'
+import { postAddComment } from '../../api/comic';
 
-export function CommentSection({ commentList }) {
+export function CommentSection({ comic, userId, comicId }) {
+    const [inputText, setInputText] = useState("")
+    
+    function handleSendComment(e) {
+        e.preventDefault()
+        // console.log(inputBox.target)
+        
+        setInputText("")
+    }
+
+
 
     return (
         <div className="comment-container">
             <h3 className="comment-section_name">Bình luận</h3>
             
-            <div className="comment-self">
-                <textarea rows="2" placeholder="Nhập bình luận của bạn vào đây" className="comment-self-box" />
-                <button className="comment-self-btn">Gửi</button>
-            </div>
+            <form className="comment-self" onSubmit={(e) => handleSendComment(e)}>
+                <textarea type="text" value={inputText} onChange={(e) => (setInputText(e.target.value))} placeholder="Nhập bình luận của bạn vào đây" rows="2" className="comment-self-box" />
+                <button type="submit" className="comment-self-btn">Gửi</button>
+            </form>
 
             <div className="comment-view">
                 {
-                    commentList ?
-                    (commentList.map((cur, index) => <Comment props={cur} key={index}></Comment>))
+                    comic.Comments ?
+                    (comic.Comments.map((cur, index) => <Comment props={cur} idComic={comic._id} key={index}></Comment>))
                     : null
                 }
             </div>
@@ -24,9 +35,10 @@ export function CommentSection({ commentList }) {
     )
 }
 
-function Comment({ props }) {
-    function handleReport(id) {
-        console.log(id)
+function Comment({ props, idComic }) {
+    function handleReport(userId, comicId) {
+        console.log(userId)
+        console.log(comicId)
     }
 
     return (
@@ -34,7 +46,7 @@ function Comment({ props }) {
             <div className="comment-content-wrap">
                 <span className="comment-username-wrap">
                     <h3 className="comment-username">{props.username}</h3>
-                    <button onClick={() => handleReport(props._id)} className="comment-report"><AiOutlineWarning className="comment-report-icon" />Báo cáo</button>
+                    <button onClick={() => handleReport(props._id, idComic)} className="comment-report"><AiOutlineWarning className="comment-report-icon" />Báo cáo</button>
                 </span>
                 <pre className="comment-content">{props.content}</pre>
             </div>
