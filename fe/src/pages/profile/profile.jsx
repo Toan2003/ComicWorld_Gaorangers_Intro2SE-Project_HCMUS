@@ -155,11 +155,12 @@ const ManageAccount = () => {
   const [searchName, setSearchName] = useState([])
   const [searchResult, setSearchResult] = useState(undefined)
   const [role, setRole] = useState([])
+  const [nameChangeRole, setNameChangeRole] = useState("")
 
   const handleSubmitSearchAccount = (e) => {
     e.preventDefault()
     handleSearch(searchName)
-    
+    setNameChangeRole(searchName)
     setSearchName("")
   }
 
@@ -172,49 +173,57 @@ const ManageAccount = () => {
     setSearchResult(users?.data?.data?.user?.username)
     // console.log(users?.data?.data?.user?.Role)
     setRole(users?.data?.data?.user?.Role)
-  } 
+  }
 
+  async function handleChangeRole() {
+    console.log(searchName)
+    const changeRole = await postChangeRole(nameChangeRole, role)
+    console.log(changeRole.data)
+  }
 
   return (
     <div className='information'>
       <h4>QUẢN LÝ TÀI KHOẢN NGƯỜI DÙNG</h4>
       <div className="profile-manage-account-comic information-item">
-          <h5 className="information-item-name">DANH SÁCH</h5>
-          {/* <SearchAccount handleSearch={handleSearch}/> */}
-          <div className="profile-search-account-box">
-            <form onSubmit={handleSubmitSearchAccount} className="profile-search-account-form">
-              <input type="text" placeholder="Tìm tên người dùng..." value={searchName} onChange={handleChange} className="profile-search-account-input"/>
-              <button type="submit" className="profile-search-account-button"><AiOutlineSearch /></button>
-            </form>
-          </div>
-          <div className='profile-manage-account-header row'>
-            <div className='col comic-manage-item-col'>NGƯỜI DÙNG</div>
-            <div className='col comic-follow-item-col'>CHỨC NĂNG</div>
-          </div>
-          {
+        <h5 className="information-item-name">DANH SÁCH</h5>
+        {/* <SearchAccount handleSearch={handleSearch}/> */}
+        <div className="profile-search-account-box">
+          <form onSubmit={handleSubmitSearchAccount} className="profile-search-account-form">
+            <input type="text" placeholder="Tìm tên người dùng..." value={searchName} onChange={handleChange} className="profile-search-account-input" />
+            <button type="submit" className="profile-search-account-button"><AiOutlineSearch /></button>
+          </form>
+        </div>
+        <div className='profile-manage-account-header row'>
+          <div className='col comic-manage-item-col'>NGƯỜI DÙNG</div>
+          <div className='col comic-follow-item-col'>CHỨC NĂNG</div>
+        </div>
+        {
           searchResult ?
-          (
-            <div className="profile-mange-account-user row">
-              <div className='col comic-manage-item-col'>{searchResult}</div>
+            (
+              <div className="profile-mange-account-user row">
+                <div className='col comic-manage-item-col'>{searchResult}</div>
                 <div className='col comic-follow-item-col'>
                   <div name="role" id="role" className="role-selection">
-                    {role} 
+                    {role}
                     <BiSolidDownArrow className="role-selection-icon"></BiSolidDownArrow>
                     <ul className="role-selection-list">
-                      <option onClick={(e) => {setRole(e.target.value)}} className="role-selection-item" value="member">member</option>
-                      <option onClick={(e) => {setRole(e.target.value)}} className="role-selection-item" value="uploader">uploader</option>
-                      <option onClick={(e) => {setRole(e.target.value)}} className="role-selection-item" value="admin">admin</option>
+                      <option onClick={(e) => { setRole(e.target.value) }} className="role-selection-item" value="member">member</option>
+                      <option onClick={(e) => { setRole(e.target.value) }} className="role-selection-item" value="uploader">uploader</option>
+                      <option onClick={(e) => { setRole(e.target.value) }} className="role-selection-item" value="admin">admin</option>
                     </ul>
                   </div>
                 </div>
-           </div>
-          ) :
-          (
-            <div>No information</div>
-          )
-          }
-          {/* <div className="profile-manage-"></div> */}
-        </div>
+                <div className="save-role-selection">
+                  <button onClick={handleChangeRole} className="btn btn-success save-role-btn">Save</button>
+                </div>
+              </div>
+            ) :
+            (
+              <div>No information</div>
+            )
+        }
+        {/* <div className="profile-manage-"></div> */}
+      </div>
     </div>
   );
 }
