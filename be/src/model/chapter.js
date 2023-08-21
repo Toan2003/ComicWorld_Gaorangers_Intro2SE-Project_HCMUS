@@ -34,7 +34,7 @@ async function postCreateChapter(chapterName1, chapterImage, idMember, idComic)
     const member = await user.findById(idMember)
     const newChapter=await chapter({chapterName: chapterName1, chapterImageID: chapterImage, uploader: member.username})
     newChapter.save()
-    await comics.updateOne({_id:idComic})
+    await comics.updateOne({_id:idComic}, {$addToSet:{chapters:[{chapterid: newChapter._id, chapterName: chapterName1}]}})
     return true
 }
 module.exports= {getOneChapter, 
