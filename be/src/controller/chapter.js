@@ -116,8 +116,8 @@ async function postCreateChapter(req,res) {
         });
         list.push(result.secure_url)
     }
-    console.log(list)
-    result = await database.postCreateChapter().catch((error)=> {
+    // console.log(list)
+    result = await database.postCreateChapter(chapterName,list, idMember,idComic).catch((error)=> {
         console.log(error)
         return res.json({
             isSuccess: false,

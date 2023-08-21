@@ -415,6 +415,7 @@ async function postAddComment(req, res) {
 }
 
 async function postRating(req, res) {
+    // console.log('postRating')
     let {idMember, idComic,star} = req.body
     if (idMember == null || idComic == null) {
         res.json({
@@ -440,7 +441,9 @@ async function postRating(req, res) {
             data: ''
         })
     } 
+    // console.log(idMember, idComic, star)
     let result = await database.ratingComic(idComic, idMember, star)
+    console.log(result)
     if (result) {
         return res.json({
                     isSuccess: true,
@@ -453,6 +456,51 @@ async function postRating(req, res) {
             isSuccess: false,
             message: 'fail to rating',
             statusbar: res.statusCode,
+            data: ''
+        })
+    }
+}
+
+async function getComment(req,res) {
+    let {idComic} = req.params
+    if (idComic == null || idComic.length == 0) {
+        return res.json({
+            isSuccess: false,
+            message: 'idComic is missing',
+            status: res.statusCode,
+            data: ''
+        })
+    }
+    if (idComic.length != 24) {
+        return res.json({
+            isSuccess: false,
+            message: 'idComic is invalid',
+            status: res.statusCode,
+            data: ''
+        })
+    }
+    let result = await database.returnComments(idComic).catch(err => {
+        return res.json({
+            isSuccess: false,
+            message:'fail because of database',
+            status: res.statusCode,
+            data: ''
+        })
+    });
+    if (result!= null) {
+        return res.json({
+            isSuccess: true,
+            message:'get comments successfully',
+            status: res.statusCode,
+            data: {
+                listComment: result
+            }
+        })
+    } else {
+        return res.json({
+            isSuccess: false,
+            message:'get comments failed',
+            status: res.statusCode,
             data: ''
         })
     }
@@ -472,5 +520,6 @@ module.exports = {
     postCancelFollowComic,
 
     postAddComment,
+    getComment,
     postRating
 }

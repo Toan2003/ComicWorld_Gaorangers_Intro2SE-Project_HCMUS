@@ -16,10 +16,11 @@ function Comic() {
   const [comic, setComic] = useState([])
   const [follow, setFollow] = useState(false)
 
-  // const [allChapter, setAllChapter] = useState([])
+  const [allChapter, setAllChapter] = useState([])
   
   const userId = localStorage.getItem('id')
-
+  const [NextChapter, setNextChapter] = useState('')
+  const [PreviousChapter, setPreviousChapter] = useState('')
   async function loadData() {
     // const comic = await getAllChapterOfComic(idComic, null)
     const chapters = await getChapter(idChapter, null)
@@ -28,13 +29,21 @@ function Comic() {
     setOneChapter(chapters.data.data)
     setComic(comics.data.data.comic)
     setFollow(comics.data.data.isFollowed)
+
     // console.log(comics.data.data.isFollowed)
+    setAllChapter(comics.data.data.comic.chapters)
   }
+  // console.log(comic.chapters)
+  
+  // function handleChooseChapter() {
+  //   setReload((reload) => reload + 1)
+  //   console
+  // }
 
   async function handleFollow() {
     if (follow) {
       let result = await postUnfollowComic(userId , idComic)
-      console.log(result)
+      // console.log(result)
       
       if (result.data.isSuccess) {
         setFollow(false)
@@ -43,7 +52,7 @@ function Comic() {
     }
     else {
       let result = await postAddFollowComic(userId, idComic)
-      console.log(result)
+      // console.log(result)
       if (result.data.isSuccess) {
         setFollow(true)
       }
@@ -52,11 +61,37 @@ function Comic() {
 
   useEffect(() => {
     loadData()
-  }, [])
+  }, [idChapter])
+  useEffect(()=>{
+    if (comic?.chapters?.length > 0) {
+      for (let i=0; i<=comic.chapters.length-1;i++)
+      {
+        if(idChapter ==comic.chapters[i].chaptersID)
+        {
+          // console.log(comic.chapters[i].chaptersID)
+          // console.log(i)
+          if(i+1< comic.chapters.length) {
+            setNextChapter(comic.chapters[i+1].chaptersID)
+          }
+          else {
+            setNextChapter(idChapter)
+          }
+          if(i-1>=0){
+            setPreviousChapter(comic.chapters[i-1].chaptersID)
+          } else {
+            setPreviousChapter(idChapter)
+          }
+        }
+      }
+    }
+  },[comic])
 
+  // useEffect(()=>{console.log(NextChapter)},[NextChapter])
+  // useEffect(()=>{console.log(PreviousChapter)},[PreviousChapter])
   const NameComic = comic?.nameComics
   const CurChapter = chapter?.chapterName
-  
+  // const CurIdChapter=chapter?.chaptersID
+
   const [ComicsChapter, setChapter] = useState([
     'Chap 1',
     'Chap 2',
@@ -90,7 +125,6 @@ function Comic() {
   {
     window.location.href = path;
   }
-  
   return (
     <div className="comic">
       <div className="Contrucst">
@@ -132,9 +166,9 @@ function Comic() {
         </div>
         <div className="icon_button">
 
-          <button className='btn btn-danger'><FaHome size={25} color='white' /></button> &nbsp;
-          <button className='btn btn-danger' ><FaListUl size={25} color='white' /></button> &nbsp;
-          <button className='btn btn-danger' ><FaChevronLeft size={25} color='white' /></button> &nbsp; &nbsp;
+          <Link className='btn btn-danger' to='/'><FaHome size={25} color='white' /></Link> &nbsp;
+          <Link className='btn btn-danger' to={`/type-comic/main-comic/${idComic}`} ><FaListUl size={25} color='white' /></Link> &nbsp;
+          <Link className='btn btn-danger' to={`/type-comic/main-comic/${idComic}/${PreviousChapter}`}><FaChevronLeft size={25} color='white' /></Link> &nbsp; &nbsp;
           <Popup
             modal
             trigger={<button className="btn btn-outline-secondary"> {CurChapter} <FaChevronDown size={15} /></button>}
@@ -173,7 +207,7 @@ function Comic() {
               </div>
             )}
           </Popup>  &nbsp; &nbsp;
-          <button type="button" className='btn btn-danger' ><FaChevronRight size={25} color='white' /></button> &nbsp;
+          <Link type="button" className='btn btn-danger' to={`/type-comic/main-comic/${idComic}/${NextChapter}`} ><FaChevronRight size={25} color='white' /></Link> &nbsp;
           {
             follow ?
             (
@@ -191,8 +225,8 @@ function Comic() {
           ))}
         </div>
         <div className="nav_end_chap">
-          <button type="button" className="btn btn-danger" ><FaChevronLeft size={25} color='white' /> Chap sau</button>&nbsp;&nbsp;
-          <button type="button" className="btn btn-danger" > Chap trước <FaChevronRight size={23} color='white' /></button>
+          <Link type="button" className="btn btn-danger" to={`/type-comic/main-comic/${idComic}/${PreviousChapter}`} ><FaChevronLeft size={25} color='white' /> Chap sau</Link>&nbsp;&nbsp;
+          <Link type="button" className="btn btn-danger" to={`/type-comic/main-comic/${idComic}/${NextChapter}`}> Chap trước <FaChevronRight size={23} color='white' /></Link>
         </div>
         <ul className="link_comic">
           <li>

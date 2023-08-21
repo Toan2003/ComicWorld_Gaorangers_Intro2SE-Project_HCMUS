@@ -1,7 +1,13 @@
 @import url('../../index.css');
 
-.main-comic {
+.main-comic-container {
   width: 100%;
+  background-color: #EBEBEB;
+}
+
+.main-comic {
+  /* width: 100%; */
+  max-width: 1200px;
   padding: 1.5% 1.5% 0 1.5%;
   display: flex;
   background-color: var(--primary-color);
@@ -71,11 +77,14 @@
   width: 60%;
   border-radius: 15px;
   border: 1px solid black;
-  padding-top: 30px;
+  padding: 30px 0;
   padding-left: 20px;
   font-size: 14px;
   font-weight: 600;
   margin-right: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .list-infor .col:last-child {
@@ -96,17 +105,12 @@
   display: flex;
 }
 
-.list-infor {
-  margin-left: 0.5vw; 
-}
-
 .list-infor p {
   font-size: 20px;
 }
 
 .title-button {
-  padding-top: 150px;
-  margin-left: 0.5vw;
+  margin-left: -0.5vw;
 }
 
 .title-button .btn {
@@ -131,4 +135,53 @@
 
 .list-chapter-content .row {
   border-bottom: 0.5px var(--grey-color-1) dashed;
+}
+
+.star-icon {
+  font-size: 24px;
+  color: #eeff02;
+  margin-bottom: 3px;
+  margin-left: 8px;
+}
+
+.rating-button {
+  height: 100%;
+  outline: none;
+  border: none;
+  background-color: #1BB0F0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: normal;
+  border-radius: 3px;
+  margin-left: 10px;
+}
+
+.rating-section {
+  width: 170px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 70px;
+}
+
+.rating-star {
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.user-rating {
+  display: flex;
+}
+
+.main-comic-comment-wrapper {
+  width: 70%;
+}
+
+.main-comic-comment {
+  background-color: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 26px;
 }

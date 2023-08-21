@@ -70,7 +70,6 @@ function NewComic() {
     }
   }
   return (
-
     <div className="new_comic">
       <div className="Contrucst"> </div>
       <div className='center'>
@@ -117,6 +116,18 @@ function NewComic() {
           <button className='Button_accept' onClick={SendData} >Save</button>
           <button className='Button_accept' onClick={navigate_to_home}>Cancel</button>
         </div>
+      </div>
+      <div className='Status'> Tình trạng</div>
+       <select className="Select-1" value ={Select_state} onChange={(e)=>set_Selects_state(e.target.value)}>
+       {StateList.map((State, index) => (
+                        <option >{State}</option>
+                      ))}
+      </select> 
+      <div className='Status'> Bìa truyện</div>
+      <input className='Input_file' type='file' onChange={(e)=>setFiles(e.target.files)}/>
+      <div class="Button_group">
+            <button className='Button_accept' onClick={SendData} >Save</button>
+            <button className='Button_accept' onClick={navigate_to_home}>Cancel</button>
       </div>
     </div>
   );
