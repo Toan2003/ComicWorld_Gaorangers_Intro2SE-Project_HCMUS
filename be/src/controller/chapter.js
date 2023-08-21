@@ -10,7 +10,12 @@ Cloudinary.config({
 
 async function getChapter(req,res) {
     let id= req.params.idChapter
+<<<<<<< HEAD
+    console.log(id)
+    if (id == '' || id == null || id.length!=24 ) {
+=======
     if (id == '' || id == null || id.length != 24) {
+>>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
         return res.json({
             isSuccess: false,
             message: 'idChapter is missing',

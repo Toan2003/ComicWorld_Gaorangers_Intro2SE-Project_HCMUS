@@ -1,6 +1,7 @@
 const mongoose=require('mongoose')
 const database=require('../database/database')
 const comic = require('./comic')
+const user = require("./user")
 
 const chapterSchema= new mongoose.Schema({
     chapterName: String,
@@ -44,5 +45,14 @@ async function getAllChapter(idComic)
         const chooseComic= comicChoose.chapters
     }
     return chooseComic
+}
+
+async function createChapter(chapterName, chapterImage, idMember, idComic)
+{
+    const member = await user.user.findById(idMember)
+    const newChapter=await chapter({chapterName: chapterName, chapterImageID: chapterImage, uploader: member.username})
+    await comic.comics.updateOne({_id:idComic}, {"chapters.chapterid":newChapter._id, "chapters.chapterName":newChapter.chapterName})
+    
+    return true
 }
 module.exports= {chapter,getOneChapter, getAllChapter};

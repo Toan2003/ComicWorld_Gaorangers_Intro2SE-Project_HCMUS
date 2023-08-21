@@ -126,6 +126,7 @@ async function getFollowedComic(req,res) {
             })
         }
     )
+    
     return res.json({
         isSuccess: true,
         message: 'request Successfully',
