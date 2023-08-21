@@ -1,5 +1,4 @@
 import './home.css'
-import { Link } from 'react-router-dom'
 import { getAllComic,getRankingBoard,getFollowedComic } from "../../api/comic"
 import { useEffect, useState } from 'react';
 import { ComicSection } from '../../components/comic/comic';
