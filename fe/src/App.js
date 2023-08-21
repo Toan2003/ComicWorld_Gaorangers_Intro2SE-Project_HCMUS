@@ -11,7 +11,7 @@ import UploadComic from './pages/new_comic/new_comic'
 import TypeComic from './pages/type_comic/type_comic'
 import Search from './pages/search/search'
 import UploadChapter from './pages/upload_chapter/upload_chapter'
-// import ManageAccount from './pages/profile/manage/manageaccount'
+import ManageAccount from './pages/profile/manage/manageaccount'
 
 function App() {
   return (
