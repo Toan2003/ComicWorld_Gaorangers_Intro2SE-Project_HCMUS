@@ -1,6 +1,7 @@
 const mongoose=require('mongoose')
 const database=require('../database/database')
 const comic = require('./comic')
+const user = require("./user")
 
 const chapterSchema= new mongoose.Schema({
     chapterName: String,
@@ -31,18 +32,29 @@ async function getOneChapter(idChapter)
     {
         const updateView=chapterChoose.view +1
         await chapter.findOneAndUpdate({_id:idChapter},{view: updateView})
-        
+        const newComic = await comic.comics.findOne({"chapters.chapterid":idChapter})
+        let newView= newComic.view+1
+        await newComic.findOneAndUpdate({$set:{view:newView}})
     }
     return chapterChoose
 }
 
 async function getAllChapter(idComic)
 {
-    const comicsChoose = await comic.findById(idComic)
+    const comicsChoose = await comic.comics.findById(idComic)
     if (comicChoose)
     {
         const chooseComic= comicChoose.chapters
     }
     return chooseComic
+}
+
+async function createChapter(chapterName, chapterImage, idMember, idComic)
+{
+    const member = await user.user.findById(idMember)
+    const newChapter=await chapter({chapterName: chapterName, chapterImageID: chapterImage, uploader: member.username})
+    await comic.comics.updateOne({_id:idComic}, {"chapters.chapterid":newChapter._id, "chapters.chapterName":newChapter.chapterName})
+    
+    return true
 }
 module.exports= {chapter,getOneChapter, getAllChapter};
