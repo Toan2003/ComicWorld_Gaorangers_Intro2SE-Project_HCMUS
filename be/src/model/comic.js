@@ -97,8 +97,6 @@ async function returnForHomePage(idMember){
     return {view, nameComics, idComics}
 }
 
-
-
 async function returnComments(idComics)
 {
     const oneComics = await comics.findById(idComics)
@@ -114,14 +112,14 @@ async function returnFollowingComics(idMember)
     const member= await user.user.findById(idMember)
     
     const comicsFollowing= member.followingcomics
-    console.log(comicsFollowing)
+    // console.log(comicsFollowing)
     if(comicsFollowing)
     {
         for (comic of comicsFollowing){
             const temp=await comics.findById(comic)
             fullComic.push(temp)
         }
-        console.log(fullComic)
+        // console.log(fullComic)
     }
      
     return {comicsFollowing, fullComic}
@@ -131,7 +129,7 @@ async function returnFollowingComics(idMember)
 async function createComics(comicname, typecomics, status1, dateCreate, uploadinggroup, uploadid, cover)
 {
     const member= await user.user.findById(uploadid)
-    console.log(member)
+    // console.log(member)
     const groupCheck=await group.group.find({groupName:uploadinggroup})
     if(groupCheck)
     {
@@ -209,7 +207,7 @@ async function unfollowOneComic(idComic, idMember)
 
 async function returnForOneComic (idMember, idComics)
 {
-    // console.log(idMember)
+    // console.log(idComics)
     const oneComics = await comics.findById(idComics)
     const member = await user.user.findById(idMember)
     let followComics = null
@@ -245,6 +243,61 @@ async function returnForOneComic (idMember, idComics)
 
     return {oneComics, isFollowed}
 }
+
+async function newComment(idComic, idMember, des )
+{
+    const newComic = await comics. findById(idComic)
+    if(newComic)
+    {
+        const newMember = await user.user.findById(idMember)
+        if(newMember)
+        {
+
+            await newComic.updateOne({$addToSet:{Comments:{content: des, username: newMember.username }}})
+            return true
+        }
+    }
+    return false
+}
+
+async function isRating(idComic, idMember)
+{
+    const newMember = await user.user.findById(idMember)
+    if(newMember){
+        const newComic = await comics.findOne({_id: idComic, Rating:{username: idMember.username}})
+        if(newComic)
+        {
+            const star= newComic.Rating.star
+            const isRating= true
+            return {star, isRating}
+        }
+    }
+    const star=-1
+    const isRating=false
+    return {star, isRating}
+}
+
+async function ratingComic(idComic, idMember, starNum)
+{
+    const newComic = await comics.findById(idComic)
+    const newMember = await user.user.findById(isMember)
+    const avg=0
+    if(newComic)
+    {
+        if(newMember)
+        {
+            await newComic.updateOne({$addToSet:{star: starNum, username: newMember.username }})
+            for (let i=0; i<newComic.Rating.length; i++)
+            {
+                avg+=newComic.Rating.star
+            }
+            avg=avg/newComic.Rating.length
+            await newComic.updateOne({$set:{ratingAvg: avg}})
+            return true
+        }
+    }
+    return false
+}
 module.exports= {
     comics,
     returnForOneComic,
@@ -257,5 +310,8 @@ module.exports= {
     searchComic,
     followOneComic,
     unfollowOneComic,
-    createComics
+    createComics,
+    newComment,
+    isRating, 
+    ratingComic
 };

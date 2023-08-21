@@ -58,4 +58,12 @@ async function changeMemberRole(name, role)
     return false  
 }
 
-module.exports= {user, login, signup, changeMemberRole};
+async function returnUsername(name)
+{
+    const checkUser=await user.findOne({username: name})
+    return checkUser
+    
+}
+module.exports= {user, login, signup, 
+    changeMemberRole,
+    returnUsername};

@@ -3,8 +3,7 @@ import { BiSolidDownArrow } from "react-icons/bi";
 import { BsImage } from "react-icons/bs";
 import { useState, useRef, useEffect } from 'react';
 import { getReturnComicByUploader } from '../../api/comic';
-import { Link } from 'react-router-dom'
-
+import { postCreateChapter } from '../../api/chapter'
 export default function UploadChapter() {
     const [fileList, setFileList] = useState(null);
     const inputRef = useRef(null);
@@ -32,7 +31,8 @@ export default function UploadChapter() {
     };
 
     const handleSubmit = async (e) => {
-
+        let result = postCreateChapter(id,seclectedId,fileList,chapterName)
+        // console.log(result);
     }
 
     // const comicList = [
@@ -124,8 +124,8 @@ export default function UploadChapter() {
                 </div>
 
                 <div className="upload_chapter-button_section">
-                    <Link className="upload_chapter-button">Lưu</Link>
-                    <Link className="upload_chapter-button" to="/">Hủy</Link>
+                    <button onClick={(e) =>handleSubmit(e)} className="upload_chapter-button">Lưu</button>
+                    <button className="upload_chapter-button">Hủy</button>
                 </div>
             </div>
         </div>  

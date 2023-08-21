@@ -6,6 +6,14 @@ import { useEffect, useState } from "react"
 import { Link, Outlet } from 'react-router-dom'
 import { useContext } from "react"
 import { AuthContext } from "../../context/context"
+<<<<<<< HEAD
+import { getFollowedComic } from "../../api/comic"
+
+export default function Profile() {
+  const [profileUser, setProfileUser] = useState(<Member />)
+  const [followedComic, setFollowedComic] = useState([])
+  const { handleLogout, idUser } = useContext(AuthContext)
+=======
 import { getFollowedComic, getReturnComicByUploader } from "../../api/comic"
 import { GrView } from 'react-icons/gr'
 
@@ -15,10 +23,30 @@ export default function Profile() {
   const [upload, setUpload] = useState([])
   const [isOnManageAccount, setIsOnManageAccount] = useState(false)
   const { handleLogout } = useContext(AuthContext)
+>>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
   const username = localStorage.getItem('username')
   const typeUser = localStorage.getItem('type')
 
   async function loadData() {
+<<<<<<< HEAD
+    console.log(idUser)
+    const FOLLOWCOMIC = await getFollowedComic(idUser)
+    console.log(FOLLOWCOMIC.data.data)
+    
+    setFollowedComic(FOLLOWCOMIC.data.data.followList.fullComic)
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem('type') == 'member') {
+      setProfileUser(<Member handleLogout={handleLogout} />)
+    }
+    else if (localStorage.getItem('type') == 'uploader') {
+      setProfileUser(<Uploader handleLogout={handleLogout} />)
+    }
+    else {
+      setProfileUser(<Admin handleLogout={handleLogout} />)
+    }
+=======
     let id = localStorage.getItem('id')
     const follows = await getFollowedComic(id)
     const uploads = await getReturnComicByUploader(id)
@@ -39,6 +67,7 @@ export default function Profile() {
   }
 
   useEffect(() => {
+>>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
     loadData()
   }, [])
 
@@ -62,11 +91,15 @@ export default function Profile() {
             </div>
             {profileUser}
           </div>
+<<<<<<< HEAD
+          <Information username={username} typeUser={typeUser} followedComic={followedComic} />
+=======
           {
             !isOnManageAccount ?
               <Information username={username} typeUser={typeUser} follow={follow} upload={upload} /> :
               <ManageAccount />
           }
+>>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
         </div>
       </div>
     </div>
@@ -147,6 +180,25 @@ function Information({ username, typeUser, follow, upload }) {
   );
 }
 
+<<<<<<< HEAD
+function Information({ username, typeUser, followedComic }) {
+  return (
+    <>
+      <div className='information'>
+        <h4>THÔNG TIN CHUNG</h4>
+        <div className='account-infor information-item'>
+          <h5>Thông tin tài khoản</h5>
+          {/* <Link className='edit' to='/profile/UserProfile'>Chỉnh sửa {">"}</Link> */}
+        </div>
+        <div className='box-account'>
+          <div className='box-account-item row'>
+            <p className='col'>Tên:</p>
+            <p className='col'>{username}</p>
+          </div>
+          <div className='box-account-item row'>
+            <p className='col'>Loại thành viên:</p>
+            <p className='col'>{typeUser}</p>
+=======
 
 const ManageAccount = () => {
   const [searchResult, setSearchResult] = useState([])
@@ -178,10 +230,34 @@ const ManageAccount = () => {
           <div className='profile-manage-account-header row'>
             <div className='col comic-manage-item-col'>NGƯỜI DÙNG</div>
             <div className='col comic-follow-item-col'>CHỨC NĂNG</div>
+>>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
           </div>
           {/* <div className="profile-manage-"></div> */}
         </div>
+<<<<<<< HEAD
+        <div className='comic-follow information-item'>
+          <h5>Truyện theo dõi</h5>
+        </div>
+        <div className='comic-follow-list row'>
+          <div className='col'>TÊN TRUYỆN</div>
+          <div className='col'>XEM GẦN NHẤT</div>
+          <div className='col'>CHAPTER MỚI NHẤT</div>
+        </div>
+        {
+          followedComic.map((followComic) => {
+            return(
+            <div className="comic-follow-list-item row">
+              <div className="col">{followComic.nameComics}</div>
+              <div className="col">None</div>
+              <div className="col">None</div>
+            </div>
+          )})
+        }
+      </div>
+    </>
+=======
     </div>
+>>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
   );
 }
 
