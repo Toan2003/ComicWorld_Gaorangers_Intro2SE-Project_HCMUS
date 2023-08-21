@@ -194,7 +194,7 @@ async function returnForOneComic (idMember, idComics)
             viewChap.push(viewTemp)
         }
     }
-    const comments=returnComments(idComics)
+    // const comments=returnComments(idComics)
 
     return {oneComics, isFollowed}
 }
@@ -259,9 +259,6 @@ async function ratingComic(idComic, idMember, starNum)
     return false
 }
 
-async function updateView(idChapter) {
-
-}
 
 
 module.exports= {
@@ -278,6 +275,5 @@ module.exports= {
     createComics,
     newComment,
     isRating, 
-    ratingComic,
-    updateView
+    ratingComic
 };
