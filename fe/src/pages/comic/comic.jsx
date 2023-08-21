@@ -28,7 +28,6 @@ function Comic() {
     setOneChapter(chapters.data.data)
     setComic(comics.data.data.comic)
     setFollow(comics.data.data.isFollowed)
-    // console.log(comics)
     // console.log(comics.data.data.isFollowed)
   }
 
@@ -87,6 +86,11 @@ function Comic() {
     event.target.style.height = "auto";
     event.target.style.height = `90px`;
   }
+  const navigate_to=(path)=>
+  {
+    window.location.href = path;
+  }
+  
   return (
     <div className="comic">
       <div className="Contrucst">
@@ -135,8 +139,8 @@ function Comic() {
             modal
             trigger={<button className="btn btn-outline-secondary"> {CurChapter} <FaChevronDown size={15} /></button>}
             contentStyle={{
-              width: '590px'
-              , height: '590px', overflow: 'scroll', background: '#ebebeb'
+              width: '610px'
+              , height: '550px', overflow: 'scroll', background: '#FFFFFF',
             }}
           >
             {close => (
@@ -144,21 +148,27 @@ function Comic() {
                 <div className='Close_Popup'>
                   <button className="CloseWin"
                     onClick={() => {
-                      console.log('modal closed ');
                       close();
                     }} > <FaRegWindowClose size={35} />  </button>
                 </div>
-                <div className='SearchChap_Popup'>
-                  <input type="text" className="SearchChapBar_Popup" placeholder='Nhập số chap...' value={searchInput} onChange={(e)=>setSearchInput(e.target.value)}></input>
-                    
+                <div className='Line_Pos'>
+                <hr className='Line_Hor'/>
                 </div>
 
                 <div className='Body_Modal'>
-                  {/* <div className='Chap_Pos'>
-                      comic?.chapters?.map((chapter, index) => (
-                      <Link className='Chap_but' id={chapter?.chaptersID} to={`/type-comic/main-comic/${id}/${chapter?.chaptersID}`}> {chapter.chaptersName}</Link>
+                  <div className='Chap_Pos'>
+                      {comic?.chapters?.map((chapter, index) => (
+                      <button className='Chap_but' 
+                      id={chapter?.chaptersID} 
+                       onClick={() => {
+                        navigate_to(`/type-comic/main-comic/${idComic}/${chapter?.chaptersID}`)
+                        close();
+                      }}>
+                        {chapter.chaptersName}
+                      </button>
                     ))}
-                  </div> */}
+                    
+                  </div>
                 </div>
               </div>
             )}
@@ -194,11 +204,11 @@ function Comic() {
           </li>
           <li ><p >{'>>'}</p></li>
           <li>
-            <Link className='link_comic-item' to={`/comic/main-comic/${idComic}`}>{NameComic}</Link>
+            <Link className='link_comic-item' to={`/type-comic/main-comic/${idComic}`}>{NameComic}</Link>
           </li>
           <li ><p >{'>>'}</p></li>
           <li>
-            <Link className='link_comic-item' to={`/comic/main-comic/${idComic}/${idChapter}`}>{NameComic}</Link>
+          <Link className='link_comic-item' to={`/type-comic/main-comic/${idComic}/${idChapter}`}>{CurChapter}</Link>
           </li>
           <Outlet />
         </ul>
