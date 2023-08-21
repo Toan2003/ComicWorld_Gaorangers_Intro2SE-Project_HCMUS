@@ -6,8 +6,8 @@ import { Table } from '../../components/rankingBoard/rankingBoard';
 
 export default function Home() {
   const [comic, setComic] = useState([])
-  const [rank, setRank] = useState(undefined)
-  const [follow, setFollow] = useState(undefined)
+  const [rank, setRank] = useState([])
+  const [follow, setFollow] = useState([])
 
   let id = localStorage.getItem('id')
   // console.log(id)
