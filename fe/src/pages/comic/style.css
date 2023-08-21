@@ -1,4 +1,19 @@
+<<<<<<< HEAD
+.Line_Pos
+{
+  padding-top: 8px;
+}
+.Line_Hor {
+  width: 100%;
+  height: 5px;
+  
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #b7d0e2;
+}
+=======
 
+>>>>>>> 3e4957224bb3b0b173c4c823acb0d4f805bb02fb
 body {
   font-family: Tahoma,sans-serif,Helvetica,Arial;
   font-weight: 400;
@@ -55,7 +70,7 @@ body {
 }
 .pass
 {
-  margin-top: 8px;
+  margin-top: 5px;
 }
 
 .Instruct
@@ -176,22 +191,23 @@ font-size: 19px;
 
 .Chap_Pos
 {
-  padding-left: 10px;
-  padding-top: 50px;
+  padding-left: 8px;
+  padding-top: 20px;
 }
 .Chap_but
 {
   box-sizing: border-box;
   margin-left: 10px;
   margin-bottom: 10px;
-  width: 80px;
+  width: 100px;
   height: 35px;
-  background: #eeebeb;
+  background: #e2e2e2;
   border: 1px solid #000000;
-  border-radius: 5px;
+  
 }
 .Chap_but:hover
 {
+  border-color: red;
   color:rgb(255, 13, 13);
 }
 .Choose_Chap
@@ -203,13 +219,14 @@ font-size: 19px;
 
 .Close_Popup
 {
-  padding-left:93%;
-  padding-top: 10px;
+  padding-left:91%;
+  padding-top: 15px;
+  padding-bottom: 5px;
 }
 .CloseWin
 {
-  height:25px;
-  width:20px;
+  height:30px;
+  width:25px;
   color: black;
   font-size: 16px;
   border:None;

@@ -68,10 +68,8 @@ function NewComic() {
     }
     else
     {
-      
       alert("Upload thành công!")
       navigate_to('/');
-      
     }
   }
   return (
