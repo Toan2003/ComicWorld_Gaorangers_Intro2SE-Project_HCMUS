@@ -1,56 +1,10 @@
-'use strict';
-const mongoose=require('mongoose')
-const user=require('./user')
-const chapter=require('./chapter')
-const group=require('./group')
+const {comics,user,chapter,group} = require('./schema')
+// const user=require('./user')
+// const chapter=require('./chapter')
+// const group=require('./group')
 // const { getComic } = require('../../../fe/src/api/comic')
 
 
-const comicSchema = new mongoose.Schema({
-    nameComics: String,
-    type: String, //the loai 
-    status: String, 
-    coverURL: String,
-    view: {
-        type: Number,
-        default: 0},
-    datecreate: Dat
-    ratingAvg: {
-        type: Number,
-        default: 0},
-    Uploading: {
-            group: String,
-            // uploader:{type: mongoose.Schema.Types.ObjectId, ref: 'user'}
-            uploader: String 
-    },
-    chapters:[
-    {
-        chapterid:
-        { 
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'chapter'
-        },
-        chapterName: String
-    }],
-    Comments:[{
-        content: String,
-        username: String,
-        dateComment: {
-            type:Date,
-            default: Date.now
-        }
-    }],
-    Rating:[{
-        star: Number,
-        username: String,
-        dateRating:{
-            type:Date,
-            default: Date.now
-        }
-    }]
-})
-
-const comics=mongoose.model('Comics', comicSchema)
 
 //Cais nay phai auto co du lieu nha, nen t ko check dau
 async function returnAllComic(){
@@ -90,7 +44,7 @@ async function returnForHomePage(idMember){
     }
     if (idMember)
     {
-        const member= await user.user.findById(idMember)
+        const member= await user.findById(idMember)
         const followComics=member.followingcomics
         console.log(followComics)
     }
@@ -110,7 +64,7 @@ async function returnFollowingComics(idMember)
 {
     const fullComic=[]
     // console.log(typeof(idMember))
-    const member= await user.user.findById(idMember)
+    const member= await user.findById(idMember)
     
     const comicsFollowing= member.followingcomics
     // console.log(comicsFollowing)
@@ -129,9 +83,9 @@ async function returnFollowingComics(idMember)
 //Caanf doij comicURL cover
 async function createComics(comicname, typecomics, status1, dateCreate, uploadinggroup, uploadid, cover)
 {
-    const member= await user.user.findById(uploadid)
+    const member= await user.findById(uploadid)
     // console.log(member)
-    const groupCheck=await group.group.find({groupName:uploadinggroup})
+    const groupCheck=await group.find({groupName:uploadinggroup})
     if(groupCheck)
     {
         const newComic= new comics ({nameComics:comicname,type: typecomics, status: status1,
@@ -152,9 +106,9 @@ async function filterType(typename)
 
 async function returnComicsByUploader(iduploader)
 {
-    const nameMember= await user.user.findById(iduploader)
+    const nameMember= await user.findById(iduploader)
     if(nameMember){
-        const groupMember = await group.group.findOne({Uploader:nameMember.username})
+        const groupMember = await group.findOne({Uploader:nameMember.username})
         if(groupMember){
             const comicUpload= await comics.find({"Uploading.group":groupMember.groupName})
             return comicUpload
@@ -181,7 +135,7 @@ async function followOneComic(idComic, idMember)
     const comicFollow = await comics.findById(idComic)
     if(idComic)
     {
-        const member= await user.user.findById(idMember)
+        const member= await user.findById(idMember)
         if (member)
         {
             await member.updateOne({$addToSet: {followingcomics: idComic}})
@@ -196,7 +150,7 @@ async function unfollowOneComic(idComic, idMember)
     const comicFollow = await comics.findById(idComic)
     if(idComic)
     {
-        const member= await user.user.findById(idMember)
+        const member= await user.findById(idMember)
         if(member)
         {
             await member.updateOne({$pull:{followingcomics: idComic}})
@@ -210,7 +164,7 @@ async function returnForOneComic (idMember, idComics)
 {
     // console.log(idComics)
     const oneComics = await comics.findById(idComics)
-    const member = await user.user.findById(idMember)
+    const member = await user.findById(idMember)
     let followComics = null
     let isFollowed = false
     // console.log(member)
@@ -250,7 +204,7 @@ async function newComment(idComic, idMember, des )
     const newComic = await comics. findById(idComic)
     if(newComic)
     {
-        const newMember = await user.user.findById(idMember)
+        const newMember = await user.findById(idMember)
         if(newMember)
         {
 
@@ -263,7 +217,7 @@ async function newComment(idComic, idMember, des )
 
 async function isRating(idComic, idMember)
 {
-    const newMember = await user.user.findById(idMember)
+    const newMember = await user.findById(idMember)
     if(newMember){
         const newComic = await comics.findOne({_id: idComic, Rating:{username: idMember.username}})
         if(newComic)
@@ -281,7 +235,7 @@ async function isRating(idComic, idMember)
 async function ratingComic(idComic, idMember, starNum)
 {
     const newComic = await comics.findById(idComic)
-    const newMember = await user.user.findById(idMember)
+    const newMember = await user.findById(idMember)
     let avg=0
     if(newComic)
     {
@@ -304,8 +258,13 @@ async function ratingComic(idComic, idMember, starNum)
     }
     return false
 }
+
+async function updateView(idChapter) {
+
+}
+
+
 module.exports= {
-    comics,
     returnForOneComic,
     returnAllComic,
     returnComments, 
@@ -319,5 +278,6 @@ module.exports= {
     createComics,
     newComment,
     isRating, 
-    ratingComic
+    ratingComic,
+    updateView
 };

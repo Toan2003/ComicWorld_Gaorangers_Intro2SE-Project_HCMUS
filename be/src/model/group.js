@@ -1,11 +1,4 @@
-const mongoose = require('mongoose');
-const user = require('./user')
-const groupSchema= new mongoose.Schema ({
-    groupName: String,
-    Description: String,
-    Uploader: [String]
-})
-const group = mongoose.model('Group', groupSchema)
+const {group,user} = require('./schema');
 
 async function createGroup(name, description)
 {
@@ -30,4 +23,4 @@ async function addMemberToGroup(nameUploader, nameGroup)
     return false
 }
 
-module.exports= {group, createGroup, addMemberToGroup};
+module.exports= {createGroup, addMemberToGroup};

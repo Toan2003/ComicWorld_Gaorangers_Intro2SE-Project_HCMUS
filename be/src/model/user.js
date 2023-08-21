@@ -1,16 +1,4 @@
-const mongoose = require('mongoose');
-
-const userSchema = new mongoose.Schema({
-    username: String,
-    password: String,
-    Role:{
-        type: String,
-        default: "member"
-    },
-    followingcomics: [{type: mongoose.Schema.Types.ObjectId, ref:"comic"}]
-})
-
-const user = mongoose.model('User', userSchema);
+const {user} = require('./schema');
 
 
 async function login(username,password) {
@@ -64,6 +52,6 @@ async function returnUsername(name)
     return checkUser
     
 }
-module.exports= {user, login, signup, 
+module.exports= { login, signup, 
     changeMemberRole,
     returnUsername};
