@@ -57,7 +57,7 @@ export default function UploadChapter() {
                 <div className="upload_chapter-list-wrap">
                     {seclected} 
                     {
-                        comicList.length > 0 ?
+                        comicList ?
                         (
                             <ul className="upload_chapter-list">
                             {
