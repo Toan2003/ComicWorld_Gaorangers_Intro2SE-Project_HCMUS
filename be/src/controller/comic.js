@@ -415,6 +415,7 @@ async function postAddComment(req, res) {
 }
 
 async function postRating(req, res) {
+    // console.log('postRating')
     let {idMember, idComic,star} = req.body
     if (idMember == null || idComic == null) {
         res.json({
@@ -440,7 +441,9 @@ async function postRating(req, res) {
             data: ''
         })
     } 
+    // console.log(idMember, idComic, star)
     let result = await database.ratingComic(idComic, idMember, star)
+    console.log(result)
     if (result) {
         return res.json({
                     isSuccess: true,

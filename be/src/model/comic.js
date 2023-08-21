@@ -280,18 +280,23 @@ async function isRating(idComic, idMember)
 async function ratingComic(idComic, idMember, starNum)
 {
     const newComic = await comics.findById(idComic)
-    const newMember = await user.user.findById(isMember)
-    const avg=0
+    const newMember = await user.user.findById(idMember)
+    let avg=0
     if(newComic)
     {
         if(newMember)
         {
-            await newComic.updateOne({$addToSet:{star: starNum, username: newMember.username }})
+            await newComic.updateOne({$addToSet:{Rating:{star: starNum, username: newMember.username}}})
             for (let i=0; i<newComic.Rating.length; i++)
             {
-                avg+=newComic.Rating.star
+                avg+=newComic.Rating[i].star
+                // console.log(avg)
             }
-            avg=avg/newComic.Rating.length
+            // console.log(newComic.Rating.length)
+            length=newComic.Rating.length
+            // console.log(typeof(length))
+            avg=Math.round(avg/length*10)/10
+            // console.log(typeof(avg))
             await newComic.updateOne({$set:{ratingAvg: avg}})
             return true
         }

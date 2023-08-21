@@ -1,30 +1,8 @@
 import './comment.css';
 import { AiOutlineWarning } from 'react-icons/ai'
-import { MdArrowBackIos } from 'react-icons/md'
+// import { MdArrowBackIos } from 'react-icons/md'
 
-export function CommentSection() {
-    const commentList = [
-        {
-            name: 'Trư Bát Giới',
-            avatar : 'https://st.gamevui.com/images/image/2019/02/20/tay-du-ky-tru-bat-gioi.jpg',
-            content: 'Anh này có thật ngoài đời không vậy ? \nsao mà anh siêu vậy? \nanh đến từ hành tinh nào?'
-        },
-        {
-            name: 'Trư Bát Giới',
-            avatar : 'https://st.gamevui.com/images/image/2019/02/20/tay-du-ky-tru-bat-gioi.jpg',
-            content: 'ngưỡng mộ quá'
-        },
-        {
-            name: 'Trư Bát Giới',
-            avatar : 'https://st.gamevui.com/images/image/2019/02/20/tay-du-ky-tru-bat-gioi.jpg',
-            content: 'ghê vậy sao'
-        },
-        {
-            name: 'Trư Bát Giới',
-            avatar : 'https://st.gamevui.com/images/image/2019/02/20/tay-du-ky-tru-bat-gioi.jpg',
-            content: 'hahaha'
-        }
-    ]
+export function CommentSection({ commentList }) {
 
     return (
         <div className="comment-container">
@@ -37,7 +15,7 @@ export function CommentSection() {
 
             <div className="comment-view">
                 {
-                    commentList.length > 0 ?
+                    commentList ?
                     (commentList.map((cur, index) => <Comment props={cur} key={index}></Comment>))
                     : null
                 }
@@ -47,14 +25,16 @@ export function CommentSection() {
 }
 
 function Comment({ props }) {
+    function handleReport(id) {
+        console.log(id)
+    }
+
     return (
         <div className="comment-wrap">
-            <img src={props.avatar} alt="" className="comment-avatar" />
             <div className="comment-content-wrap">
-                <MdArrowBackIos className="comment-content-arrow" />
                 <span className="comment-username-wrap">
-                    <h3 className="comment-username">{props.name}</h3>
-                    <button className="comment-report"><AiOutlineWarning className="comment-report-icon" />Báo cáo</button>
+                    <h3 className="comment-username">{props.username}</h3>
+                    <button onClick={() => handleReport(props._id)} className="comment-report"><AiOutlineWarning className="comment-report-icon" />Báo cáo</button>
                 </span>
                 <pre className="comment-content">{props.content}</pre>
             </div>

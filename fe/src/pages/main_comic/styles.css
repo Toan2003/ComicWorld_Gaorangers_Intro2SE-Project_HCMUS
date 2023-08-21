@@ -1,7 +1,13 @@
 @import url('../../index.css');
 
-.main-comic {
+.main-comic-container {
   width: 100%;
+  background-color: #EBEBEB;
+}
+
+.main-comic {
+  /* width: 100%; */
+  max-width: 1200px;
   padding: 1.5% 1.5% 0 1.5%;
   display: flex;
   background-color: var(--primary-color);
@@ -132,8 +138,10 @@
 }
 
 .star-icon {
-  color: #cdf007;
+  font-size: 24px;
+  color: #eeff02;
   margin-bottom: 3px;
+  margin-left: 8px;
 }
 
 .rating-button {
@@ -149,20 +157,31 @@
 }
 
 .rating-section {
-  width: 160px;
+  width: 170px;
   height: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 80px;
+  margin-right: 70px;
 }
 
 .rating-star {
-  font-size: 20px;
+  font-size: 24px;
   color: #ccc;
   cursor: pointer;
 }
 
 .user-rating {
   display: flex;
+}
+
+.main-comic-comment-wrapper {
+  width: 70%;
+}
+
+.main-comic-comment {
+  background-color: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 26px;
 }

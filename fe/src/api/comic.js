@@ -93,6 +93,6 @@ export {
     postAddFollowComic,
     postUnfollowComic,
     getReturnComicByUploader,
-
+    postRating,
     postAddComment
 } 

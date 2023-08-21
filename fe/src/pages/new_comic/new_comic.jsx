@@ -38,25 +38,6 @@ function NewComic() {
     event.target.style.height = "auto";
     event.target.style.height = `200px`;
   }
-<<<<<<< HEAD
-  const SendData = async (event) => //Hàm button ở đây đã lấy đủ dữ liệu
-  {
-    console.log(Name)
-    console.log(Author)
-    console.log(selects_Type)
-    console.log(Date)
-    console.log(Select_state)
-    console.log(Description)
-    
-    console.log(file)
-    const formData = new FormData()
-    formData.append('file',file)
-    const response = await axios.post('/user/update-picture', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-=======
   const navigate_to=(path)=>
   {
     navigate(path);
@@ -90,7 +71,6 @@ function NewComic() {
       alert("Upload thành công!")
       navigate_to('/');
     }
->>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
   }
   return (
     
@@ -135,11 +115,7 @@ function NewComic() {
                       ))}
       </select> 
       <div className='Status'> Bìa truyện</div>
-<<<<<<< HEAD
-      <input className='Input_file' type='file'  onChange={(e)=>setFiles(e.target.file[0])}/>
-=======
       <input className='Input_file' type='file' onChange={(e)=>setFiles(e.target.files)}/>
->>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
       <div class="Button_group">
             <button className='Button_accept' onClick={SendData} >Save</button>
             <button className='Button_accept' onClick={navigate_to_home}>Cancel</button>
