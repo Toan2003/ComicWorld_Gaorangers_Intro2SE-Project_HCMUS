@@ -18,5 +18,6 @@ route.post('/comic/create', controller.postCreateComic)
 route.post('/comic/followComic', controller.postAddFollowComic)
 route.post('/comic/unfollowComic', controller.postCancelFollowComic)
 route.post('/comic/rating', controller.postRating)
+route.get('/comic/isRating/:idComic/:idMember', controller.getIsRating)
 
 module.exports = route

@@ -506,6 +506,54 @@ async function getComment(req,res) {
     }
 }
 
+async function getIsRating(req,res) {
+    let {idComic, idMember}=req.params
+    if (idComic == null || idComic.length == 0 || idMember == null || idMember.length == 0) {
+        return res.json({
+            isSuccess: false,
+            message: 'idComic or idMember is missing',
+            status: res.statusCode,
+            data: ''
+        })
+    }
+    if (idMember.length != 24 || idComic.length != 24) {
+        return res.json({
+            isSuccess: false,
+            message: 'idComic or idMember is invalid',
+            status: res.statusCode,
+            data: ''
+        })
+    }
+    let {star, isRating} = await database.isRating(idComic, idMember).catch(err => {
+        return res.json({
+            isSuccess: false,
+            message:'fail because of database',
+            status: res.statusCode,
+            data: ''
+        })
+    })
+    if (isRating) {
+        return res.json({
+            isSuccess: true,
+            message:'rated',
+            status: res.statusCode,
+            data: {
+                star: star
+            }
+        })
+    }else {
+        return res.json({
+            isSuccess: true,
+            message:'did not rate',
+            status: res.statusCode,
+            data: {
+                star: star
+            }
+        })
+    }
+
+}
+
 module.exports = {
     getOneComic,
     getAllComic,
@@ -521,5 +569,6 @@ module.exports = {
 
     postAddComment,
     getComment,
-    postRating
+    postRating,
+    getIsRating
 }
