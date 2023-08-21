@@ -47,7 +47,31 @@ async function addMemberToGroup(req,res) {
             data: ''
         })
     }
-    let result = await database.addMemberToGroup(nameUploader, nameGroup).catch(err => {})
+    let result = await database.addMemberToGroup(nameUploader, nameGroup).catch(err => {
+        console.log(err)
+        return res.json({
+            isSuccess: false,
+            message: 'add member to group fail beacause of database',
+            status: res.statusCode,
+            data: ''
+        })
+    })
+    if (result) {
+        return res.json({
+            isSuccess: true,
+            message: 'add member to group success',
+            status: res.statusCode,
+            data: ''
+        })
+    } else {
+        return res.json({
+            isSuccess: false,
+            message: 'add member to group fail',
+            status: res.statusCode,
+            data: ''
+        })
+    }
+
 }
 
 module.exports = {
