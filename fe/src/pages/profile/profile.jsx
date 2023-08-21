@@ -8,6 +8,9 @@ import { useContext } from "react"
 import { AuthContext } from "../../context/context"
 import { getFollowedComic, getReturnComicByUploader } from "../../api/comic"
 import { GrView } from 'react-icons/gr'
+import { AiOutlineSearch } from 'react-icons/ai'
+import { getSearchUser, postChangeRole } from '../../api/user'
+import { BiSolidDownArrow } from "react-icons/bi";
 
 export default function Profile() {
   const [profileUser, setProfileUser] = useState(<Member />)
@@ -149,54 +152,78 @@ function Information({ username, typeUser, follow, upload }) {
 
 
 const ManageAccount = () => {
-  const [searchResult, setSearchResult] = useState([])
+  const [searchName, setSearchName] = useState([])
+  const [searchResult, setSearchResult] = useState(undefined)
+  const [role, setRole] = useState([])
+  const [nameChangeRole, setNameChangeRole] = useState("")
 
-  function handleSearch(query) {
-    const fakeListAccount = [
-      'admin1',
-      'test12345',
-      'test1234',
-      'uploader',
-      '11111111',
-      '22222222',
-      '3333333',
-      '44444444',
-      '55555555',
-      '66666666',
-      '10002134012340',
-      '1234123412341234'
-    ]
+  const handleSubmitSearchAccount = (e) => {
+    e.preventDefault()
+    handleSearch(searchName)
+    setNameChangeRole(searchName)
+    setSearchName("")
+  }
 
-    setSearchResult(fakeListAccount)
+  const handleChange = (e) => {
+    setSearchName(e.target.value)
+  }
+
+  async function handleSearch(query) {
+    const users = await getSearchUser(query)
+    setSearchResult(users?.data?.data?.user?.username)
+    // console.log(users?.data?.data?.user?.Role)
+    setRole(users?.data?.data?.user?.Role)
+  }
+
+  async function handleChangeRole() {
+    console.log(searchName)
+    const changeRole = await postChangeRole(nameChangeRole, role)
+    console.log(changeRole.data)
   }
 
   return (
     <div className='information'>
       <h4>QUẢN LÝ TÀI KHOẢN NGƯỜI DÙNG</h4>
       <div className="profile-manage-account-comic information-item">
-          <h5 className="information-item-name">DANH SÁCH</h5>
-          <div className='profile-manage-account-header row'>
-            <div className='col comic-manage-item-col'>NGƯỜI DÙNG</div>
-            <div className='col comic-follow-item-col'>CHỨC NĂNG</div>
-          </div>
-          {/* <div className="profile-manage-"></div> */}
+        <h5 className="information-item-name">DANH SÁCH</h5>
+        {/* <SearchAccount handleSearch={handleSearch}/> */}
+        <div className="profile-search-account-box">
+          <form onSubmit={handleSubmitSearchAccount} className="profile-search-account-form">
+            <input type="text" placeholder="Tìm tên người dùng..." value={searchName} onChange={handleChange} className="profile-search-account-input" />
+            <button type="submit" className="profile-search-account-button"><AiOutlineSearch /></button>
+          </form>
         </div>
-    </div>
-  );
-}
-
-const SearchAccount = ({ onSearch }) => {
-  const [searchName, setSearchName] = useState([])
-  const handleSubmitSearchAccount = (e) => {
-    e.preventDefault()
-    onSearch(searchName)
-  }
-  return (
-    <div className="profile-search-account-form">
-      <form onSubmit={handleSubmitSearchAccount}>
-        <input type="text" placeholder="Tìm tên người dùng..." value={searchName} onChange={(e) => (setSearchName(e.target.value))}/>
-        <button type="submit">Tìm kiếm</button>
-      </form>
+        <div className='profile-manage-account-header row'>
+          <div className='col comic-manage-item-col'>NGƯỜI DÙNG</div>
+          <div className='col comic-follow-item-col'>CHỨC NĂNG</div>
+        </div>
+        {
+          searchResult ?
+            (
+              <div className="profile-mange-account-user row">
+                <div className='col comic-manage-item-col'>{searchResult}</div>
+                <div className='col comic-follow-item-col'>
+                  <div name="role" id="role" className="role-selection">
+                    {role}
+                    <BiSolidDownArrow className="role-selection-icon"></BiSolidDownArrow>
+                    <ul className="role-selection-list">
+                      <option onClick={(e) => { setRole(e.target.value) }} className="role-selection-item" value="member">member</option>
+                      <option onClick={(e) => { setRole(e.target.value) }} className="role-selection-item" value="uploader">uploader</option>
+                      <option onClick={(e) => { setRole(e.target.value) }} className="role-selection-item" value="admin">admin</option>
+                    </ul>
+                  </div>
+                </div>
+                <div className="save-role-selection">
+                  <button onClick={handleChangeRole} className="btn btn-success save-role-btn">Save</button>
+                </div>
+              </div>
+            ) :
+            (
+              <div>No information</div>
+            )
+        }
+        {/* <div className="profile-manage-"></div> */}
+      </div>
     </div>
   );
 }
