@@ -35,18 +35,6 @@ export default function UploadChapter() {
         // console.log(result);
     }
 
-    // const comicList = [
-    //     {
-    //         name : 'Lee Doo Na'
-    //     },
-    //     {
-    //         name : 'Cạm bẫy'
-    //     },
-    //     {
-    //         name : 'Your throne'
-    //     }
-    // ]
-
     async function loadDataPage() {
         const result = await getReturnComicByUploader(id)
         setComicList(result.data.data.listComic)
