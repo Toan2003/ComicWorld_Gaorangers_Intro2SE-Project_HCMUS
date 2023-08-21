@@ -77,7 +77,7 @@ export default function MainComic() {
   const rating = comic?.ratingAvg
   
   const isRated = -1
-  // console.log(comic)
+  console.log(comic)
 
   
   return (
@@ -199,7 +199,7 @@ export default function MainComic() {
       </div>
       <div className="main-comic-comment">
         <div className="main-comic-comment-wrapper">
-          <CommentSection commentList={comic.Comments}></CommentSection>
+          <CommentSection comic={comic} userId={userId} comicId={id}></CommentSection>
         </div>
       </div>
     </div>
