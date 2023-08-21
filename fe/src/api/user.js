@@ -7,7 +7,11 @@ async function postChangeRole(name, role){
 }
 
 async function getSearchUser(name) {
+    // console.log(name)
     let link = '/user/searchUser/' + name
+    // console.log(link)
+    // console.log(name)
+    // console.log("ffff")
     return axiosClient.get(link)
 }
 

@@ -22,15 +22,6 @@ function Comic() {
 
   async function loadData() {
     // const comic = await getAllChapterOfComic(idComic, null)
-<<<<<<< HEAD
-    console.log(idChapter)
-    const chapters = await getChapter(idChapter)
-    console.log(chapters)
-    setOneChapter(chapters.data.data)
-
-    console.log(chapters.data.data)
-    // setAllChapter(comic.data.data.)
-=======
     const chapters = await getChapter(idChapter, null)
     const comics = await getComic(idComic, userId)
     // setOneChapter(chapters.data.data)
@@ -57,7 +48,6 @@ function Comic() {
         setFollow(true)
       }
     }
->>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
   }
 
   useEffect(() => {

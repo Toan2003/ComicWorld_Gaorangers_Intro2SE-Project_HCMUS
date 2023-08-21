@@ -61,6 +61,7 @@ async function changeMemberRole(name, role)
 async function returnUsername(name)
 {
     const checkUser=await user.findOne({username: name})
+    // console.log(checkUser)
     return checkUser
     
 }

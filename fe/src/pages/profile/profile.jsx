@@ -6,17 +6,11 @@ import { useEffect, useState } from "react"
 import { Link, Outlet } from 'react-router-dom'
 import { useContext } from "react"
 import { AuthContext } from "../../context/context"
-<<<<<<< HEAD
-import { getFollowedComic } from "../../api/comic"
-
-export default function Profile() {
-  const [profileUser, setProfileUser] = useState(<Member />)
-  const [followedComic, setFollowedComic] = useState([])
-  const { handleLogout, idUser } = useContext(AuthContext)
-=======
 import { getFollowedComic, getReturnComicByUploader } from "../../api/comic"
 import { GrView } from 'react-icons/gr'
 import { AiOutlineSearch } from 'react-icons/ai'
+import { getSearchUser, postChangeRole } from '../../api/user'
+import { BiSolidDownArrow } from "react-icons/bi";
 
 export default function Profile() {
   const [profileUser, setProfileUser] = useState(<Member />)
@@ -24,30 +18,10 @@ export default function Profile() {
   const [upload, setUpload] = useState([])
   const [isOnManageAccount, setIsOnManageAccount] = useState(false)
   const { handleLogout } = useContext(AuthContext)
->>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
   const username = localStorage.getItem('username')
   const typeUser = localStorage.getItem('type')
 
   async function loadData() {
-<<<<<<< HEAD
-    console.log(idUser)
-    const FOLLOWCOMIC = await getFollowedComic(idUser)
-    console.log(FOLLOWCOMIC.data.data)
-    
-    setFollowedComic(FOLLOWCOMIC.data.data.followList.fullComic)
-  }
-
-  useEffect(() => {
-    if (localStorage.getItem('type') == 'member') {
-      setProfileUser(<Member handleLogout={handleLogout} />)
-    }
-    else if (localStorage.getItem('type') == 'uploader') {
-      setProfileUser(<Uploader handleLogout={handleLogout} />)
-    }
-    else {
-      setProfileUser(<Admin handleLogout={handleLogout} />)
-    }
-=======
     let id = localStorage.getItem('id')
     const follows = await getFollowedComic(id)
     const uploads = await getReturnComicByUploader(id)
@@ -68,7 +42,6 @@ export default function Profile() {
   }
 
   useEffect(() => {
->>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
     loadData()
   }, [])
 
@@ -92,15 +65,11 @@ export default function Profile() {
             </div>
             {profileUser}
           </div>
-<<<<<<< HEAD
-          <Information username={username} typeUser={typeUser} followedComic={followedComic} />
-=======
           {
             !isOnManageAccount ?
               <Information username={username} typeUser={typeUser} follow={follow} upload={upload} /> :
               <ManageAccount />
           }
->>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
         </div>
       </div>
     </div>
@@ -181,93 +150,63 @@ function Information({ username, typeUser, follow, upload }) {
   );
 }
 
-<<<<<<< HEAD
-function Information({ username, typeUser, followedComic }) {
-  return (
-    <>
-      <div className='information'>
-        <h4>THÔNG TIN CHUNG</h4>
-        <div className='account-infor information-item'>
-          <h5>Thông tin tài khoản</h5>
-          {/* <Link className='edit' to='/profile/UserProfile'>Chỉnh sửa {">"}</Link> */}
-        </div>
-        <div className='box-account'>
-          <div className='box-account-item row'>
-            <p className='col'>Tên:</p>
-            <p className='col'>{username}</p>
-          </div>
-          <div className='box-account-item row'>
-            <p className='col'>Loại thành viên:</p>
-            <p className='col'>{typeUser}</p>
-=======
 
 const ManageAccount = () => {
-  const [searchResult, setSearchResult] = useState(null)
+  const [searchName, setSearchName] = useState([])
+  const [searchResult, setSearchResult] = useState(undefined)
   const [role, setRole] = useState([])
-  
-  const fakeAccount = ['admin1', 'uploader', 'test123123']
-  function handleSearch(query) {
-    fakeAccount.forEach((account) => {
-      if (account == query)
-        setSearchResult(account)
-    })
-  }
 
-  function handleSelectRole(e) {
-    setRole(e.target.value)
-  }
-
-  // useEffect(() => {
+  const handleSubmitSearchAccount = (e) => {
+    e.preventDefault()
+    handleSearch(searchName)
     
-  // }, [sea])
+    setSearchName("")
+  }
+
+  const handleChange = (e) => {
+    setSearchName(e.target.value)
+  }
+
+  async function handleSearch(query) {
+    const users = await getSearchUser(query)
+    setSearchResult(users?.data?.data?.user?.username)
+    // console.log(users?.data?.data?.user?.Role)
+    setRole(users?.data?.data?.user?.Role)
+  } 
+
 
   return (
     <div className='information'>
       <h4>QUẢN LÝ TÀI KHOẢN NGƯỜI DÙNG</h4>
       <div className="profile-manage-account-comic information-item">
           <h5 className="information-item-name">DANH SÁCH</h5>
-          <SearchAccount onSearch={handleSearch}/>
+          {/* <SearchAccount handleSearch={handleSearch}/> */}
+          <div className="profile-search-account-box">
+            <form onSubmit={handleSubmitSearchAccount} className="profile-search-account-form">
+              <input type="text" placeholder="Tìm tên người dùng..." value={searchName} onChange={handleChange} className="profile-search-account-input"/>
+              <button type="submit" className="profile-search-account-button"><AiOutlineSearch /></button>
+            </form>
+          </div>
           <div className='profile-manage-account-header row'>
             <div className='col comic-manage-item-col'>NGƯỜI DÙNG</div>
             <div className='col comic-follow-item-col'>CHỨC NĂNG</div>
->>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
           </div>
           {
-          searchResult != null ?
+          searchResult ?
           (
-            <div className="frofile-mange-account-user row">
+            <div className="profile-mange-account-user row">
               <div className='col comic-manage-item-col'>{searchResult}</div>
-              <div className='col comic-follow-item-col'>
-                <select name="role" id="role" onChange={handleSelectRole}>
-                  {
-                    role == 'member' ?
-                    (
-                      <>
-                        <option value="member" selected>Member</option>
-                        <option value="uploader">Uploader</option>
-                        <option value="admin">Admin</option>
-                      </>
-                    ) : 
-                    (
-                      role == 'uploader' ?
-                      (
-                        <>
-                          <option value="member" >Member</option>
-                          <option value="uploader" selected>Uploader</option>
-                          <option value="admin">Admin</option>
-                        </>
-                      ) :
-                      (
-                        <>
-                          <option value="member">Member</option>
-                          <option value="uploader">Uploader</option>
-                          <option value="admin" selected>Admin</option>
-                        </>
-                      )
-                    )
-                  }
-                </select>
-              </div>
+                <div className='col comic-follow-item-col'>
+                  <div name="role" id="role" className="role-selection">
+                    {role} 
+                    <BiSolidDownArrow className="role-selection-icon"></BiSolidDownArrow>
+                    <ul className="role-selection-list">
+                      <option onClick={(e) => {setRole(e.target.value)}} className="role-selection-item" value="member">member</option>
+                      <option onClick={(e) => {setRole(e.target.value)}} className="role-selection-item" value="uploader">uploader</option>
+                      <option onClick={(e) => {setRole(e.target.value)}} className="role-selection-item" value="admin">admin</option>
+                    </ul>
+                  </div>
+                </div>
            </div>
           ) :
           (
@@ -276,45 +215,6 @@ const ManageAccount = () => {
           }
           {/* <div className="profile-manage-"></div> */}
         </div>
-<<<<<<< HEAD
-        <div className='comic-follow information-item'>
-          <h5>Truyện theo dõi</h5>
-        </div>
-        <div className='comic-follow-list row'>
-          <div className='col'>TÊN TRUYỆN</div>
-          <div className='col'>XEM GẦN NHẤT</div>
-          <div className='col'>CHAPTER MỚI NHẤT</div>
-        </div>
-        {
-          followedComic.map((followComic) => {
-            return(
-            <div className="comic-follow-list-item row">
-              <div className="col">{followComic.nameComics}</div>
-              <div className="col">None</div>
-              <div className="col">None</div>
-            </div>
-          )})
-        }
-      </div>
-    </>
-=======
-    </div>
->>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
-  );
-}
-
-const SearchAccount = ({ onSearch }) => {
-  const [searchName, setSearchName] = useState([])
-  const handleSubmitSearchAccount = (e) => {
-    e.preventDefault()
-    onSearch(searchName)
-  }
-  return (
-    <div className="profile-search-account-box">
-      <form onSubmit={handleSubmitSearchAccount} className="profile-search-account-form">
-        <input type="text" placeholder="Tìm tên người dùng..." value={searchName} onChange={(e) => (setSearchName(e.target.value))} className="profile-search-account-input"/>
-        <button type="submit" className="profile-search-account-button"><AiOutlineSearch /></button>
-      </form>
     </div>
   );
 }

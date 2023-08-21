@@ -183,3 +183,50 @@
   transform: translateX(-110%);
   margin: 10px 0 10px 0;
 }
+
+.role-selection {
+  margin: 0 auto;
+  height: 30px;
+  width: 100px;
+  line-height: 30px ;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+.role-selection::after {
+  content:'';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 20px;
+  left: 0;
+  top: 25px;
+}
+
+.role-selection-list {
+  line-height: 30px;
+  margin-top: 2px;
+  padding: 0;
+  border: 1px solid #ccc;
+  display: none;
+}
+
+.role-selection-item {
+  text-align: start;
+  padding-left: 8px;
+}
+
+.role-selection-item:hover {
+  background-color: #f1eded;
+  cursor: pointer;
+}
+
+.role-selection:hover .role-selection-list {
+  display: block;
+}
+
+.role-selection-icon {
+  font-size: 10px;
+  line-height: 30px;
+  margin-left: 8px;
+}
