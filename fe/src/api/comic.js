@@ -1,10 +1,10 @@
 import {axiosClient} from "./axiosConnect"
-
-import {cloud} from "./axiosConnect"
+// import {Cloudinary} from "@cloudinary/url-gen";
+// import {cloud} from "./axiosConnect"
         
 async function getComic(idComic, idMember) { 
-    let link = '/comic/getOneComic/' + idComic
-    return await axiosClient.get(link,idMember);
+    let link = '/comic/getOneComic/' + idComic + '/' + idMember
+    return await axiosClient.get(link);
 }
 
 async function getAllComic() {
@@ -37,18 +37,30 @@ async function getComicAccordingToType(type) {
 }
 //type
 
-async function postCreatComic(name,date,group,member,type,status,description,cover) {
+async function getReturnComicByUploader(idUploader) {
+    let link = '/comic/returnComicByUploader/' + idUploader 
+    return await axiosClient.get(link);
+}
+
+async function postCreateComic(name,date,group,idMember,type,status,cover) {
+    // const cloud = new Cloudinary({cloud: { 
+    //     cloud_name: 'comicimage',
+    //     api_key: '648687645831283', 
+    //     api_secret: 'JC3Pf5ilCtzv0bJj4TV00pwH4cI'  
+    // }});
+    // console.log(Cloudinary)
     let link = '/comic/create'
-    let coverURL = await cloud.uploader.upload(cover, {
-        folder: "CoverImage"
-    },(error, result) => {
-        console.log(error);
-        console.log(result);
-    }).catch((error) => {
-        console.log("fail to upload cover image");
-        return null;
-    });
-    return await axiosClient.post(link, {name,date,group,member,type,status,description,coverURL}).then
+    // let coverURL = await Cloudinary.v2.uploader.upload(cover, {
+    //     folder: "CoverImage"
+    // },(error, result) => {
+    //     console.log(error);
+    //     console.log(result);
+    // }).catch((error) => {
+    //     console.log("fail to upload cover image");
+    //     return null;
+    // });
+    let res = await axiosClient.post(link, {name,date,group,idMember,type,status,file: cover})
+    return res
 }
 
 async function postAddFollowComic(idMember,idComic) {
@@ -67,7 +79,8 @@ export {
     getFollowedComic,
     getComicAccordingToType,
     getSearhComic,
-    postCreatComic,
+    postCreateComic,
     postAddFollowComic,
-    postUnfollowComic
+    postUnfollowComic,
+    getReturnComicByUploader
 } 

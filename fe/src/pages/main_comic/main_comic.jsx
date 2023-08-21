@@ -1,5 +1,5 @@
 import { Link, Outlet } from 'react-router-dom'
-import { getComic, getRankingBoard } from '../../api/comic'
+import { getComic, getRankingBoard, postAddFollowComic, postUnfollowComic } from '../../api/comic'
 import './styles.css'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
@@ -9,17 +9,54 @@ export default function MainComic() {
   const { id } = useParams()
   const [comic, setComic] = useState([])
   const [rank, setRank] = useState([])
+  const [follow, setFollow] = useState([])
+  const [chapters, setChapters] = useState([])
+  const userId = localStorage.getItem('id')
+  
+  const [firstChapter, setFistChapter] = useState('')
+  const [lastChapter, setLastChapter] = useState('')
 
   async function loadData() {
-    const COMIC = await getComic(id, null)
+    const COMIC = await getComic(id, userId)
     const RANK = await getRankingBoard()
+    if (COMIC.data.data.comic.chapters.length > 0) {
+      setFistChapter(COMIC.data.data.comic.chapters[0].chaptersID)
+      setLastChapter(COMIC.data.data.comic.chapters[COMIC.data.data.comic.chapters.length-1].chaptersID)
+    }
     setComic(COMIC.data.data.comic)
     setRank(RANK.data.data.rankingList)
+    setFollow(COMIC.data.data.isFollowed)
+    setChapters(COMIC.data.data.comic.chapters)
+
+    console.log(firstChapter)
+    console.log(lastChapter)
+    console.log("id ne:", id)
   }
+  
+  async function handleFollow() {
+    if (follow) {
+      let result = await postUnfollowComic(userId , id)
+      // console.log(result)
+      
+      if (result.data.isSuccess) {
+        setFollow(false)
+      }
+
+    }
+    else {
+      let result = await postAddFollowComic(userId, id)
+      // console.log(result)
+      if (result.data.isSuccess) {
+        setFollow(true)
+      }
+    }
+  }
+
+
 
   useEffect(() => {
     loadData()
-  }, [id])
+  }, [])
 
   const content = 'Đang cập nhật'
   const comicName = comic?.nameComics
@@ -28,6 +65,8 @@ export default function MainComic() {
   const status = comic?.status
   const type = comic?.type
   const view = comic?.view
+
+  // console.log(follow)
 
   return (
     <div className="main-comic">
@@ -38,11 +77,11 @@ export default function MainComic() {
           </li>
           <li><p>{'>>'}</p></li>
           <li>
-            <Link className='link-item' to='/comic'>Truyện</Link>
+            <Link className='link-item' to='/type-comic'>Truyện</Link>
           </li>
           <li><p>{'>>'}</p></li>
           <li>
-            <Link className='link-item' to={`/comic/main-comic/${id}`}>{comicName}</Link>
+            <Link className='link-item' to={`/type-comic/main-comic/${id}`}>{comicName}</Link>
           </li>
           <Outlet />
         </ul>
@@ -72,9 +111,16 @@ export default function MainComic() {
                 </div>
               </div>
               <div className='title-button'>
-                <button type='button' className='btn btn-success'>Theo dõi</button>
-                <button type='button' className='btn btn-primary'>Đọc từ đầu</button>
-                <button type='button' className='btn btn-primary'>Đọc mới nhất</button>
+                {
+                  follow ?
+                  (
+                    <button type='button' onClick={() =>handleFollow()} className='btn btn-success'>Bỏ theo dõi</button>
+                  )
+                  :
+                  <button type='button' onClick={() =>handleFollow()} className='btn btn-success'>Theo dõi</button>
+                }
+                <Link  className='btn btn-primary' id={firstChapter} to={`/type-comic/main-comic/${id}/${firstChapter}`}>Đọc từ đầu</Link>
+                <Link  className='btn btn-primary' id={lastChapter} to={`/type-comic/main-comic/${id}/${lastChapter}`}>Đọc mới nhất</Link>
               </div>
             </div>
           </div>
@@ -95,9 +141,9 @@ export default function MainComic() {
             </div>
             <div className='list-chapter-content'>
               {
-                comic?.chapters?.map((chapter) => {
+                comic?.chapters?.map((chapter, index) => {
                   return (
-                    <div className='row'>
+                    <div className='row' key={index}>
                       <Link className='col' id={chapter?.chaptersID} to={`/type-comic/main-comic/${id}/${chapter?.chaptersID}`}>{chapter.chaptersName}</Link> 
                       <div className='col'>1 ngày trước</div>
                       <div className="col">N/A</div>

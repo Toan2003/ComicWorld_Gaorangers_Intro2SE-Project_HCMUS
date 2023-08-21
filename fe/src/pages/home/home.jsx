@@ -9,14 +9,26 @@ export default function Home() {
   const [comic, setComic] = useState([])
   const [rank, setRank] = useState(undefined)
   const [follow, setFollow] = useState(undefined)
+
+  let id = localStorage.getItem('id')
+  // console.log(id)
   
   async function loadDataPage() {
     const comics = await getAllComic()
     const ranks = await getRankingBoard()
-    const follows = await getFollowedComic('64d8ed909e43edfe49b84fd9')
+
+    if (id != 'null') {
+      // console.log('1')
+      // setFollow(undefined)// console.log('2')
+      const follows = await getFollowedComic(id)
+      setFollow(follows?.data?.data?.followList?.fullComic)
+    }
+    else {
+      setFollow(undefined)
+    }
+
     setComic(comics.data.data.listComic)
     setRank(ranks.data.data.rankingList)
-    setFollow(follows.data.data.followList.fullComic)
   }
 
   useEffect(() => {

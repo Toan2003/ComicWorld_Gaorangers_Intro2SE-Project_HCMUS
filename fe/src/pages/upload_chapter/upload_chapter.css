@@ -33,10 +33,8 @@
     margin: 16px 0;
 }
 
-.upload_chapter-list {
-    list-style: none;
+.upload_chapter-list-wrap {
     padding: 0 8px;
-    margin: 0;
     height: 35px;
     width: 300px;
     line-height: 30px;
@@ -45,6 +43,51 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.upload_chapter-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: -1px;
+    border: 1px solid #070707;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 300px;
+    z-index: 1;
+    display: none;
+}
+
+.upload_chapter-list-wrap::after {
+    content: "";
+    width: 100%;
+    height: 20px;
+    position: absolute;
+    top: 90%;
+    left: 0;
+}
+
+.upload_chapter-list-wrap:hover .upload_chapter-list {
+    display: block;
+}
+
+.upload_chapter-list_item {
+    padding: 0 8px;
+    background-color: #fff;
+    display: block; 
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.upload_chapter-list_item:hover {
+    background-color: #f9f8f8;
+    cursor: pointer;
 }
 
 .upload_chapter-list-icon {
@@ -61,13 +104,14 @@
 }
 
 .upload_chapter-upload {
-    width: 500px;
-    height: 200px;
+    width: 700px;
+    height: 300px;
 }
 
 .upload_chapter-upload-wrap {
-    display: block;
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .upload_chapter-upload-icon {
@@ -88,8 +132,40 @@
     color: #ffff;
 }
 
+.upload_chapter-file-box {
+    width: 400px;
+    height: 200px;
+    border-radius: 5px;
+    border: 1px solid #070707;
+    padding: 0 4px 4px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.upload_chapter-file {
+    width: 371px;
+    height: 25px;
+    padding-left: 4px;
+    border: 1px solid #070707;
+    margin-top: 4px;
+    border-radius: 5px;
+}
+
+.upload_chapter-file-text {
+    width: 350px;
+    height: 25px;
+    line-height: 25px;
+    display: block; /*trong trường hợp trình duyệt không hỗ trợ ưebkit-box*/
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    cursor: default;
+}
+
 .upload_chapter-file_input {
-    margin-left: 10px;
+    display: none;
 }
 
 .upload_chapter-button:hover {
