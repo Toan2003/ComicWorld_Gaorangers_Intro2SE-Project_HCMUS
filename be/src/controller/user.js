@@ -47,6 +47,7 @@ async function postChangeRole(req,res) {
 
 async function getSearchUser(req, res) {
     const {name} = req.params
+    // console.log(name)
     if (name == null || name == '') {
         return res.json({
             isSuccess: false,
@@ -56,12 +57,14 @@ async function getSearchUser(req, res) {
         })
     }
     let result = await database.returnUsername(name)
+    // console.log(result)
+    // console.log('aaaa')
     if (result) {
         return res.json({
             isSuccess: true,
             message: 'username found',
             status: res.statusCode,
-            data: {
+            data: { 
                 user: result
             }
         })

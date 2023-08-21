@@ -8,7 +8,7 @@ export default function Uploader({handleLogout}) {
                     <Link className='link-item' to='/profile/dashboard'>Thông tin chung</Link>
                 </li>
                 <li>
-                    <Link className='link-item' to='/new-comic'>Thêm truyện</Link>
+                    <Link className='link-item' to='/profile/upload'>Thêm truyện</Link>
                 </li>
                 <li>
                     <Link className='link-item' to='/' onClick={handleLogout}>Thoát</Link>
