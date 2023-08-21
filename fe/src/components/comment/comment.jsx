@@ -6,10 +6,11 @@ import { postAddComment } from '../../api/comic';
 export function CommentSection({ comic, userId, comicId }) {
     const [inputText, setInputText] = useState("")
     
-    function handleSendComment(e) {
+    async function handleSendComment(e) {
         e.preventDefault()
-        // console.log(inputBox.target)
-        
+        if (inputText.length != '') {
+            await postAddComment(comicId, userId, inputText)
+        }
         setInputText("")
     }
 
