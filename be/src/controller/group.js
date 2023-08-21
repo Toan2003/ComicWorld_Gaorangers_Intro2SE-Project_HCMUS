@@ -47,7 +47,7 @@ async function addMemberToGroup(req,res) {
             data: ''
         })
     }
-    
+    let result = await database.addMemberToGroup(nameUploader, nameGroup).catch(err => {})
 }
 
 module.exports = {
