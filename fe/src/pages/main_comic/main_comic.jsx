@@ -4,6 +4,8 @@ import './styles.css'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { Table } from '../../components/rankingBoard/rankingBoard'
+import { AiFillStar } from 'react-icons/ai';
+
 
 export default function MainComic() {
   const { id } = useParams()
@@ -28,9 +30,9 @@ export default function MainComic() {
     setFollow(COMIC.data.data.isFollowed)
     setChapters(COMIC.data.data.comic.chapters)
 
-    console.log(firstChapter)
-    console.log(lastChapter)
-    console.log("id ne:", id)
+    // console.log(firstChapter)
+    // console.log(lastChapter)
+    // console.log("id ne:", id)
   }
   
   async function handleFollow() {
@@ -52,6 +54,10 @@ export default function MainComic() {
     }
   }
 
+  async function handleClickRating(number) {
+    //gọi api  gửi number(số sao người dùng chọn)
+    loadData();
+  }
 
 
   useEffect(() => {
@@ -65,7 +71,9 @@ export default function MainComic() {
   const status = comic?.status
   const type = comic?.type
   const view = comic?.view
+  const rating = comic?.rating
 
+  const isRated = 5
   // console.log(follow)
 
   return (
@@ -109,6 +117,32 @@ export default function MainComic() {
                   <p className='col'>Lượt xem: </p>
                   <p className='col'>{view}</p>
                 </div>
+                <div className='row'>
+                  <p className='col'>Đánh giá: </p>
+                  <p className='col'>{view}<AiFillStar className='star-icon'/></p>
+                </div>
+                {
+                  isRated != -1 ?
+                  (
+                    <div className='row'>
+                      <p className='col user-rating-number'>Đánh giá của bạn: </p>
+                      <p className='col'>{isRated}<AiFillStar className='star-icon'/></p>
+                    </div>
+                  )
+                  :
+                  (
+                    <div className='row'>
+                      <p className='col'>Gửi đánh giá: </p>
+                        <div className="rating-section">
+                          <AiFillStar onClick={() => handleClickRating(1)} className="rating-star"></AiFillStar>
+                          <AiFillStar onClick={() => handleClickRating(2)} className="rating-star"></AiFillStar>
+                          <AiFillStar onClick={() => handleClickRating(3)} className="rating-star"></AiFillStar>
+                          <AiFillStar onClick={() => handleClickRating(4)} className="rating-star"></AiFillStar>
+                          <AiFillStar onClick={() => handleClickRating(5)} className="rating-star"></AiFillStar>
+                        </div>
+                    </div>
+                  )
+                }
               </div>
               <div className='title-button'>
                 {
