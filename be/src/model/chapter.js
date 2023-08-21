@@ -32,14 +32,16 @@ async function getOneChapter(idChapter)
     {
         const updateView=chapterChoose.view +1
         await chapter.findOneAndUpdate({_id:idChapter},{view: updateView})
-        
+        const newComic = await comic.comics.findOne({"chapters.chapterid":idChapter})
+        let newView= newComic.view+1
+        await newComic.findOneAndUpdate({$set:{view:newView}})
     }
     return chapterChoose
 }
 
 async function getAllChapter(idComic)
 {
-    const comicsChoose = await comic.findById(idComic)
+    const comicsChoose = await comic.comics.findById(idComic)
     if (comicChoose)
     {
         const chooseComic= comicChoose.chapters
