@@ -8,6 +8,7 @@ import { useContext } from "react"
 import { AuthContext } from "../../context/context"
 import { getFollowedComic, getReturnComicByUploader } from "../../api/comic"
 import { GrView } from 'react-icons/gr'
+import { AiOutlineSearch } from 'react-icons/ai'
 
 export default function Profile() {
   const [profileUser, setProfileUser] = useState(<Member />)
@@ -149,36 +150,77 @@ function Information({ username, typeUser, follow, upload }) {
 
 
 const ManageAccount = () => {
-  const [searchResult, setSearchResult] = useState([])
-
+  const [searchResult, setSearchResult] = useState(null)
+  const [role, setRole] = useState([])
+  
+  const fakeAccount = ['admin1', 'uploader', 'test123123']
   function handleSearch(query) {
-    const fakeListAccount = [
-      'admin1',
-      'test12345',
-      'test1234',
-      'uploader',
-      '11111111',
-      '22222222',
-      '3333333',
-      '44444444',
-      '55555555',
-      '66666666',
-      '10002134012340',
-      '1234123412341234'
-    ]
-
-    setSearchResult(fakeListAccount)
+    fakeAccount.forEach((account) => {
+      if (account == query)
+        setSearchResult(account)
+    })
   }
+
+  function handleSelectRole(e) {
+    setRole(e.target.value)
+  }
+
+  // useEffect(() => {
+    
+  // }, [sea])
 
   return (
     <div className='information'>
       <h4>QUẢN LÝ TÀI KHOẢN NGƯỜI DÙNG</h4>
       <div className="profile-manage-account-comic information-item">
           <h5 className="information-item-name">DANH SÁCH</h5>
+          <SearchAccount onSearch={handleSearch}/>
           <div className='profile-manage-account-header row'>
             <div className='col comic-manage-item-col'>NGƯỜI DÙNG</div>
             <div className='col comic-follow-item-col'>CHỨC NĂNG</div>
           </div>
+          {
+          searchResult != null ?
+          (
+            <div className="frofile-mange-account-user row">
+              <div className='col comic-manage-item-col'>{searchResult}</div>
+              <div className='col comic-follow-item-col'>
+                <select name="role" id="role" onChange={handleSelectRole}>
+                  {
+                    role == 'member' ?
+                    (
+                      <>
+                        <option value="member" selected>Member</option>
+                        <option value="uploader">Uploader</option>
+                        <option value="admin">Admin</option>
+                      </>
+                    ) : 
+                    (
+                      role == 'uploader' ?
+                      (
+                        <>
+                          <option value="member" >Member</option>
+                          <option value="uploader" selected>Uploader</option>
+                          <option value="admin">Admin</option>
+                        </>
+                      ) :
+                      (
+                        <>
+                          <option value="member">Member</option>
+                          <option value="uploader">Uploader</option>
+                          <option value="admin" selected>Admin</option>
+                        </>
+                      )
+                    )
+                  }
+                </select>
+              </div>
+           </div>
+          ) :
+          (
+            <div>No information</div>
+          )
+          }
           {/* <div className="profile-manage-"></div> */}
         </div>
     </div>
@@ -192,10 +234,10 @@ const SearchAccount = ({ onSearch }) => {
     onSearch(searchName)
   }
   return (
-    <div className="profile-search-account-form">
-      <form onSubmit={handleSubmitSearchAccount}>
-        <input type="text" placeholder="Tìm tên người dùng..." value={searchName} onChange={(e) => (setSearchName(e.target.value))}/>
-        <button type="submit">Tìm kiếm</button>
+    <div className="profile-search-account-box">
+      <form onSubmit={handleSubmitSearchAccount} className="profile-search-account-form">
+        <input type="text" placeholder="Tìm tên người dùng..." value={searchName} onChange={(e) => (setSearchName(e.target.value))} className="profile-search-account-input"/>
+        <button type="submit" className="profile-search-account-button"><AiOutlineSearch /></button>
       </form>
     </div>
   );

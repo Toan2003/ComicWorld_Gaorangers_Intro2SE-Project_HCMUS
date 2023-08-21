@@ -158,5 +158,28 @@
   border: 1px solid black;
 }
 
+.profile-search-account-box {
+  margin: 5vh 10vw 5vh 10vw;
+}
 
+.profile-search-account-form {
+  display: flex;
+}
 
+.profile-search-account-input {
+  border: none;
+  border-radius: 15px;
+  max-width: 700px;
+  width: 100%;
+  padding: 10px;
+  background-color: antiquewhite;
+}
+
+.profile-search-account-button {
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  transform: translateX(-110%);
+  margin: 10px 0 10px 0;
+}
