@@ -9,6 +9,7 @@ import { getComic, postAddFollowComic, postUnfollowComic } from '../../api/comic
 import { useParams } from 'react-router-dom'
 
 function Comic() {
+
   const { idComic, idChapter } = useParams()
 
   const [chapter, setOneChapter] = useState([])
@@ -21,13 +22,21 @@ function Comic() {
 
   async function loadData() {
     // const comic = await getAllChapterOfComic(idComic, null)
+<<<<<<< HEAD
+    console.log(idChapter)
+    const chapters = await getChapter(idChapter)
+    console.log(chapters)
+    setOneChapter(chapters.data.data)
+
+    console.log(chapters.data.data)
+    // setAllChapter(comic.data.data.)
+=======
     const chapters = await getChapter(idChapter, null)
     const comics = await getComic(idComic, userId)
     // setOneChapter(chapters.data.data)
     setOneChapter(chapters.data.data)
     setComic(comics.data.data.comic)
     setFollow(comics.data.data.isFollowed)
-    // console.log(comics)
     // console.log(comics.data.data.isFollowed)
   }
 
@@ -48,6 +57,7 @@ function Comic() {
         setFollow(true)
       }
     }
+>>>>>>> de48f31f313203ca3524606ed0560b4ff3dc777c
   }
 
   useEffect(() => {
@@ -77,6 +87,7 @@ function Comic() {
   // ]);
   // const AvatarImage = './avatar'
   // const Username = "abc123"
+  const[searchInput,setSearchInput]= useState("")
   const [comment, setComment] = useState("")
   const handleChange = (event) => {
     setComment(event.target.value);
@@ -85,6 +96,11 @@ function Comic() {
     event.target.style.height = "auto";
     event.target.style.height = `90px`;
   }
+  const navigate_to=(path)=>
+  {
+    window.location.href = path;
+  }
+  
   return (
     <div className="comic">
       <div className="Contrucst">
@@ -133,8 +149,8 @@ function Comic() {
             modal
             trigger={<button className="btn btn-outline-secondary"> {CurChapter} <FaChevronDown size={15} /></button>}
             contentStyle={{
-              width: '590px'
-              , height: '590px', overflow: 'scroll', background: '#ebebeb'
+              width: '610px'
+              , height: '550px', overflow: 'scroll', background: '#FFFFFF',
             }}
           >
             {close => (
@@ -142,19 +158,26 @@ function Comic() {
                 <div className='Close_Popup'>
                   <button className="CloseWin"
                     onClick={() => {
-                      console.log('modal closed ');
                       close();
                     }} > <FaRegWindowClose size={35} />  </button>
                 </div>
-                <div className='SearchChap_Popup'>
-                  <input type="text" className="SearchChapBar_Popup" placeholder='Nhập số chap...'></input>
+                <div className='Line_Pos'>
+                <hr className='Line_Hor'/>
                 </div>
 
                 <div className='Body_Modal'>
                   <div className='Chap_Pos'>
-                    {ComicsChapter.map((chapter, index) => (
-                      <button className='Chap_but'>{chapter}</button>
+                      {comic?.chapters?.map((chapter, index) => (
+                      <button className='Chap_but' 
+                      id={chapter?.chaptersID} 
+                       onClick={() => {
+                        navigate_to(`/type-comic/main-comic/${idComic}/${chapter?.chaptersID}`)
+                        close();
+                      }}>
+                        {chapter.chaptersName}
+                      </button>
                     ))}
+                    
                   </div>
                 </div>
               </div>
@@ -191,11 +214,11 @@ function Comic() {
           </li>
           <li ><p >{'>>'}</p></li>
           <li>
-            <Link className='link_comic-item' to={`/comic/main-comic/${idComic}`}>{NameComic}</Link>
+            <Link className='link_comic-item' to={`/type-comic/main-comic/${idComic}`}>{NameComic}</Link>
           </li>
           <li ><p >{'>>'}</p></li>
           <li>
-            <Link className='link_comic-item' to={`/comic/main-comic/${idComic}/${idChapter}`}>{NameComic}</Link>
+          <Link className='link_comic-item' to={`/type-comic/main-comic/${idComic}/${idChapter}`}>{CurChapter}</Link>
           </li>
           <Outlet />
         </ul>
