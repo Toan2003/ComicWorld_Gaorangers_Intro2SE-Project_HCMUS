@@ -62,6 +62,7 @@ async function returnUsername(name)
 {
     const checkUser=await user.findOne({username: name})
     return checkUser
+    
 }
 module.exports= {user, login, signup, 
     changeMemberRole,

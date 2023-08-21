@@ -439,9 +439,8 @@ async function postRating(req, res) {
             statusbar: res.statusCode,
             data: ''
         })
-    }
-    let result 
-    // let result = await database.newRating(idComic, idMember, star)
+    } 
+    let result = await database.ratingComic(idComic, idMember, star)
     if (result) {
         return res.json({
                     isSuccess: true,
