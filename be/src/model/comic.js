@@ -246,7 +246,7 @@ async function returnForOneComic (idMember, idComics)
     return {oneComics, isFollowed}
 }
 
-async function newComment(idComic, idMember, des, )
+async function newComment(idComic, idMember, des )
 {
     const newComic = await comics. findById(idComic)
     if(newComic)
@@ -261,6 +261,7 @@ async function newComment(idComic, idMember, des, )
     }
     return false
 }
+
 module.exports= {
     comics,
     returnForOneComic,
