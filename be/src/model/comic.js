@@ -238,6 +238,22 @@ async function returnForOneComic (idMember, idComics)
 
     return {oneComics, isFollowed}
 }
+
+async function newComment(idComic, idMember, des, )
+{
+    const newComic = await comics. findById(idComic)
+    if(newComic)
+    {
+        const newMember = await user.user.findById(idMember)
+        if(newMember)
+        {
+
+            await newComic.updateOne({$addToSet:{Comments:{content: des, username: newMember.username }}})
+            return true
+        }
+    }
+    return false
+}
 module.exports= {
     comics,
     returnForOneComic,
@@ -249,5 +265,6 @@ module.exports= {
     returnComicsByUploader,
     searchComic,
     followOneComic,
-    unfollowOneComic
+    unfollowOneComic, 
+    newComment
 };
