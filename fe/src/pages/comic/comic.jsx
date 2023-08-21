@@ -15,7 +15,7 @@ function Comic() {
   const [comic, setComic] = useState([])
   const [follow, setFollow] = useState(false)
 
-  // const [allChapter, setAllChapter] = useState([])
+  const [allChapter, setAllChapter] = useState([])
   
   const userId = localStorage.getItem('id')
 
@@ -27,14 +27,20 @@ function Comic() {
     setOneChapter(chapters.data.data)
     setComic(comics.data.data.comic)
     setFollow(comics.data.data.isFollowed)
-    // console.log(comics)
     // console.log(comics.data.data.isFollowed)
+    setAllChapter(comics.data.data.comic.chapters)
   }
+  // console.log(comic.chapters)
+  
+  // function handleChooseChapter() {
+  //   setReload((reload) => reload + 1)
+  //   console
+  // }
 
   async function handleFollow() {
     if (follow) {
       let result = await postUnfollowComic(userId , idComic)
-      console.log(result)
+      // console.log(result)
       
       if (result.data.isSuccess) {
         setFollow(false)
@@ -43,7 +49,7 @@ function Comic() {
     }
     else {
       let result = await postAddFollowComic(userId, idComic)
-      console.log(result)
+      // console.log(result)
       if (result.data.isSuccess) {
         setFollow(true)
       }
@@ -152,9 +158,11 @@ function Comic() {
 
                 <div className='Body_Modal'>
                   <div className='Chap_Pos'>
-                    {ComicsChapter.map((chapter, index) => (
-                      <button className='Chap_but'>{chapter}</button>
-                    ))}
+                    {
+                    Object.keys(allChapter).map((cur, index) => (
+                      <Link id={allChapter[cur].chaptersID} className='Chap_but' to={`/type-comic/main-comic/${idComic}/${allChapter[cur].chaptersID}`} >{allChapter[cur].chaptersName}</Link>
+                    ))
+                    }
                   </div>
                 </div>
               </div>
