@@ -1,11 +1,29 @@
 import { Link, Outlet } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { createGroup } from '../../api/group'
 // import { useParams } from 'react-router-dom'
 
 export default function CreateGroup() {
-    const [groupName, setGroupName] = useState([])
-    const [groupMember, setGroupMember] = useState([])
-    const [desciption, setDescription] = useState([])
+    const [groupName, setGroupName] = useState("")
+    // const [groupMember, setGroupMember] = useState([])
+    const [description, setDescription] = useState("")
+
+    function handleSubmitCreateGroup(e) {
+        e.preventdefault()
+        // console.log(onCreatedGroup)
+        setGroupName("")
+        setDescription("")
+    }
+    async function loadData() {
+        const onCreatedGroup = await createGroup(groupName, description)
+    }
+
+    useEffect(() => {
+        loadData()
+    }, [groupName])
+    
+
+    
     // const {id} = useParams()
 
     return (
@@ -24,20 +42,13 @@ export default function CreateGroup() {
                     </ul>
                 </div>
                 <div className='create-group-form-container'>
-                    <form className="create-group-form-name">
+                    <form className="create-group-form-name" onSubmit={handleSubmitCreateGroup}>
                         <input type="text" placeholder="Nhập tên nhóm" value={groupName} onChange={(e) => (setGroupName(e.target.value))} className="create-group-input-name" />
+                        <textarea type="text" placeholder='Nhập mô tả về nhóm' value={description} onChange={(e) => (setDescription(e.target.value))} className="create-group-input-description"/>
                         <button type="submit" className="btn btn-primary create-group-form-name-btn">Tạo</button>
-                    </form>
-                    {/* <form className="create-group-form-member">
-                        <input type="text" placeholder="Nhập tên thành viên" value={groupName} onChange={(e) => (setGroupName(e.target.value))} className="create-group-input-member" />
-                        <button type="submit" className="btn btn-primary create-group-form-member-btn">Thêm</button>
-                    </form> */}
-                    <form className='create-group-form-description'>
-                        <textarea type="text" placeholder='Nhập mô tả về nhóm' value={desciption} onChange={(e) => (setDescription(e.target.value))} className="create-group-input-description"/>
                     </form>
                     <div className="create-group-"></div>
                 </div>
-
             </div>
         </div>
     );
