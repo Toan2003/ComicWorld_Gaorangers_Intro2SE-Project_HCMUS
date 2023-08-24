@@ -12,9 +12,12 @@ route.get('/comic/search',controller.getSearchComic)
 route.get('/comic/type/:type',controller.getComicAccordingToType)
 route.get('/comic/returnComicByUploader/:idUploader',controller.getReturnComicByUploader)
 
+route.get('/comic/getComment/:idComic', controller.getComment)
+
 route.post('/comic/create', controller.postCreateComic) 
 route.post('/comic/followComic', controller.postAddFollowComic)
 route.post('/comic/unfollowComic', controller.postCancelFollowComic)
 route.post('/comic/rating', controller.postRating)
+route.get('/comic/isRating/:idComic/:idMember', controller.getIsRating)
 
 module.exports = route

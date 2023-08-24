@@ -18,9 +18,13 @@ async function addMemberToGroup(nameUploader, nameGroup)
         {  
             const newMemberGroup = await group.updateOne({groupName: nameGroup}, {$addToSet:{Uploader:[nameUploader]}})
             return true
-        }
+        } 
     }
     return false
+}
+
+async function removeMemberFromGroup(nameUploader, nameGroup) {
+
 }
 
 module.exports= {createGroup, addMemberToGroup};

@@ -5,17 +5,22 @@ import { MdModeComment } from "react-icons/md";
 import { AiFillStar } from "react-icons/ai";
 
 export function Table({name, data}){
+  console.log(data)
     return (
       <div className="homepage-table-container">
         <h3 className="homepage-table-name">{name}</h3>
-        {data ?
-          (data.map((cur, index) => (<Row key={index} data={cur}></Row>)))
-          : 
-          (<div className='homepage-empty-row'>Trống</div>)
-        }
+        <div className="homepage-table-row-wrapper">
+          {
+            data.length > 0 ?
+            (data.map((cur, index) => (<Row key={index} data={cur}></Row>)))
+            : 
+            (<div className='homepage-empty-row'>Trống</div>)
+          }
+        </div>
       </div>
     )
 }
+
 
 function Row({ data }){
 return (

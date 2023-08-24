@@ -194,7 +194,7 @@ async function returnForOneComic (idMember, idComics)
             viewChap.push(viewTemp)
         }
     }
-    const comments=returnComments(idComics)
+    // const comments=returnComments(idComics)
 
     return {oneComics, isFollowed}
 }
@@ -217,17 +217,29 @@ async function newComment(idComic, idMember, des )
 
 async function isRating(idComic, idMember)
 {
+    let star=-1
     const newMember = await user.findById(idMember)
     if(newMember){
-        const newComic = await comics.findOne({_id: idComic, Rating:{username: idMember.username}})
+        const newComic = await comics.findOne({_id: idComic,"Rating.username": newMember.username })
+        // console.log(newComic)
         if(newComic)
         {
-            const star= newComic.Rating.star
+            
+            // const star= newComic.Rating.star
+            for (let i=0; i<newComic.Rating.length; i++)
+            {
+                if (newMember.username == newComic.Rating[i].username)
+                {   
+                    star=newComic.Rating[i].star
+                    break
+                }
+            }
             const isRating= true
+
             return {star, isRating}
         }
     }
-    const star=-1
+    star=-1
     const isRating=false
     return {star, isRating}
 }
@@ -237,31 +249,33 @@ async function ratingComic(idComic, idMember, starNum)
     const newComic = await comics.findById(idComic)
     const newMember = await user.findById(idMember)
     let avg=0
+    // console.log(typeof(starNum))
     if(newComic)
     {
         if(newMember)
         {
             await newComic.updateOne({$addToSet:{Rating:{star: starNum, username: newMember.username}}})
-            for (let i=0; i<newComic.Rating.length; i++)
+            const reallynewComic = await comics.findById(idComic)
+            for (let i=0; i<reallynewComic.Rating.length; i++)
             {
-                avg+=newComic.Rating[i].star
+                // console.log(typeof(reallynewComic.Rating[i].star))
+                avg+=reallynewComic.Rating[i].star
+                // console.log(typeof(avg))
                 // console.log(avg)
             }
             // console.log(newComic.Rating.length)
-            length=newComic.Rating.length
+            length=reallynewComic.Rating.length
             // console.log(typeof(length))
             avg=Math.round(avg/length*10)/10
             // console.log(typeof(avg))
-            await newComic.updateOne({$set:{ratingAvg: avg}})
+            // console.log(avg)
+            await reallynewComic.updateOne({$set:{ratingAvg: avg}})
             return true
         }
     }
     return false
 }
 
-async function updateView(idChapter) {
-
-}
 
 
 module.exports= {
@@ -278,6 +292,5 @@ module.exports= {
     createComics,
     newComment,
     isRating, 
-    ratingComic,
-    updateView
+    ratingComic
 };

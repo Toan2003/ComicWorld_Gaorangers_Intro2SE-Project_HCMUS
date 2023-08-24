@@ -37,10 +37,13 @@ async function signup(username,password){
 
 async function changeMemberRole(name, role)
 {
+    console.log(role)
     const checkMember = await user.findOne({username: name})
     if (checkMember)
     {
-        const member = await user.updateOne({username: user}, {$set:{Role: role}})
+        console.log(checkMember)
+        const member = await user.updateOne({username: name}, {$set:{Role: role}})
+        
         return true
     }
     return false  
@@ -49,6 +52,7 @@ async function changeMemberRole(name, role)
 async function returnUsername(name)
 {
     const checkUser=await user.findOne({username: name})
+    // console.log(checkUser)
     return checkUser
     
 }
