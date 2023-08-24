@@ -75,6 +75,7 @@ async function addMemberToGroup(req,res) {
 }
 
 async function returnGroup(req, res) {
+    // console.log("hhhh")
     let result = await database.returnGroup() .catch(err => {
         console.log(err)
         return res.json({
@@ -90,16 +91,16 @@ async function returnGroup(req, res) {
             isSuccess: true,
             message: 'return group success',
             status: res.statusCode,
-            data: ''
+            data: {
+                group: result
+            }
         })
     } else {
         return res.json({
             isSuccess: false,
             message: 'return group fail',
             status: res.statusCode,
-            data: {
-                group: result
-            }
+            data: ''
         })
     }
 }
