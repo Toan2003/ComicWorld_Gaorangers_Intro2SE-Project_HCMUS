@@ -443,7 +443,7 @@ async function postRating(req, res) {
     } 
     // console.log(idMember, idComic, star)
     let result = await database.ratingComic(idComic, idMember, star)
-    console.log(result)
+    // console.log(result)
     if (result) {
         return res.json({
                     isSuccess: true,

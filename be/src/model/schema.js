@@ -19,7 +19,7 @@ const comicSchema = new mongoose.Schema({
     },
     chapters:[
     {
-        chapterid:
+        chaptersID:
         { 
             type: mongoose.Schema.Types.ObjectId, 
             ref: 'chapter'
