@@ -1,0 +1,59 @@
+:root {
+    --container-color: #EBEBEB;
+    --body-color: #fff;
+    --title-color: #1BB0F0;
+    --border-color: #ccc;
+    --hover-color: #f9f8f8;
+    --upload-button-color: #66CEFA;
+}
+
+.add_member-container {
+    width: 100%;
+    background-color: var(--container-color);
+}
+
+.add_member-body {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 27px 16px;
+    min-height: 725px;
+}
+
+.add_member-form {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.add_member-title{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--title-color);
+    margin-bottom: 20px;
+}
+
+.add_member-sub_title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.add_member-list-wrap {
+    padding: 0 8px;
+    height: 35px;
+    width: 300px;
+    line-height: 30px;
+    border: 1px solid #070707;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.add_member-list-icon {
+    font-size: 10px;
+}
