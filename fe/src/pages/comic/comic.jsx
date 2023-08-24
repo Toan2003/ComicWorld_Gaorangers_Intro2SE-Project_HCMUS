@@ -224,8 +224,8 @@ function Comic() {
           ))}
         </div>
         <div className="nav_end_chap">
-          <Link type="button" className="btn btn-danger" to={`/type-comic/main-comic/${idComic}/${PreviousChapter}`} ><FaChevronLeft size={25} color='white' /> Chap sau</Link>&nbsp;&nbsp;
-          <Link type="button" className="btn btn-danger" to={`/type-comic/main-comic/${idComic}/${NextChapter}`}> Chap trước <FaChevronRight size={23} color='white' /></Link>
+          <Link type="button" className="btn btn-danger" to={`/type-comic/main-comic/${idComic}/${PreviousChapter}`} ><FaChevronLeft size={25} color='white' /> Chap trước</Link>&nbsp;&nbsp;
+          <Link type="button" className="btn btn-danger" to={`/type-comic/main-comic/${idComic}/${NextChapter}`}> Chap sau <FaChevronRight size={23} color='white' /></Link>
         </div>
       </div>
 
