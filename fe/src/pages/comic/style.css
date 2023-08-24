@@ -17,11 +17,9 @@ body {
   background-color: #ebebeb
 }
 .comic {
-  width: 60%;
   padding: 1.5% 0 0 1.5%;
-  display: flex;
   background-color: var(--primary-color);
-  width: 1200px;
+  max-width: 1200px;
   margin: auto
 }
 .center {
@@ -141,7 +139,8 @@ body {
 .nav_end_chap
 {
   padding-top:5px;
-  padding-left:53%
+  padding-left:53%;
+  padding-bottom: 27px;
 }
 .commentbox
 {
@@ -232,3 +231,8 @@ font-size: 19px;
 {
   color:red
 } 
+
+.chapter-comment_section {
+  margin: 0 auto;
+  width: 70%;
+}

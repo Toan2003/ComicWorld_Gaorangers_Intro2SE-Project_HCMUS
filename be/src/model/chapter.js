@@ -6,27 +6,40 @@ const {comics,user,chapter} = require('./schema')
 
 async function getOneChapter(idChapter)
 {
+    // console.log('@@@@@')
     const chapterChoose = await chapter.findById(idChapter)
     if(chapterChoose)
     {
         const updateView=chapterChoose.view +1
         await chapter.findOneAndUpdate({_id:idChapter},{view: updateView})
         // console.log(comic)
-        // const newComic = await comics.findOne({"chapters.chapterid":idChapter})
-        // let newView= newComic.view+1
-        // await newComic.updateOne({$set:{view:newView}})
+        const newComic = await comics.findOne({"chapters.chaptersID":"64d9ec1acf4013d51cacdd73"})
+        // console.log(newComic)
+
+        let newView= newComic.view+1
+        await newComic.updateOne({$set:{view:newView}})
     }
     return chapterChoose
 }
 
 async function getAllChapter(idComic)
 {
+    let viewComic=[]
     const comicsChoose = await comics.findById(idComic)
-    if (comicChoose)
+    if (comicsChoose)
     {
-        const chooseComic= comicChoose.chapters
+        const chooseComic= comicsChoose.chapters
+        // console.log(chooseComic)
+        for (let i=0; i<chooseComic.length; i++)
+        {
+            // console.log(chooseComic[i].chaptersID)
+            let chapterChoose = await chapter. findOne({_id:chooseComic[i].chaptersID})
+            // console.log(chapterChoose)
+            viewComic.push(chapterChoose)
+        }
+        // console.log(viewComic)
     }
-    return chooseComic
+    return viewComic
 }
 
 async function postCreateChapter(chapterName1, chapterImage, idMember, idComic)

@@ -7,6 +7,7 @@ import 'reactjs-popup/dist/index.css';
 import { getChapter } from '../../api/chapter'
 import { getComic, postAddFollowComic, postUnfollowComic } from '../../api/comic'
 import { useParams } from 'react-router-dom'
+import { CommentSection } from '../../components/comment/comment'
 
 function Comic() {
 
@@ -127,8 +128,6 @@ function Comic() {
   }
   return (
     <div className="comic">
-      <div className="Contrucst">
-      </div>
       <div className="center">
         <ul className="link_comic">
           <li>
@@ -225,34 +224,16 @@ function Comic() {
           ))}
         </div>
         <div className="nav_end_chap">
-          <Link type="button" className="btn btn-danger" to={`/type-comic/main-comic/${idComic}/${PreviousChapter}`} ><FaChevronLeft size={25} color='white' /> Chap sau</Link>&nbsp;&nbsp;
-          <Link type="button" className="btn btn-danger" to={`/type-comic/main-comic/${idComic}/${NextChapter}`}> Chap trước <FaChevronRight size={23} color='white' /></Link>
-        </div>
-        <ul className="link_comic">
-          <li>
-            <Link className='link_comic-item' to='/'>Trang chủ</Link>
-          </li>
-          <li><p>{'>>'}</p></li>
-          <li>
-            <Link className='link_comic-item' to='/type-comic'>Thể Loại</Link>
-          </li>
-          <li ><p >{'>>'}</p></li>
-          <li>
-            <Link className='link_comic-item' to={`/type-comic/main-comic/${idComic}`}>{NameComic}</Link>
-          </li>
-          <li ><p >{'>>'}</p></li>
-          <li>
-          <Link className='link_comic-item' to={`/type-comic/main-comic/${idComic}/${idChapter}`}>{CurChapter}</Link>
-          </li>
-          <Outlet />
-        </ul>
-
-        <div className="CommentSection">
-          <textarea value={comment} onChange={handleChange} onInput={handleResize} className='commentbox' placeholder='Mời bạn thảo luận.... Vui lòng không spam,... để tránh bị khóa tài khoản' />
+          <Link type="button" className="btn btn-danger" to={`/type-comic/main-comic/${idComic}/${PreviousChapter}`} ><FaChevronLeft size={25} color='white' /> Chap trước</Link>&nbsp;&nbsp;
+          <Link type="button" className="btn btn-danger" to={`/type-comic/main-comic/${idComic}/${NextChapter}`}> Chap sau <FaChevronRight size={23} color='white' /></Link>
         </div>
       </div>
-    </div >
 
+      <div className="chapter-comment_section">
+          <CommentSection comic={comic} userId={userId} comicId={idComic}></CommentSection>
+      </div>
+    </div >
+    
   );
 }
 
