@@ -183,6 +183,7 @@ async function postCreateComic(req,res) {
     .catch(error=>console.log(error));
     // console.log(result1)
     coverURL = result1.secure_url
+    // console.log(name,date,group,idMember,type,status,coverURL)
     if (name == null || date == null || group == null || idMember == null || type == null || status == null || coverURL == null) {
         return res.json({
             isSuccess: false,

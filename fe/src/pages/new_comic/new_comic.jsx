@@ -63,6 +63,7 @@ function NewComic() {
     {
         let f = await convertBase64(file[0])
         let result = await postCreateComic(Name,Date,Author, id,selects_Type,Select_state,f)
+        console.log(result)
         // console.log(result.data.data.isSuccess)
         if (!result.data.isSuccess) {
           alert("Thông tin sai vui lòng nhập lại!")
@@ -122,7 +123,7 @@ function NewComic() {
         <div className='Status'> Tình trạng</div>
         <select className="Select-1" value={Select_state} onChange={(e) => set_Selects_state(e.target.value)}>
           {StateList.map((State, index) => (
-            <option >{State}</option>
+            <option value={State}>{State}</option>
           ))}
         </select>
         <div className='Status'> Bìa truyện</div>
@@ -166,8 +167,8 @@ function NewComic() {
                 </div>
       </div >
       <div className="Button_group">
-            <button className='Button_accept' onClick={SendData} >Save</button>
-            <button className='Button_accept' onClick={navigate_to_home}>Cancel</button>
+        <button className='Button_accept' onClick={SendData}>Lưu</button>
+        <button className='Button_accept' onClick={navigate_to_home}>Hủy</button>
       </div>
       </div>
     </div>
