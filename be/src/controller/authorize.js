@@ -32,7 +32,7 @@ async function postSignup(req, res) {
 }
 
 async function getLogin(req, res) {
-    console.log(req.body)
+    // console.log(req.body)
     let {email, password} = req.body
 
     if (!email || !password) {

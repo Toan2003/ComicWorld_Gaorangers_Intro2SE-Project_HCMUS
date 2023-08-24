@@ -60,7 +60,7 @@ function NewComic() {
     // console.log(file)
     setDisabled(true)
     const id = localStorage.getItem('id')
-    if(Name==""||Author==""||selects_Type==""||Date==null||Select_state==""||file==null){
+    if(Name==""||Author==""||selects_Type==""||Date==null||Select_state==""||file==null || selects_Type== null || Select_state== null){
         alert("Thông tin trống vui lòng nhập lại!")
     }
     else
@@ -126,7 +126,8 @@ function NewComic() {
           <input type='Date' className='Dateinput' value={Date} onChange={(e) => setDate(e.target.value)} />
         </div>
         <div className='Status'> Tình trạng</div>
-        <select className="Select-1" value={Select_state} onChange={(e) => set_Selects_state(e.target.value)}>
+        <select className="Select-1" value= {Select_state} onChange={(e) => set_Selects_state(e.target.value)}>
+          <option></option>
           {StateList.map((State, index) => (
             <option value={State}>{State}</option>
           ))}
@@ -173,7 +174,7 @@ function NewComic() {
       </div >
       <div className="Button_group">
         <button className='Button_accept' onClick={SendData} disabled={disabled}>Lưu</button>
-        <button className='Button_accept' onClick={navigate_to_home}>Hủy</button>
+        <button className='Button_accept' onClick={navigate_to_home} disabled={disabled}>Hủy</button>
       </div>
       </div>
     </div>
