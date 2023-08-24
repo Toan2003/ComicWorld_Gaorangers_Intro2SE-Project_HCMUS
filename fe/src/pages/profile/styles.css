@@ -41,7 +41,7 @@
   background-color: antiquewhite;
   padding: 5%;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
   text-align: center;
 }
 
@@ -49,6 +49,7 @@
   padding-left: 0;
   text-align: left;
 }
+
 .user-list .link-item {
   color: black;
 }
@@ -68,7 +69,7 @@
   display: flex;
 }
 
-.main-profile .information { 
+.main-profile .information {
   margin-left: 2vw;
   width: 70%;
 }
@@ -102,7 +103,8 @@
   padding: 10px 0 0 10px;
 }
 
-.box-account-item-1, .box-account-item-2 {
+.box-account-item-1,
+.box-account-item-2 {
   font-size: 15px;
 }
 
@@ -188,13 +190,13 @@
   margin: 0 auto;
   height: 30px;
   width: 100px;
-  line-height: 30px ;
+  line-height: 30px;
   border: 1px solid #ccc;
   position: relative;
 }
 
 .role-selection::after {
-  content:'';
+  content: '';
   position: absolute;
   display: block;
   width: 100%;
@@ -236,6 +238,7 @@
   justify-content: center;
   margin-bottom: 5vh;
 }
+
 .save-role-btn {
   margin: 0 auto;
 }

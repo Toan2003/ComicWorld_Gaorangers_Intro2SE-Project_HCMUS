@@ -11,7 +11,7 @@ export function Table({name, data}){
         <h3 className="homepage-table-name">{name}</h3>
         <div className="homepage-table-row-wrapper">
           {
-            data.length > 0 ?
+            data ?
             (data.map((cur, index) => (<Row key={index} data={cur}></Row>)))
             : 
             (<div className='homepage-empty-row'>Trống</div>)
