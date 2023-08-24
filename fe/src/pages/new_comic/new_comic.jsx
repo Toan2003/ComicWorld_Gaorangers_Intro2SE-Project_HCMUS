@@ -31,9 +31,10 @@ function NewComic() {
   const [Complete, setComplete] = useState(true);
   const [Drop, setDrop] = useState(true);
   const [Description, setDescription] = useState("") //description
-  
   const[Date,setDate]=useState()
   const navigate = useNavigate();
+  const [disabled, setDisabled] = useState(false);
+
   const handleChange_Description = (event) => {
     setDescription(event.target.value);
   }
@@ -57,6 +58,7 @@ function NewComic() {
     // console.log(Date)
     // console.log(Select_state)
     // console.log(file)
+    setDisabled(true)
     const id = localStorage.getItem('id')
     if(Name==""||Author==""||selects_Type==""||Date==null||Select_state==""||file==null){
         alert("Thông tin trống vui lòng nhập lại!")
@@ -75,6 +77,7 @@ function NewComic() {
           alert("Upload thành công!")
           navigate_to('/');
         }
+    setDisabled(false)
     }
   }
     const handleFileChange = (e) => {
@@ -169,7 +172,7 @@ function NewComic() {
                 </div>
       </div >
       <div className="Button_group">
-        <button className='Button_accept' onClick={SendData}>Lưu</button>
+        <button className='Button_accept' onClick={SendData} disabled={disabled}>Lưu</button>
         <button className='Button_accept' onClick={navigate_to_home}>Hủy</button>
       </div>
       </div>
