@@ -10,6 +10,7 @@ export default function AddMember() {
     const [seclectedId, setSeclectedId] = useState('');
     const [username, setUsername] = useState('');
     const navigate = useNavigate();
+    const [disabled, setDisabled] = useState(false);
 
     const handleSeclectGroup = (e) => {
         setSeclected(e.target.innerText);
@@ -25,12 +26,24 @@ export default function AddMember() {
         setUsername(e.target.value)
     }
 
-    async function handleAddMember() {
-        const check =await addMemberToGroup(seclected, username)
-        // alert("Thêm thành viên vào nhóm dịch thành công!")
-        // navigate("/")
+    function navigateToHome() {
+        navigate("/")
+    }
 
+    async function handleAddMember() {
+        setDisabled(true)
+        const check = await addMemberToGroup(seclected, username)
         console.log(check)
+
+        if (check.data.isSuccess) {
+            alert("Thêm thành viên vào nhóm dịch thành công!")
+            navigate("/")
+            setDisabled(false)
+        }
+        else {
+            alert("Thêm thành viên vào nhóm dịch thất bại\n\nVui lòng kiểm tra lại tên người dùng có tồn tại hay không \nhoặc người dùng đã có ở trong nhóm dịch này chưa")
+            setDisabled(false)
+        }
     }
 
     useEffect(() => {
@@ -65,8 +78,8 @@ export default function AddMember() {
                     </span>
 
                     <span className="add_member-button_section">
-                        <button onClick={() => handleAddMember()} className="add_member-submit_btn">Xác nhận</button>
-                        <Link to="/" className="add_member-submit_btn">Hủy</Link>
+                        <button disabled={disabled} onClick={() => handleAddMember()} className="add_member-submit_btn">Xác nhận</button>
+                        <button disabled={disabled} onClick={() => navigateToHome()} className="add_member-submit_btn">Hủy</button>
                     </span>
                 </div>
             </div>
