@@ -206,11 +206,9 @@ border-radius: 14px;
   {
     display:inline-block;
     padding-left: 50%;
-    padding-top: 60px;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
     
   }
-  
   .Button_accept
   {
   box-sizing: border-box;

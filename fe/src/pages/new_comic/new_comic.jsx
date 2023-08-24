@@ -126,21 +126,7 @@ function NewComic() {
           ))}
         </select>
         <div className='Status'> Bìa truyện</div>
-        <input className='Input_file' type='file' onChange={(e) => setFiles(e.target.files)} />
-        <div class="Button_group">
-          <button className='Button_accept' onClick={SendData} >Save</button>
-          <button className='Button_accept' onClick={navigate_to_home}>Cancel</button>
-        </div>
-      </div>
-      <div className='Status'> Tình trạng</div>
-       <select className="Select-1" value ={Select_state} onChange={(e)=>set_Selects_state(e.target.value)}>
-       <option></option>
-       {StateList.map((State, index) => (
-                        <option >{State}</option>
-                      ))}
-      </select> 
-      <div className='Status'> Bìa truyện</div>
-      <div>
+        <div>
       <div className="upload_chapter-upload">
                     <h3 className="upload_chapter-sub-title">File truyện</h3>    
                     <span className="upload_chapter-upload-wrap">
@@ -182,6 +168,7 @@ function NewComic() {
       <div className="Button_group">
             <button className='Button_accept' onClick={SendData} >Save</button>
             <button className='Button_accept' onClick={navigate_to_home}>Cancel</button>
+      </div>
       </div>
     </div>
   );
