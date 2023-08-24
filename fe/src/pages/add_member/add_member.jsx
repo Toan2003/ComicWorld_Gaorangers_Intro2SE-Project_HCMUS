@@ -1,20 +1,20 @@
 import './add_member.css';
 import { BiSolidDownArrow } from "react-icons/bi";
 import { useState, useEffect} from 'react';
-import { returnGroup } from "../../api/group"
-import { Link } from 'react-router-dom'
+import { returnGroup, addMemberToGroup } from "../../api/group"
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function AddMember() {
     const [seclected, setSeclected] = useState("Chọn tên nhóm");
     const [groupList, setGroupList] = useState([]);
     const [seclectedId, setSeclectedId] = useState('');
     const [username, setUsername] = useState('');
-    
+    const navigate = useNavigate();
+
     const handleSeclectGroup = (e) => {
         setSeclected(e.target.innerText);
         setSeclectedId(e.target.value);
     };
-
 
     async function loadDataPage() {
         const result = await returnGroup()
@@ -23,6 +23,14 @@ export default function AddMember() {
 
     function inputHandler(e) {
         setUsername(e.target.value)
+    }
+
+    async function handleAddMember() {
+        const check =await addMemberToGroup(seclected, username)
+        // alert("Thêm thành viên vào nhóm dịch thành công!")
+        // navigate("/")
+
+        console.log(check)
     }
 
     useEffect(() => {
@@ -57,8 +65,8 @@ export default function AddMember() {
                     </span>
 
                     <span className="add_member-button_section">
-                        <button on className="add_member-submit_btn">Xác nhận</button>
-                        <Link className="add_member-submit_btn">Hủy</Link>
+                        <button onClick={() => handleAddMember()} className="add_member-submit_btn">Xác nhận</button>
+                        <Link to="/" className="add_member-submit_btn">Hủy</Link>
                     </span>
                 </div>
             </div>

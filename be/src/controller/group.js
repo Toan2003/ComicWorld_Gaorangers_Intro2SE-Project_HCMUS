@@ -39,6 +39,7 @@ async function createGroup(req,res) {
 
 async function addMemberToGroup(req,res) {
     let {nameUploader, nameGroup} =req.body
+    // console.log(nameUploader, nameGroup)
     if (nameUploader == null || nameGroup == null ) {
         return res.json({
             isSuccess: false,
@@ -56,6 +57,7 @@ async function addMemberToGroup(req,res) {
             data: ''
         })
     })
+    // console.log(result)
     if (result) {
         return res.json({
             isSuccess: true,

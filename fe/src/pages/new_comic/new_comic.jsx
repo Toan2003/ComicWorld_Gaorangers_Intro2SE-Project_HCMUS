@@ -1,7 +1,7 @@
 import './style.css';
 import Popup from 'reactjs-popup';
 
-import { Link, Outlet,useNavigate} from 'react-router-dom'
+import { Link, Outlet, useNavigate} from 'react-router-dom'
 import {FaUpload } from "react-icons/fa"
 import React,{useState, useRef} from "react"
 import {postCreateComic} from "../../api/comic"

@@ -2,11 +2,12 @@ import { Link, Outlet } from 'react-router-dom'
 import { getComic, getRankingBoard, postAddFollowComic, postUnfollowComic } from '../../api/comic'
 import { getAllChapterOfComic } from '../../api/chapter'
 import './styles.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { Table } from '../../components/rankingBoard/rankingBoard'
 import { AiFillStar } from 'react-icons/ai'
 import { postRating, isRating } from '../../api/comic'
+import { AuthContext } from '../../context/context'
 import { CommentSection } from '../../components/comment/comment'
 
 export default function MainComic() {
@@ -19,7 +20,7 @@ export default function MainComic() {
 
   const userId = localStorage.getItem('id')
   const [isRated, setIsRated] = useState(-1)
-
+  const {authenticated} = useContext(AuthContext)
   
   const [firstChapter, setFistChapter] = useState('')
   const [lastChapter, setLastChapter] = useState('')
@@ -140,8 +141,9 @@ export default function MainComic() {
                     <p className='col'>Đánh giá: </p>
                     <p className='col'>{rating}<AiFillStar className='star-icon'/></p>
                   </div>
-                  {
-                    isRated != -1 ?
+                  { 
+                     authenticated ? 
+                    (isRated != -1 ?
                     (
                       <div className='user-rating'>
                         <p className='user-rating-title'>Đánh giá của bạn: {isRated}<AiFillStar className='star-icon'/></p>
@@ -159,7 +161,9 @@ export default function MainComic() {
                             <AiFillStar onClick={() => handleClickRating(5)} className="rating-star"></AiFillStar>
                           </div>
                       </div>
-                    )
+                    ))
+                    :
+                    null
                   }
                 </div>
                 <div className='title-button'>
