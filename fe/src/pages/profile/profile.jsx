@@ -138,7 +138,7 @@ function Information({ username, typeUser, follow, upload }) {
                   </Link>
                   <div className="col comic-follow-item-col">{u.Uploading.group}</div>
                   <div className="col comic-follow-item-col">
-                    <button className="btn btn-success">Thêm chap mới</button>
+                    <Link className="btn btn-success" to='/upload-chapter'>Thêm chap mới</Link>
                   </div>
                 </div>
               );

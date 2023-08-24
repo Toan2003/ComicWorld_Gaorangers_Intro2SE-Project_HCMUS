@@ -10,7 +10,6 @@ import { useParams } from 'react-router-dom'
 import { CommentSection } from '../../components/comment/comment'
 
 function Comic() {
-
   const { idComic, idChapter } = useParams()
 
   const [chapter, setOneChapter] = useState([])
@@ -23,6 +22,7 @@ function Comic() {
   const [NextChapter, setNextChapter] = useState('')
   const [PreviousChapter, setPreviousChapter] = useState('')
   async function loadData() {
+    console.log("callherr")
     // const comic = await getAllChapterOfComic(idComic, null)
     const chapters = await getChapter(idChapter, null)
     const comics = await getComic(idComic, userId)
@@ -63,6 +63,7 @@ function Comic() {
   useEffect(() => {
     loadData()
   }, [idChapter])
+  
   useEffect(()=>{
     if (comic?.chapters?.length > 0) {
       for (let i=0; i<=comic.chapters.length-1;i++)

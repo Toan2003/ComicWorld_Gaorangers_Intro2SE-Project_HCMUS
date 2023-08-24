@@ -176,22 +176,31 @@ async function postCreateComic(req,res) {
     // let a = req.body.file
     let {name,date,group,idMember,type,status,file} = req.body
     // console.log(req.body)
-    const result1 = await Cloudinary.uploader
-    .upload(file,{
-        folder: 'CoverImage'
-    })
-    .catch(error=>console.log(error));
-    // console.log(result1)
-    coverURL = result1.secure_url
+
     // console.log(name,date,group,idMember,type,status,coverURL)
-    if (name == null || date == null || group == null || idMember == null || type == null || status == null || coverURL == null) {
+    if (name == null || date == null || group == null || idMember == null || type == null || status == null) {
         return res.json({
             isSuccess: false,
-            message: 'name, date, author, type, status, description, coverURL is missing',
+            message: 'name, date, author, type, status, description is missing',
             status: res.statusCode,
             data: ''
         })
     }
+    const result1 = await Cloudinary.uploader
+    .upload(file,{
+        folder: 'CoverImage'
+    })
+    .catch(error=>{
+        console.log(error)
+        return res.json({
+            isSuccess: false,
+            message: 'error of uploading to Cloudinary',
+            status: res.statusCode,
+            data: ''
+        })
+    });
+    // console.log(result1)
+    let coverURL = result1.secure_url
     // idMember = '64d8ed6698409d70ef8a58c6'
     // group = 'Imyourhope'
     if (idMember.length != 24) {
@@ -212,6 +221,7 @@ async function postCreateComic(req,res) {
             data: ''
         });
     })
+    // console.log(result)
     if (result) {
         return res.json({
             isSuccess: true,

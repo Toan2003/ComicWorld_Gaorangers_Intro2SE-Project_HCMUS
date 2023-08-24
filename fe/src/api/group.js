@@ -5,12 +5,19 @@ async function createGroup(nameGroup,description) {
     return axiosClient.post(link,{nameGroup:nameGroup,description:description })
 }
 
-async function addMemberToGroup(nameGroup,nameUploader,) {
+async function addMemberToGroup(nameGroup,nameUploader) {
     let link = '/group/addMemberToGroup'
     return axiosClient.post(link,{nameGroup:nameGroup, nameUploader:nameUploader })
 }
 
+
+async function returnGroup() {
+    let link = '/group/returnGroup'
+    return axiosClient.get(link)
+}
+
 export {
     createGroup,
-    addMemberToGroup
+    addMemberToGroup,
+    returnGroup
 }
