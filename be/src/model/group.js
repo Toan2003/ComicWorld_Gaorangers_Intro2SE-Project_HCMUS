@@ -23,8 +23,12 @@ async function addMemberToGroup(nameUploader, nameGroup)
     return false
 }
 
-async function removeMemberFromGroup(nameUploader, nameGroup) {
-
+async function returnGroup()
+{
+    const checkGroup = await group.find()
+    return checkGroup
 }
 
-module.exports= {createGroup, addMemberToGroup};
+
+
+module.exports= {createGroup, addMemberToGroup, returnGroup};

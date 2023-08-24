@@ -1,7 +1,8 @@
 import './upload_chapter.css'
 import { BiSolidDownArrow } from "react-icons/bi";
 import { BsImage } from "react-icons/bs";
-import { useState, useRef, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom'
+import { useState, useRef, useEffect} from 'react';
 import { getReturnComicByUploader } from '../../api/comic';
 import { postCreateChapter } from '../../api/chapter'
 export default function UploadChapter() {
@@ -12,6 +13,7 @@ export default function UploadChapter() {
     const [seclected, setSeclected] = useState("Chọn tên truyện");
     const [seclectedId, setSeclectedId] = useState('');
     const id = localStorage.getItem('id');
+    
 
     let inputHandler = (e) => {
         setChapterName(e.target.value);
@@ -29,9 +31,28 @@ export default function UploadChapter() {
         setSeclected(e.target.innerText);
         setSeclectedId(e.target.value);
     };
-
+    const navigate = useNavigate();
+    const Navigate_to_home=()=>
+    {
+        navigate('/')
+    }
     const handleSubmit = async (e) => {
         let result = postCreateChapter(id,seclectedId,fileList,chapterName)
+        if(id=="" || seclectedId=="" || fileList==[]||chapterName=="")
+        {
+            alert('Thông tin trống. Vui lòng nhập lại!')
+        }
+        else
+        {
+            if(result==true)
+            {
+                alert('Upload chapter thành công')
+                Navigate_to_home()
+            }
+            else{
+                alert('Thông tin không hợp lệ. Upload thất bại!')
+            }
+        }
         // console.log(result);
     }
 
@@ -85,6 +106,7 @@ export default function UploadChapter() {
                             accept="image/*" 
                             ref={inputRef}
                         />
+
                         {
                             fileList ?
                             (
@@ -108,12 +130,13 @@ export default function UploadChapter() {
                                 </>
                             )
                         }
+                        
                     </span>
                 </div>
 
                 <div className="upload_chapter-button_section">
                     <button onClick={(e) =>handleSubmit(e)} className="upload_chapter-button">Lưu</button>
-                    <button className="upload_chapter-button">Hủy</button>
+                    <button className="upload_chapter-button" onClick={Navigate_to_home}>Hủy</button>
                 </div>
             </div>
         </div>  

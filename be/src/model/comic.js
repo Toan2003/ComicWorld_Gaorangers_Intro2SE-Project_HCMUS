@@ -38,7 +38,7 @@ async function returnForHomePage(idMember){
     const idComics=[]
     for (allcomic of allcomics){
         view.push(allcomic.view)
-        console.log(allcomic.view)
+        // console.log(allcomic.view)
         nameComics.push(allcomic.nameComics)
         idComics.push(allcomic._id)
     }
@@ -46,7 +46,7 @@ async function returnForHomePage(idMember){
     {
         const member= await user.findById(idMember)
         const followComics=member.followingcomics
-        console.log(followComics)
+        // console.log(followComics)
     }
     else followComics=[]
     return {view, nameComics, idComics}
@@ -85,17 +85,17 @@ async function createComics(comicname, typecomics, status1, dateCreate, uploadin
 {
     const member= await user.findById(uploadid)
     // console.log(member)
-    const groupCheck=await group.find({groupName:uploadinggroup})
+    const groupCheck=await group.findOne({groupName:uploadinggroup})
     if(groupCheck)
     {
         const newComic= new comics ({nameComics:comicname,type: typecomics, status: status1,
             Uploading: {uploader:member.username, group: uploadinggroup}, datecreate: dateCreate, coverURL: cover})
         newComic.save()
         const isSuccess=true
-        return {isSuccess}
+        return isSuccess
     }
     const isSuccess=false
-    return {isSuccess}
+    return isSuccess
 }
 
 async function filterType(typename)

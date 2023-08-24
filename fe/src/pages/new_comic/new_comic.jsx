@@ -1,17 +1,20 @@
 import './style.css';
 import Popup from 'reactjs-popup';
 
-import { Link, Outlet, useNavigate } from 'react-router-dom'
-import { FaHome, FaListUl, FaChevronRight, FaChevronLeft, FaHeart, FaChevronDown, FaRegWindowClose } from "react-icons/fa"
-import React, { useState } from "react"
-import { postCreateComic } from "../../api/comic"
+import { Link, Outlet,useNavigate} from 'react-router-dom'
+import {FaUpload } from "react-icons/fa"
+import React,{useState, useRef} from "react"
+import {postCreateComic} from "../../api/comic"
 import { underline } from '@cloudinary/url-gen/qualifiers/textDecoration';
-import { convertBase64 } from '../../api/convertImage'
+import {convertBase64} from '../../api/convertImage'
+import { BsImage } from "react-icons/bs";
 function NewComic() {
   const [TypesList, SetTypeList] = useState([
-    'Lãng mạng',
-    'Hài hước',
-    'Hành động'
+       'Action',
+       'Romance',
+       'Fiction',
+       'Comedy',
+       'Horror'
   ]);
   const [selects_Type, setSelects_Type] = useState()
   const [StateList, SetStateList] = useState([
@@ -28,9 +31,10 @@ function NewComic() {
   const [Complete, setComplete] = useState(true);
   const [Drop, setDrop] = useState(true);
   const [Description, setDescription] = useState("") //description
-  const [file, setFiles] = useState()
-  const [Date, setDate] = useState()
+  const[Date,setDate]=useState()
   const navigate = useNavigate();
+  const [disabled, setDisabled] = useState(false);
+
   const handleChange_Description = (event) => {
     setDescription(event.target.value);
   }
@@ -44,7 +48,9 @@ function NewComic() {
   const navigate_to_home = (e) => {
     navigate('/');
   }
-  const SendData = async (event) => //Hàm button ở đây đã lấy đủ dữ liệu
+  const [file, setFile] = useState();
+  const inputRef = useRef(null);
+  const SendData = async(event) => //Hàm button ở đây đã lấy đủ dữ liệu
   {
     // console.log(Name)
     // console.log(Author)
@@ -52,23 +58,36 @@ function NewComic() {
     // console.log(Date)
     // console.log(Select_state)
     // console.log(file)
+    setDisabled(true)
     const id = localStorage.getItem('id')
-    if (Name == "" || Author == "" || selects_Type == "" || Date == null || Select_state == ""
-      || file == null) {
-      alert("Thông tin trống vui lòng nhập lại!")
+    if(Name==""||Author==""||selects_Type==""||Date==null||Select_state==""||file==null || selects_Type== null || Select_state== null){
+        alert("Thông tin trống vui lòng nhập lại!")
     }
-    let f = await convertBase64(file[0])
-    // console.log(f)
-    let result = await postCreateComic(Name, Date, Author, id, selects_Type, Select_state, f)
-    // console.log(result.data.data.isSuccess)
-    if (!result.data.isSuccess) {
-      alert("Thông tin sai vui lòng nhập lại!")
-    }
-    else {
-      alert("Upload thành công!")
-      navigate_to('/');
+    else
+    {
+        let f = await convertBase64(file[0])
+        let result = await postCreateComic(Name,Date,Author, id,selects_Type,Select_state,f)
+        console.log(result)
+        // console.log(result.data.data.isSuccess)
+        if (!result.data.isSuccess) {
+          alert("Thông tin sai vui lòng nhập lại!")
+        }
+        else
+        {
+          alert("Upload thành công!")
+          navigate_to('/');
+        }
+    setDisabled(false)
     }
   }
+    const handleFileChange = (e) => {
+        setFile(e.target.files);
+    };
+
+    const handleUploadClick = () => {
+        inputRef.current?.click();
+    };
+
   return (
 
     <div className="new_comic">
@@ -92,11 +111,12 @@ function NewComic() {
           <div className='Newcomics'>Tạo truyện</div>
         </div>
         <div className='Status'>Tên truyện</div>
-        <input type="text" className="Nameinput" value={Name} onChange={(e) => setName(e.target.value)} />
-        <div className='Status'>Tác giả</div>
-        <input type="text" className="Authorinput" value={Author} onChange={(e) => setAuthor(e.target.value)} />
-        <div className='Status'>Thể Loại</div>
-        <select className="Select-1" value={selects_Type} onChange={(e) => setSelects_Type(e.target.value)}>
+      <input type="text" className="Nameinput" value={Name} onChange={(e)=>setName(e.target.value)}/>
+      <div className='Status'>Tác giả</div>
+      <input type="text" className="Authorinput" value={Author} onChange={(e)=>setAuthor(e.target.value)}/>
+      <div className='Status'>Thể Loại</div>
+      <select className="Select-1" value ={selects_Type} onChange={(e)=>setSelects_Type(e.target.value)}>
+          <option></option>
           {TypesList.map((Type, index) => (
             <option >{Type}</option>
           ))}
@@ -106,31 +126,57 @@ function NewComic() {
           <input type='Date' className='Dateinput' value={Date} onChange={(e) => setDate(e.target.value)} />
         </div>
         <div className='Status'> Tình trạng</div>
-        <select className="Select-1" value={Select_state} onChange={(e) => set_Selects_state(e.target.value)}>
+        <select className="Select-1" value= {Select_state} onChange={(e) => set_Selects_state(e.target.value)}>
+          <option></option>
           {StateList.map((State, index) => (
-            <option >{State}</option>
+            <option value={State}>{State}</option>
           ))}
         </select>
         <div className='Status'> Bìa truyện</div>
-        <input className='Input_file' type='file' onChange={(e) => setFiles(e.target.files)} />
-        <div class="Button_group">
-          <button className='Button_accept' onClick={SendData} >Save</button>
-          <button className='Button_accept' onClick={navigate_to_home}>Cancel</button>
-        </div>
+        <div>
+      <div className="upload_chapter-upload">
+                    <h3 className="upload_chapter-sub-title">File truyện</h3>    
+                    <span className="upload_chapter-upload-wrap">
+                        <input 
+                            onChange={(e) => handleFileChange(e)} 
+                            type='file' 
+                            className="upload_chapter-file_input" 
+                            accept="image/*" 
+                            ref={inputRef}
+                        />
+
+                        {
+                            file ?
+                            (
+                                <>
+                                    <div className="upload_chapter-file-box">
+                                        {
+                                            Object.keys(file).map((obj, i) => 
+                                            <div className="upload_chapter-file" key={i}>
+                                                <p className="upload_chapter-file-text">{file[obj].name}</p>
+                                            </div>)
+                                        }
+                                    </div>
+                                    <button className='upload_chapter-button' onClick={handleUploadClick}>Chọn lại</button>
+                                </>
+                            )
+                                :
+                            (
+                                <>
+                                    <BsImage className="upload_chapter-upload-icon"/>
+                                    <button className='upload_chapter-button' onClick={handleUploadClick}>Tải ảnh</button>
+                                </>
+                            )
+                        }
+                        
+                    </span>
+                </div>
+      </div >
+      <div className="Button_group">
+        <button className='Button_accept' onClick={SendData} disabled={disabled}>Lưu</button>
+        <button className='Button_accept' onClick={navigate_to_home} disabled={disabled}>Hủy</button>
       </div>
-      {/* <div className='Status'> Tình trạng</div>
-       <select className="Select-1" value ={Select_state} onChange={(e)=>set_Selects_state(e.target.value)}>
-       {StateList.map((State, index) => (
-                        <option >{State}</option>
-                      ))}
-      </select>  */}
-      {/* <div className='Status'> Bìa truyện</div>
-      <input className='Input_file' type='file' onChange={(e)=>setFiles(e.target.files)}/>
-      <div class="Button_group">
-            <button className='Button_accept' onClick={SendData} >Save</button>
-            <button className='Button_accept' onClick={navigate_to_home}>Cancel</button> */}
-      {/* </div> */}
-    {/* </div> */}
+      </div>
     </div>
   );
 }

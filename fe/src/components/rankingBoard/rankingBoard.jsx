@@ -5,7 +5,6 @@ import { MdModeComment } from "react-icons/md";
 import { AiFillStar } from "react-icons/ai";
 
 export function Table({name, data}){
-  console.log(data)
     return (
       <div className="homepage-table-container">
         <h3 className="homepage-table-name">{name}</h3>

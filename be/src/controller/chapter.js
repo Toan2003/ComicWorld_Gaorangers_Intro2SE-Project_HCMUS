@@ -21,7 +21,7 @@ async function getChapter(req,res) {
         })
     }
     let result = await database.getOneChapter(id)
-    console.log(result)
+    // console.log(result)
     if (result) {
         return res.json({
             isSuccess: true,
@@ -61,7 +61,7 @@ async function getAllChapter(req,res) {
         })
     }
     let result = await database.getAllChapter(id)
-    console.log(result)
+    // console.log(result)
     if (result) {
         return res.json({
             isSuccess: true,
@@ -84,7 +84,7 @@ async function getAllChapter(req,res) {
 async function postCreateChapter(req,res) {
     // console.log(req.body)
     let {idComic,idMember,listChapter, chapterName} = req.body
-    console.log(idComic)
+    // console.log(idComic)
     if (idComic == '' || idComic == null) {
         return res.json({
             isSuccess: false,
