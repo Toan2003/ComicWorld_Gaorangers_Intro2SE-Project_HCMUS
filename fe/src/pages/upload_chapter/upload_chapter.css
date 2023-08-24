@@ -180,3 +180,10 @@
     display: flex;
     justify-content: space-between;
 }
+
+.add_member-img {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+}
