@@ -10,7 +10,6 @@ import { useParams } from 'react-router-dom'
 import { CommentSection } from '../../components/comment/comment'
 
 function Comic() {
-
   const { idComic, idChapter } = useParams()
 
   const [chapter, setOneChapter] = useState([])
