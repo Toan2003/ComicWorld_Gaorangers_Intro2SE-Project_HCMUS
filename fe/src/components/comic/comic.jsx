@@ -3,7 +3,7 @@ import { FaEye } from "react-icons/fa";
 import { AiFillStar } from "react-icons/ai";
 import './comic.css'
 
-export function ComicSection({ title, data }) { 
+export function ComicSection({ title, data, placeHolder }) { 
 
     return (
       <div className="section">
@@ -15,8 +15,14 @@ export function ComicSection({ title, data }) {
         <div className="section-container">
         { 
             data ?
-            (data.map((cur, index) => (<Comic key={index} data={cur}></Comic>)))
-            : null
+            (
+              data.length > 0 ?
+              (data.map((cur, index) => (<Comic key={index} data={cur}></Comic>)))
+              :
+              (<h4 className="comic_section-place_holder">{placeHolder}</h4>)
+            )
+            : 
+            null
         }
         </div>
       </div>

@@ -34,3 +34,9 @@
 .follow-link:hover {
     text-decoration: underline;
 }
+
+.follow-recommend {
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+}

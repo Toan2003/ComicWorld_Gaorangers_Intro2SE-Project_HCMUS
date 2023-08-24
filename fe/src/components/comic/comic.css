@@ -105,3 +105,11 @@
     font-weight: normal;
     margin: 0;
 }
+
+.comic_section-place_holder {
+    width: 100%;
+    font-size: 18px;
+    margin-top: 20px;
+    font-size: normal;
+    text-align: center;
+}
