@@ -10,9 +10,11 @@ import {convertBase64} from '../../api/convertImage'
 import { BsImage } from "react-icons/bs";
 function NewComic() {
   const [TypesList, SetTypeList] = useState([
-    'Lãng mạng',
-    'Hài hước',
-    'Hành động'
+       'Action',
+       'Romance',
+       'Fiction',
+       'Comedy',
+       'Horror'
   ]);
   const [selects_Type, setSelects_Type] = useState()
   const [StateList, SetStateList] = useState([

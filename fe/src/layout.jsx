@@ -8,6 +8,7 @@ import DefaultAvatar from './assets/default-avatar.jpg'
 export default function Layout() {
   const {authenticated} = useContext(AuthContext)
   // const checkAuthen = JSON.parse(localStorage.getItem('authenticated'))
+  const username = localStorage.getItem('username')
   
   // handle search bar
   const [inputText, setInputText] = useState("");
@@ -47,6 +48,7 @@ export default function Layout() {
           authenticated ? 
           (<Link to='/profile/dashboard' className='layout-profile'>
             <img src={DefaultAvatar} alt="" className='layout-profile-avatar' />
+            <h3 className="layout-username">{username}</h3>
           </Link>) 
           : 
           (<div className="header-login_register-wrap">
