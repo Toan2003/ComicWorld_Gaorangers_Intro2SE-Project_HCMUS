@@ -54,12 +54,13 @@ a {
 
 .layout-profile {
   display: flex;
-  width: 5vh;
-  height: 5vh;
+  width: 6vh;
+  height: 6vh;
 }
 
 .layout-profile .layout-profile-avatar {
   width: 100%;
+  border-radius: 50%;
 }
 
 .header-search_bar-input {

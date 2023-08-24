@@ -104,7 +104,7 @@ export default function MainComic() {
             </li>
             <li><p>{'>>'}</p></li>
             <li>
-              <Link className='link-item' to='/type-comic'>Truyện</Link>
+              <Link className='link-item' to='/type-comic'>Thể loại</Link>
             </li>
             <li><p>{'>>'}</p></li>
             <li>

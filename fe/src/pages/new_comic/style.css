@@ -206,10 +206,9 @@ border-radius: 14px;
   {
     display:inline-block;
     padding-left: 50%;
-    padding-top: 50px;
+    padding-bottom: 50px;
     
   }
-  
   .Button_accept
   {
   box-sizing: border-box;
@@ -217,16 +216,42 @@ border-radius: 14px;
   height: 42px;
   
   margin-left: 15px;
+  margin-right:10px;
   left:54%;
   font-size:28px;
   color:white;
-  background: #090fac;
+  background: #21258E;
   border: 1px solid #000000;
-  border-radius: 5px;
+  border-radius: 2px;
+
   }
   .Button_accept:hover
   {
     background: #2027dd;
   }
-  
+.Input_file[type="file"]
+{
+  border:None;
+  outline: None;
+
+  background-color: transparent;
+  display: none;
+}
+.Label_file
+{
+  color:white;
+  font-size:28px;
+  border: 1px solid #070707;
+  width:220px;
+  height:46px;
+  background-color:#21258E ;
+  display: flex;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.Label_file:hover
+{
+  background: #2027dd;
+}
 
