@@ -38,7 +38,7 @@ async function returnForHomePage(idMember){
     const idComics=[]
     for (allcomic of allcomics){
         view.push(allcomic.view)
-        console.log(allcomic.view)
+        // console.log(allcomic.view)
         nameComics.push(allcomic.nameComics)
         idComics.push(allcomic._id)
     }
@@ -46,7 +46,7 @@ async function returnForHomePage(idMember){
     {
         const member= await user.findById(idMember)
         const followComics=member.followingcomics
-        console.log(followComics)
+        // console.log(followComics)
     }
     else followComics=[]
     return {view, nameComics, idComics}

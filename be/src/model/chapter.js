@@ -6,15 +6,18 @@ const {comics,user,chapter} = require('./schema')
 
 async function getOneChapter(idChapter)
 {
+    // console.log('@@@@@')
     const chapterChoose = await chapter.findById(idChapter)
     if(chapterChoose)
     {
         const updateView=chapterChoose.view +1
         await chapter.findOneAndUpdate({_id:idChapter},{view: updateView})
         // console.log(comic)
-        // const newComic = await comics.findOne({"chapters.chapterid":idChapter})
-        // let newView= newComic.view+1
-        // await newComic.updateOne({$set:{view:newView}})
+        const newComic = await comics.findOne({"chapters.chaptersID":"64d9ec1acf4013d51cacdd73"})
+        // console.log(newComic)
+
+        let newView= newComic.view+1
+        await newComic.updateOne({$set:{view:newView}})
     }
     return chapterChoose
 }
