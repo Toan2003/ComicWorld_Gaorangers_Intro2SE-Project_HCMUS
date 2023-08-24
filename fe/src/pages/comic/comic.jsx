@@ -22,7 +22,7 @@ function Comic() {
   const [NextChapter, setNextChapter] = useState('')
   const [PreviousChapter, setPreviousChapter] = useState('')
   async function loadData() {
-    console.log("callherr")
+    // console.log("callherr")
     // const comic = await getAllChapterOfComic(idComic, null)
     const chapters = await getChapter(idChapter, null)
     const comics = await getComic(idComic, userId)

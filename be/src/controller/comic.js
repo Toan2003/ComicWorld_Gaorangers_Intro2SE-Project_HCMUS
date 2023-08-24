@@ -520,32 +520,48 @@ async function getComment(req,res) {
 async function getIsRating(req,res) {
     let {idComic, idMember}=req.params
     // console.log(idComic, idMember)
-    if (idComic == null || idComic.length == 0 || idMember == null || idMember.length == 0) {
+    if (idComic == null || idComic.length == 0 ) {
         return res.json({
             isSuccess: false,
-            message: 'idComic or idMember is missing',
+            message: 'idComic is missing',
             status: res.statusCode,
             data: ''
         })
     }
-    if (idMember.length != 24 || idComic.length != 24) {
+    if (idComic.length != 24) {
         return res.json({
             isSuccess: false,
-            message: 'idComic or idMember is invalid',
+            message: 'idComic is invalid',
+            status: res.statusCode,
+            data: ''
+        })
+    
+    }
+    if (idMember != 'null' &&  idMember.length != 24) {
+        return res.json({
+            isSuccess: false,
+            message: 'idMember is invalid',
             status: res.statusCode,
             data: ''
         })
     }
-    let {star, isRating} = await database.isRating(idComic, idMember).catch(err => {
+    if (idMember == 'null') {
+        idMember = null
+    }
+    let {star, isRating} = await database.isRating(idComic, idMember)
+    .catch((err) => {
+        console.log(err)
         return res.json({
             isSuccess: false,
             message:'fail because of database',
             status: res.statusCode,
             data: ''
         })
+        // exit(0)
     })
+    // console.log(isRating)
     //  console.log(star)
-    if (isRating) {
+    if (isRating != null) {
         return res.json({
             isSuccess: true,
             message:'rated',
@@ -554,7 +570,9 @@ async function getIsRating(req,res) {
                 star: star
             }
         })
-    }else {
+    } 
+    
+    else {
         return res.json({
             isSuccess: true,
             message:'did not rate',
@@ -564,7 +582,6 @@ async function getIsRating(req,res) {
             }
         })
     }
-
 }
 
 module.exports = {
