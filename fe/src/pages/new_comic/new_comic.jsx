@@ -60,9 +60,41 @@ function NewComic() {
     // console.log(file)
     setDisabled(true)
     const id = localStorage.getItem('id')
-    if(Name==""||Author==""||selects_Type==""||Date==null||Select_state==""||file==null || selects_Type== null || Select_state== null){
-        alert("Thông tin trống vui lòng nhập lại!")
-        setDisabled(false)
+    if(Name=="" && Author=="" && selects_Type=="" && Date==null && Select_state==""&& file==null ){
+      
+      alert('Thông tin trống vui lòng nhập lại')
+      setDisabled(false)
+    }
+    else if(Name=="")
+    {
+      
+    alert("Tên truyện trống vui lòng nhập lại!")
+    setDisabled(false)
+    }
+    else if (Author=="")
+    {
+      alert("Tên tác giả trống vui lòng nhập lại!")
+      setDisabled(false)
+    }
+    else if (Date==null)
+    {
+      alert("Ngày đăng truyện trống vui lòng nhập lại!")
+      setDisabled(false)
+    }
+    else if (file==null)
+    {
+      alert("Ảnh cover trống vui lòng nhập lại!")
+      setDisabled(false)
+    }
+    else if (Select_state=="")
+    {
+      alert("Trạng thái trống vui lòng nhập lại!")
+      setDisabled(false)
+    }
+    else if (selects_Type=="")
+    {
+      alert("Thể loại trống vui lòng nhập lại!")
+      setDisabled(false)
     }
     else
     {
@@ -105,7 +137,7 @@ function NewComic() {
           </li>
           <li ><p >{'>>'}</p></li>
           <li>
-            <Link className='link_newcomic-item' to={`profile/upload`}> Tạo Truyện</Link>
+            <Link className='link_newcomic-item'> Tạo Truyện</Link>
           </li>
           <Outlet />
         </ul>
