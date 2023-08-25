@@ -24,7 +24,7 @@ const comicSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId, 
             ref: 'chapter'
         },
-        chapterName: String
+        chaptersName: String
     }],
     Comments:[{
         content: String,

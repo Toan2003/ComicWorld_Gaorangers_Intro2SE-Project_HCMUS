@@ -101,7 +101,7 @@ function NewComic() {
           </li>
           <li><p>{'>>'}</p></li>
           <li>
-            <Link className='link_newcomic-item' to='/comic'>Truyện</Link>
+            <Link className='link_newcomic-item' to='/profile/dashboard'>Thông tin chung</Link>
           </li>
           <li ><p >{'>>'}</p></li>
           <li>
