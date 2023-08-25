@@ -32,7 +32,7 @@ function Comic() {
 
     // console.log(comics.data.data.isFollowed)
     setAllChapter(comics.data.data.comic.chapters)
-    console.log(comics)
+    // console.log(comics)
   }
   // console.log(comic.chapters)
   

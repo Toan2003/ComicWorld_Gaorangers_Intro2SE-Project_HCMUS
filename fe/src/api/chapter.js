@@ -1,7 +1,7 @@
 import {axiosClient} from "./axiosConnect"
 import { convertBase64 } from "./convertImage";
 async function getChapter(idChapter) { 
-    console.log(idChapter)
+    // console.log(idChapter)
     let link = '/chapter/getOneChapter/'  + idChapter
     return await axiosClient.get(link);
 }

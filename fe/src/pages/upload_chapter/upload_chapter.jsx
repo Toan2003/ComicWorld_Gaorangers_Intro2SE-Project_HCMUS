@@ -45,7 +45,7 @@ export default function UploadChapter() {
             setDisabled(false)
         }
         let result = await postCreateChapter(id,seclectedId,fileList,chapterName)
-        console.log(result);
+        // console.log(result);
         if(result.data.isSuccess == true)
         {
             alert('Upload chapter thành công')

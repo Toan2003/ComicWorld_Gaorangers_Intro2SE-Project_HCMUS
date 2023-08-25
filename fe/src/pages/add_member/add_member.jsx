@@ -34,7 +34,7 @@ export default function AddMember() {
     async function handleAddMember() {
         setDisabled(true)
         const check = await addMemberToGroup(seclected, username)
-        console.log(check)
+        // console.log(check)
 
         if (check.data.isSuccess) {
             alert("Thêm thành viên vào nhóm dịch thành công!")

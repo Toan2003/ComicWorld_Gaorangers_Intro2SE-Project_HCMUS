@@ -29,7 +29,7 @@ export default function TypeComic() {
 
   async function handleClickTypeButton(typeName) {
     const comics = await getComicAccordingToType(typeName)
-    console.log(comics);
+    // console.log(comics);
     setComic(comics.data.data.listComic)
     setTypeTitle('Danh sách truyện thể loại: ' + typeName)
   }

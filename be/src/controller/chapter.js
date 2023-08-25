@@ -109,7 +109,7 @@ async function postCreateChapter(req,res) {
             // chapterName
         })
         .catch(error=>{
-            console.log(error)
+            // console.log(error)
             return res.json({
                 isSuccess: false,
                 message: "can not upload to cloud",
@@ -121,7 +121,7 @@ async function postCreateChapter(req,res) {
     }
     // console.log(list)
     result = await database.postCreateChapter(chapterName,list, idMember,idComic).catch((error)=> {
-        console.log(error)
+        // console.log(error)
         return res.json({
             isSuccess: false,
             message: 'chapter is not created because of database',

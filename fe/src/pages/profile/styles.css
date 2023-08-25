@@ -216,6 +216,7 @@
 .role-selection-item {
   text-align: start;
   padding-left: 8px;
+  background-color: #fff;
 }
 
 .role-selection-item:hover {

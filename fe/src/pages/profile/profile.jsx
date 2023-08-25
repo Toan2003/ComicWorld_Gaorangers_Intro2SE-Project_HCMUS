@@ -176,9 +176,11 @@ const ManageAccount = () => {
   }
 
   async function handleChangeRole() {
-    console.log(searchName)
+    // console.log(searchName)
     const changeRole = await postChangeRole(nameChangeRole, role)
-    console.log(changeRole.data)
+    alert("Thay đổi vai trò thành công")
+    setSearchResult(undefined)
+    // console.log(changeRole.data)
   }
 
   return (
