@@ -39,7 +39,7 @@ export default function UploadChapter() {
     }
     const handleSubmit = async (e) => {
         setDisabled(true)
-        if(id=="" || seclectedId=="" || fileList==[]||chapterName=="")
+        if(id=="" || seclectedId=="" || fileList == null || fileList==[]||chapterName=="")
         {
             alert('Thông tin trống. Vui lòng nhập lại!')
             setDisabled(false)
