@@ -13,12 +13,17 @@ async function addMemberToGroup(nameUploader, nameGroup)
     const checkGroup = await group.findOne({groupName: nameGroup})
     if(checkGroup)
     {   
-        const checkMember = await user.findOne({username: nameUploader,$or:[{Role:"uploader" }, {Role:"admin"}]})
-        if(checkMember)
-        {  
-            const newMemberGroup = await group.updateOne({groupName: nameGroup}, {$addToSet:{Uploader:[nameUploader]}})
-            return true
-        } 
+        const isInGroup = await group.findOne({ Uploader: [nameUploader]})
+        // console.log(isInGroup)
+        if (!isInGroup)
+        {
+            const checkMember = await user.findOne({username: nameUploader,$or:[{Role:"uploader" }, {Role:"admin"}]})
+            if(checkMember)
+            {  
+                const newMemberGroup = await group.updateOne({groupName: nameGroup}, {$addToSet:{Uploader:[nameUploader]}})
+                return true
+            } 
+        }
     }
     return false
 }
