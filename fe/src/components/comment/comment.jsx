@@ -1,10 +1,12 @@
 import './comment.css';
 import { AiOutlineWarning } from 'react-icons/ai'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { postAddComment } from '../../api/comic';
 
 export function CommentSection({ comic, userId, comicId }) {
     const [inputText, setInputText] = useState("")
+    const [disabled, setDisabled] = useState(false)
+    const [placeholder, setPlaceholder] = useState("Nhập bình luận của bạn vào đây")
     
     async function handleSendComment(e) {
         e.preventDefault()
@@ -14,15 +16,25 @@ export function CommentSection({ comic, userId, comicId }) {
         setInputText("")
     }
 
+    function checkLogin() {
+        if (userId && userId !== 'null') {
+            setDisabled(false)
+        }
+        else {
+            setDisabled(true)
+            setPlaceholder("Vui lòng đăng nhập hoặc đăng kí để bình luận")
+        }
+    }
 
+    useEffect(() => checkLogin(),[])
 
     return (
         <div className="comment-container">
             <h3 className="comment-section_name">Bình luận</h3>
             
             <form className="comment-self" onSubmit={(e) => handleSendComment(e)}>
-                <textarea type="text" value={inputText} onChange={(e) => (setInputText(e.target.value))} placeholder="Nhập bình luận của bạn vào đây" rows="2" className="comment-self-box" />
-                <button type="submit" className="comment-self-btn">Gửi</button>
+                <textarea type="text" value={inputText} onChange={(e) => (setInputText(e.target.value))} placeholder={placeholder} rows="2" className="comment-self-box" />
+                <button disabled={disabled} type="submit" className="comment-self-btn">Gửi</button>
             </form>
 
             <div className="comment-view">

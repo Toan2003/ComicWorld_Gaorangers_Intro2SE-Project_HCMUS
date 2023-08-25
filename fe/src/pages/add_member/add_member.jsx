@@ -3,6 +3,7 @@ import { BiSolidDownArrow } from "react-icons/bi";
 import { useState, useEffect} from 'react';
 import { returnGroup, addMemberToGroup } from "../../api/group"
 import { Link, useNavigate } from 'react-router-dom'
+import AddMemberImg from '../../assets/add_member.png'
 
 export default function AddMember() {
     const [seclected, setSeclected] = useState("Chọn tên nhóm");
@@ -54,6 +55,7 @@ export default function AddMember() {
         <div className="add_member-container">
             <div className="add_member-body">
                 <h3 className="add_member-title">Thêm thành viên vào nhóm</h3>
+                <img src={AddMemberImg} alt="" className="add_member-img" />
                 <div className="add_member-form">
                     <span className="add_member-input_section">
                         <h4 className="add_member-sub_title">Tên nhóm</h4>
