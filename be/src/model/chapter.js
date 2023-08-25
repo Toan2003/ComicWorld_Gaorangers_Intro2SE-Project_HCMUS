@@ -13,7 +13,7 @@ async function getOneChapter(idChapter)
         const updateView=chapterChoose.view +1
         await chapter.findOneAndUpdate({_id:idChapter},{view: updateView})
         // console.log(comic)
-        const newComic = await comics.findOne({"chapters.chaptersID":"64d9ec1acf4013d51cacdd73"})
+        const newComic = await comics.findOne({"chapters.chaptersID":idChapter})
         // console.log(newComic)
 
         let newView= newComic.view+1
@@ -47,7 +47,7 @@ async function postCreateChapter(chapterName1, chapterImage, idMember, idComic)
     const member = await user.findById(idMember)
     const newChapter=await chapter({chapterName: chapterName1, chapterImageID: chapterImage, uploader: member.username})
     newChapter.save()
-    await comics.updateOne({_id:idComic}, {$addToSet:{chapters:[{chapterid: newChapter._id, chapterName: chapterName1}]}})
+    await comics.updateOne({_id:idComic}, {$addToSet:{chapters:[{chaptersID: newChapter._id, chaptersName: chapterName1}]}})
     return true
 }
 module.exports= {getOneChapter, 
