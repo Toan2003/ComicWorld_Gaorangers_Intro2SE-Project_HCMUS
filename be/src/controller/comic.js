@@ -537,7 +537,11 @@ async function getIsRating(req,res) {
         })
     
     }
-    if (idMember != 'null' &&  idMember.length != 24) {
+    if (idMember == 'null') {
+        idMember = null
+    }
+
+    if (idMember != null &&  idMember.length != 24) {
         return res.json({
             isSuccess: false,
             message: 'idMember is invalid',
@@ -545,9 +549,7 @@ async function getIsRating(req,res) {
             data: ''
         })
     }
-    if (idMember == 'null') {
-        idMember = null
-    }
+
     let {star, isRating} = await database.isRating(idComic, idMember)
     .catch((err) => {
         console.log(err)
@@ -562,26 +564,29 @@ async function getIsRating(req,res) {
     // console.log(isRating)
     //  console.log(star)
     if (isRating != null) {
-        return res.json({
-            isSuccess: true,
-            message:'rated',
-            status: res.statusCode,
-            data: {
-                star: star
-            }
-        })
+        if (isRating) {
+            return res.json({
+                isSuccess: true,
+                message:'rated',
+                status: res.statusCode,
+                data: {
+                    star: star
+                }
+            })
+        }
+        else {
+            return res.json({
+                isSuccess: true,
+                message:'did not rate',
+                status: res.statusCode,
+                data: {
+                    star: star
+                }
+            })
+        }
     } 
     
-    else {
-        return res.json({
-            isSuccess: true,
-            message:'did not rate',
-            status: res.statusCode,
-            data: {
-                star: star
-            }
-        })
-    }
+    
 }
 
 module.exports = {

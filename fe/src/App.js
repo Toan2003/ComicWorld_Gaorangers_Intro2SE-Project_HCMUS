@@ -31,7 +31,7 @@ function App() {
           <Route path="search-result" element={<Search />} />
           <Route path="upload-chapter" element={<UploadChapter />} />
           <Route path="profile/create-group" element={<CreateGroup />} />
-          <Route path="add-member" element={<AddMember />} />
+          <Route path="profile/add-member" element={<AddMember />} />
           {/* <Route path="profile/Dashboard/manage-account" element={<ManageAccount />}/> */}
           {/* <Route path="*" element={<NoPage />} /> */}
         </Route>
