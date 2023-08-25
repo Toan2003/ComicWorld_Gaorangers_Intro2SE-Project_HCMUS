@@ -38,6 +38,7 @@ export default function UploadChapter() {
     }
     const handleSubmit = async (e) => {
         let result = postCreateChapter(id,seclectedId,fileList,chapterName)
+        
         if(id=="" || seclectedId=="" || fileList==[]||chapterName=="")
         {
             alert('Thông tin trống. Vui lòng nhập lại!')

@@ -121,6 +121,7 @@ async function postCreateChapter(req,res) {
     // console.log(list)
     result = await database.postCreateChapter(chapterName,list, idMember,idComic).catch((error)=> {
         console.log(error)
+        console.log(result)
         return res.json({
             isSuccess: false,
             message: 'chapter is not created because of database',
@@ -128,6 +129,7 @@ async function postCreateChapter(req,res) {
             data: ''
         })
     })
+    // console.log(result)
     return res.json({
         isSuccess: true,
         message: 'chapter is created',
