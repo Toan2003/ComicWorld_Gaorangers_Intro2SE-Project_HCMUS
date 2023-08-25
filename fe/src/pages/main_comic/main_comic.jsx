@@ -58,6 +58,9 @@ export default function MainComic() {
   }
   
   async function handleFollow() {
+    if (!userId || userId == 'null') {
+      return
+    }
     if (follow) {
       let result = await postUnfollowComic(userId , id)
       // console.log(result)
