@@ -105,7 +105,7 @@ async function postCreateChapter(req,res) {
     for (let i = 0; i < listChapter.length; i++){
         let result = await Cloudinary.uploader
         .upload(listChapter[i],{
-            folder: 'testChapter'
+            folder: 'ImageChapter'
             // chapterName
         })
         .catch(error=>{
