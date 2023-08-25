@@ -13,15 +13,20 @@ export default function CreateGroup() {
 
     async function handleSubmitCreateGroup(e) {
         e.preventDefault()
-
-        const onCreatedGroup = await createGroup(groupName, description)
-        if(onCreatedGroup.data.isSuccess) 
-            alert("Đăng ký tác giả thành công!!!")
-        else 
-            alert(onCreatedGroup.data.message)
-
-        setGroupName("")
-        setDescription("")
+        if (groupName == "" && description == "") {
+            alert("Vui lòng không để thông tin trống")
+        }
+        else
+        {
+            const onCreatedGroup = await createGroup(groupName, description)
+            if(onCreatedGroup.data.isSuccess) 
+                alert("Đăng ký tác giả thành công!!!")
+            else 
+                alert(onCreatedGroup.data.message)
+    
+            setGroupName("")
+            setDescription("")
+        }
     }
     
     return (

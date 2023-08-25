@@ -44,19 +44,22 @@ export default function UploadChapter() {
             alert('Thông tin trống. Vui lòng nhập lại!')
             setDisabled(false)
         }
-        let result = await postCreateChapter(id,seclectedId,fileList,chapterName)
-        // console.log(result);
-        if(result.data.isSuccess == true)
+        else 
         {
-            alert('Upload chapter thành công')
-            Navigate_to_home()
-            setDisabled(false)
+            let result = await postCreateChapter(id,seclectedId,fileList,chapterName)
+            // console.log(result);
+            if(result.data.isSuccess == true)
+            {
+                alert('Upload chapter thành công')
+                Navigate_to_home()
+                setDisabled(false)
+            }
+            else{
+                alert('Thông tin không hợp lệ. Upload thất bại!')
+                setDisabled(false)
+            }
+            // console.log(result);
         }
-        else{
-            alert('Thông tin không hợp lệ. Upload thất bại!')
-            setDisabled(false)
-        }
-        // console.log(result);
     }
 
     async function loadDataPage() {
