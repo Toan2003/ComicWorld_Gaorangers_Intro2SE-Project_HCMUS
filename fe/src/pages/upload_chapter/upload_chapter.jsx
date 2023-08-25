@@ -13,6 +13,7 @@ export default function UploadChapter() {
     const [seclected, setSeclected] = useState("Chọn tên truyện");
     const [seclectedId, setSeclectedId] = useState('');
     const id = localStorage.getItem('id');
+    const [disabled, setDisabled] = useState(false);
     
 
     let inputHandler = (e) => {
@@ -37,21 +38,23 @@ export default function UploadChapter() {
         navigate('/')
     }
     const handleSubmit = async (e) => {
-        let result = postCreateChapter(id,seclectedId,fileList,chapterName)
+        setDisabled(true)
         if(id=="" || seclectedId=="" || fileList==[]||chapterName=="")
         {
             alert('Thông tin trống. Vui lòng nhập lại!')
+            setDisabled(false)
         }
-        else
+        let result = await postCreateChapter(id,seclectedId,fileList,chapterName)
+        console.log(result);
+        if(result.data.isSuccess == true)
         {
-            if(result==true)
-            {
-                alert('Upload chapter thành công')
-                Navigate_to_home()
-            }
-            else{
-                alert('Thông tin không hợp lệ. Upload thất bại!')
-            }
+            alert('Upload chapter thành công')
+            Navigate_to_home()
+            setDisabled(false)
+        }
+        else{
+            alert('Thông tin không hợp lệ. Upload thất bại!')
+            setDisabled(false)
         }
         // console.log(result);
     }
@@ -135,8 +138,8 @@ export default function UploadChapter() {
                 </div>
 
                 <div className="upload_chapter-button_section">
-                    <button onClick={(e) =>handleSubmit(e)} className="upload_chapter-button">Lưu</button>
-                    <button className="upload_chapter-button" onClick={Navigate_to_home}>Hủy</button>
+                    <button disabled={disabled} onClick={(e) =>handleSubmit(e)} className="upload_chapter-button">Lưu</button>
+                    <button disabled={disabled} className="upload_chapter-button" onClick={Navigate_to_home}>Hủy</button>
                 </div>
             </div>
         </div>  

@@ -54,7 +54,11 @@ export default function AddMember() {
     return (
         <div className="add_member-container">
             <div className="add_member-body">
-                <h3 className="add_member-title">Thêm thành viên vào nhóm</h3>
+                <p>
+                    <Link className="add_member-link" to="/">Trang chủ </Link>
+                     >>
+                    <Link className="add_member-link"> Thêm thành viên vào nhóm</Link>
+                </p>
                 <img src={AddMemberImg} alt="" className="add_member-img" />
                 <div className="add_member-form">
                     <span className="add_member-input_section">

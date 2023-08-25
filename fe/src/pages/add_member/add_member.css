@@ -32,8 +32,8 @@
     align-items: center;
 }
 
-.add_member-title{
-    font-size: 20px;
+.add_member-link{
+    font-size: 16px;
     font-weight: bold;
     color: var(--title-color);
     margin-bottom: 20px;

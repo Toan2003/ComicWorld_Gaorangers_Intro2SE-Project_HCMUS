@@ -34,7 +34,7 @@ async function getAllChapter(idComic)
         {
             // console.log(chooseComic[i].chaptersID)
             let chapterChoose = await chapter. findOne({_id:chooseComic[i].chaptersID})
-            // console.log(chapterChoose)
+            console.log(chapterChoose)
             viewComic.push(chapterChoose)
         }
         // console.log(viewComic)
@@ -47,7 +47,7 @@ async function postCreateChapter(chapterName1, chapterImage, idMember, idComic)
     const member = await user.findById(idMember)
     const newChapter=await chapter({chapterName: chapterName1, chapterImageID: chapterImage, uploader: member.username})
     newChapter.save()
-    await comics.updateOne({_id:idComic}, {$addToSet:{chapters:[{chapterid: newChapter._id, chapterName: chapterName1}]}})
+    await comics.updateOne({_id:idComic}, {$addToSet:{chapters:[{chaptersID: newChapter._id, chapterName: chapterName1}]}})
     return true
 }
 module.exports= {getOneChapter, 
