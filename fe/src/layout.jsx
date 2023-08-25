@@ -15,6 +15,10 @@ export default function Layout() {
   let inputHandler = (e) => {
     setInputText(e.target.value);
   };
+
+  function clearInputText() {
+    setInputText("")
+  }
   
   return (
     <div className="header-container">
@@ -26,12 +30,12 @@ export default function Layout() {
         </div>
 
         <div className="header-search_bar">
-          <input type="text" onChange={inputHandler} placeholder="Nhập từ khóa tìm kiếm" className="header-search_bar-input" />
+          <input type="text" onChange={inputHandler} value={inputText} placeholder="Nhập từ khóa tìm kiếm" className="header-search_bar-input" />
           <div className="header-search_bar-btn">
             {
               inputText.length > 0 ?
               (
-                <Link className="header-search_bar-link" to={"/search-result?key=" + inputText}>
+                <Link onClick={() => clearInputText()} className="header-search_bar-link" to={"/search-result?key=" + inputText}>
                 <AiOutlineSearch className="header-search_bar-icon"></AiOutlineSearch>
                 </Link>
               )

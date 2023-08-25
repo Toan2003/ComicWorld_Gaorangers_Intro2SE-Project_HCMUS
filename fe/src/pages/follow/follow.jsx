@@ -33,7 +33,7 @@ export default function Follow() {
         {
           checkAuthen == 'true' && context.authenticated ? 
           (
-            <ComicSection title="Những truyện bạn đang theo dõi" data={follow} ></ComicSection>
+            <ComicSection title="Những truyện bạn đang theo dõi" data={follow} placeHolder="Bạn hiện không theo dõi truyện nào" ></ComicSection>
           )
           :
           (

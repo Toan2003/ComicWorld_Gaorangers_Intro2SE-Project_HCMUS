@@ -32,11 +32,15 @@ export default function MainComic() {
     const COMIC = await getComic(id, userId)
     const RANK = await getRankingBoard()
     const allChapter = await getAllChapterOfComic(id) // cai nay la id comic
-
+    // console.log(allChapter)
     // console.log(allChapter)
     if (COMIC.data.data.comic.chapters.length > 0) {
-      setFistChapter(COMIC.data.data.comic.chapters[0].chaptersID)
-      setLastChapter(COMIC.data.data.comic.chapters[COMIC.data.data.comic.chapters.length-1].chaptersID)
+      if (COMIC.data.data.comic.chapters[0].chaptersID) {
+        setFistChapter(COMIC.data.data.comic.chapters[0].chaptersID)
+      }
+      if (COMIC.data.data.comic.chapters[COMIC.data.data.comic.chapters.length-1].chaptersID) {
+        setLastChapter(COMIC.data.data.comic.chapters[COMIC.data.data.comic.chapters.length-1].chaptersID)
+      }
     }
 
     setComic(COMIC.data.data.comic)
@@ -54,6 +58,9 @@ export default function MainComic() {
   }
   
   async function handleFollow() {
+    if (!userId || userId == 'null') {
+      return
+    }
     if (follow) {
       let result = await postUnfollowComic(userId , id)
       // console.log(result)

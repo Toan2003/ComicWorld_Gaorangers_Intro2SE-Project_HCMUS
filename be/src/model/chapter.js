@@ -34,7 +34,7 @@ async function getAllChapter(idComic)
         {
             // console.log(chooseComic[i].chaptersID)
             let chapterChoose = await chapter. findOne({_id:chooseComic[i].chaptersID})
-            // console.log(chapterChoose)
+            console.log(chapterChoose)
             viewComic.push(chapterChoose)
         }
         // console.log(viewComic)

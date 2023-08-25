@@ -188,7 +188,8 @@ async function postCreateComic(req,res) {
     }
     const result1 = await Cloudinary.uploader
     .upload(file,{
-        folder: 'CoverImage'
+        folder: 'testCoverImage'
+        // 'CoverImage'
     })
     .catch(error=>{
         console.log(error)

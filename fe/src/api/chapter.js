@@ -1,7 +1,7 @@
 import {axiosClient} from "./axiosConnect"
 import { convertBase64 } from "./convertImage";
 async function getChapter(idChapter) { 
-    console.log(idChapter)
+    // console.log(idChapter)
     let link = '/chapter/getOneChapter/'  + idChapter
     return await axiosClient.get(link);
 }
@@ -17,7 +17,6 @@ async function postCreateChapter(idMember, idComic, listChapter1, chapterName) {
     for (let i = 0; i < listChapter1.length; i++) {
         list.push(await convertBase64(listChapter1[i]))
     }
-    // console.log(idComic)
     // console.log(list)
     let data = {
         idMember: idMember,
@@ -25,7 +24,7 @@ async function postCreateChapter(idMember, idComic, listChapter1, chapterName) {
         chapterName: chapterName,
         listChapter: list
     }
-    console.log(data)
+    // console.log(data)
     return await axiosClient.post(link,data);
 }
 

@@ -23,7 +23,6 @@ function Comic() {
   const [PreviousChapter, setPreviousChapter] = useState('')
   async function loadData() {
     // console.log("callherr")
-    // const comic = await getAllChapterOfComic(idComic, null)
     const chapters = await getChapter(idChapter, null)
     const comics = await getComic(idComic, userId)
     // setOneChapter(chapters.data.data)
@@ -33,14 +32,10 @@ function Comic() {
 
     // console.log(comics.data.data.isFollowed)
     setAllChapter(comics.data.data.comic.chapters)
+    // console.log(comics)
   }
   // console.log(comic.chapters)
   
-  // function handleChooseChapter() {
-  //   setReload((reload) => reload + 1)
-  //   console
-  // }
-
   async function handleFollow() {
     if (follow) {
       let result = await postUnfollowComic(userId , idComic)

@@ -105,10 +105,11 @@ async function postCreateChapter(req,res) {
     for (let i = 0; i < listChapter.length; i++){
         let result = await Cloudinary.uploader
         .upload(listChapter[i],{
-            folder: chapterName
+            folder: 'testChapter'
+            // chapterName
         })
         .catch(error=>{
-            console.log(error)
+            // console.log(error)
             return res.json({
                 isSuccess: false,
                 message: "can not upload to cloud",
@@ -120,8 +121,7 @@ async function postCreateChapter(req,res) {
     }
     // console.log(list)
     result = await database.postCreateChapter(chapterName,list, idMember,idComic).catch((error)=> {
-        console.log(error)
-        console.log(result)
+        // console.log(error)
         return res.json({
             isSuccess: false,
             message: 'chapter is not created because of database',

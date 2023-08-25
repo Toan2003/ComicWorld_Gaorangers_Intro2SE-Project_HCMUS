@@ -50,8 +50,8 @@ export function CommentSection({ comic, userId, comicId }) {
 
 function Comment({ props, idComic }) {
     function handleReport(userId, comicId) {
-        console.log(userId)
-        console.log(comicId)
+        // console.log(userId)
+        // console.log(comicId)
     }
 
     return (
