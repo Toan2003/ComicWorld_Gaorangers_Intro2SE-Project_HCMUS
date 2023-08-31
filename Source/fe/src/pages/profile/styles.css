@@ -1,0 +1,244 @@
+@import url('../../index.css');
+
+.profile-container {
+  width: 100%;
+  padding: 1.5% 1.5% 0 1.5%;
+  display: flex;
+  background-color: var(--primary-color);
+  width: 1200px;
+  margin: auto
+}
+
+.profile .profile-link-user {
+  display: flex;
+  gap: 0.5vw;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.profile {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.profile-link-user .link-item {
+  text-decoration: none;
+  color: var(--link-color);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.profile-link-user .link-item:hover {
+  color: var(--hover-text-color)
+}
+
+.main-profile .account {
+  width: 20%;
+  background-color: var(--grey-color-2);
+}
+
+.main-profile .account .user-name-box {
+  background-color: antiquewhite;
+  padding: 5%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.user-list {
+  padding-left: 0;
+  text-align: left;
+}
+
+.user-list .link-item {
+  color: black;
+}
+
+.user-list li {
+  padding-left: 1vw;
+  padding-bottom: 0.3vw;
+  padding-top: 0.3vw;
+  align-items: center;
+}
+
+.user-list li:hover {
+  background-color: gainsboro;
+}
+
+.main-profile {
+  display: flex;
+}
+
+.main-profile .information {
+  margin-left: 2vw;
+  width: 70%;
+}
+
+.information h4 {
+  border-bottom: 5px solid red;
+}
+
+.information-item {
+  margin-top: 3vh;
+}
+
+.information-item .information-item-name {
+  border-bottom: 3px solid red;
+  max-width: 250px;
+  width: 100%;
+  padding-bottom: 0.5vh;
+  font-weight: 700;
+}
+
+.profile-box-account {
+  border-radius: 15px;
+  border: none;
+  background-color: antiquewhite;
+  max-width: 600px;
+  width: 100%;
+  padding: 1vh 0 1vh 0
+}
+
+.box-account-item {
+  padding: 10px 0 0 10px;
+}
+
+.box-account-item-1,
+.box-account-item-2 {
+  font-size: 15px;
+}
+
+.box-account-item-1 {
+  font-weight: 600
+}
+
+.profile-list-followed-comic,
+.profile-list-upload-comic,
+.profile-manage-account-comic {
+  max-width: 600px;
+}
+
+.profile-list-followed-header,
+.profile-list-upload-header,
+.profile-manage-account-header {
+  color: white;
+  background-color: black;
+}
+
+.comic-follow-item-col,
+.comic-upload-item-col,
+.comic-manage-item-col {
+  max-width: 400px;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+.comic-follow-item-col:last-child,
+.comic-upload-item-col:last-child,
+.comic-manage-item-col:last-child {
+  text-align: center;
+}
+
+.comic-follow-item-image {
+  width: 100%;
+  max-width: 40px;
+}
+
+.comic-follow-item-1 {
+  display: flex;
+}
+
+.comic-follow-item-1 .comic-follow-item-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
+  margin-left: 1vw;
+}
+
+.comic-follow-list-item-row {
+  border: 1px solid black;
+}
+
+.profile-search-account-box {
+  margin: 5vh 10vw 5vh 10vw;
+}
+
+.profile-search-account-form {
+  display: flex;
+}
+
+.profile-search-account-input {
+  border: none;
+  border-radius: 15px;
+  max-width: 700px;
+  width: 100%;
+  padding: 10px;
+  background-color: antiquewhite;
+}
+
+.profile-search-account-button {
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  transform: translateX(-110%);
+  margin: 10px 0 10px 0;
+}
+
+.role-selection {
+  margin: 0 auto;
+  height: 30px;
+  width: 100px;
+  line-height: 30px;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+.role-selection::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 20px;
+  left: 0;
+  top: 25px;
+}
+
+.role-selection-list {
+  line-height: 30px;
+  margin-top: 2px;
+  padding: 0;
+  border: 1px solid #ccc;
+  display: none;
+}
+
+.role-selection-item {
+  text-align: start;
+  padding-left: 8px;
+}
+
+.role-selection-item:hover {
+  background-color: #f1eded;
+  cursor: pointer;
+}
+
+.role-selection:hover .role-selection-list {
+  display: block;
+}
+
+.role-selection-icon {
+  font-size: 10px;
+  line-height: 30px;
+  margin-left: 8px;
+}
+
+.save-role-selection {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5vh;
+}
+
+.save-role-btn {
+  margin: 0 auto;
+}

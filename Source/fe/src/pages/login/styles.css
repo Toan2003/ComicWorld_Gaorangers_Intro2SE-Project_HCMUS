@@ -1,0 +1,52 @@
+@import url('../../index.css');
+
+.login, .register {
+  align-items: center;
+  justify-content: center;
+  padding: 10% 20% 30% 20%;
+  margin: 0 20% 0 20%;
+  background-color: var(--primary-color);
+}
+
+.login-form, .register-form {
+  border-radius: 15px;
+  background-color:rgb(238, 238, 238);
+  padding: 10% 20% 10% 20%;
+}
+
+.login, .login-form, 
+.register, .register-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.register input, 
+.login input {
+  width: 15vw;
+  padding: 0.5vh 1vw 0.5vh 1vw;
+  border: none;
+  background-color:antiquewhite;
+  margin-top: 3%;
+  border-radius: 15px;
+}
+
+.register button ,
+.login button {
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 5%;
+  border-radius: 10px;
+  border: none;
+}
+
+.register label, 
+.login label {
+  margin-top: 10%;
+}
+
+.register label:first-child, 
+.login label:first-child {
+  margin-top: 0;
+}
+

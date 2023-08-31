@@ -1,0 +1,140 @@
+:root {
+    --container-color: #EBEBEB;
+    --body-color: #fff;
+    --title-color: #1BB0F0;
+    --border-color: #ccc;
+    --hover-color: #f9f8f8;
+    --upload-button-color: #66CEFA;
+}
+
+.add_member-container {
+    width: 100%;
+    background-color: var(--container-color);
+}
+
+.add_member-body {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 27px 16px;
+    min-height: 725px;
+}
+
+.add_member-form {
+    width: fit-content;
+    height: 200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add_member-link{
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--title-color);
+    margin-bottom: 20px;
+}
+
+.add_member-sub_title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.add_member-list-wrap {
+    padding: 0 8px;
+    height: 35px;
+    width: 300px;
+    line-height: 30px;
+    border: 1px solid #070707;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.add_member-list-icon {
+    font-size: 10px;
+}
+
+.add_member-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: -1px;
+    border: 1px solid #070707;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 300px;
+    z-index: 1;
+    display: none;
+}
+
+.add_member-list-wrap::after {
+    content: "";
+    width: 100%;
+    height: 20px;
+    position: absolute;
+    top: 90%;
+    left: 0;
+}
+
+.add_member-list-wrap:hover .add_member-list {
+    display: block;
+}
+
+.add_member-list_item {
+    padding: 0 8px;
+    background-color: #fff;
+    display: block; 
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+} 
+
+.add_member-list_item:hover {
+    background-color: #f9f8f8;
+    cursor: pointer;
+}
+
+.add_member-input {
+    outline: none;
+    border: 1px solid #070707;
+    width: 300px;
+    height: 35px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.add_member-button_section {
+    margin: 0 auto;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add_member-submit_btn {
+    display: block;
+    text-decoration: none;
+    outline: none;
+    border: 1px solid #070707;
+    padding: 5px 8px;
+    border-radius: 5px;
+    min-width: 80px;
+    background-color: var(--upload-button-color);
+    color: #fff;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+}

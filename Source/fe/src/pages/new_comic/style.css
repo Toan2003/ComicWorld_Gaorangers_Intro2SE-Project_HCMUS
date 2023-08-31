@@ -1,0 +1,257 @@
+.new_comic
+{
+  width: 60%;
+  padding: 1.5% 0 0 1.5%;
+  display: flex;
+  background-color: var(--primary-color);
+  width: 1200px;
+  margin: auto
+}
+.center {
+  width: 70%;
+  left: 0;
+} 
+
+.center .link_newcomic {
+  display: flex;
+  gap: 0.5vw;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.link_newcomic .link_newcomic-item {
+  text-decoration: none;
+  color: var(--link-color);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.link_newcomic .link_newcomic-item:hover {
+  color: var(--hover-text-color)
+}
+.Newcomics
+{
+position: absolute;
+width: 372px;
+height: 47px;
+padding-bottom: 2px;
+color: var(--link-color);
+text-decoration: none;
+font-size:28px;
+font-weight: 600;
+color: #000000;
+
+}
+.Information
+{
+  padding-left: 17px;
+  padding-bottom:50px;
+}
+.Name
+{
+  width: 256px;
+  height: 49px;
+  padding-top:5px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+}
+.Nameinput
+{
+
+
+box-sizing: border-box;
+
+width: 1159px;
+height: 51px;
+font-size: 20px;
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 14px;
+}
+
+.Author{
+
+width: 256px;
+height: 49px;
+padding-top:5px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+padding-top:10px;
+color: #000000;
+}
+.Authorinput{
+
+box-sizing: border-box;
+
+width: 1159px;
+height: 51px;
+font-size: 20px;
+background: #FFFFFF;
+border: 1px solid #000000;
+border-radius: 14px;
+}
+.Type{
+  padding-top:10px;
+  width: 256px;
+  height: 49px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  
+  color: #000000;
+  }
+  .Select-1{
+  box-sizing: border-box;
+  width: 1157px;
+  height: 51px;
+
+  font-size: 20px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  border-radius: 14px;
+  }
+  .Date{
+  
+  padding-top: 10px;
+  width: 96px;
+  height: 35px;
+  
+  
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  
+  color: #000000;
+  }
+  .Date_box
+  {
+    padding-top:10px
+  }
+  .Dateinput{
+  box-sizing: border-box;
+  width: 281px;
+  height: 43px;
+  
+  font-size: 20px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  }
+  .Status{
+  width: 256px;
+  height: 43px;
+  padding-top:10px;
+  
+  font-family: 'Inter';
+  font-style: normal;
+  font-size: 20px;
+  
+  color: #000000;
+  }
+  .checkbox1{
+  width:40px;
+  }
+  
+  .checkbox2{
+  width:40px;
+  }
+  .checkbox3{
+  width:40px;
+  }
+  .Box
+  {
+    font-size: 20px
+  }
+  .Description{
+    width: 256px;
+    height: 49px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    
+    color: #000000;
+    }
+    .Description_Input{
+    box-sizing: border-box;
+    width: 1157px;
+    height: 200px;
+    
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    }
+  .Input_file
+  {
+    border:None;
+    outline: None;
+    width:500px;
+    font-size:25px ;
+
+  }
+  .Button_group
+  {
+    display:inline-block;
+    padding-left: 50%;
+    padding-bottom: 50px;
+    
+  }
+  .Button_accept
+  {
+  box-sizing: border-box;
+  width: 168px;
+  height: 42px;
+  
+  margin-left: 15px;
+  margin-right:10px;
+  left:54%;
+  font-size:28px;
+  color:white;
+  background: #21258E;
+  border: 1px solid #000000;
+  border-radius: 2px;
+
+  }
+  .Button_accept:hover
+  {
+    background: #2027dd;
+  }
+.Input_file[type="file"]
+{
+  border:None;
+  outline: None;
+
+  background-color: transparent;
+  display: none;
+}
+.Label_file
+{
+  color:white;
+  font-size:28px;
+  border: 1px solid #070707;
+  width:220px;
+  height:46px;
+  background-color:#21258E ;
+  display: flex;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.Label_file:hover
+{
+  background: #2027dd;
+}
+
