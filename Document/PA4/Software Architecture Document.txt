@@ -1,2 +1,0 @@
-+ Redraw part 4.logical view (package diagram) - show what folders inside components
-+ Update part 5 deployment and part 6 implementation view
